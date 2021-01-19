@@ -93,6 +93,7 @@
             this.CB_HARD = new System.Windows.Forms.CheckBox();
             this.CB_VH = new System.Windows.Forms.CheckBox();
             this.CB_NORMAL = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PB_EMD_ROOM)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -261,7 +262,7 @@
             this.label14.BackColor = System.Drawing.Color.LavenderBlush;
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label14.ForeColor = System.Drawing.Color.DarkRed;
-            this.label14.Location = new System.Drawing.Point(319, 58);
+            this.label14.Location = new System.Drawing.Point(465, 56);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 34);
             this.label14.TabIndex = 49;
@@ -272,7 +273,7 @@
             // 
             this.EMD_NBDID01.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID01.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID01.Location = new System.Drawing.Point(323, 95);
+            this.EMD_NBDID01.Location = new System.Drawing.Point(465, 95);
             this.EMD_NBDID01.Name = "EMD_NBDID01";
             this.EMD_NBDID01.Size = new System.Drawing.Size(94, 30);
             this.EMD_NBDID01.TabIndex = 48;
@@ -281,7 +282,7 @@
             // 
             this.EMD_NBDID00.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID00.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID00.Location = new System.Drawing.Point(219, 95);
+            this.EMD_NBDID00.Location = new System.Drawing.Point(365, 95);
             this.EMD_NBDID00.Name = "EMD_NBDID00";
             this.EMD_NBDID00.Size = new System.Drawing.Size(94, 30);
             this.EMD_NBDID00.TabIndex = 47;
@@ -333,7 +334,7 @@
             this.LBL_NBD.BackColor = System.Drawing.Color.LavenderBlush;
             this.LBL_NBD.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LBL_NBD.ForeColor = System.Drawing.Color.DarkRed;
-            this.LBL_NBD.Location = new System.Drawing.Point(219, 58);
+            this.LBL_NBD.Location = new System.Drawing.Point(365, 58);
             this.LBL_NBD.Name = "LBL_NBD";
             this.LBL_NBD.Size = new System.Drawing.Size(94, 34);
             this.LBL_NBD.TabIndex = 20;
@@ -362,7 +363,7 @@
             this.CB_EMD_SEL.FormattingEnabled = true;
             this.CB_EMD_SEL.Location = new System.Drawing.Point(13, 22);
             this.CB_EMD_SEL.Name = "CB_EMD_SEL";
-            this.CB_EMD_SEL.Size = new System.Drawing.Size(400, 31);
+            this.CB_EMD_SEL.Size = new System.Drawing.Size(556, 31);
             this.CB_EMD_SEL.TabIndex = 0;
             // 
             // groupBox5
@@ -405,7 +406,7 @@
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(385, -3);
+            this.label13.Location = new System.Drawing.Point(393, -1);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(113, 27);
             this.label13.TabIndex = 54;
@@ -588,6 +589,8 @@
             // 
             // label4
             // 
+            this.label4.BackColor = System.Drawing.Color.Azure;
+            this.label4.ForeColor = System.Drawing.Color.DarkRed;
             this.label4.Location = new System.Drawing.Point(402, 33);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 27);
@@ -597,6 +600,8 @@
             // 
             // label3
             // 
+            this.label3.BackColor = System.Drawing.Color.Azure;
+            this.label3.ForeColor = System.Drawing.Color.DarkRed;
             this.label3.Location = new System.Drawing.Point(308, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 27);
@@ -606,6 +611,8 @@
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Azure;
+            this.label2.ForeColor = System.Drawing.Color.DarkRed;
             this.label2.Location = new System.Drawing.Point(217, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 27);
@@ -615,6 +622,8 @@
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.Azure;
+            this.label1.ForeColor = System.Drawing.Color.DarkRed;
             this.label1.Location = new System.Drawing.Point(123, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 27);
@@ -806,21 +815,21 @@
             this.BTN_EMD_ADD.Enabled = false;
             this.BTN_EMD_ADD.FlatAppearance.BorderSize = 0;
             this.BTN_EMD_ADD.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.BTN_EMD_ADD.Location = new System.Drawing.Point(14, 579);
+            this.BTN_EMD_ADD.Location = new System.Drawing.Point(14, 578);
             this.BTN_EMD_ADD.Name = "BTN_EMD_ADD";
-            this.BTN_EMD_ADD.Size = new System.Drawing.Size(230, 72);
+            this.BTN_EMD_ADD.Size = new System.Drawing.Size(233, 34);
             this.BTN_EMD_ADD.TabIndex = 35;
             this.BTN_EMD_ADD.Text = "ADD ENEMY";
             this.BTN_EMD_ADD.UseVisualStyleBackColor = false;
             // 
             // BTN_EMDSAVE
             // 
-            this.BTN_EMDSAVE.BackColor = System.Drawing.Color.Gray;
+            this.BTN_EMDSAVE.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BTN_EMDSAVE.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_EMDSAVE.Image = ((System.Drawing.Image)(resources.GetObject("BTN_EMDSAVE.Image")));
             this.BTN_EMDSAVE.Location = new System.Drawing.Point(253, 578);
             this.BTN_EMDSAVE.Name = "BTN_EMDSAVE";
-            this.BTN_EMDSAVE.Size = new System.Drawing.Size(942, 73);
+            this.BTN_EMDSAVE.Size = new System.Drawing.Size(572, 73);
             this.BTN_EMDSAVE.TabIndex = 36;
             this.BTN_EMDSAVE.Text = "SAVE";
             this.BTN_EMDSAVE.UseVisualStyleBackColor = false;
@@ -858,7 +867,7 @@
             // CB_EASY
             // 
             this.CB_EASY.AutoSize = true;
-            this.CB_EASY.Location = new System.Drawing.Point(442, 29);
+            this.CB_EASY.Location = new System.Drawing.Point(402, 29);
             this.CB_EASY.Name = "CB_EASY";
             this.CB_EASY.Size = new System.Drawing.Size(73, 27);
             this.CB_EASY.TabIndex = 60;
@@ -868,7 +877,7 @@
             // CB_HARD
             // 
             this.CB_HARD.AutoSize = true;
-            this.CB_HARD.Location = new System.Drawing.Point(442, 89);
+            this.CB_HARD.Location = new System.Drawing.Point(402, 89);
             this.CB_HARD.Name = "CB_HARD";
             this.CB_HARD.Size = new System.Drawing.Size(78, 27);
             this.CB_HARD.TabIndex = 61;
@@ -878,7 +887,7 @@
             // CB_VH
             // 
             this.CB_VH.AutoSize = true;
-            this.CB_VH.Location = new System.Drawing.Point(442, 119);
+            this.CB_VH.Location = new System.Drawing.Point(402, 119);
             this.CB_VH.Name = "CB_VH";
             this.CB_VH.Size = new System.Drawing.Size(127, 27);
             this.CB_VH.TabIndex = 62;
@@ -888,12 +897,26 @@
             // CB_NORMAL
             // 
             this.CB_NORMAL.AutoSize = true;
-            this.CB_NORMAL.Location = new System.Drawing.Point(442, 56);
+            this.CB_NORMAL.Location = new System.Drawing.Point(402, 56);
             this.CB_NORMAL.Name = "CB_NORMAL";
             this.CB_NORMAL.Size = new System.Drawing.Size(104, 27);
             this.CB_NORMAL.TabIndex = 63;
             this.CB_NORMAL.Text = "NORMAL";
             this.CB_NORMAL.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.button1.Location = new System.Drawing.Point(14, 617);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(233, 34);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "DELETE ENEMY";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FRM_EMD
             // 
@@ -901,6 +924,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1209, 685);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BTN_EMDSAVE);
             this.Controls.Add(this.BTN_EMD_ADD);
@@ -1018,5 +1042,6 @@
         private System.Windows.Forms.CheckBox CB_VH;
         private System.Windows.Forms.CheckBox CB_HARD;
         private System.Windows.Forms.CheckBox CB_EASY;
+        public System.Windows.Forms.Button button1;
     }
 }

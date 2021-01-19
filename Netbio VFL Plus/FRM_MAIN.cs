@@ -67,6 +67,7 @@ namespace Netbio_VFL_Plus
         public EVB_PARSER EVBIO = new EVB_PARSER();
         public Items ITEMIO = new Items();
         public EMD_IO EMDIO = new EMD_IO();
+        public NPC_IO NPCIO = new NPC_IO();
         public NBD_IO NBDIO = new NBD_IO();
         
 
@@ -76,6 +77,7 @@ namespace Netbio_VFL_Plus
         public FRM_RDT RDT_FORM = new FRM_RDT();
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public FRM_EMD EMD_FORM = new FRM_EMD();
+        public PB_CURROOM NPC_FORM = new PB_CURROOM();
         public FRM_HEX2DEC CALC_FORM = new FRM_HEX2DEC();
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public FRM_ABOUT ABOUT_FORM = new FRM_ABOUT();
@@ -1337,6 +1339,10 @@ namespace Netbio_VFL_Plus
                             break;
                         case "DAT":
                             break;
+                        case "NPC":
+                            nPCINTToolStripMenuItem_Click(sender, e);
+                            break;
+
 
 
                     }
@@ -1380,6 +1386,43 @@ namespace Netbio_VFL_Plus
         private void BTN_CALC_Click(object sender, EventArgs e)
         {
             CALC_FORM.ShowDialog();
+        }
+
+        private void nPCINTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+               int index = LV_AFS.SelectedIndices[0];
+               
+                // CHECK VALID FILE PATH
+                if (File.Exists(Img.Image_Path))
+                {
+
+                    // OPEN FILE STREAM
+                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
+                    {
+
+                        // ENSURE IT HAS VALID AFS SIG + EMD EXTENSION
+                        if (Valid_Iso(fs) && LV_AFS.FocusedItem.SubItems[3].Text.Substring(LV_AFS.FocusedItem.SubItems[3].Text.Length - 3, 3).ToUpper() == "NPC")
+                        {
+                            
+                            Img.Read_Image = new CDReader(fs, true, true);
+                            Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+                            Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
+
+                            
+                                   NPCIO.READ_NPC_STREAM(memStream, AFSIO.cur_archive_offset, ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), LV_AFS, NPC_FORM.Lst_Header, NPC_FORM.Lst_Entries);
+                                   NPC_FORM.ShowDialog();
+                              //  EMD_FORM.ShowDialog();
+                            
+
+                        }
+
+                    }
+
+                }
+
+            
+
+            
         }
     }
 }

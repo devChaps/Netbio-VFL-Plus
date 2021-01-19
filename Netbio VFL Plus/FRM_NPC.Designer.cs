@@ -1,6 +1,6 @@
 ﻿namespace Netbio_VFL_Plus
 {
-    partial class FRM_NPC
+    partial class PB_CURROOM
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PB_CURROOM));
             this.NPC_Imagebox = new System.Windows.Forms.PictureBox();
             this.Lst_Entries = new System.Windows.Forms.ListBox();
             this.Lst_Header = new System.Windows.Forms.ListView();
@@ -55,6 +56,17 @@
             this.Num_NID = new System.Windows.Forms.NumericUpDown();
             this.Num_RID = new System.Windows.Forms.NumericUpDown();
             this.Btn_Confirm = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.PB_CURRENT_ROOM = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.NPC_Imagebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_bounds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_alive)).BeginInit();
@@ -67,33 +79,42 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_CoordY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_NID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_RID)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_CURRENT_ROOM)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // NPC_Imagebox
             // 
             this.NPC_Imagebox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.NPC_Imagebox.Location = new System.Drawing.Point(272, 14);
+            this.NPC_Imagebox.Location = new System.Drawing.Point(6, 26);
             this.NPC_Imagebox.Name = "NPC_Imagebox";
-            this.NPC_Imagebox.Size = new System.Drawing.Size(360, 236);
+            this.NPC_Imagebox.Size = new System.Drawing.Size(224, 250);
+            this.NPC_Imagebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.NPC_Imagebox.TabIndex = 12;
             this.NPC_Imagebox.TabStop = false;
             this.NPC_Imagebox.Click += new System.EventHandler(this.NPC_Imagebox_Click);
             // 
             // Lst_Entries
             // 
-            this.Lst_Entries.BackColor = System.Drawing.Color.White;
-            this.Lst_Entries.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lst_Entries.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Lst_Entries.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Lst_Entries.Font = new System.Drawing.Font("Bahnschrift", 12F);
             this.Lst_Entries.ForeColor = System.Drawing.Color.Black;
             this.Lst_Entries.FormattingEnabled = true;
-            this.Lst_Entries.Location = new System.Drawing.Point(237, 12);
+            this.Lst_Entries.ItemHeight = 19;
+            this.Lst_Entries.Location = new System.Drawing.Point(410, 45);
             this.Lst_Entries.Name = "Lst_Entries";
-            this.Lst_Entries.Size = new System.Drawing.Size(29, 238);
+            this.Lst_Entries.Size = new System.Drawing.Size(40, 249);
             this.Lst_Entries.TabIndex = 11;
             this.Lst_Entries.SelectedIndexChanged += new System.EventHandler(this.Lst_Entries_SelectedIndexChanged);
             // 
             // Lst_Header
             // 
-            this.Lst_Header.BackColor = System.Drawing.Color.White;
+            this.Lst_Header.BackColor = System.Drawing.SystemColors.ControlDark;
             this.Lst_Header.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clm_idx,
             this.clm_offset,
@@ -102,9 +123,9 @@
             this.Lst_Header.ForeColor = System.Drawing.Color.Black;
             this.Lst_Header.FullRowSelect = true;
             this.Lst_Header.HideSelection = false;
-            this.Lst_Header.Location = new System.Drawing.Point(12, 10);
+            this.Lst_Header.Location = new System.Drawing.Point(189, 45);
             this.Lst_Header.Name = "Lst_Header";
-            this.Lst_Header.Size = new System.Drawing.Size(219, 236);
+            this.Lst_Header.Size = new System.Drawing.Size(217, 249);
             this.Lst_Header.TabIndex = 10;
             this.Lst_Header.UseCompatibleStateImageBehavior = false;
             this.Lst_Header.View = System.Windows.Forms.View.Details;
@@ -133,18 +154,18 @@
             // LBL_BOUNDS
             // 
             this.LBL_BOUNDS.ForeColor = System.Drawing.Color.Black;
-            this.LBL_BOUNDS.Location = new System.Drawing.Point(538, 324);
+            this.LBL_BOUNDS.Location = new System.Drawing.Point(194, 82);
             this.LBL_BOUNDS.Name = "LBL_BOUNDS";
-            this.LBL_BOUNDS.Size = new System.Drawing.Size(66, 10);
+            this.LBL_BOUNDS.Size = new System.Drawing.Size(80, 22);
             this.LBL_BOUNDS.TabIndex = 49;
             this.LBL_BOUNDS.Text = "Boundary";
             // 
             // LBL_Alive
             // 
             this.LBL_Alive.ForeColor = System.Drawing.Color.Black;
-            this.LBL_Alive.Location = new System.Drawing.Point(478, 324);
+            this.LBL_Alive.Location = new System.Drawing.Point(134, 83);
             this.LBL_Alive.Name = "LBL_Alive";
-            this.LBL_Alive.Size = new System.Drawing.Size(54, 10);
+            this.LBL_Alive.Size = new System.Drawing.Size(54, 22);
             this.LBL_Alive.TabIndex = 48;
             this.LBL_Alive.Text = "Alive Flag";
             // 
@@ -153,7 +174,7 @@
             this.Num_bounds.BackColor = System.Drawing.Color.White;
             this.Num_bounds.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_bounds.ForeColor = System.Drawing.Color.Black;
-            this.Num_bounds.Location = new System.Drawing.Point(541, 337);
+            this.Num_bounds.Location = new System.Drawing.Point(189, 108);
             this.Num_bounds.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -168,7 +189,7 @@
             this.Num_alive.BackColor = System.Drawing.Color.White;
             this.Num_alive.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_alive.ForeColor = System.Drawing.Color.Black;
-            this.Num_alive.Location = new System.Drawing.Point(478, 337);
+            this.Num_alive.Location = new System.Drawing.Point(129, 108);
             this.Num_alive.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -181,18 +202,18 @@
             // LBL_Animflg2
             // 
             this.LBL_Animflg2.ForeColor = System.Drawing.Color.Black;
-            this.LBL_Animflg2.Location = new System.Drawing.Point(421, 324);
+            this.LBL_Animflg2.Location = new System.Drawing.Point(185, 33);
             this.LBL_Animflg2.Name = "LBL_Animflg2";
-            this.LBL_Animflg2.Size = new System.Drawing.Size(51, 10);
+            this.LBL_Animflg2.Size = new System.Drawing.Size(51, 22);
             this.LBL_Animflg2.TabIndex = 45;
             this.LBL_Animflg2.Text = "Flag2";
             // 
             // LBL_AnimID2
             // 
             this.LBL_AnimID2.ForeColor = System.Drawing.Color.Black;
-            this.LBL_AnimID2.Location = new System.Drawing.Point(361, 324);
+            this.LBL_AnimID2.Location = new System.Drawing.Point(125, 33);
             this.LBL_AnimID2.Name = "LBL_AnimID2";
-            this.LBL_AnimID2.Size = new System.Drawing.Size(51, 10);
+            this.LBL_AnimID2.Size = new System.Drawing.Size(51, 22);
             this.LBL_AnimID2.TabIndex = 44;
             this.LBL_AnimID2.Text = "Anim ID2";
             // 
@@ -201,7 +222,7 @@
             this.Num_Animflg2.BackColor = System.Drawing.Color.White;
             this.Num_Animflg2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_Animflg2.ForeColor = System.Drawing.Color.Black;
-            this.Num_Animflg2.Location = new System.Drawing.Point(421, 337);
+            this.Num_Animflg2.Location = new System.Drawing.Point(180, 58);
             this.Num_Animflg2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -216,7 +237,7 @@
             this.Num_AnimID2.BackColor = System.Drawing.Color.White;
             this.Num_AnimID2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_AnimID2.ForeColor = System.Drawing.Color.Black;
-            this.Num_AnimID2.Location = new System.Drawing.Point(364, 337);
+            this.Num_AnimID2.Location = new System.Drawing.Point(123, 58);
             this.Num_AnimID2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -231,7 +252,7 @@
             this.Num_Rotation.BackColor = System.Drawing.Color.White;
             this.Num_Rotation.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_Rotation.ForeColor = System.Drawing.Color.Black;
-            this.Num_Rotation.Location = new System.Drawing.Point(410, 381);
+            this.Num_Rotation.Location = new System.Drawing.Point(105, 62);
             this.Num_Rotation.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -249,18 +270,18 @@
             // LBL_animflg1
             // 
             this.LBL_animflg1.ForeColor = System.Drawing.Color.Black;
-            this.LBL_animflg1.Location = new System.Drawing.Point(312, 324);
+            this.LBL_animflg1.Location = new System.Drawing.Point(70, 83);
             this.LBL_animflg1.Name = "LBL_animflg1";
-            this.LBL_animflg1.Size = new System.Drawing.Size(48, 10);
+            this.LBL_animflg1.Size = new System.Drawing.Size(48, 22);
             this.LBL_animflg1.TabIndex = 40;
             this.LBL_animflg1.Text = "Flag";
             // 
             // LBL_AnimID1
             // 
             this.LBL_AnimID1.ForeColor = System.Drawing.Color.Black;
-            this.LBL_AnimID1.Location = new System.Drawing.Point(250, 324);
+            this.LBL_AnimID1.Location = new System.Drawing.Point(11, 83);
             this.LBL_AnimID1.Name = "LBL_AnimID1";
-            this.LBL_AnimID1.Size = new System.Drawing.Size(51, 10);
+            this.LBL_AnimID1.Size = new System.Drawing.Size(51, 22);
             this.LBL_AnimID1.TabIndex = 39;
             this.LBL_AnimID1.Text = "Anim ID";
             // 
@@ -269,7 +290,7 @@
             this.Num_Animflg.BackColor = System.Drawing.Color.White;
             this.Num_Animflg.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_Animflg.ForeColor = System.Drawing.Color.Black;
-            this.Num_Animflg.Location = new System.Drawing.Point(307, 337);
+            this.Num_Animflg.Location = new System.Drawing.Point(67, 108);
             this.Num_Animflg.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -284,7 +305,7 @@
             this.Num_AnimID.BackColor = System.Drawing.Color.White;
             this.Num_AnimID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_AnimID.ForeColor = System.Drawing.Color.Black;
-            this.Num_AnimID.Location = new System.Drawing.Point(250, 337);
+            this.Num_AnimID.Location = new System.Drawing.Point(11, 108);
             this.Num_AnimID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -297,18 +318,18 @@
             // LBL_NID
             // 
             this.LBL_NID.ForeColor = System.Drawing.Color.Black;
-            this.LBL_NID.Location = new System.Drawing.Point(188, 324);
+            this.LBL_NID.Location = new System.Drawing.Point(63, 35);
             this.LBL_NID.Name = "LBL_NID";
-            this.LBL_NID.Size = new System.Drawing.Size(51, 10);
+            this.LBL_NID.Size = new System.Drawing.Size(51, 22);
             this.LBL_NID.TabIndex = 36;
             this.LBL_NID.Text = "NPC ID";
             // 
             // LBL_RID
             // 
             this.LBL_RID.ForeColor = System.Drawing.Color.Black;
-            this.LBL_RID.Location = new System.Drawing.Point(131, 324);
+            this.LBL_RID.Location = new System.Drawing.Point(6, 35);
             this.LBL_RID.Name = "LBL_RID";
-            this.LBL_RID.Size = new System.Drawing.Size(51, 10);
+            this.LBL_RID.Size = new System.Drawing.Size(51, 22);
             this.LBL_RID.TabIndex = 35;
             this.LBL_RID.Text = "Room ID";
             // 
@@ -318,7 +339,7 @@
             this.Num_CoordX.DecimalPlaces = 4;
             this.Num_CoordX.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_CoordX.ForeColor = System.Drawing.Color.Black;
-            this.Num_CoordX.Location = new System.Drawing.Point(315, 381);
+            this.Num_CoordX.Location = new System.Drawing.Point(105, 89);
             this.Num_CoordX.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -334,7 +355,7 @@
             this.Num_CoordY.DecimalPlaces = 4;
             this.Num_CoordY.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_CoordY.ForeColor = System.Drawing.Color.Black;
-            this.Num_CoordY.Location = new System.Drawing.Point(220, 381);
+            this.Num_CoordY.Location = new System.Drawing.Point(105, 35);
             this.Num_CoordY.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -349,7 +370,7 @@
             this.Num_NID.BackColor = System.Drawing.Color.White;
             this.Num_NID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_NID.ForeColor = System.Drawing.Color.Black;
-            this.Num_NID.Location = new System.Drawing.Point(193, 337);
+            this.Num_NID.Location = new System.Drawing.Point(67, 60);
             this.Num_NID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -364,7 +385,7 @@
             this.Num_RID.BackColor = System.Drawing.Color.White;
             this.Num_RID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_RID.ForeColor = System.Drawing.Color.Black;
-            this.Num_RID.Location = new System.Drawing.Point(134, 337);
+            this.Num_RID.Location = new System.Drawing.Point(11, 60);
             this.Num_RID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -377,43 +398,169 @@
             // Btn_Confirm
             // 
             this.Btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Confirm.Location = new System.Drawing.Point(58, 408);
+            this.Btn_Confirm.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Confirm.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Confirm.Image")));
+            this.Btn_Confirm.Location = new System.Drawing.Point(12, 502);
             this.Btn_Confirm.Name = "Btn_Confirm";
-            this.Btn_Confirm.Size = new System.Drawing.Size(625, 33);
+            this.Btn_Confirm.Size = new System.Drawing.Size(701, 67);
             this.Btn_Confirm.TabIndex = 50;
-            this.Btn_Confirm.Text = "Confirm Edit";
+            this.Btn_Confirm.Text = "SAVE";
             this.Btn_Confirm.UseVisualStyleBackColor = true;
+            this.Btn_Confirm.Click += new System.EventHandler(this.Btn_Confirm_Click);
             // 
-            // FRM_NPC
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.Lst_Header);
+            this.groupBox1.Controls.Add(this.Lst_Entries);
+            this.groupBox1.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(456, 300);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "MAP DATA";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.LBL_RID);
+            this.groupBox2.Controls.Add(this.Num_RID);
+            this.groupBox2.Controls.Add(this.Num_NID);
+            this.groupBox2.Controls.Add(this.LBL_BOUNDS);
+            this.groupBox2.Controls.Add(this.LBL_Alive);
+            this.groupBox2.Controls.Add(this.Num_bounds);
+            this.groupBox2.Controls.Add(this.LBL_NID);
+            this.groupBox2.Controls.Add(this.Num_alive);
+            this.groupBox2.Controls.Add(this.Num_AnimID);
+            this.groupBox2.Controls.Add(this.LBL_Animflg2);
+            this.groupBox2.Controls.Add(this.Num_Animflg);
+            this.groupBox2.Controls.Add(this.LBL_AnimID2);
+            this.groupBox2.Controls.Add(this.LBL_AnimID1);
+            this.groupBox2.Controls.Add(this.Num_Animflg2);
+            this.groupBox2.Controls.Add(this.LBL_animflg1);
+            this.groupBox2.Controls.Add(this.Num_AnimID2);
+            this.groupBox2.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 306);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(701, 190);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "NPC DATA";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.NPC_Imagebox);
+            this.groupBox3.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(474, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(239, 300);
+            this.groupBox3.TabIndex = 53;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "NPC PREVIEW";
+            // 
+            // PB_CURRENT_ROOM
+            // 
+            this.PB_CURRENT_ROOM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.PB_CURRENT_ROOM.Location = new System.Drawing.Point(5, 26);
+            this.PB_CURRENT_ROOM.Name = "PB_CURRENT_ROOM";
+            this.PB_CURRENT_ROOM.Size = new System.Drawing.Size(171, 154);
+            this.PB_CURRENT_ROOM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PB_CURRENT_ROOM.TabIndex = 54;
+            this.PB_CURRENT_ROOM.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(405, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 21);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "NPC INDEX";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(241, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 21);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "ROOM INDEX";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(8, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 22);
+            this.label3.TabIndex = 50;
+            this.label3.Text = "X";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label4
+            // 
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(8, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 22);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "Y";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(8, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 22);
+            this.label5.TabIndex = 52;
+            this.label5.Text = "Z";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.Num_Rotation);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.Num_CoordX);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.Num_CoordY);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Location = new System.Drawing.Point(451, 26);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(241, 154);
+            this.groupBox4.TabIndex = 53;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Position Data";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.PB_CURRENT_ROOM);
+            this.groupBox5.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(12, 21);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(188, 195);
+            this.groupBox5.TabIndex = 60;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "ROOM ID";
+            // 
+            // PB_CURROOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ClientSize = new System.Drawing.Size(735, 585);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Btn_Confirm);
-            this.Controls.Add(this.LBL_BOUNDS);
-            this.Controls.Add(this.LBL_Alive);
-            this.Controls.Add(this.Num_bounds);
-            this.Controls.Add(this.Num_alive);
-            this.Controls.Add(this.LBL_Animflg2);
-            this.Controls.Add(this.LBL_AnimID2);
-            this.Controls.Add(this.Num_Animflg2);
-            this.Controls.Add(this.Num_AnimID2);
-            this.Controls.Add(this.Num_Rotation);
-            this.Controls.Add(this.LBL_animflg1);
-            this.Controls.Add(this.LBL_AnimID1);
-            this.Controls.Add(this.Num_Animflg);
-            this.Controls.Add(this.Num_AnimID);
-            this.Controls.Add(this.LBL_NID);
-            this.Controls.Add(this.LBL_RID);
-            this.Controls.Add(this.Num_CoordX);
-            this.Controls.Add(this.Num_CoordY);
-            this.Controls.Add(this.Num_NID);
-            this.Controls.Add(this.Num_RID);
-            this.Controls.Add(this.NPC_Imagebox);
-            this.Controls.Add(this.Lst_Entries);
-            this.Controls.Add(this.Lst_Header);
-            this.Name = "FRM_NPC";
+            this.Name = "PB_CURROOM";
             this.Text = "FRM_NPC";
+            this.Load += new System.EventHandler(this.PB_CURROOM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NPC_Imagebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_bounds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_alive)).EndInit();
@@ -426,38 +573,54 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_CoordY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_NID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_RID)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_CURRENT_ROOM)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox NPC_Imagebox;
-        private System.Windows.Forms.ListBox Lst_Entries;
-        private System.Windows.Forms.ListView Lst_Header;
         private System.Windows.Forms.ColumnHeader clm_idx;
         private System.Windows.Forms.ColumnHeader clm_offset;
         private System.Windows.Forms.ColumnHeader clm_size;
         private System.Windows.Forms.ColumnHeader clm_room;
-        private System.Windows.Forms.Label LBL_BOUNDS;
-        private System.Windows.Forms.Label LBL_Alive;
-        private System.Windows.Forms.NumericUpDown Num_bounds;
-        private System.Windows.Forms.NumericUpDown Num_alive;
-        private System.Windows.Forms.Label LBL_Animflg2;
-        private System.Windows.Forms.Label LBL_AnimID2;
-        private System.Windows.Forms.NumericUpDown Num_Animflg2;
-        private System.Windows.Forms.NumericUpDown Num_AnimID2;
-        private System.Windows.Forms.NumericUpDown Num_Rotation;
-        private System.Windows.Forms.Label LBL_animflg1;
-        private System.Windows.Forms.Label LBL_AnimID1;
-        private System.Windows.Forms.NumericUpDown Num_Animflg;
-        private System.Windows.Forms.NumericUpDown Num_AnimID;
-        private System.Windows.Forms.Label LBL_NID;
-        private System.Windows.Forms.Label LBL_RID;
-        private System.Windows.Forms.NumericUpDown Num_CoordX;
-        private System.Windows.Forms.NumericUpDown Num_CoordY;
-        private System.Windows.Forms.NumericUpDown Num_NID;
-        private System.Windows.Forms.NumericUpDown Num_RID;
-        private System.Windows.Forms.Button Btn_Confirm;
+        public System.Windows.Forms.PictureBox NPC_Imagebox;
+        public System.Windows.Forms.ListBox Lst_Entries;
+        public System.Windows.Forms.ListView Lst_Header;
+        public System.Windows.Forms.Label LBL_BOUNDS;
+        public System.Windows.Forms.Label LBL_Alive;
+        public System.Windows.Forms.NumericUpDown Num_bounds;
+        public System.Windows.Forms.NumericUpDown Num_alive;
+        public System.Windows.Forms.Label LBL_Animflg2;
+        public System.Windows.Forms.Label LBL_AnimID2;
+        public System.Windows.Forms.NumericUpDown Num_Animflg2;
+        public System.Windows.Forms.NumericUpDown Num_AnimID2;
+        public System.Windows.Forms.NumericUpDown Num_Rotation;
+        public System.Windows.Forms.Label LBL_animflg1;
+        public System.Windows.Forms.Label LBL_AnimID1;
+        public System.Windows.Forms.NumericUpDown Num_Animflg;
+        public System.Windows.Forms.NumericUpDown Num_AnimID;
+        public System.Windows.Forms.Label LBL_NID;
+        public System.Windows.Forms.Label LBL_RID;
+        public System.Windows.Forms.NumericUpDown Num_CoordX;
+        public System.Windows.Forms.NumericUpDown Num_CoordY;
+        public System.Windows.Forms.NumericUpDown Num_NID;
+        public System.Windows.Forms.NumericUpDown Num_RID;
+        public System.Windows.Forms.Button Btn_Confirm;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.PictureBox PB_CURRENT_ROOM;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }

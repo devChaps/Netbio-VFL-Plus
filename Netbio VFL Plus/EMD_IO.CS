@@ -457,15 +457,12 @@ namespace Netbio_VFL_Plus
 		public static void Set_Object(ListView LST_HEADER, ListBox LB, PropertyGrid PG) // get indexs set emd prop grid object to already stored data and send to prop grid
 		{
 			
-
 		}
 
 		public static void Set_pic(byte NBD0, byte NBD1, PictureBox PB) // sets current enemy entry's appropriate picture
 		{
-			try 
-			{
 
-				string enviro = AppDomain.CurrentDomain.BaseDirectory + "EMD_IMG\\";
+				string enviro = AppDomain.CurrentDomain.BaseDirectory + "\\enemy_image\\IMG\\";
 				string joint_val = string.Empty;
 			//	string nbd00 = NBD0.Value.ToString();
 			//	string nbd01 = NBD1.Value.ToString();
@@ -473,24 +470,29 @@ namespace Netbio_VFL_Plus
 
 			//	joint_val = nbd00 + nbd01;
 
+
+			if (NBD0 == 0 || NBD0 == 1) // if first NBD id value < 10 make sure 0 is loaded in front of the ID value
+			{
+			//	MessageBox.Show(enviro + "E" + 0 + NBD0 + "_" + 0 + NBD1 + ".jpg");
+				Image enemy_image = Image.FromFile(enviro + "E" + 0 + NBD0 + "_" + NBD1 + ".jpg");
+				PB.Image = enemy_image;
+
+
+			} else if (NBD0 > 1 &&  NBD0 < 10) {
+
+				Image enemy_image = Image.FromFile(enviro + "E" + 0 + NBD0 + "_" + 0 + NBD1 + ".jpg");
+				PB.Image = enemy_image;
+			}
+			else if (NBD0 >= 10) // if ID greater then 10 remove the 0
+			{
+				//MessageBox.Show(enviro + "E" + NBD0 + "_" + NBD1 + ".jpg");
+				Image enemy_image0 = Image.FromFile(enviro + "E" + NBD0 + "_" + 0 + NBD1 + ".jpg");
+				PB.Image = enemy_image0;
+
+			}
 			
 
-				if (NBD0 <= 9) // if first NBD id value < 10 make sure 0 is loaded in front of the ID value
-				{
-				    Image enemy_image = Image.FromFile(enviro + "E" +0 + NBD0 + "_" + NBD1 + ".NBD.jpg");
-					PB.Image = enemy_image;
-				}
-				else if(NBD0 >= 10) // if ID greater then 10 remove the 0
-				{
-				   Image enemy_image0 = Image.FromFile(enviro + "E" + NBD0 + "_" + NBD1 + ".NBD.jpg");
-				   PB.Image = enemy_image0;
-				}
-			}
-
-			catch (Exception ex) // should only happen when NBD id cant link to picture in IMG folder
-			{
-				//MessageBox.Show("ID NOT FOUND IN DICTIONARY!", "NOT FOUND", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+		
 
 
 		}
