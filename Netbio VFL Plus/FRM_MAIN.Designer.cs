@@ -149,7 +149,7 @@
             // 
             this.Volume_List.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Volume_List.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.Volume_List.ForeColor = System.Drawing.Color.Lime;
+            this.Volume_List.ForeColor = System.Drawing.Color.AntiqueWhite;
             this.Volume_List.MaxDropDownItems = 15;
             this.Volume_List.Name = "Volume_List";
             this.Volume_List.Size = new System.Drawing.Size(121, 46);
@@ -215,7 +215,7 @@
             this.Groups_List.AutoSize = false;
             this.Groups_List.BackColor = System.Drawing.Color.Black;
             this.Groups_List.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.Groups_List.ForeColor = System.Drawing.Color.Lime;
+            this.Groups_List.ForeColor = System.Drawing.Color.AntiqueWhite;
             this.Groups_List.Name = "Groups_List";
             this.Groups_List.Size = new System.Drawing.Size(180, 23);
             this.Groups_List.Text = "Group Type Filter";
@@ -380,7 +380,7 @@
             this.refreshVolumesToolStripMenuItem1,
             this.refreshSelectedVolumeToolStripMenuItem1});
             this.refreshVolumesToolStripMenuItem.Name = "refreshVolumesToolStripMenuItem";
-            this.refreshVolumesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshVolumesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.refreshVolumesToolStripMenuItem.Text = "AFS Actions";
             // 
             // refreshVolumesToolStripMenuItem1
@@ -400,14 +400,14 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(147, 6);
             // 
             // eVBActionsToolStripMenuItem
             // 
             this.eVBActionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toggleDisplayToolStripMenuItem});
             this.eVBActionsToolStripMenuItem.Name = "eVBActionsToolStripMenuItem";
-            this.eVBActionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eVBActionsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.eVBActionsToolStripMenuItem.Text = "EVB Actions";
             // 
             // toggleDisplayToolStripMenuItem
@@ -438,14 +438,14 @@
             this.checkLockToolStripMenuItem});
             this.AFS_MENU.Name = "AFS_MENU";
             this.AFS_MENU.ShowImageMargin = false;
-            this.AFS_MENU.Size = new System.Drawing.Size(156, 158);
+            this.AFS_MENU.Size = new System.Drawing.Size(136, 136);
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.importToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.importToolStripMenuItem.Text = "Import >";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -454,7 +454,7 @@
             this.exportToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.exportToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.exportToolStripMenuItem.Text = "Export <";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
@@ -465,7 +465,7 @@
             this.sLDUNPACKToolStripMenuItem,
             this.sLDREPACKToolStripMenuItem});
             this.operationsToolStripMenuItem.Name = "operationsToolStripMenuItem";
-            this.operationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.operationsToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.operationsToolStripMenuItem.Text = "Operations";
             // 
             // sLDUNPACKToolStripMenuItem
@@ -496,14 +496,14 @@
             this.iTEMTBLINTToolStripMenuItem,
             this.iTEMDATINTToolStripMenuItem});
             this.interpretingToolStripMenuItem.Name = "interpretingToolStripMenuItem";
-            this.interpretingToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.interpretingToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.interpretingToolStripMenuItem.Text = "Interpreting";
             // 
             // rDTINTToolStripMenuItem
             // 
             this.rDTINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.rDTINTToolStripMenuItem.Name = "rDTINTToolStripMenuItem";
-            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.rDTINTToolStripMenuItem.Text = "RDT INT";
             this.rDTINTToolStripMenuItem.Click += new System.EventHandler(this.rDTINTToolStripMenuItem_Click);
             // 
@@ -511,7 +511,7 @@
             // 
             this.eVBINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eVBINTToolStripMenuItem.Name = "eVBINTToolStripMenuItem";
-            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.eVBINTToolStripMenuItem.Text = "EVB INT";
             this.eVBINTToolStripMenuItem.Click += new System.EventHandler(this.eVBINTToolStripMenuItem_Click);
             // 
@@ -519,14 +519,14 @@
             // 
             this.sNDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sNDINTToolStripMenuItem.Name = "sNDINTToolStripMenuItem";
-            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sNDINTToolStripMenuItem.Text = "SND INT";
             // 
             // eMDINTToolStripMenuItem
             // 
             this.eMDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eMDINTToolStripMenuItem.Name = "eMDINTToolStripMenuItem";
-            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.eMDINTToolStripMenuItem.Text = "EMD INT";
             this.eMDINTToolStripMenuItem.Click += new System.EventHandler(this.eMDINTToolStripMenuItem_Click);
             // 
@@ -534,7 +534,7 @@
             // 
             this.nPCINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nPCINTToolStripMenuItem.Name = "nPCINTToolStripMenuItem";
-            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nPCINTToolStripMenuItem.Text = "NPC INT";
             this.nPCINTToolStripMenuItem.Click += new System.EventHandler(this.nPCINTToolStripMenuItem_Click);
             // 
@@ -542,20 +542,20 @@
             // 
             this.nBDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nBDINTToolStripMenuItem.Name = "nBDINTToolStripMenuItem";
-            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nBDINTToolStripMenuItem.Text = "NBD INT";
             // 
             // iTEMTBLINTToolStripMenuItem
             // 
             this.iTEMTBLINTToolStripMenuItem.Name = "iTEMTBLINTToolStripMenuItem";
-            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.iTEMTBLINTToolStripMenuItem.Text = "ITEM TBL INT";
             this.iTEMTBLINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMTBLINTToolStripMenuItem_Click);
             // 
             // iTEMDATINTToolStripMenuItem
             // 
             this.iTEMDATINTToolStripMenuItem.Name = "iTEMDATINTToolStripMenuItem";
-            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.iTEMDATINTToolStripMenuItem.Text = "ITEM DAT INT";
             this.iTEMDATINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMDATINTToolStripMenuItem_Click);
             // 
@@ -564,7 +564,7 @@
             this.searchToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             this.searchToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.searchToolStripMenuItem.Text = "Search >";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
@@ -572,7 +572,7 @@
             // 
             this.checkLockToolStripMenuItem.BackColor = System.Drawing.Color.Coral;
             this.checkLockToolStripMenuItem.Name = "checkLockToolStripMenuItem";
-            this.checkLockToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.checkLockToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.checkLockToolStripMenuItem.Text = "Check Lock";
             this.checkLockToolStripMenuItem.Click += new System.EventHandler(this.checkLockToolStripMenuItem_Click);
             // 

@@ -90,10 +90,24 @@ namespace Netbio_VFL_Plus
             int i = LB_EMD_TOTAL.SelectedIndices[0];
             int x = LB_EMD_OFFSETS.SelectedIndices[0];
 
-
             int idx = LB_EMD_TOTAL.SelectedIndex;
+            string nbdstring = string.Empty;
+
+            string nbdval0 = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0.ToString("X2");
+            string nbdval1 = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1.ToString("X2");
+            
+            nbdstring = nbdval0 + nbdval1;
 
 
+            // CHECK IF KEY EXISTS
+            if (EMD_IO.ENEMY_NAME_LUT.ContainsKey(nbdstring))
+            {
+                CB_EMD_SEL.SelectedItem = EMD_IO.ENEMY_NAME_LUT[nbdstring];
+            }
+            else 
+            {
+                MessageBox.Show("EMD LUT KEY NOT PRESENT");
+            }
             //   MessageBox.Show(idx.ToString());
 
 
@@ -122,6 +136,9 @@ namespace Netbio_VFL_Plus
             EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_HP;
             EMD_FOLLOW_FLAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_FOLLOW;
             EMD_STR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STR;
+
+
+           
 
             if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 01) { CB_EASY.Checked = true; CB_NORMAL.Checked = false; CB_HARD.Checked = false; CB_VH.Checked = false; }
             if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 03) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = false; CB_VH.Checked = false; }
@@ -183,9 +200,22 @@ namespace Netbio_VFL_Plus
         private void FRM_EMD_Load(object sender, EventArgs e)
         {
 
+            foreach (string em in EMD_IO.ENEMY_NAME_LUT.Values) 
+            {
+                CB_EMD_SEL.Items.Add(em);   
+            }
+
 
             LB_EMD_OFFSETS.SetSelected(0, true);
             LB_EMD_TOTAL.SetSelected(0, true);
+
+
+
+
+
+
+
+
 
         }
 
