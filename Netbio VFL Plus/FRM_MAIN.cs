@@ -91,10 +91,6 @@ namespace Netbio_VFL_Plus
         NBIO_PLAYER[] g_PLAYER = new NBIO_PLAYER[4];
 
 
-    
-
-
-
         public FRM_MAIN()
         {
             InitializeComponent();
@@ -118,6 +114,7 @@ namespace Netbio_VFL_Plus
             LV_AFS.Groups.Add(new ListViewGroup("WEAPON MODEL DATA (RELOADING)")); //9
             LV_AFS.Groups.Add(new ListViewGroup("Playstation 2 Texture/Icons")); //10
             LV_AFS.Groups.Add(new ListViewGroup("UNDEFINED")); // 11
+            LV_AFS.Groups.Add(new ListViewGroup("Collision Data"));
 
 
          // LV_ItemTable.Groups.Add(new ListViewGroup("NULL"));
@@ -723,7 +720,6 @@ namespace Netbio_VFL_Plus
         {
 
         }
-
         private void MainMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -820,7 +816,6 @@ namespace Netbio_VFL_Plus
             }
         }
 
-
         public void Toggle_Display() // Toggle EVB Display MOde
         {
             if (EVB_FORM.LV_INTCODE.Visible)
@@ -894,8 +889,6 @@ namespace Netbio_VFL_Plus
                             ITEMIO.Parse_IDataStream(memStream, AFSIO.cur_archive_offset, LV_AFS, DAT_FORM.LV_IDataHeader, DAT_FORM.LV_ItemData);
                             DAT_FORM.ShowDialog();
 
-
-
                         }
 
                     }
@@ -921,7 +914,8 @@ namespace Netbio_VFL_Plus
                 if (File.Exists(Img.Image_Path)) {
 
                     // OPEN FILE STREAM
-                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open)) {
+                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)) 
+                    {
 
                         // ENSURE IT HAS VALID AFS SIG + EMD EXTENSION
                         if (Valid_Iso(fs) && LV_AFS.FocusedItem.SubItems[3].Text.Substring(LV_AFS.FocusedItem.SubItems[3].Text.Length - 3, 3).ToUpper() == "EMD")
@@ -940,20 +934,28 @@ namespace Netbio_VFL_Plus
                             Img.Read_Image = new CDReader(fs, true, true);
                             Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
                             Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
-
-                            try {
-                                EMDIO.Parse_EMDStream(memStream, AFSIO.cur_archive_offset, ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET);
-                                EMD_FORM.ShowDialog();
-                            }
-
-                            catch { 
                             
-                            }
+
+
+                                EMDIO.Parse_EMDStream(memStream, AFSIO.cur_archive_offset, 
+                                    ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
+                                    ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
+                                    LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET);
+                                
+                                EMD_FORM.ShowDialog();
+
+
+                                memStream.Close();
+                                memStream.Dispose();
+                                Img.Read_Image.Dispose();
+
+                            
+                          
 
                         }
-
+                        
                     }
-
+                  
                 }
             
             }
@@ -961,7 +963,7 @@ namespace Netbio_VFL_Plus
             catch (Exception ex) {
 
                 MessageBox.Show(ex.Message);
-                throw ex;   
+               
 
             }
 
@@ -992,7 +994,7 @@ namespace Netbio_VFL_Plus
 
 
 
-        protected virtual bool IsFileLocked(FileInfo file)
+        public static bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
 
@@ -1035,10 +1037,7 @@ namespace Netbio_VFL_Plus
             FD.ShowApply = true;
             FD.ShowDialog();
 
-
             LV_AFS.Font = FD.Font;
-
-
 
         }
 
@@ -1093,7 +1092,6 @@ namespace Netbio_VFL_Plus
 
         }
 
-
         private void GET_PLAYER()
         {
             
@@ -1114,7 +1112,8 @@ namespace Netbio_VFL_Plus
                 var proc = exe_proc[0];
                 IntPtr windowHandle = exe_proc[0].MainWindowHandle;
 
-
+            int ROOMID_ADDR = 0;
+            int CAMID_ADDR = 0;
 
             //If active window is not the PCSX2 GSdx window... 
             //   if(exe_proc[0].MainWindowTitle.Substring(0,4) != "GSdx") {this.Visible = false;}
@@ -1132,7 +1131,9 @@ namespace Netbio_VFL_Plus
                 {
                     g_Game_ID = 1;
                     g_Region = 1;
-                    LBL_VERSION.Text = "Biohazard Outbreak (NTSC-J)";
+              //   CAMID_ADDR = 0x203B31D3; TO BE DETERMINED
+                ROOMID_ADDR = 0x203065AC;
+                LBL_VERSION.Text = "Biohazard Outbreak (NTSC-J)";
                 }
                 //Resident Evil Outbreak (NTSC-U)
                 if (Memory.Read<int>(proc, new IntPtr(0x2024FB23)) == 0x53554C53)
@@ -1154,7 +1155,10 @@ namespace Netbio_VFL_Plus
                 {
                     g_Game_ID = 2;
                     g_Region = 1;
-                    LBL_VERSION.Text = "Biohazard Outbreak File 2 (NTSC-J)";
+             
+                CAMID_ADDR = 0x203B31D3;
+                ROOMID_ADDR = 0x203137BC;
+                LBL_VERSION.Text = "Biohazard Outbreak File 2 (NTSC-J)";
                 }
                 //Resident Evil Outbreak File 2 (NTSC-U)
                 if (Memory.Read<int>(proc, new IntPtr(0x20255083)) == 0x53554C53)
@@ -1208,12 +1212,12 @@ namespace Netbio_VFL_Plus
                 LBL_POS_Y.Text = (g_PLAYER[0].Y).ToString().Replace(",", ".");
                 LBL_POS_Z.Text = (g_PLAYER[0].Z).ToString().Replace(",", ".");
 
-            byte cam_id = Memory.Read<byte>(proc, new IntPtr(0x203B31D3));
+                byte cam_id = Memory.Read<byte>(proc, new IntPtr(0x203B31D3));
 
-            byte ROOM_ID = Memory.Read<byte>(proc, new IntPtr(0x203137BC));
+                byte ROOM_ID = Memory.Read<byte>(proc, new IntPtr(ROOMID_ADDR));
 
                 LBL_RID.Text = "Current ROOM ID: " + ROOM_ID.ToString();
-            LBL_CID.Text = "Camera ID: " + cam_id.ToString();
+                LBL_CID.Text = "Camera ID: " + cam_id.ToString();
 
             //LBL_.Text = (g_PLAYER[0].RotY).ToString();
 

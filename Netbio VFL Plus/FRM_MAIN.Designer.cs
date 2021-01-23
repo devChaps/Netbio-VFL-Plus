@@ -105,6 +105,10 @@
             this.LBL_VERSION = new System.Windows.Forms.ToolStripStatusLabel();
             this.BTN_RAM = new System.Windows.Forms.ToolStripSplitButton();
             this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -124,12 +128,15 @@
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.Volume_List,
+            this.toolStripSeparator6,
             this.BTN_VBACK,
+            this.toolStripSeparator4,
             this.BTN_DNAS,
             this.toolStripSeparator3,
             this.BTN_DEBUGLOG,
             this.toolStripSeparator5,
             this.BTN_CALC,
+            this.toolStripSeparator2,
             this.Groups_List,
             this.LBL_AFS,
             this.LBL_SelArchive});
@@ -217,7 +224,7 @@
             this.Groups_List.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.Groups_List.ForeColor = System.Drawing.Color.AntiqueWhite;
             this.Groups_List.Name = "Groups_List";
-            this.Groups_List.Size = new System.Drawing.Size(180, 23);
+            this.Groups_List.Size = new System.Drawing.Size(250, 23);
             this.Groups_List.Text = "Group Type Filter";
             this.Groups_List.SelectedIndexChanged += new System.EventHandler(this.Groups_List_SelectedIndexChanged);
             // 
@@ -800,6 +807,8 @@
             // BTN_RAM
             // 
             this.BTN_RAM.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_RAM.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testToolStripMenuItem});
             this.BTN_RAM.Image = ((System.Drawing.Image)(resources.GetObject("BTN_RAM.Image")));
             this.BTN_RAM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_RAM.Name = "BTN_RAM";
@@ -811,6 +820,27 @@
             // 
             this.TMR_EXE.Interval = 50;
             this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 46);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 46);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 46);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Text = "Test";
             // 
             // FRM_MAIN
             // 
@@ -917,6 +947,10 @@
         private System.Windows.Forms.ToolStripButton BTN_DEBUGLOG;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton BTN_CALC;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

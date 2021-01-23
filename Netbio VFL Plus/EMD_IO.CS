@@ -221,22 +221,23 @@ namespace Netbio_VFL_Plus
 			public byte NBD_ID1;    //  4         Second part of NBD ID to use
 			public int ULong00;      // 8
 			public int ULong01;      // 12
-			public int X;            // 16 Could be coords, X? Not sure if long or float...
-			public int Z;           //  20 Could be coords, Z? Not sure if long or float...
-			public int Y;           //  24 Could be coords, Y? Not sure if long or float...
-			public int R;           //  28 Could be Rotation? Not sure if long or float...
+			public Int16 X;            // 16 Could be coords, X? Not sure if long or float...
+			public Int16 Z;           //  20 Could be coords, Z? Not sure if long or float...
+			public Int16 Y;           //  24 Could be coords, Y? Not sure if long or float...
+			public Int16 R;           //  28 Could be Rotation? Not sure if long or float...
 			public byte Room_ID;    // 29
-			public byte UnkB00; // allows enemy to follow?    0 NO 1 YES, 1 needs further EVB config?
+			public byte SpawnIDX; // SPAWN INDEX
 			public byte EMD_DFC;
 			public byte UnkB01;
 			public Int16 UShort02;
 			public byte UByte00;
 			public byte UByte01;
 			public Int16 UShort03;
-			public Int16 UShort04;
+			public byte Zombie_ressurect;
+			public byte UByte02;
 			public int ULong02;
 			public int ULong03;
-			public byte Ubyte02;
+			public byte UByte03;
 			public byte EMD_STATE; // ENEMY ATTACK STATE (NEEDS LIST)
 			public byte EMD_STR; // only works for tyrant?
 			public byte EMD_HP;
@@ -245,11 +246,11 @@ namespace Netbio_VFL_Plus
 			public Int16 UShort09;
 			public Int16 UShort10;
 			public int ULong04;
-			public byte EMD_SPEED;
-			public byte UByte03;
+			public byte EMD_SPEED; // 
+			public byte UByte04;
 			public int ULong05;
 			public Int16 EMD_SCALE;
-			public byte UByte04;
+			public byte UByte05;
 			public byte EMD_FOLLOW;
 			public Int16 UShort14;
 			public int ULong06;
@@ -292,8 +293,6 @@ namespace Netbio_VFL_Plus
         public void Parse_EMDStream(Stream fs, int start_off, string sce_val, byte GameVal, ListView LST_AFS, ListBox LB_EMDOFF, PictureBox CurrentRoom, PictureBox Emd_Pic, ToolStripStatusLabel LBL_OFFSET)
         {
             
-            try
-            {
                 int Emd_Offset = int.Parse(LST_AFS.FocusedItem.SubItems[1].Text);
                 byte[] EMD_BUFFER = new byte[0];
                 int t_sz = int.Parse(LST_AFS.FocusedItem.SubItems[2].Text);
@@ -316,14 +315,16 @@ namespace Netbio_VFL_Plus
                 //  Emd_DebugLog.AppendText("Archive Offset: " + start_off.ToString() + "\n EMD_Offset: " + Emd_Offset.ToString());
 
                 fs.Seek(Emd_Offset + start_off, SeekOrigin.Begin); // jump to right loc from disc
-            //    MessageBox.Show(Emd_Offset + start_off.ToString());
+																   //    MessageBox.Show(Emd_Offset + start_off.ToString());
 
-                BinaryReader br = new BinaryReader(fs);
+				using (BinaryReader br = new BinaryReader(fs)) 
+				{
+				
 
-              //  LST_EMD.Items.Clear();
+					//  LST_EMD.Items.Clear();
 
 
-                    int t_off = br.ReadInt32(); // read first offset
+					int t_off = br.ReadInt32(); // read first offset
                     int lv_idx = 0;
 
                     Array.Resize(ref EMD_HEADER, (t_off / 8) - 1); // resize to x entries
@@ -332,139 +333,146 @@ namespace Netbio_VFL_Plus
 
                     fs.Seek(start_off + Emd_Offset, SeekOrigin.Begin); // seek back to start
 
-                    for (int i = 0; i < EMD_HEADER.Length; i++) // parse and dump entries offset/size and enemey counts
-                    {
-                        EMD_HEADER[i].Offset = br.ReadInt32();
+					for (int i = 0; i < EMD_HEADER.Length; i++) // parse and dump entries offset/size and enemey counts
+					{
+						EMD_HEADER[i].Offset = br.ReadInt32();
 						EMD_HEADER[i].Size = br.ReadInt32();
 
-					// resize enemy data array based on room/count block
-					Array.Resize(ref EMD_DATA[i].Enemy, EMD_HEADER[i].Size / 96);
+						// resize enemy data array based on room/count block
+						Array.Resize(ref EMD_DATA[i].Enemy, EMD_HEADER[i].Size / 96);
 
-					// add offsets to list
-					LB_EMDOFF.Items.Add(EMD_HEADER[i].Offset);
-
-
-				}
-
-				// reloop and dump data to hex view..
-
-
-
-				
-
-
-					// READ DATA
-                for (int x = 0; x < EMD_HEADER.Length; x++)
-                {
-				
-
-					fs.Seek(EMD_HEADER[x].Offset + start_off + Emd_Offset, SeekOrigin.Begin);
-
-
-                    for (int j = 0; j < EMD_DATA[x].Enemy.Length; j++)
-                    {
-
-						// resize each byte array inside EMD structure to 96 to store the whole byte string
-						Array.Resize(ref EMD_DATA[x].Enemy[j].Emd_block, 96);
-
-						EMD_DATA[x].Enemy[j].Emd_block = br.ReadBytes(96);
-
-						fs.Seek(-96, SeekOrigin.Current);
-
-						//   Emd_DebugLog.AppendText("########### STORED DATA ############\n\n\n");
-
-						// Emd_DebugLog.AppendText("\nBlock Index: " + x.ToString() + "\n");
-						//  Emd_DebugLog.AppendText("Entry Index: " + j.ToString() + "\n");
-						EMD_DATA[x].Enemy[j].Tag = br.ReadByte();
-                      //  Emd_DebugLog.AppendText("Tag: " + EMD_DATA[x].Enemy[j].Tag.ToString() + "\t");
-                        EMD_DATA[x].Enemy[j].No = br.ReadByte();
-                      //  Emd_DebugLog.AppendText("No#: " + EMD_DATA[x].Enemy[j].No.ToString() + "\t");
-                        EMD_DATA[x].Enemy[j].NBD_ID0 = br.ReadByte();
-                     //   Emd_DebugLog.AppendText("NBDID0: " + EMD_DATA[x].Enemy[j].NBD_ID0.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].NBD_ID1 = br.ReadByte();
-                      //  Emd_DebugLog.AppendText("NBDID1: " + EMD_DATA[x].Enemy[j].NBD_ID1.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].ULong00 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong01 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].X = br.ReadInt32();
-                      //  Emd_DebugLog.AppendText("X: " + EMD_DATA[x].Enemy[j].X.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].Z = br.ReadInt32();
-                      //  Emd_DebugLog.AppendText("Z: " + EMD_DATA[x].Enemy[j].Z.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].Y = br.ReadInt32();
-                      //  Emd_DebugLog.AppendText("Y: " + EMD_DATA[x].Enemy[j].Y.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].R = br.ReadInt32();
-                       // Emd_DebugLog.AppendText("R: " + EMD_DATA[x].Enemy[j].R.ToString() + "\n");
-                        EMD_DATA[x].Enemy[j].Room_ID = br.ReadByte();
-						EMD_DATA[x].Enemy[j].UnkB00 = br.ReadByte();
-						//  Emd_DebugLog.AppendText("Room ID: " + EMD_DATA[x].Enemy[j].Room_ID.ToString() + "\n");
-						EMD_DATA[x].Enemy[j].EMD_DFC = br.ReadByte();
-						EMD_DATA[x].Enemy[j].UnkB00 = br.ReadByte();
-					//	EMD_DATA[x].Enemy[j].UShort01 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UShort02 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UByte00 = br.ReadByte();
-                        EMD_DATA[x].Enemy[j].UByte01 = br.ReadByte();
-                        EMD_DATA[x].Enemy[j].UShort03 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UShort04 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].ULong02 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong03 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].Ubyte02 = br.ReadByte();
-						EMD_DATA[x].Enemy[j].EMD_STATE = br.ReadByte();
-						EMD_DATA[x].Enemy[j].EMD_STR = br.ReadByte();
-						EMD_DATA[x].Enemy[j].EMD_HP = br.ReadByte();
-                        EMD_DATA[x].Enemy[j].UShort07 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UShort08 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UShort09 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].UShort10 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].ULong04 = br.ReadInt32();
-					
-						EMD_DATA[x].Enemy[j].EMD_SPEED = br.ReadByte();
-						EMD_DATA[x].Enemy[j].UByte03 = br.ReadByte();
-						EMD_DATA[x].Enemy[j].ULong05 = br.ReadInt32();
-						EMD_DATA[x].Enemy[j].EMD_SCALE = br.ReadInt16();
-						EMD_DATA[x].Enemy[j].UByte04 = br.ReadByte();
-						EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
-                        EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
-                        EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong07 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong08 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong09 = br.ReadInt32();
-                        EMD_DATA[x].Enemy[j].ULong10 = br.ReadInt32();
-
-						// RETURN TO START OF EMD BLOCK
-
-			
-
-
-
+						// add offsets to list
+						LB_EMDOFF.Items.Add(EMD_HEADER[i].Offset);
 
 					}
+ 
 
-			
-					//fs.Seek(EMD_HEADER[x].Offset + start_off + Emd_Offset, SeekOrigin.Begin);
+						// reloop and dump data to hex view..
+
+						// READ DATA
+						for (int x = 0; x < EMD_HEADER.Length; x++)
+						{
 
 
-					//    LST_EMD.Items[x].SubItems.Add(EMD_DATA[x].Enemy[0].Room_ID.ToString());
-
-				}
+							fs.Seek(EMD_HEADER[x].Offset + start_off + Emd_Offset, SeekOrigin.Begin);
 
 
+							for (int j = 0; j < EMD_DATA[x].Enemy.Length; j++)
+							{
+
+								// resize each byte array inside EMD structure to 96 to store the whole byte string
+								Array.Resize(ref EMD_DATA[x].Enemy[j].Emd_block, 96);
+
+								EMD_DATA[x].Enemy[j].Emd_block = br.ReadBytes(96);
+
+								fs.Seek(-96, SeekOrigin.Current);
+
+								//   Emd_DebugLog.AppendText("########### STORED DATA ############\n\n\n");
+
+								// Emd_DebugLog.AppendText("\nBlock Index: " + x.ToString() + "\n");
+								//  Emd_DebugLog.AppendText("Entry Index: " + j.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].Tag = br.ReadByte();
+								//  Emd_DebugLog.AppendText("Tag: " + EMD_DATA[x].Enemy[j].Tag.ToString() + "\t");
+								EMD_DATA[x].Enemy[j].No = br.ReadByte();
+								//  Emd_DebugLog.AppendText("No#: " + EMD_DATA[x].Enemy[j].No.ToString() + "\t");
+								EMD_DATA[x].Enemy[j].NBD_ID0 = br.ReadByte();
+								//   Emd_DebugLog.AppendText("NBDID0: " + EMD_DATA[x].Enemy[j].NBD_ID0.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].NBD_ID1 = br.ReadByte();
+								//  Emd_DebugLog.AppendText("NBDID1: " + EMD_DATA[x].Enemy[j].NBD_ID1.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].ULong00 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong01 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].X = br.ReadInt16();
+								fs.Seek(+2, SeekOrigin.Current);
+								//  Emd_DebugLog.AppendText("X: " + EMD_DATA[x].Enemy[j].X.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].Z = br.ReadInt16();
+								fs.Seek(+2, SeekOrigin.Current);
+						//  Emd_DebugLog.AppendText("Z: " + EMD_DATA[x].Enemy[j].Z.ToString() + "\n");
+						        EMD_DATA[x].Enemy[j].Y = br.ReadInt16();
+							    fs.Seek(+2, SeekOrigin.Current);
+						//  Emd_DebugLog.AppendText("Y: " + EMD_DATA[x].Enemy[j].Y.ToString() + "\n");
+							    EMD_DATA[x].Enemy[j].R = br.ReadInt16();
+								fs.Seek(+2, SeekOrigin.Current);
+						// Emd_DebugLog.AppendText("R: " + EMD_DATA[x].Enemy[j].R.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].Room_ID = br.ReadByte();
+								EMD_DATA[x].Enemy[j].SpawnIDX = br.ReadByte(); // SPAWN INDEX
+																			   //  Emd_DebugLog.AppendText("Room ID: " + EMD_DATA[x].Enemy[j].Room_ID.ToString() + "\n");
+								EMD_DATA[x].Enemy[j].EMD_DFC = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UnkB01 = br.ReadByte();
+								//	EMD_DATA[x].Enemy[j].UShort01 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UShort02 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UByte00 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UByte01 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UShort03 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].Zombie_ressurect = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UByte02 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].ULong02 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong03 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].UByte03 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_STATE = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_STR = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_HP = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UShort07 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UShort08 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UShort09 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UShort10 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].ULong04 = br.ReadInt32();
+
+								EMD_DATA[x].Enemy[j].EMD_SPEED = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UByte04 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].ULong05 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].EMD_SCALE = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].UByte05 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
+								EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
+								EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong07 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong08 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong09 = br.ReadInt32();
+								EMD_DATA[x].Enemy[j].ULong10 = br.ReadInt32();
+
+								// RETURN TO START OF EMD BLOCK
+
+
+
+
+
+
+
+
+							}
+
+
+
+							//fs.Seek(EMD_HEADER[x].Offset + start_off + Emd_Offset, SeekOrigin.Begin);
+
+
+							//    LST_EMD.Items[x].SubItems.Add(EMD_DATA[x].Enemy[0].Room_ID.ToString());
 
 				
+					
+					    }
 
+			   
+				br.Dispose();
+				br.Close();
+				
+				}
+
+			FRM_MAIN.Img.Read_Image.Dispose();
+			
+				fs.Dispose();
 				fs.Close();
-                    br.Close();
+
+				
+				
+			
+			
 
 
 
-                
 
-            }
 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
 
-            
 
         }
 
@@ -651,41 +659,39 @@ namespace Netbio_VFL_Plus
 
 		public static void Set_pic(byte NBD0, byte NBD1, PictureBox PB) // sets current enemy entry's appropriate picture
 		{
-
+			try
+			{
 				string enviro = AppDomain.CurrentDomain.BaseDirectory + "\\enemy_image\\IMG\\";
 				string joint_val = string.Empty;
-			//	string nbd00 = NBD0.Value.ToString();
-			//	string nbd01 = NBD1.Value.ToString();
+				//	string nbd00 = NBD0.Value.ToString();
+				//	string nbd01 = NBD1.Value.ToString();
 
 
-			//	joint_val = nbd00 + nbd01;
+				string img_string = string.Empty;
+
+				string nbdval0 = NBD0.ToString("00");
+				string nbdval1 = NBD1.ToString("00");
+
+				img_string = enviro + "\\" + "E" + nbdval0 + "_" + nbdval1 + ".jpg";
+
+				Image em_img = Image.FromFile(img_string);
+				PB.Image = em_img;
 
 
-			if (NBD0 == 0 || NBD0 == 1) // if first NBD id value < 10 make sure 0 is loaded in front of the ID value
-			{
-			//	MessageBox.Show(enviro + "E" + 0 + NBD0 + "_" + 0 + NBD1 + ".jpg");
-				Image enemy_image = Image.FromFile(enviro + "E" + 0 + NBD0 + "_" + NBD1 + ".jpg");
-				PB.Image = enemy_image;
+				//	joint_val = nbd00 + nbd01;
 
-
-			} else if (NBD0 > 1 &&  NBD0 < 10) {
-
-				Image enemy_image = Image.FromFile(enviro + "E" + 0 + NBD0 + "_" + 0 + NBD1 + ".jpg");
-				PB.Image = enemy_image;
+				//	Image enemy_image = Image.FromFile(enviro + "\\" + nbdstring + ".jpg");
 			}
-			else if (NBD0 >= 10) // if ID greater then 10 remove the 0
+			catch (FileNotFoundException FNF) 
 			{
-				//MessageBox.Show(enviro + "E" + NBD0 + "_" + NBD1 + ".jpg");
-				Image enemy_image0 = Image.FromFile(enviro + "E" + NBD0 + "_" + 0 + NBD1 + ".jpg");
-				PB.Image = enemy_image0;
 
-			}
-			
-
-		
+				Image em_img = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "\\enemy_image\\IMG\\unknown.jpg");
+				PB.Image = em_img;
+				//MessageBox.Show(FNF.Message);
+            }
 
 
-		}
+        }
 
 
 

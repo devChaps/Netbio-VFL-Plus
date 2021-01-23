@@ -51,6 +51,10 @@
             this.LBL_TAG = new System.Windows.Forms.Label();
             this.CB_EMD_SEL = new System.Windows.Forms.ComboBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.CB_NORMAL = new System.Windows.Forms.CheckBox();
+            this.CB_VH = new System.Windows.Forms.CheckBox();
+            this.CB_HARD = new System.Windows.Forms.CheckBox();
+            this.CB_EASY = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -58,7 +62,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.EMD_ANIM = new System.Windows.Forms.NumericUpDown();
             this.EMD_FOLLOW_FLAG = new System.Windows.Forms.NumericUpDown();
             this.EMD_SCALE = new System.Windows.Forms.NumericUpDown();
             this.EMD_SPEED = new System.Windows.Forms.NumericUpDown();
@@ -89,11 +93,13 @@
             this.LBL_OFFSET = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_EMD_SCENARIO = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.CB_EASY = new System.Windows.Forms.CheckBox();
-            this.CB_HARD = new System.Windows.Forms.CheckBox();
-            this.CB_VH = new System.Windows.Forms.CheckBox();
-            this.CB_NORMAL = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BTN_EMD_DELETE = new System.Windows.Forms.Button();
+            this.EMD_SPAWNIDX = new System.Windows.Forms.NumericUpDown();
+            this.LBL_SPAWN = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.LBL_ZREZ = new System.Windows.Forms.Label();
+            this.EMD_ZREZ = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.PB_EMD_ROOM)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,7 +111,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EMD_INDEX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_TAG)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_ANIM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_FOLLOW_FLAG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SPEED)).BeginInit();
@@ -123,6 +129,8 @@
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_EMD)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_SPAWNIDX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_ZREZ)).BeginInit();
             this.SuspendLayout();
             // 
             // PB_EMD_ROOM
@@ -229,7 +237,9 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.LBL_SPAWN);
             this.groupBox4.Controls.Add(this.EMD_ROOMID);
+            this.groupBox4.Controls.Add(this.EMD_SPAWNIDX);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.EMD_NBDID01);
             this.groupBox4.Controls.Add(this.EMD_NBDID00);
@@ -256,13 +266,14 @@
             this.EMD_ROOMID.Name = "EMD_ROOMID";
             this.EMD_ROOMID.Size = new System.Drawing.Size(88, 30);
             this.EMD_ROOMID.TabIndex = 50;
+            this.EMD_ROOMID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.LavenderBlush;
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label14.ForeColor = System.Drawing.Color.DarkRed;
-            this.label14.Location = new System.Drawing.Point(465, 56);
+            this.label14.Location = new System.Drawing.Point(334, 56);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(94, 34);
             this.label14.TabIndex = 49;
@@ -273,19 +284,41 @@
             // 
             this.EMD_NBDID01.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID01.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID01.Location = new System.Drawing.Point(465, 95);
+            this.EMD_NBDID01.Location = new System.Drawing.Point(334, 93);
+            this.EMD_NBDID01.Maximum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            0});
+            this.EMD_NBDID01.Minimum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            -2147483648});
             this.EMD_NBDID01.Name = "EMD_NBDID01";
             this.EMD_NBDID01.Size = new System.Drawing.Size(94, 30);
             this.EMD_NBDID01.TabIndex = 48;
+            this.EMD_NBDID01.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_NBDID00
             // 
             this.EMD_NBDID00.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID00.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID00.Location = new System.Drawing.Point(365, 95);
+            this.EMD_NBDID00.Location = new System.Drawing.Point(234, 93);
+            this.EMD_NBDID00.Maximum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            0});
+            this.EMD_NBDID00.Minimum = new decimal(new int[] {
+            32000,
+            0,
+            0,
+            -2147483648});
             this.EMD_NBDID00.Name = "EMD_NBDID00";
             this.EMD_NBDID00.Size = new System.Drawing.Size(94, 30);
             this.EMD_NBDID00.TabIndex = 47;
+            this.EMD_NBDID00.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_INDEX
             // 
@@ -295,6 +328,7 @@
             this.EMD_INDEX.Name = "EMD_INDEX";
             this.EMD_INDEX.Size = new System.Drawing.Size(52, 30);
             this.EMD_INDEX.TabIndex = 46;
+            this.EMD_INDEX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LBL_NUMNO
             // 
@@ -303,7 +337,7 @@
             this.LBL_NUMNO.ForeColor = System.Drawing.Color.DarkRed;
             this.LBL_NUMNO.Location = new System.Drawing.Point(71, 58);
             this.LBL_NUMNO.Name = "LBL_NUMNO";
-            this.LBL_NUMNO.Size = new System.Drawing.Size(50, 33);
+            this.LBL_NUMNO.Size = new System.Drawing.Size(50, 32);
             this.LBL_NUMNO.TabIndex = 22;
             this.LBL_NUMNO.Text = "No.";
             this.LBL_NUMNO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -316,6 +350,7 @@
             this.EMD_TAG.Name = "EMD_TAG";
             this.EMD_TAG.Size = new System.Drawing.Size(50, 30);
             this.EMD_TAG.TabIndex = 45;
+            this.EMD_TAG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
@@ -324,7 +359,7 @@
             this.label7.ForeColor = System.Drawing.Color.DarkRed;
             this.label7.Location = new System.Drawing.Point(127, 59);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 33);
+            this.label7.Size = new System.Drawing.Size(88, 31);
             this.label7.TabIndex = 21;
             this.label7.Text = "Room";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -334,7 +369,7 @@
             this.LBL_NBD.BackColor = System.Drawing.Color.LavenderBlush;
             this.LBL_NBD.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LBL_NBD.ForeColor = System.Drawing.Color.DarkRed;
-            this.LBL_NBD.Location = new System.Drawing.Point(365, 58);
+            this.LBL_NBD.Location = new System.Drawing.Point(234, 56);
             this.LBL_NBD.Name = "LBL_NBD";
             this.LBL_NBD.Size = new System.Drawing.Size(94, 34);
             this.LBL_NBD.TabIndex = 20;
@@ -350,7 +385,7 @@
             this.LBL_TAG.ForeColor = System.Drawing.Color.DarkRed;
             this.LBL_TAG.Location = new System.Drawing.Point(13, 59);
             this.LBL_TAG.Name = "LBL_TAG";
-            this.LBL_TAG.Size = new System.Drawing.Size(50, 33);
+            this.LBL_TAG.Size = new System.Drawing.Size(50, 31);
             this.LBL_TAG.TabIndex = 19;
             this.LBL_TAG.Text = "Tag";
             this.LBL_TAG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -365,9 +400,12 @@
             this.CB_EMD_SEL.Name = "CB_EMD_SEL";
             this.CB_EMD_SEL.Size = new System.Drawing.Size(556, 31);
             this.CB_EMD_SEL.TabIndex = 0;
+            this.CB_EMD_SEL.SelectedValueChanged += new System.EventHandler(this.CB_EMD_SEL_SelectedValueChanged);
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.LBL_ZREZ);
+            this.groupBox5.Controls.Add(this.EMD_ZREZ);
             this.groupBox5.Controls.Add(this.CB_NORMAL);
             this.groupBox5.Controls.Add(this.CB_VH);
             this.groupBox5.Controls.Add(this.CB_HARD);
@@ -379,7 +417,7 @@
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.numericUpDown14);
+            this.groupBox5.Controls.Add(this.EMD_ANIM);
             this.groupBox5.Controls.Add(this.EMD_FOLLOW_FLAG);
             this.groupBox5.Controls.Add(this.EMD_SCALE);
             this.groupBox5.Controls.Add(this.EMD_SPEED);
@@ -393,20 +431,64 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ENEMY SETTINGS";
             // 
+            // CB_NORMAL
+            // 
+            this.CB_NORMAL.AutoSize = true;
+            this.CB_NORMAL.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_NORMAL.Location = new System.Drawing.Point(457, 58);
+            this.CB_NORMAL.Name = "CB_NORMAL";
+            this.CB_NORMAL.Size = new System.Drawing.Size(89, 22);
+            this.CB_NORMAL.TabIndex = 63;
+            this.CB_NORMAL.Text = "NORMAL";
+            this.CB_NORMAL.UseVisualStyleBackColor = true;
+            // 
+            // CB_VH
+            // 
+            this.CB_VH.AutoSize = true;
+            this.CB_VH.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_VH.Location = new System.Drawing.Point(457, 121);
+            this.CB_VH.Name = "CB_VH";
+            this.CB_VH.Size = new System.Drawing.Size(107, 22);
+            this.CB_VH.TabIndex = 62;
+            this.CB_VH.Text = "VERY HARD";
+            this.CB_VH.UseVisualStyleBackColor = true;
+            // 
+            // CB_HARD
+            // 
+            this.CB_HARD.AutoSize = true;
+            this.CB_HARD.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_HARD.Location = new System.Drawing.Point(457, 91);
+            this.CB_HARD.Name = "CB_HARD";
+            this.CB_HARD.Size = new System.Drawing.Size(67, 22);
+            this.CB_HARD.TabIndex = 61;
+            this.CB_HARD.Text = "HARD";
+            this.CB_HARD.UseVisualStyleBackColor = true;
+            // 
+            // CB_EASY
+            // 
+            this.CB_EASY.AutoSize = true;
+            this.CB_EASY.Font = new System.Drawing.Font("Bahnschrift", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CB_EASY.Location = new System.Drawing.Point(457, 31);
+            this.CB_EASY.Name = "CB_EASY";
+            this.CB_EASY.Size = new System.Drawing.Size(62, 22);
+            this.CB_EASY.TabIndex = 60;
+            this.CB_EASY.Text = "EASY";
+            this.CB_EASY.UseVisualStyleBackColor = true;
+            // 
             // label15
             // 
             this.label15.BackColor = System.Drawing.Color.LavenderBlush;
             this.label15.ForeColor = System.Drawing.Color.DarkRed;
-            this.label15.Location = new System.Drawing.Point(101, 26);
+            this.label15.Location = new System.Drawing.Point(6, 31);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(107, 27);
+            this.label15.Size = new System.Drawing.Size(108, 27);
             this.label15.TabIndex = 55;
             this.label15.Text = "ANIMATION #";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(393, -1);
+            this.label13.Location = new System.Drawing.Point(438, -3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(113, 27);
             this.label13.TabIndex = 54;
@@ -417,7 +499,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.LavenderBlush;
             this.label12.ForeColor = System.Drawing.Color.DarkRed;
-            this.label12.Location = new System.Drawing.Point(7, 26);
+            this.label12.Location = new System.Drawing.Point(188, 31);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(88, 27);
             this.label12.TabIndex = 53;
@@ -430,7 +512,7 @@
             this.label11.ForeColor = System.Drawing.Color.DarkRed;
             this.label11.Location = new System.Drawing.Point(197, 89);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 27);
+            this.label11.Size = new System.Drawing.Size(72, 27);
             this.label11.TabIndex = 52;
             this.label11.Text = "SPEED";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -439,9 +521,9 @@
             // 
             this.label10.BackColor = System.Drawing.Color.LavenderBlush;
             this.label10.ForeColor = System.Drawing.Color.DarkRed;
-            this.label10.Location = new System.Drawing.Point(211, 26);
+            this.label10.Location = new System.Drawing.Point(123, 31);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(150, 27);
+            this.label10.Size = new System.Drawing.Size(58, 27);
             this.label10.TabIndex = 51;
             this.label10.Text = "SIZE/SCALE";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -450,9 +532,9 @@
             // 
             this.label9.BackColor = System.Drawing.Color.LavenderBlush;
             this.label9.ForeColor = System.Drawing.Color.DarkRed;
-            this.label9.Location = new System.Drawing.Point(88, 89);
+            this.label9.Location = new System.Drawing.Point(98, 89);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(107, 27);
+            this.label9.Size = new System.Drawing.Size(97, 27);
             this.label9.TabIndex = 50;
             this.label9.Text = "STRENGTH";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -468,41 +550,45 @@
             this.label8.Text = "HP";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // numericUpDown14
+            // EMD_ANIM
             // 
-            this.numericUpDown14.BackColor = System.Drawing.SystemColors.WindowText;
-            this.numericUpDown14.ForeColor = System.Drawing.SystemColors.Window;
-            this.numericUpDown14.Location = new System.Drawing.Point(107, 56);
-            this.numericUpDown14.Name = "numericUpDown14";
-            this.numericUpDown14.Size = new System.Drawing.Size(88, 30);
-            this.numericUpDown14.TabIndex = 47;
+            this.EMD_ANIM.BackColor = System.Drawing.SystemColors.WindowText;
+            this.EMD_ANIM.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMD_ANIM.Location = new System.Drawing.Point(6, 58);
+            this.EMD_ANIM.Name = "EMD_ANIM";
+            this.EMD_ANIM.Size = new System.Drawing.Size(108, 30);
+            this.EMD_ANIM.TabIndex = 47;
+            this.EMD_ANIM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_FOLLOW_FLAG
             // 
             this.EMD_FOLLOW_FLAG.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_FOLLOW_FLAG.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_FOLLOW_FLAG.Location = new System.Drawing.Point(5, 56);
+            this.EMD_FOLLOW_FLAG.Location = new System.Drawing.Point(187, 58);
             this.EMD_FOLLOW_FLAG.Name = "EMD_FOLLOW_FLAG";
-            this.EMD_FOLLOW_FLAG.Size = new System.Drawing.Size(88, 30);
+            this.EMD_FOLLOW_FLAG.Size = new System.Drawing.Size(89, 30);
             this.EMD_FOLLOW_FLAG.TabIndex = 45;
+            this.EMD_FOLLOW_FLAG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_SCALE
             // 
             this.EMD_SCALE.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_SCALE.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_SCALE.Location = new System.Drawing.Point(201, 56);
+            this.EMD_SCALE.Location = new System.Drawing.Point(123, 58);
             this.EMD_SCALE.Name = "EMD_SCALE";
-            this.EMD_SCALE.Size = new System.Drawing.Size(114, 30);
+            this.EMD_SCALE.Size = new System.Drawing.Size(58, 30);
             this.EMD_SCALE.TabIndex = 44;
+            this.EMD_SCALE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_SPEED
             // 
             this.EMD_SPEED.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_SPEED.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_SPEED.Location = new System.Drawing.Point(201, 119);
+            this.EMD_SPEED.Location = new System.Drawing.Point(197, 119);
             this.EMD_SPEED.Name = "EMD_SPEED";
-            this.EMD_SPEED.Size = new System.Drawing.Size(88, 30);
+            this.EMD_SPEED.Size = new System.Drawing.Size(72, 30);
             this.EMD_SPEED.TabIndex = 43;
+            this.EMD_SPEED.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_STR
             // 
@@ -510,8 +596,9 @@
             this.EMD_STR.ForeColor = System.Drawing.SystemColors.Window;
             this.EMD_STR.Location = new System.Drawing.Point(98, 119);
             this.EMD_STR.Name = "EMD_STR";
-            this.EMD_STR.Size = new System.Drawing.Size(88, 30);
+            this.EMD_STR.Size = new System.Drawing.Size(97, 30);
             this.EMD_STR.TabIndex = 42;
+            this.EMD_STR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_HP
             // 
@@ -521,6 +608,7 @@
             this.EMD_HP.Name = "EMD_HP";
             this.EMD_HP.Size = new System.Drawing.Size(88, 30);
             this.EMD_HP.TabIndex = 41;
+            this.EMD_HP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox6
             // 
@@ -649,6 +737,7 @@
             this.EMD_POS_DEC_R.Name = "EMD_POS_DEC_R";
             this.EMD_POS_DEC_R.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_DEC_R.TabIndex = 44;
+            this.EMD_POS_DEC_R.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_DEC_Z
             // 
@@ -668,6 +757,7 @@
             this.EMD_POS_DEC_Z.Name = "EMD_POS_DEC_Z";
             this.EMD_POS_DEC_Z.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_DEC_Z.TabIndex = 43;
+            this.EMD_POS_DEC_Z.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_DEC_Y
             // 
@@ -687,6 +777,7 @@
             this.EMD_POS_DEC_Y.Name = "EMD_POS_DEC_Y";
             this.EMD_POS_DEC_Y.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_DEC_Y.TabIndex = 42;
+            this.EMD_POS_DEC_Y.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_DEC_X
             // 
@@ -706,6 +797,7 @@
             this.EMD_POS_DEC_X.Name = "EMD_POS_DEC_X";
             this.EMD_POS_DEC_X.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_DEC_X.TabIndex = 41;
+            this.EMD_POS_DEC_X.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_HEX_R
             // 
@@ -726,6 +818,7 @@
             this.EMD_POS_HEX_R.Name = "EMD_POS_HEX_R";
             this.EMD_POS_HEX_R.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_HEX_R.TabIndex = 40;
+            this.EMD_POS_HEX_R.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_HEX_Z
             // 
@@ -746,6 +839,7 @@
             this.EMD_POS_HEX_Z.Name = "EMD_POS_HEX_Z";
             this.EMD_POS_HEX_Z.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_HEX_Z.TabIndex = 39;
+            this.EMD_POS_HEX_Z.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_HEX_Y
             // 
@@ -766,6 +860,7 @@
             this.EMD_POS_HEX_Y.Name = "EMD_POS_HEX_Y";
             this.EMD_POS_HEX_Y.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_HEX_Y.TabIndex = 38;
+            this.EMD_POS_HEX_Y.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // EMD_POS_HEX_X
             // 
@@ -786,6 +881,7 @@
             this.EMD_POS_HEX_X.Name = "EMD_POS_HEX_X";
             this.EMD_POS_HEX_X.Size = new System.Drawing.Size(88, 30);
             this.EMD_POS_HEX_X.TabIndex = 37;
+            this.EMD_POS_HEX_X.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox7
             // 
@@ -815,7 +911,7 @@
             this.BTN_EMD_ADD.Enabled = false;
             this.BTN_EMD_ADD.FlatAppearance.BorderSize = 0;
             this.BTN_EMD_ADD.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.BTN_EMD_ADD.Location = new System.Drawing.Point(14, 578);
+            this.BTN_EMD_ADD.Location = new System.Drawing.Point(14, 580);
             this.BTN_EMD_ADD.Name = "BTN_EMD_ADD";
             this.BTN_EMD_ADD.Size = new System.Drawing.Size(233, 34);
             this.BTN_EMD_ADD.TabIndex = 35;
@@ -829,7 +925,7 @@
             this.BTN_EMDSAVE.Image = ((System.Drawing.Image)(resources.GetObject("BTN_EMDSAVE.Image")));
             this.BTN_EMDSAVE.Location = new System.Drawing.Point(253, 578);
             this.BTN_EMDSAVE.Name = "BTN_EMDSAVE";
-            this.BTN_EMDSAVE.Size = new System.Drawing.Size(572, 73);
+            this.BTN_EMDSAVE.Size = new System.Drawing.Size(572, 76);
             this.BTN_EMDSAVE.TabIndex = 36;
             this.BTN_EMDSAVE.Text = "SAVE";
             this.BTN_EMDSAVE.UseVisualStyleBackColor = false;
@@ -864,59 +960,87 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // CB_EASY
+            // BTN_EMD_DELETE
             // 
-            this.CB_EASY.AutoSize = true;
-            this.CB_EASY.Location = new System.Drawing.Point(402, 29);
-            this.CB_EASY.Name = "CB_EASY";
-            this.CB_EASY.Size = new System.Drawing.Size(73, 27);
-            this.CB_EASY.TabIndex = 60;
-            this.CB_EASY.Text = "EASY";
-            this.CB_EASY.UseVisualStyleBackColor = true;
+            this.BTN_EMD_DELETE.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BTN_EMD_DELETE.Enabled = false;
+            this.BTN_EMD_DELETE.FlatAppearance.BorderSize = 0;
+            this.BTN_EMD_DELETE.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.BTN_EMD_DELETE.Location = new System.Drawing.Point(14, 620);
+            this.BTN_EMD_DELETE.Name = "BTN_EMD_DELETE";
+            this.BTN_EMD_DELETE.Size = new System.Drawing.Size(233, 34);
+            this.BTN_EMD_DELETE.TabIndex = 38;
+            this.BTN_EMD_DELETE.Text = "DELETE ENEMY";
+            this.BTN_EMD_DELETE.UseVisualStyleBackColor = false;
+            this.BTN_EMD_DELETE.Click += new System.EventHandler(this.button1_Click);
             // 
-            // CB_HARD
+            // EMD_SPAWNIDX
             // 
-            this.CB_HARD.AutoSize = true;
-            this.CB_HARD.Location = new System.Drawing.Point(402, 89);
-            this.CB_HARD.Name = "CB_HARD";
-            this.CB_HARD.Size = new System.Drawing.Size(78, 27);
-            this.CB_HARD.TabIndex = 61;
-            this.CB_HARD.Text = "HARD";
-            this.CB_HARD.UseVisualStyleBackColor = true;
+            this.EMD_SPAWNIDX.BackColor = System.Drawing.SystemColors.WindowText;
+            this.EMD_SPAWNIDX.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMD_SPAWNIDX.Location = new System.Drawing.Point(441, 93);
+            this.EMD_SPAWNIDX.Name = "EMD_SPAWNIDX";
+            this.EMD_SPAWNIDX.Size = new System.Drawing.Size(109, 30);
+            this.EMD_SPAWNIDX.TabIndex = 64;
+            this.EMD_SPAWNIDX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // CB_VH
+            // LBL_SPAWN
             // 
-            this.CB_VH.AutoSize = true;
-            this.CB_VH.Location = new System.Drawing.Point(402, 119);
-            this.CB_VH.Name = "CB_VH";
-            this.CB_VH.Size = new System.Drawing.Size(127, 27);
-            this.CB_VH.TabIndex = 62;
-            this.CB_VH.Text = "VERY HARD";
-            this.CB_VH.UseVisualStyleBackColor = true;
+            this.LBL_SPAWN.BackColor = System.Drawing.Color.LavenderBlush;
+            this.LBL_SPAWN.ForeColor = System.Drawing.Color.DarkRed;
+            this.LBL_SPAWN.Location = new System.Drawing.Point(441, 58);
+            this.LBL_SPAWN.Name = "LBL_SPAWN";
+            this.LBL_SPAWN.Size = new System.Drawing.Size(109, 27);
+            this.LBL_SPAWN.TabIndex = 65;
+            this.LBL_SPAWN.Text = "SPAWN IDX";
+            this.LBL_SPAWN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // CB_NORMAL
+            // label16
             // 
-            this.CB_NORMAL.AutoSize = true;
-            this.CB_NORMAL.Location = new System.Drawing.Point(402, 56);
-            this.CB_NORMAL.Name = "CB_NORMAL";
-            this.CB_NORMAL.Size = new System.Drawing.Size(104, 27);
-            this.CB_NORMAL.TabIndex = 63;
-            this.CB_NORMAL.Text = "NORMAL";
-            this.CB_NORMAL.UseVisualStyleBackColor = true;
+            this.label16.BackColor = System.Drawing.Color.LavenderBlush;
+            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label16.ForeColor = System.Drawing.Color.DarkRed;
+            this.label16.Location = new System.Drawing.Point(831, 575);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(366, 37);
+            this.label16.TabIndex = 50;
+            this.label16.Text = "NBD ID";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // label17
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button1.Location = new System.Drawing.Point(14, 617);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(233, 34);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "DELETE ENEMY";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label17.BackColor = System.Drawing.Color.LavenderBlush;
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label17.ForeColor = System.Drawing.Color.DarkRed;
+            this.label17.Location = new System.Drawing.Point(831, 617);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(366, 37);
+            this.label17.TabIndex = 51;
+            this.label17.Text = "NBD ID";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // LBL_ZREZ
+            // 
+            this.LBL_ZREZ.BackColor = System.Drawing.Color.LavenderBlush;
+            this.LBL_ZREZ.ForeColor = System.Drawing.Color.DarkRed;
+            this.LBL_ZREZ.Location = new System.Drawing.Point(282, 31);
+            this.LBL_ZREZ.Name = "LBL_ZREZ";
+            this.LBL_ZREZ.Size = new System.Drawing.Size(117, 27);
+            this.LBL_ZREZ.TabIndex = 65;
+            this.LBL_ZREZ.Text = "RESSURECT";
+            this.LBL_ZREZ.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LBL_ZREZ.Click += new System.EventHandler(this.LBL_ZREZ_Click);
+            // 
+            // EMD_ZREZ
+            // 
+            this.EMD_ZREZ.BackColor = System.Drawing.SystemColors.WindowText;
+            this.EMD_ZREZ.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMD_ZREZ.Location = new System.Drawing.Point(281, 58);
+            this.EMD_ZREZ.Name = "EMD_ZREZ";
+            this.EMD_ZREZ.Size = new System.Drawing.Size(118, 30);
+            this.EMD_ZREZ.TabIndex = 64;
+            this.EMD_ZREZ.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.EMD_ZREZ.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // FRM_EMD
             // 
@@ -924,7 +1048,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1209, 685);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.BTN_EMD_DELETE);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.BTN_EMDSAVE);
             this.Controls.Add(this.BTN_EMD_ADD);
@@ -953,7 +1079,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EMD_TAG)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_ANIM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_FOLLOW_FLAG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SPEED)).EndInit();
@@ -972,6 +1098,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PB_EMD)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_SPAWNIDX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_ZREZ)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,7 +1131,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown numericUpDown14;
+        private System.Windows.Forms.NumericUpDown EMD_ANIM;
         private System.Windows.Forms.NumericUpDown EMD_FOLLOW_FLAG;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
@@ -1042,6 +1170,12 @@
         private System.Windows.Forms.CheckBox CB_VH;
         private System.Windows.Forms.CheckBox CB_HARD;
         private System.Windows.Forms.CheckBox CB_EASY;
-        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button BTN_EMD_DELETE;
+        private System.Windows.Forms.Label LBL_SPAWN;
+        public System.Windows.Forms.NumericUpDown EMD_SPAWNIDX;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label LBL_ZREZ;
+        private System.Windows.Forms.NumericUpDown EMD_ZREZ;
     }
 }

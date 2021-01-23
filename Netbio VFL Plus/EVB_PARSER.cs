@@ -637,7 +637,7 @@ namespace Netbio_VFL_Plus
 
                 // COLOR THE CODE!!
                 COLOR_BYTECODE(cmd_len, i, ByteLST);
-                COLOR_BYTECODE(cmd_len, i, CodeLST);
+              //  COLOR_BYTECODE(cmd_len, i, CodeLST);
 
 
                 //   MessageBox.Show("OPCODE: " + op_buffer.ToString("X") + "LENGTH:" + cmd_len.ToString());
@@ -952,6 +952,29 @@ namespace Netbio_VFL_Plus
 
         } // only colored based on cmd length atm..
 
+
+        private void COLOR_OPCODE(int length, int index, ListView LST)
+        {
+           
+            //  NEED TO 
+            Color x4byte = Color.MediumVioletRed;
+            Color x8byte = Color.MintCream;
+            Color x16byte = Color.LimeGreen;
+            Color x32byte = Color.LightSteelBlue;
+
+            switch (length)
+            {
+                case 4: LST.Items[index].ForeColor = x4byte; break;
+                case 8: LST.Items[index].ForeColor = x8byte; break;
+                case 16: LST.Items[index].ForeColor = x16byte; break;
+                case 32: LST.Items[index].ForeColor = x32byte; break;
+            }
+
+        } // only colored based on cmd length atm..
+
+
+
+
         private string SET_CMD(int idx, ListView LSTB, ListView LSTC, int cmd_len)
         {
             string attr = string.Empty; // return this
@@ -1040,25 +1063,18 @@ namespace Netbio_VFL_Plus
           
             }
 
-
-
+             // MAKE DOOR KEY/LOCK FORM FOR THIS
             if (opcode == "50000002") {
 
-                attr = "DOOR_KEY" + "( Item ID: " + ReverseShort(HEX2SHORT(bytestr, 16, 4)) +  ", " + Itemz.GET_ITEM_NAME(ReverseShort(HEX2SHORT(bytestr, 16, 4))) + ")";
-            
+                attr = "DOOR_KEY" + "( Item ID: " + ReverseShort(HEX2SHORT(bytestr, 16, 4)) +  ", " + Itemz.GET_ITEM_NAME(ReverseShort(HEX2SHORT(bytestr, 16, 4))) + ")"; 
             }
 
 
             // SET ROOM VARIANT
             if (opcode == "5A000002")
             {
-
                 attr = "SET_ROOM();";
-
             }
-
-
-
 
             if (opcode == "60000000") {
                 attr = "SCENARIO_END();";
@@ -1163,7 +1179,7 @@ namespace Netbio_VFL_Plus
 
             if (opcode == "62000003")
             {
-                attr = "CUT_PLAY" + " ( Enable: " + HEX2INT(bytestr, 8, 2) + ", .SFD ID: " + HEX2INT(bytestr, 16, 2) + ", uFlag00:  " + HEX2INT(bytestr, 24, 2) + ", UFlag01: " + HEX2INT(bytestr, 32, 2) + ", UFlag02: " + HEX2INT(bytestr, 40, 4) + ", uFlag03: " + HEX2INT(bytestr, 48, 2) + " )";
+                attr = "SFD_PLAY" + " ( Enable: " + HEX2INT(bytestr, 8, 2) + ", .SFD ID: " + HEX2INT(bytestr, 16, 2) + ", uFlag00:  " + HEX2INT(bytestr, 24, 2) + ", UFlag01: " + HEX2INT(bytestr, 32, 2) + ", UFlag02: " + HEX2INT(bytestr, 40, 4) + ", uFlag03: " + HEX2INT(bytestr, 48, 2) + " )";
 
             }
 
@@ -1172,15 +1188,15 @@ namespace Netbio_VFL_Plus
 
                 if (HEX2INT(bytestr, 8, 2) == 44)
                 {
-                    attr = "HERB_SET" + " ( Green Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
+                    attr = "HERBCASE_SET" + " ( Green Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
                 }
                 if (HEX2INT(bytestr, 8, 2) == 45)
                 {
-                    attr = "HERB_SET" + " ( Blue Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
+                    attr = "HERBCASE_SET" + " ( Blue Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
                 }
                 if (HEX2INT(bytestr, 8, 2) == 46)
                 {
-                    attr = "HERB_SET" + " ( Red Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
+                    attr = "HERBCASE_SET" + " ( Red Herb: " + HEX2INT(bytestr, 8, 2) + ", Quantity: " + HEX2INT(bytestr, 16, 2) + " )";
                 }
 
             }
@@ -1191,17 +1207,36 @@ namespace Netbio_VFL_Plus
         }
 
 
-        private string SET_COMMENT(ListView LSTC, ListView LSTB, int index)
+        public static string SET_COMMENT(ListView LSTC, ListView LSTB, RichTextBox Details)
         {
             string comment = string.Empty;
             string opcode = string.Empty;
+            string bytestr = string.Empty;
 
-          
+            int idx = LSTC.FocusedItem.Index;
 
-            if (opcode == "31000001")
+           
+                opcode = LSTB.Items[idx].SubItems[1].Text.Substring(0, 8);
+                bytestr = LSTB.Items[idx].SubItems[1].Text;
+
+
+            try
             {
-                LSTC.Items[index].SubItems.Add("ITEM SET STUFF");
+                // OPEN OPCODE DESC FILE + READ DESC
+                using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\EVB_H\\" + opcode + ".txt"))
+                {
+                    Details.ForeColor = Color.White;
+                    comment = sr.ReadLine();
+                }
+
             }
+            catch (FileNotFoundException FNF) 
+            {
+                Details.ForeColor = Color.Red;
+                comment = "No Description Found for selected opcode";
+            }
+
+            
 
 
             return comment;

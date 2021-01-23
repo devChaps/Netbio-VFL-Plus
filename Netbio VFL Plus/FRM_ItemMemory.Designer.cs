@@ -57,13 +57,13 @@
             this.nud_iprops = new System.Windows.Forms.NumericUpDown();
             this.cmb_itemList = new System.Windows.Forms.ComboBox();
             this.GB_IMEM = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.BTN_UPDATE = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.imem_toolstrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_itemval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_soundval)).BeginInit();
@@ -386,6 +386,36 @@
             this.GB_IMEM.TabStop = false;
             this.GB_IMEM.Text = "Item Data";
             // 
+            // label5
+            // 
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(151, 162);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(145, 23);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Effect ID";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.numericUpDown1.ForeColor = System.Drawing.Color.PaleGoldenrod;
+            this.numericUpDown1.Location = new System.Drawing.Point(151, 188);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            -727379969,
+            232,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1215752191,
+            23,
+            0,
+            -2147483648});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(145, 20);
+            this.numericUpDown1.TabIndex = 31;
+            // 
             // BTN_UPDATE
             // 
             this.BTN_UPDATE.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Bold);
@@ -442,36 +472,6 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Item Type";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label5
-            // 
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label5.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(151, 162);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(145, 23);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Effect ID";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.numericUpDown1.ForeColor = System.Drawing.Color.PaleGoldenrod;
-            this.numericUpDown1.Location = new System.Drawing.Point(151, 188);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            -727379969,
-            232,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1215752191,
-            23,
-            0,
-            -2147483648});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(145, 20);
-            this.numericUpDown1.TabIndex = 31;
             // 
             // FRM_ItemMemory
             // 

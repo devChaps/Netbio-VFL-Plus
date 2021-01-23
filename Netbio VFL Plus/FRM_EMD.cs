@@ -46,6 +46,24 @@ namespace Netbio_VFL_Plus
         }
 
 
+        // CONVERTS RADIO BUTTON VALUES BACK TO BYTE/BITMASK
+        public byte EMD_DFC_CONVERT(CheckBox EASY, CheckBox NORMAL, CheckBox HARD, CheckBox VH) 
+        {
+
+            byte total = 0;
+
+            if (EASY.Checked) { total += 1; }
+            if (NORMAL.Checked) { total += 2; }
+            if (HARD.Checked) { total += 4; }
+            if (VH.Checked) { total += 8; }
+
+
+            total = (byte)(total & 0x0f);
+
+            return total;
+        }
+
+
         public FRM_EMD()
         {
           
@@ -130,15 +148,15 @@ namespace Netbio_VFL_Plus
             EMD_INDEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].No;
        
             EMD_SCALE.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALE;
-            
+            EMD_ANIM.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STATE;
+            EMD_SPAWNIDX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
 
             EMD_SPEED.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SPEED;
             EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_HP;
             EMD_FOLLOW_FLAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_FOLLOW;
             EMD_STR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STR;
-
-
-           
+            EMD_ZREZ.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Zombie_ressurect;
+           // STILL NEEDS TO BE FIXED
 
             if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 01) { CB_EASY.Checked = true; CB_NORMAL.Checked = false; CB_HARD.Checked = false; CB_VH.Checked = false; }
             if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 03) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = false; CB_VH.Checked = false; }
@@ -186,7 +204,109 @@ namespace Netbio_VFL_Plus
 
             total += x * 96;
 
-            MessageBox.Show(total.ToString());
+            
+         
+           
+
+            // OPEN FILE STREAM
+            using (FileStream fs1 = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs1))
+                {
+
+
+                    // seek to ISO relative offset for selected EMD ENTRY
+                    fs1.Seek(total, SeekOrigin.Begin);
+
+                    MessageBox.Show(fs1.Position.ToString());
+
+
+                    bw.Write((byte)EMD_TAG.Value);
+                    bw.Write((byte)EMD_INDEX.Value);
+                    bw.Write((byte)EMD_NBDID00.Value);
+                    bw.Write((byte)EMD_NBDID01.Value);
+
+
+                    fs1.Seek(+8, SeekOrigin.Current); // skip writing Ulongs
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong00);
+
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong01);kk
+
+
+                    bw.Write((Int16)EMD_POS_DEC_X.Value);
+
+                    fs1.Seek(+2, SeekOrigin.Current);
+
+                    bw.Write((Int16)EMD_POS_DEC_Z.Value);
+                    fs1.Seek(+2, SeekOrigin.Current);
+                    bw.Write((Int16)EMD_POS_DEC_Y.Value);
+                    fs1.Seek(+2, SeekOrigin.Current);
+                    bw.Write((Int16)EMD_POS_DEC_R.Value);
+                    fs1.Seek(+2, SeekOrigin.Current);
+
+                    bw.Write((byte)EMD_ROOMID.Value);
+                    bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].SpawnIDX);
+
+                    //// need convert radio buttons to difficulty bitmask
+
+                    bw.Write((byte)EMD_DFC_CONVERT(CB_EASY, CB_NORMAL, CB_HARD, CB_VH));
+
+                    fs1.Seek(+19, SeekOrigin.Current);
+
+
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UnkB01);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort02);
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte00);
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte01);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort03);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort04);
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong01);
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong02);
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong03);
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].Ubyte02);
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE); // need to switch this to NUD val
+                    bw.Write((byte)EMD_STR.Value);
+                    bw.Write((byte)EMD_HP.Value);
+
+                    fs1.Seek(+7, SeekOrigin.Current);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort07);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort08);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort09);
+                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort10);
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong04);
+                    bw.Write((byte)EMD_SPEED.Value);
+                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte03);
+                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong05);
+                    //bw.Write((short)EMD_SCALE.Value); // could be wrong data type..
+
+
+
+                    //EMD_DATA[x].Enemy[j].UByte04 = br.ReadByte();
+                    //EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
+                    //EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
+                    //EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();
+                    //EMD_DATA[x].Enemy[j].ULong07 = br.ReadInt32();
+                    //EMD_DATA[x].Enemy[j].ULong08 = br.ReadInt32();
+                    //EMD_DATA[x].Enemy[j].ULong09 = br.ReadInt32();
+
+
+
+                    bw.Close();
+                }
+
+
+                fs1.Close();
+
+            }
+
+
+
+
+            MessageBox.Show("Emd Entry updated", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            // need a way to reload 
+
+            // BEGIN WRITE OPERATIONS
 
 
 
@@ -208,13 +328,6 @@ namespace Netbio_VFL_Plus
 
             LB_EMD_OFFSETS.SetSelected(0, true);
             LB_EMD_TOTAL.SetSelected(0, true);
-
-
-
-
-
-
-
 
 
         }
@@ -274,6 +387,43 @@ namespace Netbio_VFL_Plus
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CB_EMD_SEL_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+          
+                string sel_val = CB_EMD_SEL.Text;
+
+
+                string GetKey = EMD_IO.ENEMY_NAME_LUT.FirstOrDefault(x => x.Value == sel_val).Key;
+
+
+            
+            byte[] nbdArray = Helper.ConvertHexStringToByteArray(GetKey);
+
+
+            EMD_NBDID00.Value = nbdArray[0];
+            EMD_NBDID01.Value = nbdArray[1];
+
+            EMD_IO.Set_pic(nbdArray[0], nbdArray[1], PB_EMD);
+
+            ////EMD_NBDID00.Value = NBDID0;
+            ////EMD_NBDID01.Value = NBDIO1;
+            //MessageBox.Show(NBDID0.ToString() + "\\" + NBDIO1.ToString());
+
+
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LBL_ZREZ_Click(object sender, EventArgs e)
         {
 
         }

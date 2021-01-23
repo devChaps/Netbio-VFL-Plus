@@ -37,7 +37,7 @@
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.PG_OPCODE = new System.Windows.Forms.PropertyGrid();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Progressbar00 = new System.Windows.Forms.ToolStripProgressBar();
             this.BTN_TOGGLE = new System.Windows.Forms.ToolStripSplitButton();
@@ -46,6 +46,8 @@
             this.TSB_TOGGLE = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.TSB_SCRIPT_DUMP = new System.Windows.Forms.ToolStripButton();
+            this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +63,9 @@
             this.LV_BYTECODE.ForeColor = System.Drawing.SystemColors.Window;
             this.LV_BYTECODE.FullRowSelect = true;
             this.LV_BYTECODE.HideSelection = false;
-            this.LV_BYTECODE.Location = new System.Drawing.Point(1, 54);
+            this.LV_BYTECODE.Location = new System.Drawing.Point(1, 134);
             this.LV_BYTECODE.Name = "LV_BYTECODE";
-            this.LV_BYTECODE.Size = new System.Drawing.Size(998, 630);
+            this.LV_BYTECODE.Size = new System.Drawing.Size(998, 623);
             this.LV_BYTECODE.TabIndex = 1;
             this.LV_BYTECODE.UseCompatibleStateImageBehavior = false;
             this.LV_BYTECODE.View = System.Windows.Forms.View.Details;
@@ -95,9 +97,9 @@
             this.LV_INTCODE.ForeColor = System.Drawing.SystemColors.Window;
             this.LV_INTCODE.FullRowSelect = true;
             this.LV_INTCODE.HideSelection = false;
-            this.LV_INTCODE.Location = new System.Drawing.Point(1, 54);
+            this.LV_INTCODE.Location = new System.Drawing.Point(0, 134);
             this.LV_INTCODE.Name = "LV_INTCODE";
-            this.LV_INTCODE.Size = new System.Drawing.Size(998, 630);
+            this.LV_INTCODE.Size = new System.Drawing.Size(998, 623);
             this.LV_INTCODE.TabIndex = 2;
             this.LV_INTCODE.UseCompatibleStateImageBehavior = false;
             this.LV_INTCODE.View = System.Windows.Forms.View.Details;
@@ -118,12 +120,14 @@
             this.columnHeader15.Text = "Comment";
             this.columnHeader15.Width = 437;
             // 
-            // propertyGrid1
+            // PG_OPCODE
             // 
-            this.propertyGrid1.Location = new System.Drawing.Point(1005, -2);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(218, 686);
-            this.propertyGrid1.TabIndex = 3;
+            this.PG_OPCODE.Location = new System.Drawing.Point(1009, 54);
+            this.PG_OPCODE.Name = "PG_OPCODE";
+            this.PG_OPCODE.Size = new System.Drawing.Size(218, 816);
+            this.PG_OPCODE.TabIndex = 3;
+            this.PG_OPCODE.ToolbarVisible = false;
+            this.PG_OPCODE.Click += new System.EventHandler(this.propertyGrid1_Click);
             // 
             // statusStrip1
             // 
@@ -154,21 +158,20 @@
             // EVB_DEBUG
             // 
             this.EVB_DEBUG.BackColor = System.Drawing.SystemColors.WindowText;
-            this.EVB_DEBUG.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EVB_DEBUG.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.EVB_DEBUG.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.EVB_DEBUG.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EVB_DEBUG.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.EVB_DEBUG.Location = new System.Drawing.Point(0, 690);
+            this.EVB_DEBUG.Location = new System.Drawing.Point(1, 763);
             this.EVB_DEBUG.Name = "EVB_DEBUG";
-            this.EVB_DEBUG.Size = new System.Drawing.Size(1227, 170);
+            this.EVB_DEBUG.Size = new System.Drawing.Size(997, 94);
             this.EVB_DEBUG.TabIndex = 5;
             this.EVB_DEBUG.Text = "EVB_DEBUG";
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSB_TOGGLE,
             this.toolStripButton2,
+            this.TSB_TOGGLE,
             this.TSB_SCRIPT_DUMP});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -209,15 +212,40 @@
             this.TSB_SCRIPT_DUMP.Text = "toolStripButton3";
             this.TSB_SCRIPT_DUMP.Click += new System.EventHandler(this.TSB_SCRIPT_DUMP_Click);
             // 
+            // TB_DETAILS
+            // 
+            this.TB_DETAILS.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.TB_DETAILS.Font = new System.Drawing.Font("Bahnschrift SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TB_DETAILS.ForeColor = System.Drawing.Color.SeaShell;
+            this.TB_DETAILS.Location = new System.Drawing.Point(1, 80);
+            this.TB_DETAILS.Name = "TB_DETAILS";
+            this.TB_DETAILS.Size = new System.Drawing.Size(998, 48);
+            this.TB_DETAILS.TabIndex = 7;
+            this.TB_DETAILS.Text = "This Text Field is to give you details about the selected opcode (if it is known)" +
+    "\n";
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(997, 23);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "CODE DETAILS";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FRM_EVB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 882);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.TB_DETAILS);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.EVB_DEBUG);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.propertyGrid1);
+            this.Controls.Add(this.PG_OPCODE);
             this.Controls.Add(this.LV_INTCODE);
             this.Controls.Add(this.LV_BYTECODE);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -241,7 +269,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader15;
         public System.Windows.Forms.ListView LV_BYTECODE;
         public System.Windows.Forms.ListView LV_INTCODE;
-        public System.Windows.Forms.PropertyGrid propertyGrid1;
+        public System.Windows.Forms.PropertyGrid PG_OPCODE;
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripProgressBar Progressbar00;
         private System.Windows.Forms.ToolStripSplitButton BTN_TOGGLE;
@@ -250,5 +278,7 @@
         private System.Windows.Forms.ToolStripButton TSB_TOGGLE;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton TSB_SCRIPT_DUMP;
+        private System.Windows.Forms.RichTextBox TB_DETAILS;
+        private System.Windows.Forms.Label label1;
     }
 }

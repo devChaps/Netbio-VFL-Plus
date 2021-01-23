@@ -136,6 +136,7 @@
     <Compile Include="FRM_RDT.Designer.cs">
       <DependentUpon>FRM_RDT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Image_Data.cs" />
     <Compile Include="Items.cs" />
     <Compile Include="LIB_DNAS.cs" />

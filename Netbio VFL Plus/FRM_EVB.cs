@@ -51,7 +51,6 @@ namespace Netbio_VFL_Plus
             catch (System.IO.IOException IOX)
             {
 
-
             }
 
             catch (System.NullReferenceException NRE) { 
@@ -66,6 +65,8 @@ namespace Netbio_VFL_Plus
             LV_BYTECODE.SelectedItems.Clear();
 
             LV_BYTECODE.Items[idx].Selected = true;
+
+           TB_DETAILS.Text = EVB_PARSER.SET_COMMENT(LV_INTCODE, LV_BYTECODE, TB_DETAILS);
 
 
         }
@@ -85,6 +86,10 @@ namespace Netbio_VFL_Plus
             {
                 for (int i = 0; i < total; i++)
                 {
+                 //   using(StreamWriter sw = new StreamWriter(ScenarioHandler.ARC2_SCE(EVB_PARSER. )))
+
+
+
                     EVB_DEBUG.AppendText(LV_INTCODE.Items[i].SubItems[1].Text + "\n");
                 }
             }
@@ -94,6 +99,11 @@ namespace Netbio_VFL_Plus
                 MessageBox.Show("DONE");
             }
 
+
+        }
+
+        private void propertyGrid1_Click(object sender, EventArgs e)
+        {
 
         }
     }
