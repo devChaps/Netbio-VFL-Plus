@@ -124,6 +124,12 @@
     <Compile Include="FRM_MAIN.Designer.cs">
       <DependentUpon>FRM_MAIN.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRM_NAME_EDIT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_NAME_EDIT.Designer.cs">
+      <DependentUpon>FRM_NAME_EDIT.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRM_NPC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_MAIN.resx">
       <DependentUpon>FRM_MAIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_NAME_EDIT.resx">
+      <DependentUpon>FRM_NAME_EDIT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_NPC.resx">
       <DependentUpon>FRM_NPC.cs</DependentUpon>

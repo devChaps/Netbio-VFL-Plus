@@ -55,7 +55,16 @@ namespace Netbio_VFL_Plus
             public int Virus;
         }
 
+        public struct NPC_NAMES 
+        {
+            public string[] name; // npc_names
+            public long[] offsets; // entry offset pos
+        
+        }
 
+
+
+       public static NPC_NAMES NAME_OBJ = new NPC_NAMES();
 
         public static Image_Data.Image_Data_Obj Img;
         public static Image_Data.PrimaryVolume_Obj PrimaryVolObj;
@@ -69,6 +78,9 @@ namespace Netbio_VFL_Plus
         public EMD_IO EMDIO = new EMD_IO();
         public NPC_IO NPCIO = new NPC_IO();
         public NBD_IO NBDIO = new NBD_IO();
+
+        
+
         
 
 
@@ -81,6 +93,7 @@ namespace Netbio_VFL_Plus
         public FRM_HEX2DEC CALC_FORM = new FRM_HEX2DEC();
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public FRM_ABOUT ABOUT_FORM = new FRM_ABOUT();
+        public FRM_NAME_EDIT FRM_NAMETOOL = new FRM_NAME_EDIT();
 
         public static int NETBIO00_OFFSET = 0;
 
@@ -1427,6 +1440,42 @@ namespace Netbio_VFL_Plus
             
 
             
+        }
+
+        private void BTN_IMG_Click(object sender, EventArgs e)
+        {
+
+            // just re use the menu button
+            isoScanToolStripMenuItem_Click(sender, e);
+        }
+
+        private void BTN_PL_NAME_Click(object sender, EventArgs e)
+        {
+            using(FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)) 
+            {
+                using (BinaryReader br = new BinaryReader(fs, new ASCIIEncoding())) 
+                {
+                    // seek to name data
+                    fs.Seek(2107032, SeekOrigin.Begin);
+
+                    // resize string to num of entries + offsets
+                    Array.Resize(ref NAME_OBJ.name, 784 / 8);
+                    Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
+                    
+                    // loop through entries and convert b array to ascii / store in structure for later use
+                    for(int i = 0; i < NAME_OBJ.name.Length; i++) 
+                    {
+                        NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
+                        byte[] buffer = br.ReadBytes(8);
+                        NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                     //   MessageBox.Show(NAME_OBJ.name[i]);
+
+                    }
+                }
+            
+            }
+            // SHOW FORM
+            FRM_NAMETOOL.ShowDialog();
         }
     }
 }

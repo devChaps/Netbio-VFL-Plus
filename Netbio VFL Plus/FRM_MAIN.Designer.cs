@@ -109,6 +109,9 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_PL_NAME = new System.Windows.Forms.ToolStripButton();
+            this.BTN_IMG = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -127,6 +130,8 @@
             this.MainToolStrip.ImageScalingSize = new System.Drawing.Size(48, 48);
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
+            this.BTN_IMG,
+            this.toolStripSeparator7,
             this.Volume_List,
             this.toolStripSeparator6,
             this.BTN_VBACK,
@@ -135,6 +140,7 @@
             this.toolStripSeparator3,
             this.BTN_DEBUGLOG,
             this.toolStripSeparator5,
+            this.BTN_PL_NAME,
             this.BTN_CALC,
             this.toolStripSeparator2,
             this.Groups_List,
@@ -159,20 +165,19 @@
             this.Volume_List.ForeColor = System.Drawing.Color.AntiqueWhite;
             this.Volume_List.MaxDropDownItems = 15;
             this.Volume_List.Name = "Volume_List";
-            this.Volume_List.Size = new System.Drawing.Size(121, 46);
+            this.Volume_List.Size = new System.Drawing.Size(145, 46);
             this.Volume_List.Text = "Volume List";
             this.Volume_List.SelectedIndexChanged += new System.EventHandler(this.Volume_List_SelectedIndexChanged);
             // 
             // BTN_VBACK
             // 
-            this.BTN_VBACK.AutoSize = false;
-            this.BTN_VBACK.BackColor = System.Drawing.Color.Black;
+            this.BTN_VBACK.BackColor = System.Drawing.Color.Azure;
             this.BTN_VBACK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BTN_VBACK.ForeColor = System.Drawing.Color.Cornsilk;
             this.BTN_VBACK.Image = ((System.Drawing.Image)(resources.GetObject("BTN_VBACK.Image")));
             this.BTN_VBACK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_VBACK.Name = "BTN_VBACK";
-            this.BTN_VBACK.Size = new System.Drawing.Size(23, 20);
+            this.BTN_VBACK.Size = new System.Drawing.Size(52, 43);
             this.BTN_VBACK.Text = "Refresh Selected Volume";
             this.BTN_VBACK.Click += new System.EventHandler(this.BTN_VBACK_Click);
             // 
@@ -479,7 +484,7 @@
             // 
             this.sLDUNPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDUNPACKToolStripMenuItem.Name = "sLDUNPACKToolStripMenuItem";
-            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sLDUNPACKToolStripMenuItem.Text = "SLD_UNPACK";
             this.sLDUNPACKToolStripMenuItem.Click += new System.EventHandler(this.sLDUNPACKToolStripMenuItem_Click);
             // 
@@ -487,7 +492,7 @@
             // 
             this.sLDREPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDREPACKToolStripMenuItem.Name = "sLDREPACKToolStripMenuItem";
-            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sLDREPACKToolStripMenuItem.Text = "SLD_REPACK";
             // 
             // interpretingToolStripMenuItem
@@ -510,7 +515,7 @@
             // 
             this.rDTINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.rDTINTToolStripMenuItem.Name = "rDTINTToolStripMenuItem";
-            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rDTINTToolStripMenuItem.Text = "RDT INT";
             this.rDTINTToolStripMenuItem.Click += new System.EventHandler(this.rDTINTToolStripMenuItem_Click);
             // 
@@ -518,7 +523,7 @@
             // 
             this.eVBINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eVBINTToolStripMenuItem.Name = "eVBINTToolStripMenuItem";
-            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eVBINTToolStripMenuItem.Text = "EVB INT";
             this.eVBINTToolStripMenuItem.Click += new System.EventHandler(this.eVBINTToolStripMenuItem_Click);
             // 
@@ -526,14 +531,14 @@
             // 
             this.sNDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sNDINTToolStripMenuItem.Name = "sNDINTToolStripMenuItem";
-            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sNDINTToolStripMenuItem.Text = "SND INT";
             // 
             // eMDINTToolStripMenuItem
             // 
             this.eMDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eMDINTToolStripMenuItem.Name = "eMDINTToolStripMenuItem";
-            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eMDINTToolStripMenuItem.Text = "EMD INT";
             this.eMDINTToolStripMenuItem.Click += new System.EventHandler(this.eMDINTToolStripMenuItem_Click);
             // 
@@ -541,7 +546,7 @@
             // 
             this.nPCINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nPCINTToolStripMenuItem.Name = "nPCINTToolStripMenuItem";
-            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nPCINTToolStripMenuItem.Text = "NPC INT";
             this.nPCINTToolStripMenuItem.Click += new System.EventHandler(this.nPCINTToolStripMenuItem_Click);
             // 
@@ -549,20 +554,20 @@
             // 
             this.nBDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nBDINTToolStripMenuItem.Name = "nBDINTToolStripMenuItem";
-            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nBDINTToolStripMenuItem.Text = "NBD INT";
             // 
             // iTEMTBLINTToolStripMenuItem
             // 
             this.iTEMTBLINTToolStripMenuItem.Name = "iTEMTBLINTToolStripMenuItem";
-            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iTEMTBLINTToolStripMenuItem.Text = "ITEM TBL INT";
             this.iTEMTBLINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMTBLINTToolStripMenuItem_Click);
             // 
             // iTEMDATINTToolStripMenuItem
             // 
             this.iTEMDATINTToolStripMenuItem.Name = "iTEMDATINTToolStripMenuItem";
-            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.iTEMDATINTToolStripMenuItem.Text = "ITEM DAT INT";
             this.iTEMDATINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMDATINTToolStripMenuItem_Click);
             // 
@@ -842,6 +847,32 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.testToolStripMenuItem.Text = "Test";
             // 
+            // BTN_PL_NAME
+            // 
+            this.BTN_PL_NAME.BackColor = System.Drawing.Color.Gold;
+            this.BTN_PL_NAME.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_PL_NAME.Image = ((System.Drawing.Image)(resources.GetObject("BTN_PL_NAME.Image")));
+            this.BTN_PL_NAME.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_PL_NAME.Name = "BTN_PL_NAME";
+            this.BTN_PL_NAME.Size = new System.Drawing.Size(52, 43);
+            this.BTN_PL_NAME.Text = "toolStripButton1";
+            this.BTN_PL_NAME.Click += new System.EventHandler(this.BTN_PL_NAME_Click);
+            // 
+            // BTN_IMG
+            // 
+            this.BTN_IMG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_IMG.Image = ((System.Drawing.Image)(resources.GetObject("BTN_IMG.Image")));
+            this.BTN_IMG.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_IMG.Name = "BTN_IMG";
+            this.BTN_IMG.Size = new System.Drawing.Size(52, 43);
+            this.BTN_IMG.Text = "toolStripButton1";
+            this.BTN_IMG.Click += new System.EventHandler(this.BTN_IMG_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 46);
+            // 
             // FRM_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,6 +982,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton BTN_PL_NAME;
+        private System.Windows.Forms.ToolStripButton BTN_IMG;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
     }
 }
 
