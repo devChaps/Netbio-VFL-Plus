@@ -25,6 +25,7 @@ namespace Netbio_VFL_Plus
 
 
 
+
 		public static Dictionary<string, string> ENEMY_NAME_LUT = new Dictionary<string, string>()
 		{
 			{"0100","Global Zombie (Yong boy)" },
@@ -213,6 +214,66 @@ namespace Netbio_VFL_Plus
 
 
 
+		public static Dictionary<byte, string> ZOMBIE_REVIVE_LUT = new Dictionary<byte, string>()
+		{
+			{0, "CORPSE REVIVE" },
+			{1, "CORPSE DISSAPEAR"},
+			{2, "NO REVIVE" }
+		};
+
+		public static Dictionary<byte, string> ZOMBIE_ANIMATION_LUT = new Dictionary<byte, string>()
+		{
+			{0x00, "Standing Normally"},
+			{0x01, "Standing (Special)"},
+			{0x02, "Door Hit + Rush"},
+			{0x03, "No Function"},
+			{0x04, "Lying Prone"},
+			{0x05, "Lying On back"},
+			{0x06, "Sitting on the ground"},
+			{0x07, "Sitting Dead in a Chair"},
+			{0x08, "Sitting Prone in a chair (Peter)"},
+			{0x09, "Bites Corpse + Stand"},
+			{0x0A, "Crawl from Drawer"},
+			{0x0B, "Window Break/Crawl"},
+			{0x0C, "N/A"},
+			{0x0D, "Lying Down"},
+			{0x0E, "Locker Attack"},
+			{0x0F, "Unused 00"},
+			{0x10, "Unused 01"},
+			{0x11, "N/F"},
+			{0x12, "Ground Crawl / Stand"},
+			{0x13, "Unused 02"},
+			{0x14, "Unused 03"},
+			{0x15, "Window Break / Slide"},
+			{0x16, "??"},
+			{0x17, "Unused 04"},
+			{0x18, "Hitting Window (Slow)"},
+			{0x19, "Elevator Attack"},
+			{0x1A, "Unused 05"},
+			{0x1B, "Wandering (Unused)"},
+			{0x1C, "Hitting Window (Fast)"},
+			{0x1D, "Unused 06"},
+			{0x1E, "Shot Down by Marvin"},
+			{0x1F, "Unused 07"},
+			{0x20, "Idle Stand"},
+			{0x21, "N/F"},
+			{0x22, "N/F"},
+			{0x23, "Door Open Attack"},
+			{0x24, "Fence/Door Break"},
+			{0x25, "Idle Stand / Attack"},
+			{0x26, "Lying Prone 02"},
+			{0x27, "Lying on Back 02"},
+			{0x28, "Jumping out of ground?"},
+			{0x29, "N/F"},
+			{0x2A, "Unusued 08"},
+			{0x2B, "Unusued 09"},
+			{0x2C, "Unusued 10"},
+			{0x2D, "Unusued 11"},
+			{0x2E, "Unusued 12"},
+			{0x2F, "Unusued 13"},
+
+		};
+
 		public struct EMD_Enemy_Obj
 		{
 			public byte Tag;        //  1       Not sure, could be to deactivate/activate an entry?
@@ -233,7 +294,7 @@ namespace Netbio_VFL_Plus
 			public byte UByte00;
 			public byte UByte01;
 			public Int16 UShort03;
-			public byte Zombie_ressurect;
+			public byte Zombie_ressurect; // + 38
 			public byte UByte02;
 			public int ULong02;
 			public int ULong03;
@@ -245,12 +306,15 @@ namespace Netbio_VFL_Plus
 			public Int16 UShort08;
 			public Int16 UShort09;
 			public Int16 UShort10;
-			public int ULong04;
-			public byte EMD_SPEED; // 
-			public byte UByte04;
+			public byte Ubyte04;
+			public byte Ubyte05;
+			public byte Ubyte06;
+			public byte EMD_KNOCKBACK; // + 59
+			public byte EMD_SPEED; //  + 60
+			public byte UByte07;
 			public int ULong05;
 			public Int16 EMD_SCALE;
-			public byte UByte05;
+			public byte UByte08;
 			public byte EMD_FOLLOW;
 			public Int16 UShort14;
 			public int ULong06;
@@ -290,10 +354,11 @@ namespace Netbio_VFL_Plus
         /// <param name="HB_EMD"></param>
         /// <param name="PG_EMD"></param>
         /// <param name="Emd_DebugLog"></param>
-        public void Parse_EMDStream(Stream fs, int start_off, string sce_val, byte GameVal, ListView LST_AFS, ListBox LB_EMDOFF, PictureBox CurrentRoom, PictureBox Emd_Pic, ToolStripStatusLabel LBL_OFFSET)
+        public void Parse_EMDStream(Stream fs, int start_off, string sce_val, byte GameVal, ListView LST_AFS, ListBox LB_EMDOFF, PictureBox CurrentRoom, PictureBox Emd_Pic, ToolStripStatusLabel LBL_OFFSET, ToolStripStatusLabel LBL_FTYPE)
         {
             
                 int Emd_Offset = int.Parse(LST_AFS.FocusedItem.SubItems[1].Text);
+				string f_name = LST_AFS.FocusedItem.SubItems[3].Text;
                 byte[] EMD_BUFFER = new byte[0];
                 int t_sz = int.Parse(LST_AFS.FocusedItem.SubItems[2].Text);
 
@@ -301,7 +366,7 @@ namespace Netbio_VFL_Plus
 				ARCHIVE_OFFSET = start_off;
 				EMD_OFFSET = Emd_Offset;
 
-
+			   
 				
 
 				// PREVENT DUPES N SHIT
@@ -310,6 +375,19 @@ namespace Netbio_VFL_Plus
 				// SET SCENARIO DATA
 				GAME_VALUE = GameVal;
 				SCE_VALUE = sce_val;
+
+
+			// SET LBL BASED ON FTYPE
+			if (f_name.Substring(f_name.Length - 3, 3).ToUpper() == "EMD" && f_name.Substring(0, 1).ToUpper() == "S")
+			{
+				LBL_FTYPE.ForeColor = Color.Red;
+				LBL_FTYPE.Text = "OFFLINE";
+			}
+			else 
+			{
+				LBL_FTYPE.ForeColor = Color.Blue;
+				LBL_FTYPE.Text = "ONLINE";
+			}
 			
 
                 //  Emd_DebugLog.AppendText("Archive Offset: " + start_off.ToString() + "\n EMD_Offset: " + Emd_Offset.ToString());
@@ -415,13 +493,15 @@ namespace Netbio_VFL_Plus
 								EMD_DATA[x].Enemy[j].UShort08 = br.ReadInt16();
 								EMD_DATA[x].Enemy[j].UShort09 = br.ReadInt16();
 								EMD_DATA[x].Enemy[j].UShort10 = br.ReadInt16();
-								EMD_DATA[x].Enemy[j].ULong04 = br.ReadInt32();
-
+								EMD_DATA[x].Enemy[j].Ubyte04 = br.ReadByte();
+						        EMD_DATA[x].Enemy[j].Ubyte05 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].Ubyte06 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_KNOCKBACK = br.ReadByte();
 								EMD_DATA[x].Enemy[j].EMD_SPEED = br.ReadByte();
-								EMD_DATA[x].Enemy[j].UByte04 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UByte07 = br.ReadByte();
 								EMD_DATA[x].Enemy[j].ULong05 = br.ReadInt32();
 								EMD_DATA[x].Enemy[j].EMD_SCALE = br.ReadInt16();
-								EMD_DATA[x].Enemy[j].UByte05 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].UByte08 = br.ReadByte();
 								EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
 								EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
 								EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();
@@ -431,13 +511,6 @@ namespace Netbio_VFL_Plus
 								EMD_DATA[x].Enemy[j].ULong10 = br.ReadInt32();
 
 								// RETURN TO START OF EMD BLOCK
-
-
-
-
-
-
-
 
 							}
 
@@ -462,17 +535,6 @@ namespace Netbio_VFL_Plus
 			
 				fs.Dispose();
 				fs.Close();
-
-				
-				
-			
-			
-
-
-
-
-
-
 
         }
 
@@ -657,7 +719,7 @@ namespace Netbio_VFL_Plus
 			
 		}
 
-		public static void Set_pic(byte NBD0, byte NBD1, PictureBox PB) // sets current enemy entry's appropriate picture
+		public static void Set_pic(byte NBD0, byte NBD1, PictureBox PB, Label NBD_FILE) // sets current enemy entry's appropriate picture
 		{
 			try
 			{
@@ -672,7 +734,10 @@ namespace Netbio_VFL_Plus
 				string nbdval0 = NBD0.ToString("00");
 				string nbdval1 = NBD1.ToString("00");
 
+
 				img_string = enviro + "\\" + "E" + nbdval0 + "_" + nbdval1 + ".jpg";
+
+				NBD_FILE.Text = img_string.Substring(img_string.Length - 10, 7) + "NBD";
 
 				Image em_img = Image.FromFile(img_string);
 				PB.Image = em_img;

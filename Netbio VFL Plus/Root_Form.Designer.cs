@@ -73,21 +73,21 @@
             // 
             this.TextBox_PhysicalSz.Location = new System.Drawing.Point(108, 76);
             this.TextBox_PhysicalSz.Name = "TextBox_PhysicalSz";
-            this.TextBox_PhysicalSz.Size = new System.Drawing.Size(284, 20);
+            this.TextBox_PhysicalSz.Size = new System.Drawing.Size(144, 20);
             this.TextBox_PhysicalSz.TabIndex = 10;
             // 
             // TextBox_Sector_Sz
             // 
             this.TextBox_Sector_Sz.Location = new System.Drawing.Point(108, 47);
             this.TextBox_Sector_Sz.Name = "TextBox_Sector_Sz";
-            this.TextBox_Sector_Sz.Size = new System.Drawing.Size(284, 20);
+            this.TextBox_Sector_Sz.Size = new System.Drawing.Size(144, 20);
             this.TextBox_Sector_Sz.TabIndex = 9;
             // 
             // TextBox_Vname
             // 
             this.TextBox_Vname.Location = new System.Drawing.Point(108, 21);
             this.TextBox_Vname.Name = "TextBox_Vname";
-            this.TextBox_Vname.Size = new System.Drawing.Size(284, 20);
+            this.TextBox_Vname.Size = new System.Drawing.Size(144, 20);
             this.TextBox_Vname.TabIndex = 8;
             // 
             // TV_Root
@@ -97,7 +97,7 @@
             this.TV_Root.ForeColor = System.Drawing.Color.Cyan;
             this.TV_Root.Location = new System.Drawing.Point(10, 102);
             this.TV_Root.Name = "TV_Root";
-            this.TV_Root.Size = new System.Drawing.Size(386, 377);
+            this.TV_Root.Size = new System.Drawing.Size(242, 377);
             this.TV_Root.TabIndex = 7;
             this.TV_Root.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.TV_Root_NodeMouseHover);
             this.TV_Root.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TV_Root_NodeMouseDoubleClick);
@@ -105,7 +105,7 @@
             // BTN_RCANCEL
             // 
             this.BTN_RCANCEL.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BTN_RCANCEL.Location = new System.Drawing.Point(286, 589);
+            this.BTN_RCANCEL.Location = new System.Drawing.Point(162, 589);
             this.BTN_RCANCEL.Name = "BTN_RCANCEL";
             this.BTN_RCANCEL.Size = new System.Drawing.Size(90, 23);
             this.BTN_RCANCEL.TabIndex = 16;
@@ -130,7 +130,7 @@
             this.RootForm_Dbg.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.RootForm_Dbg.Location = new System.Drawing.Point(12, 485);
             this.RootForm_Dbg.Name = "RootForm_Dbg";
-            this.RootForm_Dbg.Size = new System.Drawing.Size(380, 96);
+            this.RootForm_Dbg.Size = new System.Drawing.Size(240, 96);
             this.RootForm_Dbg.TabIndex = 14;
             this.RootForm_Dbg.Text = "";
             // 
@@ -139,7 +139,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(398, 624);
+            this.ClientSize = new System.Drawing.Size(263, 624);
             this.Controls.Add(this.BTN_RCANCEL);
             this.Controls.Add(this.BTN_AFSCHECK);
             this.Controls.Add(this.RootForm_Dbg);

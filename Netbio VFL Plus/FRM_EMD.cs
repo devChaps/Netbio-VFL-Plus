@@ -87,7 +87,9 @@ namespace Netbio_VFL_Plus
         private void LB_EMD_OFFSETS_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = LB_EMD_OFFSETS.SelectedIndex;
-            
+
+
+            LBL_OFFSET.Text = LB_EMD_OFFSETS.SelectedItem.ToString();
 
             LB_EMD_TOTAL.Items.Clear();
 
@@ -126,6 +128,28 @@ namespace Netbio_VFL_Plus
             {
                 MessageBox.Show("EMD LUT KEY NOT PRESENT");
             }
+
+
+
+            if (nbdval0 == "01")
+            {
+                CB_ZANIM.Show();
+            }
+            else {
+                CB_ZANIM.Hide();
+            }
+           
+
+            // CHECK IF KEY EXISTS
+            if (EMD_IO.ZOMBIE_ANIMATION_LUT.ContainsKey(EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE))
+            {
+                CB_ZANIM.SelectedItem = EMD_IO.ZOMBIE_ANIMATION_LUT[EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE];
+            }
+            else
+            {
+                MessageBox.Show("ANIM LUT KEY NOT AVAILABLE");
+            }
+
             //   MessageBox.Show(idx.ToString());
 
 
@@ -147,7 +171,7 @@ namespace Netbio_VFL_Plus
             EMD_TAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Tag;
             EMD_INDEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].No;
        
-            EMD_SCALE.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALE;
+            EMD_SCALEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALE;
             EMD_ANIM.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STATE;
             EMD_SPAWNIDX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
 
@@ -168,7 +192,7 @@ namespace Netbio_VFL_Plus
 
 
             EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[x].Enemy[idx].Room_ID, PB_EMD_ROOM);
-            EMD_IO.Set_pic(EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0, EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1, PB_EMD);
+            EMD_IO.Set_pic(EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0, EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1, PB_EMD, LBL_NBD_FILE);
 
             EMD_BYTECODE.Clear();
             EMD_BYTECODE.Text = ByteArrayToString(EMD_IO.EMD_DATA[x].Enemy[idx].Emd_block);
@@ -326,6 +350,12 @@ namespace Netbio_VFL_Plus
             }
 
 
+
+            foreach (string zanim in EMD_IO.ZOMBIE_ANIMATION_LUT.Values)
+            {
+                CB_ZANIM.Items.Add(zanim);
+            }
+
             LB_EMD_OFFSETS.SetSelected(0, true);
             LB_EMD_TOTAL.SetSelected(0, true);
 
@@ -408,7 +438,10 @@ namespace Netbio_VFL_Plus
             EMD_NBDID00.Value = nbdArray[0];
             EMD_NBDID01.Value = nbdArray[1];
 
-            EMD_IO.Set_pic(nbdArray[0], nbdArray[1], PB_EMD);
+
+          
+
+            EMD_IO.Set_pic(nbdArray[0], nbdArray[1], PB_EMD, LBL_NBD_FILE);
 
             ////EMD_NBDID00.Value = NBDID0;
             ////EMD_NBDID01.Value = NBDIO1;
@@ -424,6 +457,16 @@ namespace Netbio_VFL_Plus
         }
 
         private void LBL_ZREZ_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTN_PASTE_EMD_BC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LBL_NBD_FILE_Click(object sender, EventArgs e)
         {
 
         }

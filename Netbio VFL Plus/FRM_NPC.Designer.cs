@@ -57,15 +57,15 @@
             this.Num_RID = new System.Windows.Forms.NumericUpDown();
             this.Btn_Confirm = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.PB_CURRENT_ROOM = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.NPC_Imagebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_bounds)).BeginInit();
@@ -81,9 +81,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_RID)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_CURRENT_ROOM)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -422,6 +422,27 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MAP DATA";
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(241, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 21);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "ROOM INDEX";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(405, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 21);
+            this.label2.TabIndex = 58;
+            this.label2.Text = "NPC INDEX";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.groupBox4);
@@ -449,6 +470,51 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "NPC DATA";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.Num_Rotation);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Controls.Add(this.Num_CoordX);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.Num_CoordY);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Location = new System.Drawing.Point(451, 26);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(241, 154);
+            this.groupBox4.TabIndex = 53;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Position Data";
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(8, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(80, 22);
+            this.label5.TabIndex = 52;
+            this.label5.Text = "Z";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label4
+            // 
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(8, 62);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 22);
+            this.label4.TabIndex = 51;
+            this.label4.Text = "Y";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label3
+            // 
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(8, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 22);
+            this.label3.TabIndex = 50;
+            this.label3.Text = "X";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.NPC_Imagebox);
@@ -470,72 +536,6 @@
             this.PB_CURRENT_ROOM.TabIndex = 54;
             this.PB_CURRENT_ROOM.TabStop = false;
             // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(405, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 21);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "NPC INDEX";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(241, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 21);
-            this.label1.TabIndex = 59;
-            this.label1.Text = "ROOM INDEX";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(8, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 22);
-            this.label3.TabIndex = 50;
-            this.label3.Text = "X";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label4
-            // 
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(8, 62);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 22);
-            this.label4.TabIndex = 51;
-            this.label4.Text = "Y";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label5
-            // 
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(8, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 22);
-            this.label5.TabIndex = 52;
-            this.label5.Text = "Z";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.Num_Rotation);
-            this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.Num_CoordX);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.Num_CoordY);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(451, 26);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(241, 154);
-            this.groupBox4.TabIndex = 53;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Position Data";
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.PB_CURRENT_ROOM);
@@ -552,7 +552,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(735, 585);
+            this.ClientSize = new System.Drawing.Size(716, 585);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -575,9 +575,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.Num_RID)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PB_CURRENT_ROOM)).EndInit();
-            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 

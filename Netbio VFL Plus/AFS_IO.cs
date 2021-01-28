@@ -752,6 +752,7 @@ namespace Netbio_VFL_Plus
                 
                 if (LUT_FORMATS.ContainsKey(ext))
                 {
+                    
                     LV.Items[x].ForeColor = LUT_EXTCOLOR[ext];
                     LV.Items[x].SubItems.Add(LUT_FORMATS[ext]);
                    

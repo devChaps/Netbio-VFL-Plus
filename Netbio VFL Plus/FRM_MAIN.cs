@@ -25,6 +25,9 @@ namespace Netbio_VFL_Plus
 
 
 
+        [DllImport("uxtheme.dll")]
+        private static extern int SetWindowTheme(IntPtr hWnd, string appname, string idlist);
+
         [DllImport("psapi.dll")]
         static extern int EmptyWorkingSet(IntPtr hwProc);
 
@@ -953,8 +956,9 @@ namespace Netbio_VFL_Plus
                                 EMDIO.Parse_EMDStream(memStream, AFSIO.cur_archive_offset, 
                                     ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
                                     ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
-                                    LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET);
-                                
+                                    LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET, EMD_FORM.LBL_FTYPE);
+
+                            SetWindowTheme(EMD_FORM.Handle, "", "");
                                 EMD_FORM.ShowDialog();
 
 

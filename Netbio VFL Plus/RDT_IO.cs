@@ -264,7 +264,7 @@ using System.Threading;
                         LV_RDT.Items[i].SubItems.Add("_UNK");
                         break;
                     case 16:
-                        LV_RDT.Items[i].SubItems.Add("_SZ");
+                        LV_RDT.Items[i].SubItems.Add("_GRD");
                         LV_RDT.Items[i].SubItems.Add("SOUND ZONE DATA");
                         break;
 					}
