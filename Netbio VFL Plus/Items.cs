@@ -532,7 +532,7 @@ namespace Netbio_VFL_Plus
        /// <param name="CMB"></param>
        /// <param name="f_type"></param>
        /// <param name="Debug_Log"></param>
-		public void READ_TABLE_STREAM(Stream fs, int start_off, ListView LV_AFS, ListView LV_ITABLE, ComboBox CMB, bool f_type, RichTextBox Debug_Log)
+		public void READ_TABLE_STREAM(Stream fs, int start_off, ListView LV_AFS, ListView LV_ITABLE, ComboBox CMB, bool f_type, RichTextBox Debug_Log, ImageList IcoList)
 		{
 
             int tbl_offset = int.Parse(LV_AFS.FocusedItem.SubItems[1].Text);
@@ -569,7 +569,7 @@ namespace Netbio_VFL_Plus
 				TBL_ITEM[i].Quantity = br.ReadByte();
 				TBL_ITEM[i].occurence = br.ReadByte();
 
-
+                LV_ITABLE.SmallImageList = IcoList;
 				LV_ITABLE.Items.Add(i.ToString());
                 LV_ITABLE.Items[i].SubItems.Add(TBL_ITEM[i].Item_val.ToString()); // dump index and item value to listview
 

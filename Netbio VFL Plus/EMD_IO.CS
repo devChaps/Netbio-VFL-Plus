@@ -313,8 +313,9 @@ namespace Netbio_VFL_Plus
 			public byte EMD_SPEED; //  + 60
 			public byte UByte07;
 			public int ULong05;
-			public Int16 EMD_SCALE;
-			public byte UByte08;
+			public byte EMD_SCALEX;
+			public byte EMD_SCALEY;
+			public byte EMD_SCALEZ;
 			public byte EMD_FOLLOW;
 			public Int16 UShort14;
 			public int ULong06;
@@ -500,8 +501,9 @@ namespace Netbio_VFL_Plus
 								EMD_DATA[x].Enemy[j].EMD_SPEED = br.ReadByte();
 								EMD_DATA[x].Enemy[j].UByte07 = br.ReadByte();
 								EMD_DATA[x].Enemy[j].ULong05 = br.ReadInt32();
-								EMD_DATA[x].Enemy[j].EMD_SCALE = br.ReadInt16();
-								EMD_DATA[x].Enemy[j].UByte08 = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_SCALEX = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_SCALEY = br.ReadByte();
+								EMD_DATA[x].Enemy[j].EMD_SCALEZ = br.ReadByte();
 								EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
 								EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
 								EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();

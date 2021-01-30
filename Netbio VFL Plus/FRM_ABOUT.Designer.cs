@@ -99,8 +99,8 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(392, 109);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Thanks/Accreditations\r\n the_mortician (memory read module) \r\nMr.Creamy (EVB Opcod" +
-    "e Defintions)\r\nHill73n (room id\'s/images)\r\n0Verlord (room id\'s/images)\r\n";
+            this.label2.Text = "Thanks/Accreditations to the following people\r\n the_mortician \r\nMr.Creamy \r\nHill7" +
+    "3n \r\n0Verlord \r\nIgusaTaro\r\n";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FRM_ABOUT

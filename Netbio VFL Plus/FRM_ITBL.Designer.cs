@@ -53,14 +53,14 @@
             // 
             // LV_ItemTable
             // 
-            this.LV_ItemTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(6)))), ((int)(((byte)(44)))));
+            this.LV_ItemTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.LV_ItemTable.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader16,
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
             this.columnHeader20});
-            this.LV_ItemTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LV_ItemTable.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LV_ItemTable.ForeColor = System.Drawing.Color.BlanchedAlmond;
             this.LV_ItemTable.FullRowSelect = true;
             this.LV_ItemTable.HideSelection = false;
@@ -99,67 +99,67 @@
             // 
             // Btn_TBL_UPDATE
             // 
-            this.Btn_TBL_UPDATE.Location = new System.Drawing.Point(100, 57);
+            this.Btn_TBL_UPDATE.Location = new System.Drawing.Point(103, 62);
             this.Btn_TBL_UPDATE.Name = "Btn_TBL_UPDATE";
-            this.Btn_TBL_UPDATE.Size = new System.Drawing.Size(279, 42);
+            this.Btn_TBL_UPDATE.Size = new System.Drawing.Size(288, 60);
             this.Btn_TBL_UPDATE.TabIndex = 6;
             this.Btn_TBL_UPDATE.Text = "Update Entry";
             this.Btn_TBL_UPDATE.UseVisualStyleBackColor = true;
             // 
             // NUD_TBL_OCCURENCE
             // 
-            this.NUD_TBL_OCCURENCE.Location = new System.Drawing.Point(0, 56);
+            this.NUD_TBL_OCCURENCE.Location = new System.Drawing.Point(12, 62);
             this.NUD_TBL_OCCURENCE.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.NUD_TBL_OCCURENCE.Name = "NUD_TBL_OCCURENCE";
-            this.NUD_TBL_OCCURENCE.Size = new System.Drawing.Size(85, 20);
+            this.NUD_TBL_OCCURENCE.Size = new System.Drawing.Size(85, 27);
             this.NUD_TBL_OCCURENCE.TabIndex = 5;
             // 
             // NUD_TBL_QUANTITY
             // 
-            this.NUD_TBL_QUANTITY.Location = new System.Drawing.Point(0, 79);
+            this.NUD_TBL_QUANTITY.Location = new System.Drawing.Point(12, 95);
             this.NUD_TBL_QUANTITY.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.NUD_TBL_QUANTITY.Name = "NUD_TBL_QUANTITY";
-            this.NUD_TBL_QUANTITY.Size = new System.Drawing.Size(85, 20);
+            this.NUD_TBL_QUANTITY.Size = new System.Drawing.Size(85, 27);
             this.NUD_TBL_QUANTITY.TabIndex = 4;
             // 
             // NUD_TBL_ItemID
             // 
-            this.NUD_TBL_ItemID.Location = new System.Drawing.Point(58, 30);
+            this.NUD_TBL_ItemID.Location = new System.Drawing.Point(81, 29);
             this.NUD_TBL_ItemID.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.NUD_TBL_ItemID.Name = "NUD_TBL_ItemID";
-            this.NUD_TBL_ItemID.Size = new System.Drawing.Size(85, 20);
+            this.NUD_TBL_ItemID.Size = new System.Drawing.Size(85, 27);
             this.NUD_TBL_ItemID.TabIndex = 3;
             // 
             // CMB_ITEMNAME
             // 
             this.CMB_ITEMNAME.FormattingEnabled = true;
-            this.CMB_ITEMNAME.Location = new System.Drawing.Point(149, 30);
+            this.CMB_ITEMNAME.Location = new System.Drawing.Point(172, 29);
             this.CMB_ITEMNAME.Name = "CMB_ITEMNAME";
-            this.CMB_ITEMNAME.Size = new System.Drawing.Size(221, 21);
+            this.CMB_ITEMNAME.Size = new System.Drawing.Size(221, 27);
             this.CMB_ITEMNAME.TabIndex = 1;
             // 
             // Nud_TBL_Index
             // 
-            this.Nud_TBL_Index.Location = new System.Drawing.Point(0, 30);
+            this.Nud_TBL_Index.Location = new System.Drawing.Point(12, 29);
             this.Nud_TBL_Index.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
             this.Nud_TBL_Index.Name = "Nud_TBL_Index";
-            this.Nud_TBL_Index.Size = new System.Drawing.Size(52, 20);
+            this.Nud_TBL_Index.Size = new System.Drawing.Size(63, 27);
             this.Nud_TBL_Index.TabIndex = 2;
             // 
             // ItemSelectionGroupBox
@@ -171,9 +171,10 @@
             this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_ItemID);
             this.ItemSelectionGroupBox.Controls.Add(this.CMB_ITEMNAME);
             this.ItemSelectionGroupBox.Controls.Add(this.Nud_TBL_Index);
+            this.ItemSelectionGroupBox.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ItemSelectionGroupBox.Location = new System.Drawing.Point(0, 564);
             this.ItemSelectionGroupBox.Name = "ItemSelectionGroupBox";
-            this.ItemSelectionGroupBox.Size = new System.Drawing.Size(397, 105);
+            this.ItemSelectionGroupBox.Size = new System.Drawing.Size(397, 141);
             this.ItemSelectionGroupBox.TabIndex = 4;
             this.ItemSelectionGroupBox.TabStop = false;
             this.ItemSelectionGroupBox.Text = "Edit Selection";
@@ -222,11 +223,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 681);
+            this.ClientSize = new System.Drawing.Size(405, 708);
             this.Controls.Add(this.ItemSelectionGroupBox);
             this.Controls.Add(this.LV_ItemTable);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_ITBL";
-            this.Text = "FRM_ITBL";
+            this.Text = "ITEM TABLE ENTRY EDITOR";
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_OCCURENCE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_QUANTITY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_ItemID)).EndInit();

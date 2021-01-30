@@ -626,7 +626,7 @@ namespace Netbio_VFL_Plus
         /// <param name="start_off">Volume Start Offset</param>
         /// <param name="LV">The Listview Control</param>
         /// <param name="sel_Siz">Selected AFS size?</param>
-        public void afs_parse(Stream fs, BinaryReader br, int start_off, ListView LV, int sel_Siz, ToolStripComboBox TSCOMBO)
+        public void AFS_PARSE(Stream fs, BinaryReader br, int start_off, ListView LV, int sel_Siz, ToolStripComboBox TSCOMBO, ToolStripProgressBar ProgressBar)
         {
             Int32 fmt_id = 0;
             Int32 afs_count = 0;
@@ -679,10 +679,14 @@ namespace Netbio_VFL_Plus
 
            
             Array.Resize(ref AFS_HEADER, afs_count + 1); // + 1 to get file table offset/size, *for Romdata on both f1/f2 you can just add the sector size (2048) to get the file table.. seems direct for scene afs
-            
+
+
+
+            ProgressBar.Maximum = AFS_HEADER.Length - 1;
 
             for (int i = 0; i < AFS_HEADER.Length; i++) // store offsets and size in struct array
             {
+                ProgressBar.Value = i;
                 AFS_HEADER[i].offset = br.ReadInt32();
                 AFS_HEADER[i].size = br.ReadInt32();
                 LV.Items.Add(i.ToString());

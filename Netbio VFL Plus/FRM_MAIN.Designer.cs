@@ -112,6 +112,7 @@
             this.BTN_PL_NAME = new System.Windows.Forms.ToolStripButton();
             this.BTN_IMG = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -183,6 +184,7 @@
             // 
             // BTN_DNAS
             // 
+            this.BTN_DNAS.BackColor = System.Drawing.Color.Gold;
             this.BTN_DNAS.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BTN_DNAS.Image = ((System.Drawing.Image)(resources.GetObject("BTN_DNAS.Image")));
             this.BTN_DNAS.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -199,6 +201,7 @@
             // 
             // BTN_DEBUGLOG
             // 
+            this.BTN_DEBUGLOG.BackColor = System.Drawing.Color.Gold;
             this.BTN_DEBUGLOG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BTN_DEBUGLOG.Image = ((System.Drawing.Image)(resources.GetObject("BTN_DEBUGLOG.Image")));
             this.BTN_DEBUGLOG.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -214,6 +217,7 @@
             // 
             // BTN_CALC
             // 
+            this.BTN_CALC.BackColor = System.Drawing.Color.Gold;
             this.BTN_CALC.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BTN_CALC.Image = ((System.Drawing.Image)(resources.GetObject("BTN_CALC.Image")));
             this.BTN_CALC.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -736,7 +740,8 @@
             this.LBL_POS_Y,
             this.LBL_POS_Z,
             this.LBL_VERSION,
-            this.BTN_RAM});
+            this.BTN_RAM,
+            this.PRG_LOAD});
             this.statusStrip1.Location = new System.Drawing.Point(0, 725);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1107, 24);
@@ -873,6 +878,12 @@
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 46);
             // 
+            // PRG_LOAD
+            // 
+            this.PRG_LOAD.Name = "PRG_LOAD";
+            this.PRG_LOAD.Size = new System.Drawing.Size(500, 18);
+            this.PRG_LOAD.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            // 
             // FRM_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -985,6 +996,7 @@
         private System.Windows.Forms.ToolStripButton BTN_PL_NAME;
         private System.Windows.Forms.ToolStripButton BTN_IMG;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripProgressBar PRG_LOAD;
     }
 }
 

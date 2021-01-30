@@ -102,6 +102,11 @@
             this.CB_ZANIM = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.EMD_KNOCKBACK = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.PB_EMD_ROOM)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -135,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EMD_ZREZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALEY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALEZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_KNOCKBACK)).BeginInit();
             this.SuspendLayout();
             // 
             // PB_EMD_ROOM
@@ -205,6 +211,7 @@
             this.LBL_EMD_BYTECODE.Controls.Add(this.BTN_PASTE_EMD_BC);
             this.LBL_EMD_BYTECODE.Controls.Add(this.EMD_BYTECODE);
             this.LBL_EMD_BYTECODE.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBL_EMD_BYTECODE.ForeColor = System.Drawing.Color.Black;
             this.LBL_EMD_BYTECODE.Location = new System.Drawing.Point(250, 12);
             this.LBL_EMD_BYTECODE.Name = "LBL_EMD_BYTECODE";
             this.LBL_EMD_BYTECODE.Size = new System.Drawing.Size(945, 61);
@@ -255,7 +262,7 @@
             this.groupBox4.Controls.Add(this.LBL_TAG);
             this.groupBox4.Controls.Add(this.CB_EMD_SEL);
             this.groupBox4.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.ForeColor = System.Drawing.Color.Green;
+            this.groupBox4.ForeColor = System.Drawing.Color.LavenderBlush;
             this.groupBox4.Location = new System.Drawing.Point(250, 88);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(575, 149);
@@ -267,7 +274,7 @@
             // 
             this.EMD_ROOMID.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_ROOMID.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_ROOMID.Location = new System.Drawing.Point(144, 95);
+            this.EMD_ROOMID.Location = new System.Drawing.Point(152, 93);
             this.EMD_ROOMID.Name = "EMD_ROOMID";
             this.EMD_ROOMID.Size = new System.Drawing.Size(79, 30);
             this.EMD_ROOMID.TabIndex = 50;
@@ -277,7 +284,7 @@
             // 
             this.EMD_NBDID01.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID01.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID01.Location = new System.Drawing.Point(325, 95);
+            this.EMD_NBDID01.Location = new System.Drawing.Point(322, 93);
             this.EMD_NBDID01.Maximum = new decimal(new int[] {
             32000,
             0,
@@ -297,7 +304,7 @@
             // 
             this.EMD_NBDID00.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_NBDID00.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_NBDID00.Location = new System.Drawing.Point(240, 95);
+            this.EMD_NBDID00.Location = new System.Drawing.Point(237, 93);
             this.EMD_NBDID00.Maximum = new decimal(new int[] {
             32000,
             0,
@@ -317,16 +324,16 @@
             // 
             this.EMD_INDEX.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_INDEX.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_INDEX.Location = new System.Drawing.Point(81, 95);
+            this.EMD_INDEX.Location = new System.Drawing.Point(81, 93);
             this.EMD_INDEX.Name = "EMD_INDEX";
-            this.EMD_INDEX.Size = new System.Drawing.Size(57, 30);
+            this.EMD_INDEX.Size = new System.Drawing.Size(65, 30);
             this.EMD_INDEX.TabIndex = 46;
             this.EMD_INDEX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LBL_NUMNO
             // 
             this.LBL_NUMNO.BackColor = System.Drawing.Color.DarkGray;
-            this.LBL_NUMNO.ForeColor = System.Drawing.Color.Green;
+            this.LBL_NUMNO.ForeColor = System.Drawing.Color.LavenderBlush;
             this.LBL_NUMNO.Location = new System.Drawing.Point(88, 56);
             this.LBL_NUMNO.Name = "LBL_NUMNO";
             this.LBL_NUMNO.Size = new System.Drawing.Size(50, 36);
@@ -347,7 +354,7 @@
             // label7
             // 
             this.label7.BackColor = System.Drawing.Color.DarkGray;
-            this.label7.ForeColor = System.Drawing.Color.Green;
+            this.label7.ForeColor = System.Drawing.Color.LavenderBlush;
             this.label7.Location = new System.Drawing.Point(144, 56);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 36);
@@ -358,7 +365,7 @@
             // LBL_NBD
             // 
             this.LBL_NBD.BackColor = System.Drawing.Color.DarkGray;
-            this.LBL_NBD.ForeColor = System.Drawing.Color.Green;
+            this.LBL_NBD.ForeColor = System.Drawing.Color.LavenderBlush;
             this.LBL_NBD.Location = new System.Drawing.Point(279, 56);
             this.LBL_NBD.Name = "LBL_NBD";
             this.LBL_NBD.Size = new System.Drawing.Size(79, 34);
@@ -371,7 +378,7 @@
             // 
             this.LBL_TAG.BackColor = System.Drawing.Color.DarkGray;
             this.LBL_TAG.Cursor = System.Windows.Forms.Cursors.Default;
-            this.LBL_TAG.ForeColor = System.Drawing.Color.Green;
+            this.LBL_TAG.ForeColor = System.Drawing.Color.LavenderBlush;
             this.LBL_TAG.Location = new System.Drawing.Point(14, 54);
             this.LBL_TAG.Name = "LBL_TAG";
             this.LBL_TAG.Size = new System.Drawing.Size(50, 36);
@@ -385,14 +392,16 @@
             this.CB_EMD_SEL.BackColor = System.Drawing.SystemColors.InfoText;
             this.CB_EMD_SEL.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.CB_EMD_SEL.FormattingEnabled = true;
-            this.CB_EMD_SEL.Location = new System.Drawing.Point(13, 22);
+            this.CB_EMD_SEL.Location = new System.Drawing.Point(6, 22);
             this.CB_EMD_SEL.Name = "CB_EMD_SEL";
-            this.CB_EMD_SEL.Size = new System.Drawing.Size(556, 31);
+            this.CB_EMD_SEL.Size = new System.Drawing.Size(563, 31);
             this.CB_EMD_SEL.TabIndex = 0;
             this.CB_EMD_SEL.SelectedValueChanged += new System.EventHandler(this.CB_EMD_SEL_SelectedValueChanged);
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.EMD_KNOCKBACK);
+            this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.EMD_ANIM);
             this.groupBox5.Controls.Add(this.CB_ZANIM);
@@ -488,7 +497,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.DarkGray;
             this.label12.ForeColor = System.Drawing.Color.Yellow;
-            this.label12.Location = new System.Drawing.Point(194, 60);
+            this.label12.Location = new System.Drawing.Point(199, 62);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(88, 30);
             this.label12.TabIndex = 53;
@@ -508,9 +517,9 @@
             // 
             // label10
             // 
-            this.label10.BackColor = System.Drawing.Color.LavenderBlush;
+            this.label10.BackColor = System.Drawing.Color.DarkGray;
             this.label10.ForeColor = System.Drawing.Color.DarkRed;
-            this.label10.Location = new System.Drawing.Point(438, 3);
+            this.label10.Location = new System.Drawing.Point(434, -1);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(130, 27);
             this.label10.TabIndex = 51;
@@ -602,6 +611,9 @@
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupBox6.Controls.Add(this.label17);
+            this.groupBox6.Controls.Add(this.label18);
+            this.groupBox6.Controls.Add(this.label19);
             this.groupBox6.Controls.Add(this.label5);
             this.groupBox6.Controls.Add(this.EMD_SCALEZ);
             this.groupBox6.Controls.Add(this.EMD_SCALEY);
@@ -623,7 +635,7 @@
             this.groupBox6.Controls.Add(this.EMD_SCALEX);
             this.groupBox6.Controls.Add(this.EMD_POS_HEX_X);
             this.groupBox6.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.ForeColor = System.Drawing.Color.MediumBlue;
+            this.groupBox6.ForeColor = System.Drawing.Color.DarkBlue;
             this.groupBox6.Location = new System.Drawing.Point(254, 412);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(571, 160);
@@ -672,7 +684,7 @@
             // label4
             // 
             this.label4.BackColor = System.Drawing.Color.DarkGray;
-            this.label4.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label4.ForeColor = System.Drawing.Color.DarkBlue;
             this.label4.Location = new System.Drawing.Point(288, 47);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 27);
@@ -683,7 +695,7 @@
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.DarkGray;
-            this.label3.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label3.ForeColor = System.Drawing.Color.DarkBlue;
             this.label3.Location = new System.Drawing.Point(206, 47);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 27);
@@ -694,7 +706,7 @@
             // label2
             // 
             this.label2.BackColor = System.Drawing.Color.DarkGray;
-            this.label2.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label2.ForeColor = System.Drawing.Color.DarkBlue;
             this.label2.Location = new System.Drawing.Point(126, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 27);
@@ -705,7 +717,7 @@
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.DarkGray;
-            this.label1.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label1.ForeColor = System.Drawing.Color.DarkBlue;
             this.label1.Location = new System.Drawing.Point(44, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 27);
@@ -717,7 +729,7 @@
             // 
             this.EMD_POS_DEC_R.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_DEC_R.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_POS_DEC_R.Location = new System.Drawing.Point(293, 108);
+            this.EMD_POS_DEC_R.Location = new System.Drawing.Point(292, 108);
             this.EMD_POS_DEC_R.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -737,7 +749,7 @@
             // 
             this.EMD_POS_DEC_Z.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_DEC_Z.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_POS_DEC_Z.Location = new System.Drawing.Point(208, 108);
+            this.EMD_POS_DEC_Z.Location = new System.Drawing.Point(215, 108);
             this.EMD_POS_DEC_Z.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -757,7 +769,7 @@
             // 
             this.EMD_POS_DEC_Y.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_DEC_Y.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_POS_DEC_Y.Location = new System.Drawing.Point(123, 108);
+            this.EMD_POS_DEC_Y.Location = new System.Drawing.Point(130, 108);
             this.EMD_POS_DEC_Y.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -769,7 +781,7 @@
             0,
             -2147483648});
             this.EMD_POS_DEC_Y.Name = "EMD_POS_DEC_Y";
-            this.EMD_POS_DEC_Y.Size = new System.Drawing.Size(79, 30);
+            this.EMD_POS_DEC_Y.Size = new System.Drawing.Size(89, 30);
             this.EMD_POS_DEC_Y.TabIndex = 42;
             this.EMD_POS_DEC_Y.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -789,7 +801,7 @@
             0,
             -2147483648});
             this.EMD_POS_DEC_X.Name = "EMD_POS_DEC_X";
-            this.EMD_POS_DEC_X.Size = new System.Drawing.Size(79, 30);
+            this.EMD_POS_DEC_X.Size = new System.Drawing.Size(90, 30);
             this.EMD_POS_DEC_X.TabIndex = 41;
             this.EMD_POS_DEC_X.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -798,7 +810,7 @@
             this.EMD_POS_HEX_R.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_HEX_R.ForeColor = System.Drawing.SystemColors.Window;
             this.EMD_POS_HEX_R.Hexadecimal = true;
-            this.EMD_POS_HEX_R.Location = new System.Drawing.Point(293, 80);
+            this.EMD_POS_HEX_R.Location = new System.Drawing.Point(293, 77);
             this.EMD_POS_HEX_R.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -819,7 +831,7 @@
             this.EMD_POS_HEX_Z.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_HEX_Z.ForeColor = System.Drawing.SystemColors.Window;
             this.EMD_POS_HEX_Z.Hexadecimal = true;
-            this.EMD_POS_HEX_Z.Location = new System.Drawing.Point(208, 78);
+            this.EMD_POS_HEX_Z.Location = new System.Drawing.Point(215, 77);
             this.EMD_POS_HEX_Z.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -840,7 +852,7 @@
             this.EMD_POS_HEX_Y.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_POS_HEX_Y.ForeColor = System.Drawing.SystemColors.Window;
             this.EMD_POS_HEX_Y.Hexadecimal = true;
-            this.EMD_POS_HEX_Y.Location = new System.Drawing.Point(123, 80);
+            this.EMD_POS_HEX_Y.Location = new System.Drawing.Point(130, 78);
             this.EMD_POS_HEX_Y.Maximum = new decimal(new int[] {
             276447231,
             23283,
@@ -852,7 +864,7 @@
             0,
             -2147483648});
             this.EMD_POS_HEX_Y.Name = "EMD_POS_HEX_Y";
-            this.EMD_POS_HEX_Y.Size = new System.Drawing.Size(79, 30);
+            this.EMD_POS_HEX_Y.Size = new System.Drawing.Size(89, 30);
             this.EMD_POS_HEX_Y.TabIndex = 38;
             this.EMD_POS_HEX_Y.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -873,7 +885,7 @@
             0,
             -2147483648});
             this.EMD_POS_HEX_X.Name = "EMD_POS_HEX_X";
-            this.EMD_POS_HEX_X.Size = new System.Drawing.Size(79, 30);
+            this.EMD_POS_HEX_X.Size = new System.Drawing.Size(90, 30);
             this.EMD_POS_HEX_X.TabIndex = 37;
             this.EMD_POS_HEX_X.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -911,11 +923,13 @@
             this.BTN_EMD_ADD.TabIndex = 35;
             this.BTN_EMD_ADD.Text = "ADD ENEMY";
             this.BTN_EMD_ADD.UseVisualStyleBackColor = false;
+            this.BTN_EMD_ADD.Click += new System.EventHandler(this.BTN_EMD_ADD_Click);
             // 
             // BTN_EMDSAVE
             // 
             this.BTN_EMDSAVE.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.BTN_EMDSAVE.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_EMDSAVE.Font = new System.Drawing.Font("Bahnschrift Condensed", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_EMDSAVE.ForeColor = System.Drawing.Color.DarkBlue;
             this.BTN_EMDSAVE.Image = ((System.Drawing.Image)(resources.GetObject("BTN_EMDSAVE.Image")));
             this.BTN_EMDSAVE.Location = new System.Drawing.Point(253, 578);
             this.BTN_EMDSAVE.Name = "BTN_EMDSAVE";
@@ -975,7 +989,7 @@
             // 
             this.EMD_SPAWNIDX.BackColor = System.Drawing.SystemColors.WindowText;
             this.EMD_SPAWNIDX.ForeColor = System.Drawing.SystemColors.Window;
-            this.EMD_SPAWNIDX.Location = new System.Drawing.Point(410, 95);
+            this.EMD_SPAWNIDX.Location = new System.Drawing.Point(430, 93);
             this.EMD_SPAWNIDX.Name = "EMD_SPAWNIDX";
             this.EMD_SPAWNIDX.Size = new System.Drawing.Size(79, 30);
             this.EMD_SPAWNIDX.TabIndex = 64;
@@ -986,7 +1000,7 @@
             this.LBL_NBD_FILE.BackColor = System.Drawing.Color.LavenderBlush;
             this.LBL_NBD_FILE.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LBL_NBD_FILE.Font = new System.Drawing.Font("Bahnschrift SemiBold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LBL_NBD_FILE.ForeColor = System.Drawing.Color.DarkRed;
+            this.LBL_NBD_FILE.ForeColor = System.Drawing.Color.DarkBlue;
             this.LBL_NBD_FILE.Location = new System.Drawing.Point(829, 580);
             this.LBL_NBD_FILE.Name = "LBL_NBD_FILE";
             this.LBL_NBD_FILE.Size = new System.Drawing.Size(366, 74);
@@ -1047,24 +1061,79 @@
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.DarkGray;
-            this.label16.ForeColor = System.Drawing.Color.Green;
-            this.label16.Location = new System.Drawing.Point(406, 56);
+            this.label16.ForeColor = System.Drawing.Color.LavenderBlush;
+            this.label16.Location = new System.Drawing.Point(405, 56);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(79, 34);
+            this.label16.Size = new System.Drawing.Size(133, 34);
             this.label16.TabIndex = 65;
-            this.label16.Text = "INDEX";
+            this.label16.Text = "SPAWN IDX";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.DarkGray;
             this.label14.ForeColor = System.Drawing.Color.Yellow;
-            this.label14.Location = new System.Drawing.Point(192, 89);
+            this.label14.Location = new System.Drawing.Point(194, 92);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(88, 30);
             this.label14.TabIndex = 67;
             this.label14.Text = "REVIVE";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.DarkGray;
+            this.label17.ForeColor = System.Drawing.Color.DarkRed;
+            this.label17.Location = new System.Drawing.Point(411, 111);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 27);
+            this.label17.TabIndex = 56;
+            this.label17.Text = "Z";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.DarkGray;
+            this.label18.ForeColor = System.Drawing.Color.DarkRed;
+            this.label18.Location = new System.Drawing.Point(411, 72);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 27);
+            this.label18.TabIndex = 55;
+            this.label18.Text = "Y";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.Color.DarkGray;
+            this.label19.ForeColor = System.Drawing.Color.DarkRed;
+            this.label19.Location = new System.Drawing.Point(411, 33);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(74, 27);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "X";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.DarkGray;
+            this.label20.ForeColor = System.Drawing.Color.Yellow;
+            this.label20.Location = new System.Drawing.Point(192, 125);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(88, 30);
+            this.label20.TabIndex = 68;
+            this.label20.Text = "STUN";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EMD_KNOCKBACK
+            // 
+            this.EMD_KNOCKBACK.BackColor = System.Drawing.SystemColors.WindowText;
+            this.EMD_KNOCKBACK.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EMD_KNOCKBACK.ForeColor = System.Drawing.SystemColors.Window;
+            this.EMD_KNOCKBACK.Location = new System.Drawing.Point(293, 127);
+            this.EMD_KNOCKBACK.Name = "EMD_KNOCKBACK";
+            this.EMD_KNOCKBACK.Size = new System.Drawing.Size(79, 30);
+            this.EMD_KNOCKBACK.TabIndex = 69;
+            this.EMD_KNOCKBACK.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FRM_EMD
             // 
@@ -1085,6 +1154,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_EMD";
             this.Text = "ENEMY DATA EDITOR";
@@ -1125,6 +1195,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.EMD_ZREZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALEY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EMD_SCALEZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EMD_KNOCKBACK)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1204,5 +1275,10 @@
         public System.Windows.Forms.ComboBox CB_ZANIM;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown EMD_KNOCKBACK;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -225,6 +225,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.RDT_sStrip);
             this.Controls.Add(this.LV_RDT);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_RDT";
             this.Text = "RDT MANAGER";
             this.RDT_sStrip.ResumeLayout(false);

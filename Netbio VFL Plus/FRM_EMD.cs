@@ -170,10 +170,14 @@ namespace Netbio_VFL_Plus
 
             EMD_TAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Tag;
             EMD_INDEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].No;
-       
-            EMD_SCALEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALE;
+
+            EMD_SCALEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEX;
+            EMD_SCALEY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEY;
+            EMD_SCALEZ.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEZ;
+
             EMD_ANIM.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STATE;
             EMD_SPAWNIDX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
+            EMD_KNOCKBACK.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
 
             EMD_SPEED.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SPEED;
             EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_HP;
@@ -418,7 +422,7 @@ namespace Netbio_VFL_Plus
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Not Supported Currently", "N/A", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void CB_EMD_SEL_SelectedValueChanged(object sender, EventArgs e)
@@ -469,6 +473,11 @@ namespace Netbio_VFL_Plus
         private void LBL_NBD_FILE_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BTN_EMD_ADD_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not Supported Currently", "N/A", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

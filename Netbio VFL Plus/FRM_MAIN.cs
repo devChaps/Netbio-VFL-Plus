@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -420,7 +421,7 @@ namespace Netbio_VFL_Plus
 
                             LBL_SelArchive.Text = EVBIO.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
 
-                            AFSIO.afs_parse(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List);
+                            AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
                         }
                         else
                         {
@@ -729,7 +730,7 @@ namespace Netbio_VFL_Plus
 
         private void FRM_MAIN_Load(object sender, EventArgs e)
         {
-
+           // PRG_LOAD.Style = ProgressBarStyle.Blocks;
         }
 
         private void MainToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -774,12 +775,12 @@ namespace Netbio_VFL_Plus
                         if (int.Parse(end_val) <= 15)
                         {
                             tbl_check = true;
-                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG);
+                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List);
                         }
                         else
                         {
                             tbl_check = false;
-                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG);
+                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List);
                         }
 
                         TBL_FORM.ShowDialog();
@@ -852,7 +853,7 @@ namespace Netbio_VFL_Plus
 
         private void toggleDisplayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+          
         }
 
         private void eVBINTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -872,11 +873,11 @@ namespace Netbio_VFL_Plus
                     {
                         Img.Read_Image = new CDReader(fs, true, true);
                         Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+
                         Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
 
-                        EVBIO.PARSE_EVB_STREAM(memStream, AFSIO.cur_archive_offset, EVB_SIZE, DEBUG_FORM.DEBUG_LOG, LV_AFS, EVB_FORM.LV_BYTECODE, EVB_FORM.LV_INTCODE, EVB_FORM.Progressbar00, EVB_FORM);
-
-
+                        EVBIO.PARSE_EVB_STREAM(memStream, AFSIO.cur_archive_offset, EVB_SIZE, DEBUG_FORM.DEBUG_LOG, LV_AFS, EVB_FORM.LV_BYTECODE, EVB_FORM.LV_INTCODE, EVB_FORM, PRG_LOAD);
+                       
                         EVB_FORM.ShowDialog();
                     }
 

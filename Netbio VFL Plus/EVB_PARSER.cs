@@ -508,7 +508,7 @@ namespace Netbio_VFL_Plus
         /// <param name="Debug_Log"></param>
         /// <param name="ByteLST"></param>
         /// <param name="CodeLST"></param>
-        public void PARSE_EVB_STREAM(Stream fs, int start_off, int evb_length, RichTextBox Debug_Log, ListView AFS_LIST, ListView ByteLST, ListView CodeLST, ToolStripProgressBar ProgBar, FRM_EVB EVB_FORM)
+        public void PARSE_EVB_STREAM(Stream fs, int start_off, int evb_length, RichTextBox Debug_Log, ListView AFS_LIST, ListView ByteLST, ListView CodeLST, FRM_EVB EVB_FORM, ToolStripProgressBar ProgressBar)
         {
 
             EVB_SELECTED_OBJ Selected_EVB = new EVB_SELECTED_OBJ();
@@ -555,7 +555,7 @@ namespace Netbio_VFL_Plus
             fs.Seek(Selected_EVB.File_Offset + EVB_HEADER.offset00 + 12, SeekOrigin.Begin);
 
 
-            ProgBar.Maximum = evb_length;
+            ProgressBar.Maximum = evb_length;
             // loop through the entire stream length simply is a disaster from a volume relative layer.. get true evb size and go that route..
             for (int i = 0; i < evb_length; i++)
             {
@@ -565,7 +565,7 @@ namespace Netbio_VFL_Plus
                 ByteLST.Items.Add(i.ToString());
                 CodeLST.Items[i].UseItemStyleForSubItems = false; // what the fuck is this?
 
-                ProgBar.Value = i;
+                ProgressBar.Value = i;
 
 
                 if (i < evb_length - 256 && fs.Position < fs.Length) // why 256 again?
@@ -644,6 +644,7 @@ namespace Netbio_VFL_Plus
 
             }
 
+          
 
             fs.Close();
             br.Close();

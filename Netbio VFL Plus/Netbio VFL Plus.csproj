@@ -142,6 +142,12 @@
     <Compile Include="FRM_RDT.Designer.cs">
       <DependentUpon>FRM_RDT.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRM_SP_ITEM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_SP_ITEM.Designer.cs">
+      <DependentUpon>FRM_SP_ITEM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Image_Data.cs" />
     <Compile Include="Items.cs" />
@@ -195,6 +201,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_RDT.resx">
       <DependentUpon>FRM_RDT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_SP_ITEM.resx">
+      <DependentUpon>FRM_SP_ITEM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
