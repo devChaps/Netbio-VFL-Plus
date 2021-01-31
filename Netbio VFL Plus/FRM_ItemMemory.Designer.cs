@@ -46,6 +46,7 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pg_imem = new System.Windows.Forms.PropertyGrid();
             this.IMEM_TIMER = new System.Windows.Forms.Timer(this.components);
             this.nud_itemval = new System.Windows.Forms.NumericUpDown();
@@ -55,9 +56,11 @@
             this.nud_iprops = new System.Windows.Forms.NumericUpDown();
             this.cmb_itemList = new System.Windows.Forms.ComboBox();
             this.GB_IMEM = new System.Windows.Forms.GroupBox();
+            this.PB_MTYPE = new System.Windows.Forms.PictureBox();
+            this.PB_ITEMID = new System.Windows.Forms.PictureBox();
+            this.BTN_UPDATE = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.BTN_UPDATE = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -65,10 +68,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LBL_PCSX2_STATUS = new System.Windows.Forms.ToolStripStatusLabel();
             this.BTN_MEMHOOK = new System.Windows.Forms.ToolStripSplitButton();
-            this.PB_ITEMID = new System.Windows.Forms.PictureBox();
-            this.PB_MTYPE = new System.Windows.Forms.PictureBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
+            this.memoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imem_toolstrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_itemval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_soundval)).BeginInit();
@@ -76,10 +77,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_durabillity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_iprops)).BeginInit();
             this.GB_IMEM.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_MTYPE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_ITEMID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_ITEMID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_MTYPE)).BeginInit();
             this.SuspendLayout();
             // 
             // LV_IMEM
@@ -159,7 +160,7 @@
             // 
             this.rescanToolStripMenuItem.Name = "rescanToolStripMenuItem";
             this.rescanToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.rescanToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rescanToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rescanToolStripMenuItem.Text = "Rescan";
             this.rescanToolStripMenuItem.Click += new System.EventHandler(this.rescanToolStripMenuItem_Click);
             // 
@@ -170,19 +171,19 @@
             this.itemNameToolStripMenuItem,
             this.combinationDataToolStripMenuItem});
             this.queriesToolStripMenuItem.Name = "queriesToolStripMenuItem";
-            this.queriesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.queriesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.queriesToolStripMenuItem.Text = "Queries";
             // 
             // itemValueToolStripMenuItem
             // 
             this.itemValueToolStripMenuItem.Name = "itemValueToolStripMenuItem";
-            this.itemValueToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemValueToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.itemValueToolStripMenuItem.Text = "Item Value";
             // 
             // itemNameToolStripMenuItem
             // 
             this.itemNameToolStripMenuItem.Name = "itemNameToolStripMenuItem";
-            this.itemNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.itemNameToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.itemNameToolStripMenuItem.Text = "Item Name";
             // 
             // combinationDataToolStripMenuItem
@@ -190,13 +191,13 @@
             this.combinationDataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.debugLogToolStripMenuItem});
             this.combinationDataToolStripMenuItem.Name = "combinationDataToolStripMenuItem";
-            this.combinationDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.combinationDataToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.combinationDataToolStripMenuItem.Text = "Combination Data";
             // 
             // debugLogToolStripMenuItem
             // 
             this.debugLogToolStripMenuItem.Name = "debugLogToolStripMenuItem";
-            this.debugLogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.debugLogToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.debugLogToolStripMenuItem.Text = "Debug Log";
             // 
             // viewToolStripMenuItem
@@ -204,7 +205,7 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.debugToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // debugToolStripMenuItem
@@ -223,6 +224,15 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 40);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(52, 37);
+            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // pg_imem
             // 
@@ -381,6 +391,33 @@
             this.GB_IMEM.TabStop = false;
             this.GB_IMEM.Text = "Item Data";
             // 
+            // PB_MTYPE
+            // 
+            this.PB_MTYPE.Location = new System.Drawing.Point(6, 159);
+            this.PB_MTYPE.Name = "PB_MTYPE";
+            this.PB_MTYPE.Size = new System.Drawing.Size(114, 85);
+            this.PB_MTYPE.TabIndex = 34;
+            this.PB_MTYPE.TabStop = false;
+            // 
+            // PB_ITEMID
+            // 
+            this.PB_ITEMID.Location = new System.Drawing.Point(6, 45);
+            this.PB_ITEMID.Name = "PB_ITEMID";
+            this.PB_ITEMID.Size = new System.Drawing.Size(114, 85);
+            this.PB_ITEMID.TabIndex = 33;
+            this.PB_ITEMID.TabStop = false;
+            // 
+            // BTN_UPDATE
+            // 
+            this.BTN_UPDATE.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Bold);
+            this.BTN_UPDATE.Location = new System.Drawing.Point(0, 459);
+            this.BTN_UPDATE.Name = "BTN_UPDATE";
+            this.BTN_UPDATE.Size = new System.Drawing.Size(425, 63);
+            this.BTN_UPDATE.TabIndex = 30;
+            this.BTN_UPDATE.Text = "UPDATE ITEM";
+            this.BTN_UPDATE.UseVisualStyleBackColor = true;
+            this.BTN_UPDATE.Click += new System.EventHandler(this.BTN_UPDATE_Click);
+            // 
             // label5
             // 
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -410,17 +447,6 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(142, 27);
             this.numericUpDown1.TabIndex = 31;
-            // 
-            // BTN_UPDATE
-            // 
-            this.BTN_UPDATE.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 12F, System.Drawing.FontStyle.Bold);
-            this.BTN_UPDATE.Location = new System.Drawing.Point(0, 459);
-            this.BTN_UPDATE.Name = "BTN_UPDATE";
-            this.BTN_UPDATE.Size = new System.Drawing.Size(417, 63);
-            this.BTN_UPDATE.TabIndex = 30;
-            this.BTN_UPDATE.Text = "UPDATE ITEM";
-            this.BTN_UPDATE.UseVisualStyleBackColor = true;
-            this.BTN_UPDATE.Click += new System.EventHandler(this.BTN_UPDATE_Click);
             // 
             // label4
             // 
@@ -496,76 +522,168 @@
             // BTN_MEMHOOK
             // 
             this.BTN_MEMHOOK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_MEMHOOK.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.memoryDumpToolStripMenuItem});
             this.BTN_MEMHOOK.Image = ((System.Drawing.Image)(resources.GetObject("BTN_MEMHOOK.Image")));
             this.BTN_MEMHOOK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_MEMHOOK.Name = "BTN_MEMHOOK";
             this.BTN_MEMHOOK.Size = new System.Drawing.Size(32, 30);
             this.BTN_MEMHOOK.Text = "toolStripSplitButton1";
             // 
-            // PB_ITEMID
-            // 
-            this.PB_ITEMID.Location = new System.Drawing.Point(6, 45);
-            this.PB_ITEMID.Name = "PB_ITEMID";
-            this.PB_ITEMID.Size = new System.Drawing.Size(114, 85);
-            this.PB_ITEMID.TabIndex = 33;
-            this.PB_ITEMID.TabStop = false;
-            // 
-            // PB_MTYPE
-            // 
-            this.PB_MTYPE.Location = new System.Drawing.Point(6, 159);
-            this.PB_MTYPE.Name = "PB_MTYPE";
-            this.PB_MTYPE.Size = new System.Drawing.Size(114, 85);
-            this.PB_MTYPE.TabIndex = 34;
-            this.PB_MTYPE.TabStop = false;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 37);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
             // ItemIco_List
             // 
             this.ItemIco_List.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ItemIco_List.ImageStream")));
             this.ItemIco_List.TransparentColor = System.Drawing.Color.Transparent;
-            this.ItemIco_List.Images.SetKeyName(0, "Handgun.png");
-            this.ItemIco_List.Images.SetKeyName(1, "Handgun Sg.png");
-            this.ItemIco_List.Images.SetKeyName(2, "Handgun GL.png");
-            this.ItemIco_List.Images.SetKeyName(3, "Assault Rifle.png");
-            this.ItemIco_List.Images.SetKeyName(4, "Magnum Revolver.png");
-            this.ItemIco_List.Images.SetKeyName(5, "Shotgun.png");
-            this.ItemIco_List.Images.SetKeyName(6, "Burst Handgun.png");
-            this.ItemIco_List.Images.SetKeyName(7, "Sub Machine Gun.png");
-            this.ItemIco_List.Images.SetKeyName(8, "Nail Gun.png");
-            this.ItemIco_List.Images.SetKeyName(9, "Rocket Launcher.png");
-            this.ItemIco_List.Images.SetKeyName(10, "Survival Knife.png");
-            this.ItemIco_List.Images.SetKeyName(11, "Butcher Knife.png");
-            this.ItemIco_List.Images.SetKeyName(12, "Iron Pipe.png");
-            this.ItemIco_List.Images.SetKeyName(13, "Curved Pipe.png");
-            this.ItemIco_List.Images.SetKeyName(14, "Scrub Brush.png");
-            this.ItemIco_List.Images.SetKeyName(15, "Crutch.png");
-            this.ItemIco_List.Images.SetKeyName(16, "Spear.png");
-            this.ItemIco_List.Images.SetKeyName(17, "Wooden Pole.png");
-            this.ItemIco_List.Images.SetKeyName(18, "Pesticide Spray.png");
-            this.ItemIco_List.Images.SetKeyName(19, "Alcohol Bottle.bmp");
-            this.ItemIco_List.Images.SetKeyName(20, "Lighter.bmp");
-            this.ItemIco_List.Images.SetKeyName(21, "GL Magazine.png");
-            this.ItemIco_List.Images.SetKeyName(22, "Burst Magazine.png");
-            this.ItemIco_List.Images.SetKeyName(23, "Handgun Rounds.png");
-            this.ItemIco_List.Images.SetKeyName(24, "45 Auto Rounds.png");
-            this.ItemIco_List.Images.SetKeyName(25, "Shotgun Rounds.png");
-            this.ItemIco_List.Images.SetKeyName(26, "Handgun Magazine.png");
-            this.ItemIco_List.Images.SetKeyName(27, "SG Magazine.png");
-            this.ItemIco_List.Images.SetKeyName(28, "Blue Herb.bmp");
-            this.ItemIco_List.Images.SetKeyName(29, "Red Herb.bmp");
-            this.ItemIco_List.Images.SetKeyName(30, "Green Herb.bmp");
-            this.ItemIco_List.Images.SetKeyName(31, "First Aid Spray.bmp");
-            this.ItemIco_List.Images.SetKeyName(32, "Anti Virus.bmp");
-            this.ItemIco_List.Images.SetKeyName(33, "Magnun Revolver Rounds.png");
-            this.ItemIco_List.Images.SetKeyName(34, "Ampoule Shooter.png");
+            this.ItemIco_List.Images.SetKeyName(0, "0gM0pQq.png");
+            this.ItemIco_List.Images.SetKeyName(1, "3eKm8bv.png");
+            this.ItemIco_List.Images.SetKeyName(2, "4iDnaPi.png");
+            this.ItemIco_List.Images.SetKeyName(3, "5ysKkv3.png");
+            this.ItemIco_List.Images.SetKeyName(4, "6tbhuV3.png");
+            this.ItemIco_List.Images.SetKeyName(5, "7C4STsH.png");
+            this.ItemIco_List.Images.SetKeyName(6, "8qjmEnF.png");
+            this.ItemIco_List.Images.SetKeyName(7, "8wEKIIR.png");
+            this.ItemIco_List.Images.SetKeyName(8, "9Q72uLv.png");
+            this.ItemIco_List.Images.SetKeyName(9, "18keawU.png");
+            this.ItemIco_List.Images.SetKeyName(10, "a1ADjpn.png");
+            this.ItemIco_List.Images.SetKeyName(11, "ace-key.png");
+            this.ItemIco_List.Images.SetKeyName(12, "administrators-office-key.png");
+            this.ItemIco_List.Images.SetKeyName(13, "alcohol-bottle.png");
+            this.ItemIco_List.Images.SetKeyName(14, "alligator-key (1).png");
+            this.ItemIco_List.Images.SetKeyName(15, "alligator-key.png");
+            this.ItemIco_List.Images.SetKeyName(16, "amethyst-plate.png");
+            this.ItemIco_List.Images.SetKeyName(17, "auxiliary-building-key.png");
+            this.ItemIco_List.Images.SetKeyName(18, "b2f-key.png");
+            this.ItemIco_List.Images.SetKeyName(19, "b2KmNND.png");
+            this.ItemIco_List.Images.SetKeyName(20, "b47Iys8.png");
+            this.ItemIco_List.Images.SetKeyName(21, "bcr44Et (1).png");
+            this.ItemIco_List.Images.SetKeyName(22, "bcr44Et.png");
+            this.ItemIco_List.Images.SetKeyName(23, "blank-tape.png");
+            this.ItemIco_List.Images.SetKeyName(24, "blood-infusion-pack.png");
+            this.ItemIco_List.Images.SetKeyName(25, "blood-pack.png");
+            this.ItemIco_List.Images.SetKeyName(26, "blowtorch.png");
+            this.ItemIco_List.Images.SetKeyName(27, "blue-jewel.png");
+            this.ItemIco_List.Images.SetKeyName(28, "bolt-cutter.png");
+            this.ItemIco_List.Images.SetKeyName(29, "brass-spectacles.png");
+            this.ItemIco_List.Images.SetKeyName(30, "card-key.png");
+            this.ItemIco_List.Images.SetKeyName(31, "card-key-level-1.png");
+            this.ItemIco_List.Images.SetKeyName(32, "card-key-level-2.png");
+            this.ItemIco_List.Images.SetKeyName(33, "charlies-id-tag.png");
+            this.ItemIco_List.Images.SetKeyName(34, "chemical-bottle-solvent.png");
+            this.ItemIco_List.Images.SetKeyName(35, "CLhVCtA.png");
+            this.ItemIco_List.Images.SetKeyName(36, "cLOZqEh.png");
+            this.ItemIco_List.Images.SetKeyName(37, "daylight.png");
+            this.ItemIco_List.Images.SetKeyName(38, "detonator.png");
+            this.ItemIco_List.Images.SetKeyName(39, "detonator-handle.png");
+            this.ItemIco_List.Images.SetKeyName(40, "detonator-main-unit.png");
+            this.ItemIco_List.Images.SetKeyName(41, "DwZy1Tk.png");
+            this.ItemIco_List.Images.SetKeyName(42, "elephant-key (1).png");
+            this.ItemIco_List.Images.SetKeyName(43, "elephant-key.png");
+            this.ItemIco_List.Images.SetKeyName(44, "emerald-plate.png");
+            this.ItemIco_List.Images.SetKeyName(45, "employee-area-key.png");
+            this.ItemIco_List.Images.SetKeyName(46, "empty-chemical-bottle.png");
+            this.ItemIco_List.Images.SetKeyName(47, "examination-room-key.png");
+            this.ItemIco_List.Images.SetKeyName(48, "film-a.png");
+            this.ItemIco_List.Images.SetKeyName(49, "film-b.png");
+            this.ItemIco_List.Images.SetKeyName(50, "film-c.png");
+            this.ItemIco_List.Images.SetKeyName(51, "film-d.png");
+            this.ItemIco_List.Images.SetKeyName(52, "fJUUtDv.png");
+            this.ItemIco_List.Images.SetKeyName(53, "forklift-key.png");
+            this.ItemIco_List.Images.SetKeyName(54, "founders-emblem-oral.png");
+            this.ItemIco_List.Images.SetKeyName(55, "founders-emblem-werner.png");
+            this.ItemIco_List.Images.SetKeyName(56, "frozen-wrench.png");
+            this.ItemIco_List.Images.SetKeyName(57, "gas-neutralizing-canister.png");
+            this.ItemIco_List.Images.SetKeyName(58, "gold-key.png");
+            this.ItemIco_List.Images.SetKeyName(59, "IC6fsWB.png");
+            this.ItemIco_List.Images.SetKeyName(60, "id-card-lv1.png");
+            this.ItemIco_List.Images.SetKeyName(61, "id-card-lv2.png");
+            this.ItemIco_List.Images.SetKeyName(62, "ijjrJPd.png");
+            this.ItemIco_List.Images.SetKeyName(63, "investigation-request-item.png");
+            this.ItemIco_List.Images.SetKeyName(64, "iNxIGY0.png");
+            this.ItemIco_List.Images.SetKeyName(65, "joker-key.png");
+            this.ItemIco_List.Images.SetKeyName(66, "key-with-a-red-tag.png");
+            this.ItemIco_List.Images.SetKeyName(67, "key-with-blue-tag.png");
+            this.ItemIco_List.Images.SetKeyName(68, "KF7hCgy.png");
+            this.ItemIco_List.Images.SetKeyName(69, "kfMH9LU.png");
+            this.ItemIco_List.Images.SetKeyName(70, "lab-cardkey.png");
+            this.ItemIco_List.Images.SetKeyName(71, "lens-id-tag.png");
+            this.ItemIco_List.Images.SetKeyName(72, "LEnTZx6.png");
+            this.ItemIco_List.Images.SetKeyName(73, "lion-emblem-blue.png");
+            this.ItemIco_List.Images.SetKeyName(74, "lion-emblem-red.png");
+            this.ItemIco_List.Images.SetKeyName(75, "lion-key.png");
+            this.ItemIco_List.Images.SetKeyName(76, "male-nurses-diary-item.png");
+            this.ItemIco_List.Images.SetKeyName(77, "mHCW6CB.png");
+            this.ItemIco_List.Images.SetKeyName(78, "model-train-wheel.png");
+            this.ItemIco_List.Images.SetKeyName(79, "mo-disk.png");
+            this.ItemIco_List.Images.SetKeyName(80, "mo-disk-code-a.png");
+            this.ItemIco_List.Images.SetKeyName(81, "mo-disk-code-b.png");
+            this.ItemIco_List.Images.SetKeyName(82, "mr-raccoon-medal.png");
+            this.ItemIco_List.Images.SetKeyName(83, "N07ZPkQ.png");
+            this.ItemIco_List.Images.SetKeyName(84, "newspaper-bottle.png");
+            this.ItemIco_List.Images.SetKeyName(85, "office-key.png");
+            this.ItemIco_List.Images.SetKeyName(86, "ohzOE0k.png");
+            this.ItemIco_List.Images.SetKeyName(87, "onyx-plate.png");
+            this.ItemIco_List.Images.SetKeyName(88, "padlock-key (1).png");
+            this.ItemIco_List.Images.SetKeyName(89, "padlock-key.png");
+            this.ItemIco_List.Images.SetKeyName(90, "parade-bgm-tape.png");
+            this.ItemIco_List.Images.SetKeyName(91, "p-base.png");
+            this.ItemIco_List.Images.SetKeyName(92, "p-base-sealed.png");
+            this.ItemIco_List.Images.SetKeyName(93, "pendant.png");
+            this.ItemIco_List.Images.SetKeyName(94, "plywood-board.png");
+            this.ItemIco_List.Images.SetKeyName(95, "qh1ukbg.png");
+            this.ItemIco_List.Images.SetKeyName(96, "QJXr7z4.png");
+            this.ItemIco_List.Images.SetKeyName(97, "qMwbceG.png");
+            this.ItemIco_List.Images.SetKeyName(98, "Qr55ag1.png");
+            this.ItemIco_List.Images.SetKeyName(99, "QxzFf0K.png");
+            this.ItemIco_List.Images.SetKeyName(100, "raccoon-today-item.png");
+            this.ItemIco_List.Images.SetKeyName(101, "reagent-case.png");
+            this.ItemIco_List.Images.SetKeyName(102, "red-jewel-hellfire.png");
+            this.ItemIco_List.Images.SetKeyName(103, "repair-tape.png");
+            this.ItemIco_List.Images.SetKeyName(104, "researchers-diary-item.png");
+            this.ItemIco_List.Images.SetKeyName(105, "RIY78RQ.png");
+            this.ItemIco_List.Images.SetKeyName(106, "ruby-plate.png");
+            this.ItemIco_List.Images.SetKeyName(107, "rusty-key.png");
+            this.ItemIco_List.Images.SetKeyName(108, "saOzZ8r.png");
+            this.ItemIco_List.Images.SetKeyName(109, "sapphire-plate.png");
+            this.ItemIco_List.Images.SetKeyName(110, "sealed-reagent-case.png");
+            this.ItemIco_List.Images.SetKeyName(111, "secret-file-item.png");
+            this.ItemIco_List.Images.SetKeyName(112, "security-room-card-key.png");
+            this.ItemIco_List.Images.SetKeyName(113, "silver-key.png");
+            this.ItemIco_List.Images.SetKeyName(114, "ST2nDvS.png");
+            this.ItemIco_List.Images.SetKeyName(115, "staff-room-key.png");
+            this.ItemIco_List.Images.SetKeyName(116, "storage-room-key.png");
+            this.ItemIco_List.Images.SetKeyName(117, "syringe-empty.png");
+            this.ItemIco_List.Images.SetKeyName(118, "syringe-solvent.png");
+            this.ItemIco_List.Images.SetKeyName(119, "t-blood.png");
+            this.ItemIco_List.Images.SetKeyName(120, "tbNNB0f.png");
+            this.ItemIco_List.Images.SetKeyName(121, "TgX3U9W.png");
+            this.ItemIco_List.Images.SetKeyName(122, "tkg1zZO.png");
+            this.ItemIco_List.Images.SetKeyName(123, "turn-table-key.png");
+            this.ItemIco_List.Images.SetKeyName(124, "umb-no-3.png");
+            this.ItemIco_List.Images.SetKeyName(125, "unicorn-medal.png");
+            this.ItemIco_List.Images.SetKeyName(126, "UPo64ij.png");
+            this.ItemIco_List.Images.SetKeyName(127, "v9jguDQ.png");
+            this.ItemIco_List.Images.SetKeyName(128, "valve-handle (1).png");
+            this.ItemIco_List.Images.SetKeyName(129, "valve-handle.png");
+            this.ItemIco_List.Images.SetKeyName(130, "ventilation-tower-key.png");
+            this.ItemIco_List.Images.SetKeyName(131, "v-jolt.png");
+            this.ItemIco_List.Images.SetKeyName(132, "voi27DK.png");
+            this.ItemIco_List.Images.SetKeyName(133, "vp-017.png");
+            this.ItemIco_List.Images.SetKeyName(134, "v-poison.png");
+            this.ItemIco_List.Images.SetKeyName(135, "W68c1Bn.png");
+            this.ItemIco_List.Images.SetKeyName(136, "WGUexVH.png");
+            this.ItemIco_List.Images.SetKeyName(137, "wileuM0.png");
+            this.ItemIco_List.Images.SetKeyName(138, "wrench.png");
+            this.ItemIco_List.Images.SetKeyName(139, "WXZ4YRz.png");
+            this.ItemIco_List.Images.SetKeyName(140, "WZbOR9U.png");
+            this.ItemIco_List.Images.SetKeyName(141, "xOQcGuk.png");
+            this.ItemIco_List.Images.SetKeyName(142, "yzHNlUW.png");
+            // 
+            // memoryDumpToolStripMenuItem
+            // 
+            this.memoryDumpToolStripMenuItem.Name = "memoryDumpToolStripMenuItem";
+            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
+            this.memoryDumpToolStripMenuItem.Text = "Memory Dump";
+            this.memoryDumpToolStripMenuItem.Click += new System.EventHandler(this.memoryDumpToolStripMenuItem_Click);
             // 
             // FRM_ItemMemory
             // 
@@ -586,11 +704,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nud_durabillity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_iprops)).EndInit();
             this.GB_IMEM.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PB_MTYPE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_ITEMID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_ITEMID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PB_MTYPE)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -637,5 +755,6 @@
         private System.Windows.Forms.PictureBox PB_MTYPE;
         private System.Windows.Forms.PictureBox PB_ITEMID;
         public System.Windows.Forms.ImageList ItemIco_List;
+        private System.Windows.Forms.ToolStripMenuItem memoryDumpToolStripMenuItem;
     }
 }

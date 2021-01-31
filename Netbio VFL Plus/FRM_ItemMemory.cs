@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
+
 
 namespace Netbio_VFL_Plus
 {
@@ -19,16 +21,20 @@ namespace Netbio_VFL_Plus
 
         public struct Item_Properties_Obj // item property data
         {
-            public Int16 tag;
+            public byte type;
+            public byte category;
             public byte ubyte00;
             public byte ubyte01;
-            public Int16 Ushort01;
-            public Int16 Ushort02;
+            public byte ubyte02;
+            public byte ubyte03;
+            public byte ubyte04;
+            public byte ubyte05;
+
             public Int16 durabillity;
             public Int16 ItemResult; // itemID durabillity loss, non firearms
             public Int16 Ushort04;
             public byte Sound_ID; // defines sound played on use
-            public byte Type; // defines animation played on equip/use
+            public byte Animation_ID; // defines animation played on equip/use
             public Int16 Menu_type; // defines menu type displayed when selected
             public Int16 Item_ID; // The Item itself
             public Int16 Ushort05;
@@ -42,7 +48,8 @@ namespace Netbio_VFL_Plus
         {
             public Int16 ival_base;
             public Int16 ival_target;
-            public Int16 flag;
+            public byte flag00;
+            public byte flag01;
 
         }
 
@@ -125,6 +132,9 @@ namespace Netbio_VFL_Plus
 
             Array.Resize(ref entry_off, count);
 
+
+            
+
             for (int i = 0; i < count; i++)
             {
 
@@ -132,16 +142,21 @@ namespace Netbio_VFL_Plus
                 entry_off[i] = start_offset + 24 * i;
 
 
-                Item_Props[i].tag = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]));
+                Item_Props[i].type = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]));
+                Item_Props[i].category = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 1);
                 Item_Props[i].ubyte00 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 2);
                 Item_Props[i].ubyte01 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 3);
-                Item_Props[i].Ushort01 = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 4);
-                Item_Props[i].Ushort02 = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 6);
+
+                Item_Props[i].ubyte02 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 4);
+                Item_Props[i].ubyte03 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 5);
+                Item_Props[i].ubyte04 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 6);
+                Item_Props[i].ubyte05 = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 7);
+
                 Item_Props[i].durabillity = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 8);
                 Item_Props[i].ItemResult = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 10);
                 Item_Props[i].Ushort04 = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 12);
                 Item_Props[i].Sound_ID = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 14);
-                Item_Props[i].Type = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 15);
+                Item_Props[i].Animation_ID = Memory.Read<byte>(pcsx2, new IntPtr(entry_off[i]) + 15);
                 Item_Props[i].Menu_type = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 16);
                 Item_Props[i].Item_ID = Memory.Read<Int16>(pcsx2, new IntPtr(entry_off[i]) + 18);
 
@@ -159,6 +174,7 @@ namespace Netbio_VFL_Plus
 
 
                 }
+
 
 
     
@@ -191,16 +207,15 @@ namespace Netbio_VFL_Plus
 
             for (int i = 0; i < combo_data.Length; i++)
             {
-
-
                 combo_off[i] = off + 6 * i;
 
                 combo_data[i].ival_base = Memory.Read<Int16>(ps2_proc, new IntPtr(combo_off[i]));
                 combo_data[i].ival_target = Memory.Read<Int16>(ps2_proc, new IntPtr(combo_off[i]) + 2);
-                combo_data[i].flag = Memory.Read<Int16>(ps2_proc, new IntPtr(combo_off[i]) + 4);
+                combo_data[i].flag00 = Memory.Read<byte>(ps2_proc, new IntPtr(combo_off[i]) + 4);
+                combo_data[i].flag01 = Memory.Read<byte>(ps2_proc, new IntPtr(combo_off[i]) + 5);
 
 
-             //   imem_dbglog.ForeColor = Color.PaleGoldenrod;
+                //   imem_dbglog.ForeColor = Color.PaleGoldenrod;
 
                 if (Items.m_ItemLookup.ContainsKey(combo_data[i].ival_base) && Items.m_ItemLookup.ContainsKey(combo_data[i].ival_target))
                 {
@@ -210,6 +225,39 @@ namespace Netbio_VFL_Plus
 
             }
 
+
+            using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "MEMDUMP_COMBO_TABLE.txt"))
+            {
+
+
+
+
+                for (int i = 0; i < combo_data.Length; i++)
+                {
+
+
+               
+
+
+                    
+                    sw.WriteLine("Input Item: " + Items.m_ItemLookup[combo_data[i].ival_base]);
+                    sw.WriteLine("Output Item: " + Items.m_ItemLookup[combo_data[i].ival_target]);
+                    sw.WriteLine("Byte00 : " + Helper.Pad(combo_data[i].flag00) + " DEC(" + combo_data[i].flag00 + ")");
+                    sw.WriteLine("Byte01 : " + Helper.Pad(combo_data[i].flag01) + " DEC(" + combo_data[i].flag01 + ")");
+
+
+
+
+                    //   imem_dbglog.ForeColor = Color.PaleGoldenrod;
+
+                    //if (Items.m_ItemLookup.ContainsKey(combo_data[i].ival_base) && Items.m_ItemLookup.ContainsKey(combo_data[i].ival_target))
+                    //{
+                    //    // imem_dbglog.AppendText(String.Format("[{0,-1}]  {1,-40}  {2,-15} [{3,0}]\n", i, Items.m_ItemLookup[combo_data[i].ival_base], Items.m_ItemLookup[combo_data[i].ival_target], combo_data[i].flag));
+                    //}
+
+
+                }
+            }
 
 
         }
@@ -228,15 +276,21 @@ namespace Netbio_VFL_Plus
             string hexstr = entry_off[last_focus].ToString("X");
 
             // re write a new 24 byte struct at selected index in memory sent from user input
-            Memory.Write<Int16>(pcsx2, new IntPtr(entry_off[last_focus]), IDATA._tag);
-         //   imem_dbglog.AppendText("Wrote : " + IDATA._tag + " @ Address 0x" + hexstr);
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]), IDATA.type);
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 1, IDATA.category);
+            //   imem_dbglog.AppendText("Wrote : " + IDATA._tag + " @ Address 0x" + hexstr);
             Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 2, IDATA._ubyte00);
             //imem_dbglog.AppendText("\nWrote : " + IDATA._ubyte00 + " @ Address 0x" + hexstr += 2);
             Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 3, IDATA._ubyte01);
-          //  imem_dbglog.AppendText("\nWrote : " + IDATA._ubyte01 + " @ Address 0x" + entry_off[last_focus].ToString("X") + 3);
-            Memory.Write<Int16>(pcsx2, new IntPtr(entry_off[last_focus]) + 4, IDATA._Ushort01);
-          //  imem_dbglog.AppendText("\nWrote : " + IDATA._Ushort01 + " @ Address 0x" + entry_off[last_focus].ToString("X") + 4);
-            Memory.Write<Int16>(pcsx2, new IntPtr(entry_off[last_focus]) + 6, IDATA._Ushort02);
+            //  imem_dbglog.AppendText("\nWrote : " + IDATA._ubyte01 + " @ Address 0x" + entry_off[last_focus].ToString("X") + 3);
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 4, IDATA._ubyte02);
+            //  imem_dbglog.AppendText("\nWrote : " + IDATA._Ushort01 + " @ Address 0x" + entry_off[last_focus].ToString("X") + 4);
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 5, IDATA._ubyte03);
+
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 6, IDATA._ubyte04);
+
+            Memory.Write<byte>(pcsx2, new IntPtr(entry_off[last_focus]) + 7, IDATA._ubyte05);
+       
           //  imem_dbglog.AppendText("\nWrote : " + IDATA._Ushort02 + " @ Address 0x" + entry_off[last_focus].ToString("X") + 6);
             Memory.Write<Int16>(pcsx2, new IntPtr(entry_off[last_focus]) + 8, IDATA._durabillity);
            // imem_dbglog.AppendText("\nWrote : " + IDATA._durabillity + " @ Address 0x" + entry_off[last_focus].ToString("X") + 8);
@@ -279,7 +333,7 @@ namespace Netbio_VFL_Plus
                     nud_itemval.Value = Item_Props[idx].Item_ID;  // set nuds
                     nud_soundval.Value = Item_Props[idx].Sound_ID;
                     nud_durabillity.Value = Item_Props[idx].durabillity;
-                    nud_iprops.Value = Item_Props[idx].Type;
+                    nud_iprops.Value = Item_Props[idx].type;
                     nud_mtype.Value = Item_Props[idx].Menu_type;
 
 
@@ -288,16 +342,19 @@ namespace Netbio_VFL_Plus
 
 
                     // set item properties class to currently selected item entry
-                    IDATA._tag = Item_Props[idx].tag;
+                    IDATA._type = Item_Props[idx].type;
+                    IDATA._category = Item_Props[idx].category;
                     IDATA._ubyte00 = Item_Props[idx].ubyte00;
                     IDATA._ubyte01 = Item_Props[idx].ubyte01;
-                    IDATA._Ushort01 = Item_Props[idx].Ushort01;
-                    IDATA._Ushort02 = Item_Props[idx].Ushort02;
+                    IDATA._ubyte02 = Item_Props[idx].ubyte02;
+                    IDATA._ubyte03 = Item_Props[idx].ubyte03;
+                    IDATA._ubyte04 = Item_Props[idx].ubyte04;
+                    IDATA._ubyte05 = Item_Props[idx].ubyte05;
                     IDATA._durabillity = Item_Props[idx].durabillity;
                     IDATA._Ushort03 = Item_Props[idx].ItemResult;
                     IDATA._Ushort04 = Item_Props[idx].Ushort04;
                     IDATA.Sound_ID = Item_Props[idx].Sound_ID;
-                    IDATA._Type = Item_Props[idx].Type;
+                    IDATA._Type = Item_Props[idx].Animation_ID;
                     IDATA._Menu_type = Item_Props[idx].Menu_type;
                     IDATA._Item_ID = Item_Props[idx].Item_ID;
 
@@ -384,5 +441,36 @@ namespace Netbio_VFL_Plus
         {
 
         }
+
+        private void memoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "MEMDUMP_ITEM_PROPERTIES.txt")) 
+            {
+
+                for (int i = 0; i < 91; i++) 
+                {
+
+                    //   MessageBox.Show(Item_Props[i].type.ToString());
+                    sw.WriteLine(Items.m_ItemLookup[Item_Props[i].Item_ID]);
+                    sw.WriteLine("Category: " + Helper.Pad(Item_Props[i].category) + " DEC(" + Item_Props[i].category + ")");
+                    sw.WriteLine("Type: " + Helper.Pad(Item_Props[i].type) + " DEC(" + Item_Props[i].type + ")");
+                  
+          
+
+
+                }
+
+
+            }
+
+
+            combo_table();
+
+
+        }
+
+
+
     }
 }

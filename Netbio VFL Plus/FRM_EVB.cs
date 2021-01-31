@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 using System.IO;
 
 
@@ -14,9 +15,18 @@ namespace Netbio_VFL_Plus
 {
     public partial class FRM_EVB : Form
     {
+
+
+
+        public FRM_DEBUG EVB_DEBUG = new FRM_DEBUG();
+
         public FRM_EVB()
         {
             InitializeComponent();
+
+            EVB_DEBUG.Text = "EVB DEBUG LOG";
+            EVB_DEBUG.BackColor = Color.Gray;
+
         }
 
 
@@ -45,29 +55,70 @@ namespace Netbio_VFL_Plus
         {
             try
             {
-                int idx = LV_BYTECODE.FocusedItem.Index; // GET RELATIVE INDEX
-                EVB_DEBUG.AppendText(LV_BYTECODE.Items[idx].SubItems[1].Text + "\n"); // DUMP SELECTED BYTE CODE TO LOG
+                // LV_INTCODE.SelectedItems.Clear();
+
+             
+                    int idx = LV_BYTECODE.SelectedIndices[0]; // GET RELATIVE INDEX
+
+                    //  LV_INTCODE.SelectedItems.Clear();
+                    LV_INTCODE.Items[idx].Selected = true;
+
+                    LV_INTCODE.EnsureVisible(idx);
+
+                
+
+               
+           
+
             }
             catch (System.IO.IOException IOX)
             {
 
             }
 
-            catch (System.NullReferenceException NRE) { 
+            catch (System.NullReferenceException NRE)
+            {
+
+            }
+            catch (Exception ex) 
+            {
             
             }
+
         }
 
         private void LV_INTCODE_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int idx = LV_INTCODE.FocusedItem.Index;
+            // LV_BYTECODE.SelectedItems.Clear();
 
-            LV_BYTECODE.SelectedItems.Clear();
 
-            LV_BYTECODE.Items[idx].Selected = true;
+            try
+            {
 
-           TB_DETAILS.Text = EVB_PARSER.SET_COMMENT(LV_INTCODE, LV_BYTECODE, TB_DETAILS);
 
+
+                  int idx = LV_INTCODE.SelectedIndices[0];
+
+                    LV_BYTECODE.Items[idx].Selected = true;
+
+                    LV_BYTECODE.EnsureVisible(idx);
+
+
+
+                TB_DETAILS.Text = EVB_PARSER.SET_COMMENT(LV_INTCODE, LV_BYTECODE, TB_DETAILS);
+
+
+            }
+
+            catch (Exception ex) 
+            {
+            
+            
+            }
+          
+     
+
+            
 
         }
 
@@ -80,7 +131,7 @@ namespace Netbio_VFL_Plus
         {
             int total = LV_INTCODE.Items.Count;
 
-            EVB_DEBUG.Clear();
+          //  EVB_DEBUG.Clear();
 
             try
             {
@@ -90,7 +141,7 @@ namespace Netbio_VFL_Plus
 
 
 
-                    EVB_DEBUG.AppendText(LV_INTCODE.Items[i].SubItems[1].Text + "\n");
+                //    EVB_DEBUG.AppendText(LV_INTCODE.Items[i].SubItems[1].Text + "\n");
                 }
             }
 
@@ -105,6 +156,65 @@ namespace Netbio_VFL_Plus
         private void propertyGrid1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TSB_OPSCAN_Click(object sender, EventArgs e)
+        {
+            string opcode = Interaction.InputBox("Enter the 4 byte opcode you want all instances of for example '39000002'", "OP_SCAN");
+
+            bool QueryMatch = false;
+
+            EVB_DEBUG.DEBUG_LOG.Clear();
+
+            for (int i = 0; i < LV_BYTECODE.Items.Count; i++) 
+            {
+
+                string bytestr = LV_BYTECODE.Items[i].SubItems[1].Text;
+
+
+                if (bytestr.Substring(0, 8) == opcode)
+                {
+                    QueryMatch = true;
+                    EVB_DEBUG.DEBUG_LOG.AppendText(bytestr  + "\n");
+                }
+             
+
+
+
+
+            }
+
+            if (QueryMatch) { EVB_DEBUG.ShowDialog(); }
+            else {
+                MessageBox.Show("No match or incorrect query..", "NO MATCH", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+
+
+
+
+            //perform scan
+
+        }
+
+        private void TSB_DEBUG_Click(object sender, EventArgs e)
+        {
+            EVB_DEBUG.ShowDialog();
+            
+        }
+
+        private void TSB_CONFIG_Click(object sender, EventArgs e)
+        {
+            FontDialog FD = new FontDialog();
+            FD.ShowColor = true;
+            FD.ShowApply = true;
+            FD.ShowEffects = true;
+            FD.ShowHelp = true;
+
+            FD.ShowDialog();
+
+            LV_INTCODE.Font = FD.Font;
         }
     }
 }

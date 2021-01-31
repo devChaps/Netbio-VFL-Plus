@@ -38,9 +38,10 @@
             // 
             // DEBUG_LOG
             // 
+            this.DEBUG_LOG.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DEBUG_LOG.Location = new System.Drawing.Point(3, 31);
             this.DEBUG_LOG.Name = "DEBUG_LOG";
-            this.DEBUG_LOG.Size = new System.Drawing.Size(709, 407);
+            this.DEBUG_LOG.Size = new System.Drawing.Size(722, 446);
             this.DEBUG_LOG.TabIndex = 0;
             this.DEBUG_LOG.Text = "";
             // 
@@ -78,11 +79,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 450);
+            this.ClientSize = new System.Drawing.Size(725, 475);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.DEBUG_LOG);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_DEBUG";
-            this.Text = "FRM_DEBUG";
+            this.Text = "CONTEXTUAL DEBUG FORM";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -32,13 +32,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_MAIN));
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BTN_IMG = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.Volume_List = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_VBACK = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_DNAS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_DEBUGLOG = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.BTN_PL_NAME = new System.Windows.Forms.ToolStripButton();
             this.BTN_CALC = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Groups_List = new System.Windows.Forms.ToolStripComboBox();
             this.LBL_AFS = new System.Windows.Forms.ToolStripLabel();
             this.LBL_SelArchive = new System.Windows.Forms.ToolStripLabel();
@@ -96,7 +102,7 @@
             this.interpretSelectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TV_FOLDERS = new System.Windows.Forms.TreeView();
             this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.MAINSTATUS_STRIP = new System.Windows.Forms.StatusStrip();
             this.LBL_RID = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_CID = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_POS_X = new System.Windows.Forms.ToolStripStatusLabel();
@@ -104,21 +110,15 @@
             this.LBL_POS_Z = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_VERSION = new System.Windows.Forms.ToolStripStatusLabel();
             this.BTN_RAM = new System.Windows.Forms.ToolStripSplitButton();
-            this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BTN_PL_NAME = new System.Windows.Forms.ToolStripButton();
-            this.BTN_IMG = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
+            this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
             this.RDT_ContextMenu.SuspendLayout();
             this.NBD_ContextMenu.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.MAINSTATUS_STRIP.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainToolStrip
@@ -159,6 +159,22 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 46);
             // 
+            // BTN_IMG
+            // 
+            this.BTN_IMG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_IMG.Image = ((System.Drawing.Image)(resources.GetObject("BTN_IMG.Image")));
+            this.BTN_IMG.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_IMG.Name = "BTN_IMG";
+            this.BTN_IMG.Size = new System.Drawing.Size(52, 43);
+            this.BTN_IMG.Text = "toolStripButton1";
+            this.BTN_IMG.ToolTipText = "OPEN IMAGE";
+            this.BTN_IMG.Click += new System.EventHandler(this.BTN_IMG_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 46);
+            // 
             // Volume_List
             // 
             this.Volume_List.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -169,6 +185,11 @@
             this.Volume_List.Size = new System.Drawing.Size(145, 46);
             this.Volume_List.Text = "Volume List";
             this.Volume_List.SelectedIndexChanged += new System.EventHandler(this.Volume_List_SelectedIndexChanged);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 46);
             // 
             // BTN_VBACK
             // 
@@ -181,6 +202,11 @@
             this.BTN_VBACK.Size = new System.Drawing.Size(52, 43);
             this.BTN_VBACK.Text = "Refresh Selected Volume";
             this.BTN_VBACK.Click += new System.EventHandler(this.BTN_VBACK_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 46);
             // 
             // BTN_DNAS
             // 
@@ -208,12 +234,25 @@
             this.BTN_DEBUGLOG.Name = "BTN_DEBUGLOG";
             this.BTN_DEBUGLOG.Size = new System.Drawing.Size(52, 43);
             this.BTN_DEBUGLOG.Text = "toolStripButton1";
+            this.BTN_DEBUGLOG.ToolTipText = "DEBUG LOG";
             this.BTN_DEBUGLOG.Click += new System.EventHandler(this.BTN_DEBUGLOG_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 46);
+            // 
+            // BTN_PL_NAME
+            // 
+            this.BTN_PL_NAME.BackColor = System.Drawing.Color.Gold;
+            this.BTN_PL_NAME.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_PL_NAME.Image = ((System.Drawing.Image)(resources.GetObject("BTN_PL_NAME.Image")));
+            this.BTN_PL_NAME.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_PL_NAME.Name = "BTN_PL_NAME";
+            this.BTN_PL_NAME.Size = new System.Drawing.Size(52, 43);
+            this.BTN_PL_NAME.Text = "toolStripButton1";
+            this.BTN_PL_NAME.ToolTipText = "NPC NAME TOOL";
+            this.BTN_PL_NAME.Click += new System.EventHandler(this.BTN_PL_NAME_Click);
             // 
             // BTN_CALC
             // 
@@ -224,7 +263,13 @@
             this.BTN_CALC.Name = "BTN_CALC";
             this.BTN_CALC.Size = new System.Drawing.Size(52, 43);
             this.BTN_CALC.Text = "toolStripButton1";
+            this.BTN_CALC.ToolTipText = "Converter";
             this.BTN_CALC.Click += new System.EventHandler(this.BTN_CALC_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 46);
             // 
             // Groups_List
             // 
@@ -488,7 +533,7 @@
             // 
             this.sLDUNPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDUNPACKToolStripMenuItem.Name = "sLDUNPACKToolStripMenuItem";
-            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sLDUNPACKToolStripMenuItem.Text = "SLD_UNPACK";
             this.sLDUNPACKToolStripMenuItem.Click += new System.EventHandler(this.sLDUNPACKToolStripMenuItem_Click);
             // 
@@ -496,7 +541,7 @@
             // 
             this.sLDREPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDREPACKToolStripMenuItem.Name = "sLDREPACKToolStripMenuItem";
-            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sLDREPACKToolStripMenuItem.Text = "SLD_REPACK";
             // 
             // interpretingToolStripMenuItem
@@ -731,9 +776,9 @@
             this.ItemIco_List.Images.SetKeyName(33, "Magnun Revolver Rounds.png");
             this.ItemIco_List.Images.SetKeyName(34, "Ampoule Shooter.png");
             // 
-            // statusStrip1
+            // MAINSTATUS_STRIP
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MAINSTATUS_STRIP.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LBL_RID,
             this.LBL_CID,
             this.LBL_POS_X,
@@ -742,11 +787,11 @@
             this.LBL_VERSION,
             this.BTN_RAM,
             this.PRG_LOAD});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 725);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1107, 24);
-            this.statusStrip1.TabIndex = 11;
-            this.statusStrip1.Text = "statusStrip1";
+            this.MAINSTATUS_STRIP.Location = new System.Drawing.Point(0, 725);
+            this.MAINSTATUS_STRIP.Name = "MAINSTATUS_STRIP";
+            this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(1107, 24);
+            this.MAINSTATUS_STRIP.TabIndex = 11;
+            this.MAINSTATUS_STRIP.Text = "statusStrip1";
             // 
             // LBL_RID
             // 
@@ -826,57 +871,12 @@
             this.BTN_RAM.Text = "toolStripSplitButton1";
             this.BTN_RAM.ButtonClick += new System.EventHandler(this.BTN_RAM_ButtonClick);
             // 
-            // TMR_EXE
-            // 
-            this.TMR_EXE.Interval = 50;
-            this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 46);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 46);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 46);
-            // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // BTN_PL_NAME
-            // 
-            this.BTN_PL_NAME.BackColor = System.Drawing.Color.Gold;
-            this.BTN_PL_NAME.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_PL_NAME.Image = ((System.Drawing.Image)(resources.GetObject("BTN_PL_NAME.Image")));
-            this.BTN_PL_NAME.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_PL_NAME.Name = "BTN_PL_NAME";
-            this.BTN_PL_NAME.Size = new System.Drawing.Size(52, 43);
-            this.BTN_PL_NAME.Text = "toolStripButton1";
-            this.BTN_PL_NAME.Click += new System.EventHandler(this.BTN_PL_NAME_Click);
-            // 
-            // BTN_IMG
-            // 
-            this.BTN_IMG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_IMG.Image = ((System.Drawing.Image)(resources.GetObject("BTN_IMG.Image")));
-            this.BTN_IMG.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_IMG.Name = "BTN_IMG";
-            this.BTN_IMG.Size = new System.Drawing.Size(52, 43);
-            this.BTN_IMG.Text = "toolStripButton1";
-            this.BTN_IMG.Click += new System.EventHandler(this.BTN_IMG_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 46);
+            this.testToolStripMenuItem.Text = "Item Properties";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // PRG_LOAD
             // 
@@ -884,12 +884,17 @@
             this.PRG_LOAD.Size = new System.Drawing.Size(500, 18);
             this.PRG_LOAD.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
+            // TMR_EXE
+            // 
+            this.TMR_EXE.Interval = 50;
+            this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
+            // 
             // FRM_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1107, 749);
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.MAINSTATUS_STRIP);
             this.Controls.Add(this.MainMenuStrip);
             this.Controls.Add(this.LV_AFS);
             this.Controls.Add(this.MainToolStrip);
@@ -905,8 +910,8 @@
             this.AFS_MENU.ResumeLayout(false);
             this.RDT_ContextMenu.ResumeLayout(false);
             this.NBD_ContextMenu.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.MAINSTATUS_STRIP.ResumeLayout(false);
+            this.MAINSTATUS_STRIP.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,7 +979,7 @@
         private System.Windows.Forms.ToolStripMenuItem interpretSelectedToolStripMenuItem1;
         public System.Windows.Forms.TreeView TV_FOLDERS;
         private System.Windows.Forms.ImageList ItemIco_List;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip MAINSTATUS_STRIP;
         private System.Windows.Forms.ToolStripMenuItem checkLockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fontSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel LBL_RID;

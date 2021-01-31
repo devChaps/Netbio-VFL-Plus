@@ -83,13 +83,11 @@ namespace Netbio_VFL_Plus
         public NPC_IO NPCIO = new NPC_IO();
         public NBD_IO NBDIO = new NBD_IO();
 
-        
 
         
-
+        // FORM DEFINITIONS 
 
         public static FRM_ITBL TBL_FORM = new FRM_ITBL();
-        public FRM_ITEMDAT DAT_FORM = new FRM_ITEMDAT();
         public FRM_RDT RDT_FORM = new FRM_RDT();
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public FRM_EMD EMD_FORM = new FRM_EMD();
@@ -98,6 +96,7 @@ namespace Netbio_VFL_Plus
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public FRM_ABOUT ABOUT_FORM = new FRM_ABOUT();
         public FRM_NAME_EDIT FRM_NAMETOOL = new FRM_NAME_EDIT();
+        public FRM_ItemMemory FRM_IMEM = new FRM_ItemMemory();
 
         public static int NETBIO00_OFFSET = 0;
 
@@ -113,9 +112,13 @@ namespace Netbio_VFL_Plus
             InitializeComponent();
 
 
+            this.MaximizeBox = false;
+
             Img.AFS_LIST = LV_AFS;
             this.MainMenuStrip.Items.Add(new ToolStripSeparator());
             this.MainToolStrip.ImageScalingSize = new Size(48, 48);
+
+            MAINSTATUS_STRIP.SizingGrip = false;
 
 
 
@@ -367,8 +370,6 @@ namespace Netbio_VFL_Plus
 
 
 
-
-
         public void DirectoryInfo()
         {
             CDBuilder builder = new CDBuilder();
@@ -376,9 +377,6 @@ namespace Netbio_VFL_Plus
             DiscDirectoryInfo fi = fs.GetDirectoryInfo(@"SOMEDIR");
              
         }
-
-
-
 
 
         private void isoScanToolStripMenuItem_Click(object sender, EventArgs e)
@@ -903,8 +901,8 @@ namespace Netbio_VFL_Plus
 
                         using (Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open)) {
 
-                            ITEMIO.Parse_IDataStream(memStream, AFSIO.cur_archive_offset, LV_AFS, DAT_FORM.LV_IDataHeader, DAT_FORM.LV_ItemData);
-                            DAT_FORM.ShowDialog();
+                          //  ITEMIO.Parse_IDataStream(memStream, AFSIO.cur_archive_offset, LV_AFS, DAT_FORM.LV_IDataHeader, DAT_FORM.LV_ItemData);
+                         //   DAT_FORM.ShowDialog();
 
                         }
 
@@ -1481,6 +1479,18 @@ namespace Netbio_VFL_Plus
             }
             // SHOW FORM
             FRM_NAMETOOL.ShowDialog();
+        }
+
+        
+        /// <summary>
+        /// SHOW ITEM PROPERTIES MEMORY FORM
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+             // LOAD ITEM PROPERTIES MEMORY FORM
+            FRM_IMEM.ShowDialog();
         }
     }
 }

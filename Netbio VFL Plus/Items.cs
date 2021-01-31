@@ -56,16 +56,19 @@ namespace Netbio_VFL_Plus
 
         public struct Item_Properties_Obj // item property data
         {
-            public Int16 tag;
+            public byte Category;
+            public byte Type;
             public byte ubyte00;
             public byte ubyte01;
-            public Int16 Ushort01;
-            public Int16 Ushort02;
+            public byte ubyte02;
+            public byte ubyte03;
+            public byte ubyte04;
+            public byte ubyte05;
             public Int16 durabillity;
             public Int16 Ushort03;
             public Int16 Ushort04;
             public byte Sound_ID; // defines sound played on use
-            public byte Type; // defines animation played on equip/use
+            public byte Animation_ID; // defines animation played on equip/use
             public Int16 Menu_type; // defines menu type displayed when selected
             public Int16 Item_ID; // The Item itself
             public Int16 Ushort05;
@@ -396,11 +399,14 @@ namespace Netbio_VFL_Plus
             for (int x = 0; x < Item_Data.Length; x++)
             {
 
-                Item_Data[x].tag = br.ReadInt16();
+                Item_Data[x].Type = br.ReadByte();
+                Item_Data[x].Category = br.ReadByte();
                 Item_Data[x].ubyte00 = br.ReadByte();
                 Item_Data[x].ubyte01 = br.ReadByte();
-                Item_Data[x].Ushort01 = br.ReadInt16();
-                Item_Data[x].Ushort02 = br.ReadInt16();
+                Item_Data[x].ubyte02 = br.ReadByte();
+                Item_Data[x].ubyte03 = br.ReadByte();
+                Item_Data[x].ubyte04 = br.ReadByte();
+                Item_Data[x].ubyte05 = br.ReadByte();
                 Item_Data[x].durabillity = br.ReadInt16();
                 Item_Data[x].Ushort03 = br.ReadInt16();
                 Item_Data[x].Ushort04 = br.ReadInt16();
@@ -480,11 +486,15 @@ namespace Netbio_VFL_Plus
             for (int x = 0; x < Item_Data.Length; x++)
             {
 
-                Item_Data[x].tag = br.ReadInt16();
+                Item_Data[x].Type = br.ReadByte();
+                Item_Data[x].Category = br.ReadByte();
+
                 Item_Data[x].ubyte00 = br.ReadByte();
                 Item_Data[x].ubyte01 = br.ReadByte();
-                Item_Data[x].Ushort01 = br.ReadInt16();
-                Item_Data[x].Ushort02 = br.ReadInt16();
+                Item_Data[x].ubyte02 = br.ReadByte();
+                Item_Data[x].ubyte03 = br.ReadByte();
+                Item_Data[x].ubyte04 = br.ReadByte();
+                Item_Data[x].ubyte05 = br.ReadByte();
                 Item_Data[x].durabillity = br.ReadInt16();
                 Item_Data[x].Ushort03 = br.ReadInt16();
                 Item_Data[x].Ushort04 = br.ReadInt16();
@@ -786,11 +796,16 @@ namespace Netbio_VFL_Plus
         public void Set_ID_OBJ(ListView LV, PropertyGrid PG) // load struct data into prop grid
         {
             int cur_idx = LV.FocusedItem.Index;
-            Item_Properties._tag = Item_Data[cur_idx].tag;
+            Item_Properties._type = Item_Data[cur_idx].Type;
+            Item_Properties._category = Item_Data[cur_idx].Category;
             Item_Properties._ubyte00 = Item_Data[cur_idx].ubyte00;
-            Item_Properties._Ushort01 = Item_Data[cur_idx].Ushort01;
-            Item_Properties._Ushort02 = Item_Data[cur_idx].Ushort02;
-            Item_Properties._durabillity = Item_Data[cur_idx].Ushort01;
+            Item_Properties._ubyte01 = Item_Data[cur_idx].ubyte01;
+            Item_Properties._ubyte02 = Item_Data[cur_idx].ubyte02;
+            Item_Properties._ubyte03 = Item_Data[cur_idx].ubyte03;
+            Item_Properties._ubyte04 = Item_Data[cur_idx].ubyte04;
+            Item_Properties._ubyte05 = Item_Data[cur_idx].ubyte05;
+
+            Item_Properties._durabillity = Item_Data[cur_idx].durabillity;
             Item_Properties._Ushort03 = Item_Data[cur_idx].Ushort03;
             Item_Properties._Ushort04 = Item_Data[cur_idx].Ushort04;
             Item_Properties._Sound_ID = Item_Data[cur_idx].Sound_ID;
@@ -825,11 +840,14 @@ namespace Netbio_VFL_Plus
     {
 
 
-        public Int16 _tag;
+        public byte _type;
+        public byte _category;
         public byte _ubyte00;
         public byte _ubyte01;
-        public Int16 _Ushort01;
-        public Int16 _Ushort02;
+        public byte _ubyte02;
+        public byte _ubyte03;
+        public byte _ubyte04;
+        public byte _ubyte05;
         public Int16 _durabillity;
         public Int16 _Ushort03;
         public Int16 _Ushort04;
@@ -842,15 +860,31 @@ namespace Netbio_VFL_Plus
 
 
         [Category("ITEM DATA")]
-        [DisplayName("Tag/Flag")]
+        [DisplayName("Category")]
         [Description("N/A")]
 
 
-        public Int16 tag // display tag
+
+        public byte category // display tag
         {
-            get { return _tag; }
-            set { _tag = value; }
+            get { return _category; }
+            set { _category = value; }
         }
+
+      
+
+
+        [Category("ITEM DATA")]
+        [DisplayName("Type")]
+        [Description("N/A")]
+
+
+        public byte type // display tag
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
 
         [Category("ITEM DATA")]
         [DisplayName("ubyte00")]
@@ -874,31 +908,51 @@ namespace Netbio_VFL_Plus
         }
 
         [Category("ITEM DATA")]
-        [DisplayName("ushort01")]
+        [DisplayName("ubyte02")]
         [Description("N/A")]
 
 
-        public Int16 Ushort01 // display tag
+        public byte ubyte02 // display tag
         {
-            get { return _Ushort01; }
-            set { _Ushort01 = value; }
+            get { return _ubyte02; }
+            set { _ubyte02 = value; }
         }
 
         [Category("ITEM DATA")]
-        [DisplayName("UShort01")]
+        [DisplayName("ubyte03")]
         [Description("N/A")]
 
 
-        public Int16 Ushort02 // display tag
+        public byte ubyte03 // display tag
         {
-            get { return _Ushort02; }
-            set { _Ushort02 = value; }
+            get { return _ubyte03; }
+            set { _ubyte03 = value; }
         }
 
+        [Category("ITEM DATA")]
+        [DisplayName("ubyte04")]
+        [Description("N/A")]
 
+        public byte ubyte04 // display tag
+        {
+            get { return _ubyte04; }
+            set { _ubyte04 = value; }
+        }
 
         [Category("ITEM DATA")]
-        [DisplayName("Durability/Capacity?")]
+        [DisplayName("ubyte05")]
+        [Description("N/A")]
+
+        public byte ubyte05 // display tag
+        {
+            get { return _ubyte05; }
+            set { _ubyte05 = value; }
+        }
+
+ 
+
+        [Category("ITEM DATA")]
+        [DisplayName("durabillity")]
         [Description("N/A")]
 
 

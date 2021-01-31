@@ -41,17 +41,18 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.Progressbar00 = new System.Windows.Forms.ToolStripProgressBar();
             this.BTN_TOGGLE = new System.Windows.Forms.ToolStripSplitButton();
-            this.EVB_DEBUG = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.TSB_TOGGLE = new System.Windows.Forms.ToolStripButton();
             this.TSB_CONFIG = new System.Windows.Forms.ToolStripButton();
-            this.TSB_SCRIPT_DUMP = new System.Windows.Forms.ToolStripButton();
-            this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.TSB_TOGGLE = new System.Windows.Forms.ToolStripButton();
             this.BTN_SP_ITEM = new System.Windows.Forms.ToolStripButton();
             this.TSB_DOORSCAN = new System.Windows.Forms.ToolStripButton();
+            this.TSB_SCRIPT_DUMP = new System.Windows.Forms.ToolStripButton();
             this.TSB_OPSCAN = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.TSB_DEBUG = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,8 +69,9 @@
             this.LV_BYTECODE.FullRowSelect = true;
             this.LV_BYTECODE.HideSelection = false;
             this.LV_BYTECODE.Location = new System.Drawing.Point(1, 134);
+            this.LV_BYTECODE.MultiSelect = false;
             this.LV_BYTECODE.Name = "LV_BYTECODE";
-            this.LV_BYTECODE.Size = new System.Drawing.Size(998, 623);
+            this.LV_BYTECODE.Size = new System.Drawing.Size(998, 720);
             this.LV_BYTECODE.TabIndex = 1;
             this.LV_BYTECODE.UseCompatibleStateImageBehavior = false;
             this.LV_BYTECODE.View = System.Windows.Forms.View.Details;
@@ -102,8 +104,9 @@
             this.LV_INTCODE.FullRowSelect = true;
             this.LV_INTCODE.HideSelection = false;
             this.LV_INTCODE.Location = new System.Drawing.Point(0, 134);
+            this.LV_INTCODE.MultiSelect = false;
             this.LV_INTCODE.Name = "LV_INTCODE";
-            this.LV_INTCODE.Size = new System.Drawing.Size(998, 623);
+            this.LV_INTCODE.Size = new System.Drawing.Size(998, 720);
             this.LV_INTCODE.TabIndex = 2;
             this.LV_INTCODE.UseCompatibleStateImageBehavior = false;
             this.LV_INTCODE.View = System.Windows.Forms.View.Details;
@@ -163,45 +166,23 @@
             this.BTN_TOGGLE.Text = "toolStripSplitButton1";
             this.BTN_TOGGLE.ButtonClick += new System.EventHandler(this.BTN_TOGGLE_ButtonClick);
             // 
-            // EVB_DEBUG
-            // 
-            this.EVB_DEBUG.BackColor = System.Drawing.SystemColors.WindowText;
-            this.EVB_DEBUG.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.EVB_DEBUG.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EVB_DEBUG.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            this.EVB_DEBUG.Location = new System.Drawing.Point(1, 763);
-            this.EVB_DEBUG.Name = "EVB_DEBUG";
-            this.EVB_DEBUG.Size = new System.Drawing.Size(997, 94);
-            this.EVB_DEBUG.TabIndex = 5;
-            this.EVB_DEBUG.Text = "EVB_DEBUG";
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSB_CONFIG,
             this.TSB_TOGGLE,
+            this.TSB_DEBUG,
+            this.TSB_OPSCAN,
+            this.TSB_SCRIPT_DUMP,
+            this.toolStripSeparator1,
             this.BTN_SP_ITEM,
             this.TSB_DOORSCAN,
-            this.TSB_SCRIPT_DUMP,
-            this.TSB_OPSCAN,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1227, 51);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // TSB_TOGGLE
-            // 
-            this.TSB_TOGGLE.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.TSB_TOGGLE.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSB_TOGGLE.Image = ((System.Drawing.Image)(resources.GetObject("TSB_TOGGLE.Image")));
-            this.TSB_TOGGLE.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TSB_TOGGLE.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSB_TOGGLE.Name = "TSB_TOGGLE";
-            this.TSB_TOGGLE.Size = new System.Drawing.Size(47, 48);
-            this.TSB_TOGGLE.Text = "toolStripButton1";
-            this.TSB_TOGGLE.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // TSB_CONFIG
             // 
@@ -213,6 +194,53 @@
             this.TSB_CONFIG.Name = "TSB_CONFIG";
             this.TSB_CONFIG.Size = new System.Drawing.Size(49, 48);
             this.TSB_CONFIG.Text = "toolStripButton2";
+            this.TSB_CONFIG.ToolTipText = "CONFIG";
+            this.TSB_CONFIG.Click += new System.EventHandler(this.TSB_CONFIG_Click);
+            // 
+            // TSB_TOGGLE
+            // 
+            this.TSB_TOGGLE.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.TSB_TOGGLE.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSB_TOGGLE.Image = ((System.Drawing.Image)(resources.GetObject("TSB_TOGGLE.Image")));
+            this.TSB_TOGGLE.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TSB_TOGGLE.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSB_TOGGLE.Name = "TSB_TOGGLE";
+            this.TSB_TOGGLE.Size = new System.Drawing.Size(47, 48);
+            this.TSB_TOGGLE.Text = "toolStripButton1";
+            this.TSB_TOGGLE.ToolTipText = "CODE VIEW";
+            this.TSB_TOGGLE.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // BTN_SP_ITEM
+            // 
+            this.BTN_SP_ITEM.AutoSize = false;
+            this.BTN_SP_ITEM.AutoToolTip = false;
+            this.BTN_SP_ITEM.BackColor = System.Drawing.SystemColors.Control;
+            this.BTN_SP_ITEM.Font = new System.Drawing.Font("Bahnschrift", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTN_SP_ITEM.ForeColor = System.Drawing.Color.Cyan;
+            this.BTN_SP_ITEM.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SP_ITEM.Image")));
+            this.BTN_SP_ITEM.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BTN_SP_ITEM.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_SP_ITEM.Name = "BTN_SP_ITEM";
+            this.BTN_SP_ITEM.Size = new System.Drawing.Size(55, 48);
+            this.BTN_SP_ITEM.Text = "SPECIAL";
+            this.BTN_SP_ITEM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BTN_SP_ITEM.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.BTN_SP_ITEM.ToolTipText = "SP.ITEM HANDLER";
+            // 
+            // TSB_DOORSCAN
+            // 
+            this.TSB_DOORSCAN.AutoSize = false;
+            this.TSB_DOORSCAN.BackColor = System.Drawing.SystemColors.Control;
+            this.TSB_DOORSCAN.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TSB_DOORSCAN.ForeColor = System.Drawing.Color.Cornsilk;
+            this.TSB_DOORSCAN.Image = ((System.Drawing.Image)(resources.GetObject("TSB_DOORSCAN.Image")));
+            this.TSB_DOORSCAN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TSB_DOORSCAN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSB_DOORSCAN.Name = "TSB_DOORSCAN";
+            this.TSB_DOORSCAN.Size = new System.Drawing.Size(55, 48);
+            this.TSB_DOORSCAN.Text = "DOOR";
+            this.TSB_DOORSCAN.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.TSB_DOORSCAN.ToolTipText = "DOOR HANDLER";
             // 
             // TSB_SCRIPT_DUMP
             // 
@@ -226,7 +254,35 @@
             this.TSB_SCRIPT_DUMP.Name = "TSB_SCRIPT_DUMP";
             this.TSB_SCRIPT_DUMP.Size = new System.Drawing.Size(48, 48);
             this.TSB_SCRIPT_DUMP.Text = "toolStripButton3";
+            this.TSB_SCRIPT_DUMP.ToolTipText = "SCRIPT 2 TEXT";
             this.TSB_SCRIPT_DUMP.Click += new System.EventHandler(this.TSB_SCRIPT_DUMP_Click);
+            // 
+            // TSB_OPSCAN
+            // 
+            this.TSB_OPSCAN.AutoSize = false;
+            this.TSB_OPSCAN.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TSB_OPSCAN.Image = ((System.Drawing.Image)(resources.GetObject("TSB_OPSCAN.Image")));
+            this.TSB_OPSCAN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TSB_OPSCAN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSB_OPSCAN.Name = "TSB_OPSCAN";
+            this.TSB_OPSCAN.Size = new System.Drawing.Size(48, 48);
+            this.TSB_OPSCAN.Text = "toolStripButton3";
+            this.TSB_OPSCAN.ToolTipText = "SCAN 4 OPCODE";
+            this.TSB_OPSCAN.Click += new System.EventHandler(this.TSB_OPSCAN_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.AutoSize = false;
+            this.toolStripButton1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton1.ForeColor = System.Drawing.Color.SpringGreen;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(55, 48);
+            this.toolStripButton1.Text = "ITEM";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripButton1.ToolTipText = "PLAYER ITEM HANDLER";
             // 
             // TB_DETAILS
             // 
@@ -253,59 +309,25 @@
             this.label1.Text = "CODE DETAILS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // BTN_SP_ITEM
+            // toolStripSeparator1
             // 
-            this.BTN_SP_ITEM.AutoSize = false;
-            this.BTN_SP_ITEM.AutoToolTip = false;
-            this.BTN_SP_ITEM.BackColor = System.Drawing.SystemColors.Control;
-            this.BTN_SP_ITEM.Font = new System.Drawing.Font("Bahnschrift", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTN_SP_ITEM.ForeColor = System.Drawing.Color.Cyan;
-            this.BTN_SP_ITEM.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SP_ITEM.Image")));
-            this.BTN_SP_ITEM.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BTN_SP_ITEM.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_SP_ITEM.Name = "BTN_SP_ITEM";
-            this.BTN_SP_ITEM.Size = new System.Drawing.Size(55, 48);
-            this.BTN_SP_ITEM.Text = "SPECIAL";
-            this.BTN_SP_ITEM.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BTN_SP_ITEM.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 51);
             // 
-            // TSB_DOORSCAN
+            // TSB_DEBUG
             // 
-            this.TSB_DOORSCAN.AutoSize = false;
-            this.TSB_DOORSCAN.BackColor = System.Drawing.SystemColors.Control;
-            this.TSB_DOORSCAN.Font = new System.Drawing.Font("Bahnschrift SemiCondensed", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TSB_DOORSCAN.ForeColor = System.Drawing.Color.Cornsilk;
-            this.TSB_DOORSCAN.Image = ((System.Drawing.Image)(resources.GetObject("TSB_DOORSCAN.Image")));
-            this.TSB_DOORSCAN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TSB_DOORSCAN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSB_DOORSCAN.Name = "TSB_DOORSCAN";
-            this.TSB_DOORSCAN.Size = new System.Drawing.Size(55, 48);
-            this.TSB_DOORSCAN.Text = "DOOR";
-            this.TSB_DOORSCAN.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            // 
-            // TSB_OPSCAN
-            // 
-            this.TSB_OPSCAN.AutoSize = false;
-            this.TSB_OPSCAN.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TSB_OPSCAN.Image = ((System.Drawing.Image)(resources.GetObject("TSB_OPSCAN.Image")));
-            this.TSB_OPSCAN.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TSB_OPSCAN.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TSB_OPSCAN.Name = "TSB_OPSCAN";
-            this.TSB_OPSCAN.Size = new System.Drawing.Size(48, 48);
-            this.TSB_OPSCAN.Text = "toolStripButton3";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.AutoSize = false;
-            this.toolStripButton1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton1.ForeColor = System.Drawing.Color.SpringGreen;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(55, 48);
-            this.toolStripButton1.Text = "ITEM";
-            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.TSB_DEBUG.AutoSize = false;
+            this.TSB_DEBUG.Font = new System.Drawing.Font("Bahnschrift SemiBold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TSB_DEBUG.ForeColor = System.Drawing.Color.SpringGreen;
+            this.TSB_DEBUG.Image = ((System.Drawing.Image)(resources.GetObject("TSB_DEBUG.Image")));
+            this.TSB_DEBUG.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TSB_DEBUG.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TSB_DEBUG.Name = "TSB_DEBUG";
+            this.TSB_DEBUG.Size = new System.Drawing.Size(55, 48);
+            this.TSB_DEBUG.Text = "ITEM";
+            this.TSB_DEBUG.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.TSB_DEBUG.ToolTipText = "DEBUG LOG";
+            this.TSB_DEBUG.Click += new System.EventHandler(this.TSB_DEBUG_Click);
             // 
             // FRM_EVB
             // 
@@ -315,12 +337,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TB_DETAILS);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.EVB_DEBUG);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.PG_OPCODE);
             this.Controls.Add(this.LV_INTCODE);
             this.Controls.Add(this.LV_BYTECODE);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FRM_EVB";
             this.Text = "GAME SCRIPT MANAGER";
             this.statusStrip1.ResumeLayout(false);
@@ -345,7 +368,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripProgressBar Progressbar00;
         private System.Windows.Forms.ToolStripSplitButton BTN_TOGGLE;
-        public System.Windows.Forms.RichTextBox EVB_DEBUG;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton TSB_TOGGLE;
         private System.Windows.Forms.ToolStripButton TSB_CONFIG;
@@ -356,5 +378,7 @@
         private System.Windows.Forms.ToolStripButton TSB_DOORSCAN;
         private System.Windows.Forms.ToolStripButton TSB_OPSCAN;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton TSB_DEBUG;
     }
 }

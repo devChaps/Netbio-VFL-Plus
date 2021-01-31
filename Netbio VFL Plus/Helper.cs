@@ -30,5 +30,24 @@ namespace Netbio_VFL_Plus
         }
 
 
+
+
+        public static string PadBold(byte b)
+        {
+            string bin = Convert.ToString(b, 2);
+            return new string('0', 8 - bin.Length) + "<b>" + bin + "</b>";
+        }
+
+
+        public static string Pad(byte b)
+        {
+            return Convert.ToString(b, 2).PadLeft(8, '0');
+        }
+
+
+        public static string PadNibble(byte b)
+        {
+            return Int32.Parse(Convert.ToString(b, 2)).ToString("0000 0000");
+        }
     }
 }

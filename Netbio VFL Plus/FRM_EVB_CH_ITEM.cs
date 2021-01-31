@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Netbio_VFL_Plus
 {
-    public partial class FRM_DEBUG : Form
+    public partial class FRM_EVB_CH_ITEM : Form
     {
-        public FRM_DEBUG()
+        public FRM_EVB_CH_ITEM()
         {
             InitializeComponent();
-            this.MaximizeBox = false;
-        }
-
-        private void BTN_CLEAR_Click(object sender, EventArgs e)
-        {
-            DEBUG_LOG.Clear();
         }
     }
 }

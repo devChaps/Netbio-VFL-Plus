@@ -521,7 +521,7 @@ namespace Netbio_VFL_Plus
             BinaryReader br = new BinaryReader(fs);
 
 
-            EVB_FORM.EVB_DEBUG.Clear();
+           // EVB_FORM.EVB_DEBUG.Clear();
             
 
             byte[] bytearray = new byte[0];
@@ -627,7 +627,17 @@ namespace Netbio_VFL_Plus
                 }
 
                 ByteLST.Items[i].SubItems.Add(bytestr);
+
+
+                // COLOR THE INTERPRETED CODE!
+
+                //  CodeLST.ForeColor = COLOR_OPCODE(bytestr);
+
+               
                 CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len));
+                CodeLST.Items[i].SubItems[1].ForeColor = COLOR_CMD(bytestr);
+
+
 
                 // filter out null stuff?
                 if (cmd_len > 1)
@@ -635,8 +645,9 @@ namespace Netbio_VFL_Plus
                     ByteLST.Items[i].SubItems.Add(cmd_len.ToString() + " byte opcode");
                 }
 
-                // COLOR THE CODE!!
+                // COLOR THE BYTE CODE!!
                 COLOR_BYTECODE(cmd_len, i, ByteLST);
+            
               //  COLOR_BYTECODE(cmd_len, i, CodeLST);
 
 
@@ -797,6 +808,7 @@ namespace Netbio_VFL_Plus
 
                     ByteLST.Items[i].SubItems.Add(bytestr);
                     CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len));
+                    CodeLST.Items[i].SubItems[1].ForeColor = COLOR_CMD(bytestr);
 
                     // filter out null stuff?
                     if (cmd_len > 1)
@@ -806,7 +818,7 @@ namespace Netbio_VFL_Plus
 
                     // COLOR THE CODE!!
                     COLOR_BYTECODE(cmd_len, i, ByteLST);
-                    COLOR_BYTECODE(cmd_len, i, CodeLST);
+                   // COLOR_BYTECODE(cmd_len, i, CodeLST);
 
 
                     //   MessageBox.Show("OPCODE: " + op_buffer.ToString("X") + "LENGTH:" + cmd_len.ToString());
@@ -954,29 +966,68 @@ namespace Netbio_VFL_Plus
         } // only colored based on cmd length atm..
 
 
-        private void COLOR_OPCODE(int length, int index, ListView LST)
-        {
-           
-            //  NEED TO 
-            Color x4byte = Color.MediumVioletRed;
-            Color x8byte = Color.MintCream;
-            Color x16byte = Color.LimeGreen;
-            Color x32byte = Color.LightSteelBlue;
 
-            switch (length)
-            {
-                case 4: LST.Items[index].ForeColor = x4byte; break;
-                case 8: LST.Items[index].ForeColor = x8byte; break;
-                case 16: LST.Items[index].ForeColor = x16byte; break;
-                case 32: LST.Items[index].ForeColor = x32byte; break;
-            }
+        /// <summary>
+        /// COLORING BYTECODE
+        /// </summary>
+        /// <param name="length"></param>
+        /// <param name="index"></param>
+        /// <param name="LST"></param>
+        public Color COLOR_CMD(string opcode)
+        {
+
+            ////  NEED TO 
+            //Color x4byte = Color.MediumVioletRed;
+            //Color x8byte = Color.MintCream;
+            //Color x16byte = Color.LimeGreen;
+            //Color x32byte = Color.LightSteelBlue;
+
+            Color cmd_player = Color.Crimson;
+            Color cmd_enemy = Color.Red;
+            Color cmd_event = Color.Yellow;
+            Color cmd_spItem = Color.Cyan;
+            Color cmd_item = Color.LimeGreen;
+            Color cmd_npc = Color.Orange;
+            Color cmd_snd = Color.LightBlue;
+            Color cmd_door = Color.DarkKhaki;
+            Color cmd_logic = Color.CornflowerBlue;
+            Color cmd_sfd = Color.Goldenrod;
+
+            if (opcode.Substring(0, 8) == "35010003") { return cmd_spItem; }
+            if (opcode.Substring(0, 8) == "3A000003") { return cmd_npc; }
+            if (opcode.Substring(0, 8) == "3D000002") { return cmd_npc; }
+            if (opcode.Substring(0, 8) == "70000001") { return cmd_snd; }
+            if (opcode.Substring(0, 8) == "71000000") { return cmd_snd; }
+            if (opcode.Substring(0, 8) == "F2000002") { return cmd_door; }
+            if (opcode.Substring(0, 8) == "F4000002") { return cmd_door; }
+            if (opcode.Substring(0, 8) == "F5000002") { return cmd_door; }
+            if (opcode.Substring(0, 8) == "40000002") { return cmd_door; }
+            if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
+            if (opcode.Substring(0, 8) == "64010001") { return cmd_enemy; }
+            if (opcode.Substring(0, 8) == "65010001") { return cmd_enemy; }
+            if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
+            if (opcode.Substring(0, 8) == "62000003") { return cmd_sfd; }
+            if (opcode.Substring(0, 8) == "0C000002") { return cmd_event; }
+            if (opcode.Substring(0, 8) == "45000003") { return cmd_event; }
+            if (opcode.Substring(0, 8) == "39000002") { return cmd_item; }
+            if (opcode.Substring(0, 8) == "73010002") { return cmd_item; }
+            if (opcode.Substring(0, 8) == "69000002") { return cmd_player; }
+            if (opcode.Substring(0, 8) == "EE000002") { return cmd_logic; }
+            if (opcode.Substring(0, 8) == "E4000000") { return cmd_logic; }
+            if (opcode.Substring(0, 8) == "E5000000") { return cmd_logic; }
+
+
+
+
+            return Color.White;
+           
 
         } // only colored based on cmd length atm..
 
 
 
 
-        private string SET_CMD(int idx, ListView LSTB, ListView LSTC, int cmd_len)
+        private string SET_CMD(int idx,ListView LSTB, ListView LSTC, int cmd_len)
         {
             string attr = string.Empty; // return this
             string opcode = string.Empty; // to hold the main opcode
@@ -992,6 +1043,11 @@ namespace Netbio_VFL_Plus
                 bytestr = LSTB.Items[idx].SubItems[1].Text;
             }
 
+
+           
+        //    COLOR_OPCODE(opcode, LSTC, idx);
+
+        
 
 
             if (opcode == "0C000002") 
@@ -1203,6 +1259,8 @@ namespace Netbio_VFL_Plus
             }
 
 
+       
+
             return attr;
 
         }
@@ -1214,15 +1272,22 @@ namespace Netbio_VFL_Plus
             string opcode = string.Empty;
             string bytestr = string.Empty;
 
-            int idx = LSTC.FocusedItem.Index;
-
-           
-                opcode = LSTB.Items[idx].SubItems[1].Text.Substring(0, 8);
-                bytestr = LSTB.Items[idx].SubItems[1].Text;
 
 
             try
             {
+
+
+                
+                
+
+                int idx = LSTC.SelectedIndices[0];
+
+
+                opcode = LSTB.Items[idx].SubItems[1].Text.Substring(0, 8);
+                bytestr = LSTB.Items[idx].SubItems[1].Text;
+
+
                 // OPEN OPCODE DESC FILE + READ DESC
                 using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\EVB_H\\" + opcode + ".txt"))
                 {
@@ -1231,13 +1296,16 @@ namespace Netbio_VFL_Plus
                 }
 
             }
-            catch (FileNotFoundException FNF) 
+            catch (FileNotFoundException FNF)
             {
                 Details.ForeColor = Color.Red;
                 comment = "No Description Found for selected opcode";
             }
 
+            catch (NullReferenceException ex) 
+            {
             
+            }
 
 
             return comment;

@@ -96,6 +96,12 @@
     <Compile Include="FRM_EVB.Designer.cs">
       <DependentUpon>FRM_EVB.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRM_EVB_CH_ITEM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_EVB_CH_ITEM.Designer.cs">
+      <DependentUpon>FRM_EVB_CH_ITEM.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRM_HEX2DEC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,10 +113,6 @@
     </Compile>
     <Compile Include="FRM_ITBL.Designer.cs">
       <DependentUpon>FRM_ITBL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FRM_ITEMDAT.cs" />
-    <Compile Include="FRM_ITEMDAT.Designer.cs">
-      <DependentUpon>FRM_ITEMDAT.cs</DependentUpon>
     </Compile>
     <Compile Include="FRM_ItemMemory.cs">
       <SubType>Form</SubType>
@@ -178,14 +180,14 @@
     <EmbeddedResource Include="FRM_EVB.resx">
       <DependentUpon>FRM_EVB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FRM_EVB_CH_ITEM.resx">
+      <DependentUpon>FRM_EVB_CH_ITEM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FRM_HEX2DEC.resx">
       <DependentUpon>FRM_HEX2DEC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_ITBL.resx">
       <DependentUpon>FRM_ITBL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FRM_ITEMDAT.resx">
-      <DependentUpon>FRM_ITEMDAT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_ItemMemory.resx">
       <DependentUpon>FRM_ItemMemory.cs</DependentUpon>
