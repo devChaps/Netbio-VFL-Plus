@@ -564,7 +564,7 @@
             // 
             this.rDTINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.rDTINTToolStripMenuItem.Name = "rDTINTToolStripMenuItem";
-            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rDTINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.rDTINTToolStripMenuItem.Text = "RDT INT";
             this.rDTINTToolStripMenuItem.Click += new System.EventHandler(this.rDTINTToolStripMenuItem_Click);
             // 
@@ -572,7 +572,7 @@
             // 
             this.eVBINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eVBINTToolStripMenuItem.Name = "eVBINTToolStripMenuItem";
-            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eVBINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.eVBINTToolStripMenuItem.Text = "EVB INT";
             this.eVBINTToolStripMenuItem.Click += new System.EventHandler(this.eVBINTToolStripMenuItem_Click);
             // 
@@ -580,14 +580,14 @@
             // 
             this.sNDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sNDINTToolStripMenuItem.Name = "sNDINTToolStripMenuItem";
-            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sNDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.sNDINTToolStripMenuItem.Text = "SND INT";
             // 
             // eMDINTToolStripMenuItem
             // 
             this.eMDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.eMDINTToolStripMenuItem.Name = "eMDINTToolStripMenuItem";
-            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eMDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.eMDINTToolStripMenuItem.Text = "EMD INT";
             this.eMDINTToolStripMenuItem.Click += new System.EventHandler(this.eMDINTToolStripMenuItem_Click);
             // 
@@ -595,7 +595,7 @@
             // 
             this.nPCINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nPCINTToolStripMenuItem.Name = "nPCINTToolStripMenuItem";
-            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nPCINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nPCINTToolStripMenuItem.Text = "NPC INT";
             this.nPCINTToolStripMenuItem.Click += new System.EventHandler(this.nPCINTToolStripMenuItem_Click);
             // 
@@ -603,20 +603,20 @@
             // 
             this.nBDINTToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.nBDINTToolStripMenuItem.Name = "nBDINTToolStripMenuItem";
-            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nBDINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.nBDINTToolStripMenuItem.Text = "NBD INT";
             // 
             // iTEMTBLINTToolStripMenuItem
             // 
             this.iTEMTBLINTToolStripMenuItem.Name = "iTEMTBLINTToolStripMenuItem";
-            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iTEMTBLINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.iTEMTBLINTToolStripMenuItem.Text = "ITEM TBL INT";
             this.iTEMTBLINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMTBLINTToolStripMenuItem_Click);
             // 
             // iTEMDATINTToolStripMenuItem
             // 
             this.iTEMDATINTToolStripMenuItem.Name = "iTEMDATINTToolStripMenuItem";
-            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.iTEMDATINTToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.iTEMDATINTToolStripMenuItem.Text = "ITEM DAT INT";
             this.iTEMDATINTToolStripMenuItem.Click += new System.EventHandler(this.iTEMDATINTToolStripMenuItem_Click);
             // 
@@ -874,7 +874,7 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.testToolStripMenuItem.Text = "Item Properties";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 

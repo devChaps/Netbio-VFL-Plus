@@ -423,7 +423,7 @@ namespace Netbio_VFL_Plus
                         }
                         else
                         {
-                            MessageBox.Show("Not parsing that shit brah!");
+                            MessageBox.Show("Format not supported atm");
                         }
 
                         //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
@@ -1399,7 +1399,7 @@ namespace Netbio_VFL_Plus
 
         private void BTN_DEBUGLOG_Click(object sender, EventArgs e)
         {
-            DEBUG_FORM.ShowDialog();
+            DEBUG_FORM.Show();
 
         }
 

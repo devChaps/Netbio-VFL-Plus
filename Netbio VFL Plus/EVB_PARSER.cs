@@ -97,6 +97,25 @@ namespace Netbio_VFL_Plus
             public Int32 TBL_SLOT = 0;
         }
 
+
+        //// SET SPECIAL ITEM AOT
+        //public class x35010003
+        //{
+           
+        //    // 
+        //    //
+        //    // need more parsing
+        
+        //}
+
+
+        public struct x35010003
+        {
+            public byte[] SpecialItemData;// use 32 byte array for now
+
+        }
+
+
         public class x37000002
         {
             public Int32 opcode = 0;
@@ -983,15 +1002,15 @@ namespace Netbio_VFL_Plus
             //Color x32byte = Color.LightSteelBlue;
 
             Color cmd_player = Color.Crimson;
-            Color cmd_enemy = Color.Red;
-            Color cmd_event = Color.Yellow;
+            Color cmd_enemy = Color.IndianRed;
+            Color cmd_event = Color.Goldenrod;
             Color cmd_spItem = Color.Cyan;
             Color cmd_item = Color.LimeGreen;
             Color cmd_npc = Color.Orange;
-            Color cmd_snd = Color.LightBlue;
+            Color cmd_snd = Color.Yellow;
             Color cmd_door = Color.DarkKhaki;
             Color cmd_logic = Color.CornflowerBlue;
-            Color cmd_sfd = Color.Goldenrod;
+            Color cmd_sfd = Color.BlanchedAlmond;
 
             if (opcode.Substring(0, 8) == "35010003") { return cmd_spItem; }
             if (opcode.Substring(0, 8) == "3A000003") { return cmd_npc; }

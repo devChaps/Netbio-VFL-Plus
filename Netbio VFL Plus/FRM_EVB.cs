@@ -19,6 +19,9 @@ namespace Netbio_VFL_Plus
 
 
         public FRM_DEBUG EVB_DEBUG = new FRM_DEBUG();
+        public FRM_SP_ITEM SP_ITEM_FORM = new FRM_SP_ITEM();
+
+        public EVB_PARSER.x35010003[] SP_ITEMS = new EVB_PARSER.x35010003[0];
 
         public FRM_EVB()
         {
@@ -55,18 +58,17 @@ namespace Netbio_VFL_Plus
         {
             try
             {
-                // LV_INTCODE.SelectedItems.Clear();
-
-             
+                             
                     int idx = LV_BYTECODE.SelectedIndices[0]; // GET RELATIVE INDEX
-
                     //  LV_INTCODE.SelectedItems.Clear();
                     LV_INTCODE.Items[idx].Selected = true;
-
                     LV_INTCODE.EnsureVisible(idx);
 
-                
 
+                // DUMP SELECTED OPCODE TO DEBUG LOG
+
+
+                EVB_DEBUG.DEBUG_LOG.AppendText(LV_BYTECODE.Items[idx].SubItems[1].Text + "\n");
                
            
 
@@ -160,37 +162,47 @@ namespace Netbio_VFL_Plus
 
         private void TSB_OPSCAN_Click(object sender, EventArgs e)
         {
-            string opcode = Interaction.InputBox("Enter the 4 byte opcode you want all instances of for example '39000002'", "OP_SCAN");
 
-            bool QueryMatch = false;
-
-            EVB_DEBUG.DEBUG_LOG.Clear();
-
-            for (int i = 0; i < LV_BYTECODE.Items.Count; i++) 
+            try
             {
 
-                string bytestr = LV_BYTECODE.Items[i].SubItems[1].Text;
+                string opcode = Interaction.InputBox("Enter the 4 byte opcode you want all instances of for example '39000002'", "OP_SCAN");
 
+                bool QueryMatch = false;
 
-                if (bytestr.Substring(0, 8) == opcode)
+                EVB_DEBUG.DEBUG_LOG.Clear();
+
+                for (int i = 0; i < LV_BYTECODE.Items.Count; i++)
                 {
-                    QueryMatch = true;
-                    EVB_DEBUG.DEBUG_LOG.AppendText(bytestr  + "\n");
+
+                    string bytestr = LV_BYTECODE.Items[i].SubItems[1].Text;
+
+
+                    if (bytestr.Substring(0, 8) == opcode)
+                    {
+                        QueryMatch = true;
+                        EVB_DEBUG.DEBUG_LOG.AppendText(bytestr + "\n");
+                    }
+
+
+
+
+
                 }
-             
 
 
 
+                if (QueryMatch) { EVB_DEBUG.ShowDialog(); }
+                else
+                {
+                    MessageBox.Show("No match or incorrect query..", "NO MATCH", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (System.ArgumentOutOfRangeException AOE)
+            {
 
             }
-
-            if (QueryMatch) { EVB_DEBUG.ShowDialog(); }
-            else {
-                MessageBox.Show("No match or incorrect query..", "NO MATCH", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-
-
 
 
 
@@ -200,7 +212,7 @@ namespace Netbio_VFL_Plus
 
         private void TSB_DEBUG_Click(object sender, EventArgs e)
         {
-            EVB_DEBUG.ShowDialog();
+            EVB_DEBUG.Show();
             
         }
 
@@ -215,6 +227,78 @@ namespace Netbio_VFL_Plus
             FD.ShowDialog();
 
             LV_INTCODE.Font = FD.Font;
+        }
+
+        private void BTN_SP_ITEM_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                string opcode = "35010003"; // SP.ITEM OPCODE ID
+                List<string> sp_opcodes = new List<string>();
+
+                int _spcount = 0;
+
+                for (int i = 0; i < LV_BYTECODE.Items.Count - 1; i++)
+                {
+                  
+                        string bytestr = LV_BYTECODE.Items[i].SubItems[1].Text;
+
+                            if (bytestr.Substring(0, 8) == opcode)
+                            {
+                                _spcount++; // count every instance
+                                sp_opcodes.Add(bytestr);
+                                //  EVB_DEBUG.DEBUG_LOG.AppendText(bytestr + "\n"); 
+
+                 
+                            }
+                      
+
+                }
+
+
+                Array.Resize(ref SP_ITEMS, _spcount);
+               
+
+                // CREATE SP ITEM ARRAY FOR EACH ONE FOUND .. 
+              
+                
+
+            //    MessageBox.Show(_spcount.ToString());
+
+
+                // LOOP THROUGH DETECTED SP ITEMS, ADD TO CONTROLS / CONVERT BYTESTR TO BYTE ARRAY
+               for (int i = 0; i < SP_ITEMS.Length; i++)
+               {
+                    SP_ITEMS[i].SpecialItemData = new byte[32];
+                    SP_ITEMS[i].SpecialItemData = Encoding.ASCII.GetBytes(sp_opcodes[i]);
+                    SP_ITEM_FORM.LB_SP_ITEM.Items.Add(i);
+                    SP_ITEM_FORM.CB_SP_ITEM_SEL.Items.Add(sp_opcodes[i]);
+
+                }
+
+
+                SP_ITEM_FORM.Show();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No Sp.Items found in scan");
+
+            }
+
+
+        }
+
+        private void TSB_DOORSCAN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
