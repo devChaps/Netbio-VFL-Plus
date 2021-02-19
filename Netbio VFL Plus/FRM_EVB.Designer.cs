@@ -53,8 +53,12 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.PB_ROOM = new System.Windows.Forms.PictureBox();
+            this.LBL_OFFSET = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LBL_OP_SZ = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_ROOM)).BeginInit();
             this.SuspendLayout();
             // 
             // LV_BYTECODE
@@ -134,7 +138,7 @@
             this.PG_OPCODE.HelpBackColor = System.Drawing.SystemColors.ControlDark;
             this.PG_OPCODE.Location = new System.Drawing.Point(1009, 54);
             this.PG_OPCODE.Name = "PG_OPCODE";
-            this.PG_OPCODE.Size = new System.Drawing.Size(218, 816);
+            this.PG_OPCODE.Size = new System.Drawing.Size(218, 635);
             this.PG_OPCODE.TabIndex = 3;
             this.PG_OPCODE.ToolbarVisible = false;
             this.PG_OPCODE.ViewBackColor = System.Drawing.SystemColors.WindowFrame;
@@ -144,7 +148,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Progressbar00,
-            this.BTN_TOGGLE});
+            this.BTN_TOGGLE,
+            this.LBL_OFFSET,
+            this.LBL_OP_SZ});
             this.statusStrip1.Location = new System.Drawing.Point(0, 860);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1227, 22);
@@ -332,11 +338,33 @@
             this.label1.Text = "CODE DETAILS";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // PB_ROOM
+            // 
+            this.PB_ROOM.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.PB_ROOM.Location = new System.Drawing.Point(1005, 695);
+            this.PB_ROOM.Name = "PB_ROOM";
+            this.PB_ROOM.Size = new System.Drawing.Size(222, 159);
+            this.PB_ROOM.TabIndex = 9;
+            this.PB_ROOM.TabStop = false;
+            // 
+            // LBL_OFFSET
+            // 
+            this.LBL_OFFSET.Name = "LBL_OFFSET";
+            this.LBL_OFFSET.Size = new System.Drawing.Size(15, 17);
+            this.LBL_OFFSET.Text = "{}";
+            // 
+            // LBL_OP_SZ
+            // 
+            this.LBL_OP_SZ.Name = "LBL_OP_SZ";
+            this.LBL_OP_SZ.Size = new System.Drawing.Size(15, 17);
+            this.LBL_OP_SZ.Text = "{}";
+            // 
             // FRM_EVB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1227, 882);
+            this.Controls.Add(this.PB_ROOM);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TB_DETAILS);
             this.Controls.Add(this.toolStrip1);
@@ -353,6 +381,7 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PB_ROOM)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -383,5 +412,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton TSB_DEBUG;
+        private System.Windows.Forms.PictureBox PB_ROOM;
+        private System.Windows.Forms.ToolStripStatusLabel LBL_OFFSET;
+        private System.Windows.Forms.ToolStripStatusLabel LBL_OP_SZ;
     }
 }

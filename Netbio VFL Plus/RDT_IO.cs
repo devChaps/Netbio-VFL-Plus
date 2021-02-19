@@ -133,22 +133,27 @@ using System.Threading;
 
             int total = start_off + afs_rdt_off;
 
-            Selected_RDTOFF.Text = total.ToString();
+           
 
 
             BinaryReader br = new BinaryReader(fs);
             byte[] RDT_BUFFER = new byte[0];
 
 
+          //  MessageBox.Show("total: " + total.ToString());
 
-            
-           
-            
+
+
 
             //  int LvIndex = LV.SelectedIndices[0]; // wrong 
 
 
             RDT_SELECTED.File_Offset = int.Parse(LV_AFS.Items[sel_idx].SubItems[1].Text) + start_off;
+
+            Selected_RDTOFF.Text = RDT_SELECTED.File_Offset.ToString();
+
+            //  MessageBox.Show(RDT_SELECTED.File_Offset.ToString());
+
             RDT_SELECTED.File_Size = int.Parse(LV_AFS.Items[sel_idx].SubItems[2].Text);
             RDT_SELECTED.File_Name = LV_AFS.Items[sel_idx].SubItems[3].Text;
             
@@ -201,7 +206,7 @@ using System.Threading;
                 LV_RDT.Items[i].SubItems.Add(RDT_HEADER[i]._size.ToString());
 
 
-                Selected_RDT.Text = "File: " + RDT_SELECTED.File_Name;
+                Selected_RDT.Text = RDT_SELECTED.File_Name;
                 Selected_RDTSIZE.Text = "Size:" + RDT_SELECTED.File_Size.ToString();
                 
 
@@ -395,6 +400,148 @@ using System.Threading;
 	  
 	  } // send RDT from afs panel to RDT int
 
+
+
+
+        /// <summary>
+        ///  UNPACK RDT CHUNKS (AFS RELATIVE)
+        /// </summary>
+        /// <param name="input_file"></param>
+        /// <param name="output_file"></param>
+        public void Unpack_RDT_AFS(Stream fs, ToolStripStatusLabel LBL_RDT_FILE,ToolStripStatusLabel LBL_RDT_OFF) // unpack RDT to work folder
+        {
+
+
+
+                int offset = int.Parse(LBL_RDT_OFF.Text); 
+                string output_file = string.Empty;
+
+
+            RDT_HEADER_OBJ[] RDT_DATA = new RDT_HEADER_OBJ[0];
+
+            string unpack_DI = AppDomain.CurrentDomain.BaseDirectory + "\\RDT_UPK " + LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8);
+
+            // CREATE DIR IF DOESENT EXIST...
+
+            if (false == Directory.Exists(unpack_DI))
+            {
+                DirectoryInfo DI = Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\RDT_UPK " + LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8));
+
+            }
+            else
+            {
+                MessageBox.Show("Directory already exists");
+            }
+
+
+
+            byte[] _buffer = new byte[0];
+          
+            BinaryReader br = new BinaryReader(fs);
+
+
+
+
+            fs.Seek(offset, SeekOrigin.Begin);
+
+
+            int _subcount = br.ReadInt32();
+            _subcount = _subcount / 8;
+            Array.Resize(ref RDT_DATA, _subcount);
+
+            fs.Seek(offset, SeekOrigin.Begin);
+
+            // loop through header to find and display actual chunk offsets
+            for (int i = 0; i < RDT_DATA.Length; i++)
+            {
+                RDT_DATA[i]._offset = br.ReadInt32();
+                RDT_DATA[i]._size = br.ReadInt32();
+            }
+
+
+
+                MessageBox.Show(RDT_DATA.Length.ToString());
+
+            for (int x = 0; x < RDT_DATA.Length; x++) // loop through main header offsets to label chunks
+            {
+                switch (x)
+                {
+                    case 0:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_CAM";
+                        break;
+                    case 1:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_SGL";
+                        break;
+                    case 2:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_SND1";
+                        break;
+                    case 3:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_SND2";
+                        break;
+                    case 7:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_ANPK";
+                        break;
+                    case 10:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_AOT";
+                        break;
+
+                    case 11:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_LIG";
+                        break;
+                    case 13:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_FOG";
+                        break;
+                    case 15:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_UNK1";
+                        break;
+                    case 16:
+                        output_file = LBL_RDT_FILE.Text.Substring(LBL_RDT_FILE.Text.Length - 12, 8) + "_GRD";
+                        break;
+
+                }
+
+
+                if (RDT_DATA[x]._size != 0 && RDT_DATA[x]._size > 0)
+                {
+                    fs.Seek(RDT_DATA[x]._offset + offset, SeekOrigin.Begin);
+           
+                    Array.Resize(ref _buffer, RDT_DATA[x]._size);
+                    br.Read(_buffer, 0, _buffer.Length);
+
+                    FileStream fs2 = new FileStream(unpack_DI + "\\" + output_file, FileMode.Create);
+                    BinaryWriter bw = new BinaryWriter(fs2);
+
+                    bw.Write(_buffer, 0, _buffer.Length);
+                    fs2.Close();
+                    bw.Close();
+                }
+                else 
+                {
+                    continue;
+                }
+
+            }
+
+
+
+            fs.Close();
+            br.Close();
+
+
+
+            MessageBox.Show("File was written succesfully");
+
+
+
+        } // unpacks every chunk to output directory
+
+
+
+        /// <summary>
+        ///  UNPACK RDT CHUNKS (FILE RELATIVE)
+        /// </summary>
+        /// <param name="input_file"></param>
+        /// <param name="output_file"></param>
         public void Unpack_RDT(string input_file,string output_file) // unpack RDT to work folder
         {
        

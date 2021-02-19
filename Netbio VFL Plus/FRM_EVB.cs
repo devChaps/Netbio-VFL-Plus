@@ -69,6 +69,8 @@ namespace Netbio_VFL_Plus
 
 
                 EVB_DEBUG.DEBUG_LOG.AppendText(LV_BYTECODE.Items[idx].SubItems[1].Text + "\n");
+
+                LBL_OFFSET.Text = LV_BYTECODE.Items[idx].SubItems[2].Text;
                
            
 

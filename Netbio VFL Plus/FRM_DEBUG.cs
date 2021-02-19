@@ -22,5 +22,12 @@ namespace Netbio_VFL_Plus
         {
             DEBUG_LOG.Clear();
         }
+
+        private void FRM_DEBUG_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            this.Parent = null;
+            e.Cancel = true; //hides the form, cancels closing event
+        }
     }
 }

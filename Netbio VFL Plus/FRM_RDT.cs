@@ -18,6 +18,8 @@ namespace Netbio_VFL_Plus
 
         public EVB_PARSER EVBIO = new EVB_PARSER();
         public FRM_EVB EVB_FORM = new FRM_EVB();
+        public static RDT_IO RDT_HANDLER = new RDT_IO();
+        
 
         public FRM_RDT()
         {
@@ -74,6 +76,37 @@ namespace Netbio_VFL_Plus
 
             }
 
+
+        }
+
+        private void BTN_UNPACK_Click(object sender, EventArgs e)
+        {
+
+
+            if (File.Exists(FRM_MAIN.Img.Image_Path))
+            {
+                using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open))
+                {
+                    if (FRM_MAIN.Valid_Iso(fs))
+                    {
+                        FRM_MAIN.Img.Read_Image = new CDReader(fs, true, true);
+                        FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
+
+                        Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
+
+                        RDT_HANDLER.Unpack_RDT_AFS(memStream, LBL_RDTSELECT, LBL_RDT_OFF);
+                    }
+                }
+            }
+
+
+                   
+
+              // RDT_HANDLER.Unpack_RDT()  
+        }
+
+        private void RDT_ContextMenu_Opening(object sender, CancelEventArgs e)
+        {
 
         }
     }
