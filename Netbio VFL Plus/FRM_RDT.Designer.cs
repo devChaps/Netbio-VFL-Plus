@@ -42,11 +42,11 @@
             this.LBL_RDT_OFF = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_RDTSELECT = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.BTN_CAM = new System.Windows.Forms.ToolStripButton();
-            this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
-            this.BTN_LIG = new System.Windows.Forms.ToolStripButton();
-            this.BTN_SGL = new System.Windows.Forms.ToolStripButton();
             this.BTN_UNPACK = new System.Windows.Forms.ToolStripButton();
+            this.BTN_CAM = new System.Windows.Forms.ToolStripButton();
+            this.BTN_LIG = new System.Windows.Forms.ToolStripButton();
+            this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
+            this.BTN_SGL = new System.Windows.Forms.ToolStripButton();
             this.RDT_ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unpackSubFormatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unpackSelectedSubFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +54,7 @@
             this.repackIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewSelectedMemoryRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interpretSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BTN_MOMO = new System.Windows.Forms.ToolStripButton();
             this.RDT_sStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.RDT_ContextMenu.SuspendLayout();
@@ -75,7 +76,7 @@
             this.LV_RDT.HideSelection = false;
             this.LV_RDT.Location = new System.Drawing.Point(12, 62);
             this.LV_RDT.Name = "LV_RDT";
-            this.LV_RDT.Size = new System.Drawing.Size(536, 523);
+            this.LV_RDT.Size = new System.Drawing.Size(532, 523);
             this.LV_RDT.TabIndex = 1;
             this.LV_RDT.UseCompatibleStateImageBehavior = false;
             this.LV_RDT.View = System.Windows.Forms.View.Details;
@@ -116,7 +117,7 @@
             this.RDT_sStrip.Location = new System.Drawing.Point(0, 586);
             this.RDT_sStrip.Name = "RDT_sStrip";
             this.RDT_sStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.RDT_sStrip.Size = new System.Drawing.Size(560, 38);
+            this.RDT_sStrip.Size = new System.Drawing.Size(547, 38);
             this.RDT_sStrip.SizingGrip = false;
             this.RDT_sStrip.TabIndex = 5;
             this.RDT_sStrip.Text = "statusStrip2";
@@ -167,12 +168,24 @@
             this.BTN_CAM,
             this.BTN_LIG,
             this.BTN_SOUND,
-            this.BTN_SGL});
+            this.BTN_SGL,
+            this.BTN_MOMO});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(560, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(547, 55);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // BTN_UNPACK
+            // 
+            this.BTN_UNPACK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_UNPACK.Image = ((System.Drawing.Image)(resources.GetObject("BTN_UNPACK.Image")));
+            this.BTN_UNPACK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BTN_UNPACK.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_UNPACK.Name = "BTN_UNPACK";
+            this.BTN_UNPACK.Size = new System.Drawing.Size(52, 52);
+            this.BTN_UNPACK.Text = "toolStripButton2";
+            this.BTN_UNPACK.Click += new System.EventHandler(this.BTN_UNPACK_Click);
             // 
             // BTN_CAM
             // 
@@ -185,16 +198,6 @@
             this.BTN_CAM.Text = "toolStripButton3";
             this.BTN_CAM.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
-            // BTN_SOUND
-            // 
-            this.BTN_SOUND.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_SOUND.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SOUND.Image")));
-            this.BTN_SOUND.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_SOUND.Name = "BTN_SOUND";
-            this.BTN_SOUND.Size = new System.Drawing.Size(52, 52);
-            this.BTN_SOUND.Text = "toolStripButton5";
-            // 
             // BTN_LIG
             // 
             this.BTN_LIG.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -204,6 +207,17 @@
             this.BTN_LIG.Name = "BTN_LIG";
             this.BTN_LIG.Size = new System.Drawing.Size(52, 52);
             this.BTN_LIG.Text = "toolStripButton4";
+            // 
+            // BTN_SOUND
+            // 
+            this.BTN_SOUND.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_SOUND.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SOUND.Image")));
+            this.BTN_SOUND.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_SOUND.Name = "BTN_SOUND";
+            this.BTN_SOUND.Size = new System.Drawing.Size(52, 52);
+            this.BTN_SOUND.Text = "toolStripButton5";
+            this.BTN_SOUND.Click += new System.EventHandler(this.BTN_SOUND_Click);
             // 
             // BTN_SGL
             // 
@@ -215,17 +229,6 @@
             this.BTN_SGL.Size = new System.Drawing.Size(52, 52);
             this.BTN_SGL.Text = "toolStripButton4";
             this.BTN_SGL.Click += new System.EventHandler(this.BTN_SGL_Click);
-            // 
-            // BTN_UNPACK
-            // 
-            this.BTN_UNPACK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_UNPACK.Image = ((System.Drawing.Image)(resources.GetObject("BTN_UNPACK.Image")));
-            this.BTN_UNPACK.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.BTN_UNPACK.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_UNPACK.Name = "BTN_UNPACK";
-            this.BTN_UNPACK.Size = new System.Drawing.Size(52, 52);
-            this.BTN_UNPACK.Text = "toolStripButton2";
-            this.BTN_UNPACK.Click += new System.EventHandler(this.BTN_UNPACK_Click);
             // 
             // RDT_ContextMenu
             // 
@@ -276,12 +279,21 @@
             this.interpretSelectedToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.interpretSelectedToolStripMenuItem.Text = "Interpret Selected";
             // 
+            // BTN_MOMO
+            // 
+            this.BTN_MOMO.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_MOMO.Image = ((System.Drawing.Image)(resources.GetObject("BTN_MOMO.Image")));
+            this.BTN_MOMO.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_MOMO.Name = "BTN_MOMO";
+            this.BTN_MOMO.Size = new System.Drawing.Size(23, 52);
+            this.BTN_MOMO.Text = "toolStripButton1";
+            // 
             // FRM_RDT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(560, 624);
+            this.ClientSize = new System.Drawing.Size(547, 624);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.RDT_sStrip);
             this.Controls.Add(this.LV_RDT);
@@ -323,5 +335,6 @@
         private System.Windows.Forms.ToolStripMenuItem repackIndexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewSelectedMemoryRegionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem interpretSelectedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton BTN_MOMO;
     }
 }

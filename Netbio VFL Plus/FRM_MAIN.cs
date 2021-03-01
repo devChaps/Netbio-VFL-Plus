@@ -1454,27 +1454,38 @@ namespace Netbio_VFL_Plus
 
         private void BTN_PL_NAME_Click(object sender, EventArgs e)
         {
-            using(FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite)) 
+
+            try
             {
-                using (BinaryReader br = new BinaryReader(fs, new ASCIIEncoding())) 
+
+                using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
-                    // seek to name data
-                    fs.Seek(2107032, SeekOrigin.Begin);
-
-                    // resize string to num of entries + offsets
-                    Array.Resize(ref NAME_OBJ.name, 784 / 8);
-                    Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
-                    
-                    // loop through entries and convert b array to ascii / store in structure for later use
-                    for(int i = 0; i < NAME_OBJ.name.Length; i++) 
+                    using (BinaryReader br = new BinaryReader(fs, new ASCIIEncoding()))
                     {
-                        NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
-                        byte[] buffer = br.ReadBytes(8);
-                        NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                     //   MessageBox.Show(NAME_OBJ.name[i]);
+                        // seek to name data
+                        fs.Seek(2107032, SeekOrigin.Begin);
 
+                        // resize string to num of entries + offsets
+                        Array.Resize(ref NAME_OBJ.name, 784 / 8);
+                        Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
+
+                        // loop through entries and convert b array to ascii / store in structure for later use
+                        for (int i = 0; i < NAME_OBJ.name.Length; i++)
+                        {
+                            NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
+                            byte[] buffer = br.ReadBytes(8);
+                            NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                            //   MessageBox.Show(NAME_OBJ.name[i]);
+
+                        }
                     }
+
                 }
+            }
+            catch (Exception ex) 
+            {
+            
+
             
             }
             // SHOW FORM
@@ -1491,6 +1502,15 @@ namespace Netbio_VFL_Plus
         {
              // LOAD ITEM PROPERTIES MEMORY FORM
             FRM_IMEM.ShowDialog();
+        }
+
+        private void BTN_SOUND_Click(object sender, EventArgs e)
+        {
+            FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
+
+            AUDIO_FORM.Show();
+
+
         }
     }
 }

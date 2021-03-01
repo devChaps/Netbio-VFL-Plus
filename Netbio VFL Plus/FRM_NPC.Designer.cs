@@ -154,7 +154,7 @@
             // LBL_BOUNDS
             // 
             this.LBL_BOUNDS.ForeColor = System.Drawing.Color.Black;
-            this.LBL_BOUNDS.Location = new System.Drawing.Point(194, 82);
+            this.LBL_BOUNDS.Location = new System.Drawing.Point(185, 82);
             this.LBL_BOUNDS.Name = "LBL_BOUNDS";
             this.LBL_BOUNDS.Size = new System.Drawing.Size(80, 22);
             this.LBL_BOUNDS.TabIndex = 49;
@@ -494,6 +494,7 @@
             this.label5.TabIndex = 52;
             this.label5.Text = "Z";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -514,6 +515,7 @@
             this.label3.TabIndex = 50;
             this.label3.Text = "X";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // groupBox3
             // 
@@ -529,7 +531,7 @@
             // PB_CURRENT_ROOM
             // 
             this.PB_CURRENT_ROOM.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.PB_CURRENT_ROOM.Location = new System.Drawing.Point(5, 26);
+            this.PB_CURRENT_ROOM.Location = new System.Drawing.Point(8, 26);
             this.PB_CURRENT_ROOM.Name = "PB_CURRENT_ROOM";
             this.PB_CURRENT_ROOM.Size = new System.Drawing.Size(171, 154);
             this.PB_CURRENT_ROOM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

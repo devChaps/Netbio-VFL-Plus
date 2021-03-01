@@ -113,6 +113,9 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
+            this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -142,7 +145,10 @@
             this.BTN_DEBUGLOG,
             this.toolStripSeparator5,
             this.BTN_PL_NAME,
+            this.toolStripSeparator9,
             this.BTN_CALC,
+            this.toolStripSeparator8,
+            this.BTN_SOUND,
             this.toolStripSeparator2,
             this.Groups_List,
             this.LBL_AFS,
@@ -889,6 +895,28 @@
             this.TMR_EXE.Interval = 50;
             this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
             // 
+            // BTN_SOUND
+            // 
+            this.BTN_SOUND.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BTN_SOUND.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_SOUND.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SOUND.Image")));
+            this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_SOUND.Name = "BTN_SOUND";
+            this.BTN_SOUND.Size = new System.Drawing.Size(52, 43);
+            this.BTN_SOUND.Text = "toolStripButton1";
+            this.BTN_SOUND.ToolTipText = "Converter";
+            this.BTN_SOUND.Click += new System.EventHandler(this.BTN_SOUND_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 46);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 46);
+            // 
             // FRM_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1002,6 +1030,9 @@
         private System.Windows.Forms.ToolStripButton BTN_IMG;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripProgressBar PRG_LOAD;
+        private System.Windows.Forms.ToolStripButton BTN_SOUND;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     }
 }
 

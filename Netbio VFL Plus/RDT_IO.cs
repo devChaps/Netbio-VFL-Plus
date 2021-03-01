@@ -94,7 +94,18 @@ using System.Threading;
 		 public float hue_blue; // 48
 	 }
 
+
+
+    public struct GRD_SOUND_HEADER
+    {
+        public Int32 t_count; // total # of entries
+        public Int32 _null; // always seems to be 0x00000
+        public Int32[] offsets; // as many as total entries
+
     
+    }
+
+
   public class RDT_IO
  
   {
@@ -459,9 +470,6 @@ using System.Threading;
             }
 
 
-
-                MessageBox.Show(RDT_DATA.Length.ToString());
-
             for (int x = 0; x < RDT_DATA.Length; x++) // loop through main header offsets to label chunks
             {
                 switch (x)
@@ -527,10 +535,7 @@ using System.Threading;
             fs.Close();
             br.Close();
 
-
-
-            MessageBox.Show("File was written succesfully");
-
+            MessageBox.Show("File was written succesfully", "UNPACK", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
         } // unpacks every chunk to output directory
