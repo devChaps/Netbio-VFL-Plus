@@ -1512,5 +1512,10 @@ namespace Netbio_VFL_Plus
 
 
         }
+
+        private void MAINSTATUS_STRIP_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

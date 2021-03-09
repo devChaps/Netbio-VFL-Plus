@@ -227,53 +227,53 @@ namespace Netbio_VFL_Plus
         /// <param name="freq"></param>
         public static void PLAY_LV_CLIP(string path, Int32 offset, int t_sz, int freq) 
         {
-            byte[] buffer = new byte[t_sz];
+           // byte[] buffer = new byte[t_sz];
 
          
 
-            using (FileStream fs = new FileStream(path, FileMode.Open)) 
-            {
+            //using (FileStream fs = new FileStream(path, FileMode.Open)) 
+            //{
              
-                NAudio.Wave.AdpcmWaveFormat awf = new NAudio.Wave.AdpcmWaveFormat(freq, 1);
+            //    NAudio.Wave.AdpcmWaveFormat awf = new NAudio.Wave.AdpcmWaveFormat(freq, 1);
 
-               // NAudio.Wave.WaveFormat wf = new NAudio.Wave.WaveFormat(freq, 1);
+            //   // NAudio.Wave.WaveFormat wf = new NAudio.Wave.WaveFormat(freq, 1);
 
-                NAudio.Wave.RawSourceWaveStream rawSource = new NAudio.Wave.RawSourceWaveStream(fs,wf);
+            //    NAudio.Wave.RawSourceWaveStream rawSource = new NAudio.Wave.RawSourceWaveStream(fs,wf);
             
-               NAudio.Wave.WaveOut wo = new NAudio.Wave.WaveOut();
+            //   NAudio.Wave.WaveOut wo = new NAudio.Wave.WaveOut();
 
 
                
 
-                rawSource.Position = offset;
+            //    rawSource.Position = offset;
 
-                rawSource.Read(buffer, 0, t_sz);
+            //    rawSource.Read(buffer, 0, t_sz);
 
           
                 
 
 
-                 NAudio.Wave.WaveFormatConversionStream.CreatePcmStream(rawSource);
+            //     NAudio.Wave.WaveFormatConversionStream.CreatePcmStream(rawSource);
 
                 
                
 
-                NAudio.Wave.WaveFileWriter.CreateWaveFile(AppDomain.CurrentDomain.BaseDirectory + "test1.wav", rawSource);
+            //    NAudio.Wave.WaveFileWriter.CreateWaveFile(AppDomain.CurrentDomain.BaseDirectory + "test1.wav", rawSource);
 
 
 
-                //   wo.Init(rawSource);
-                //    wo.Play();
+            //    //   wo.Init(rawSource);
+            //    //    wo.Play();
 
 
 
-                //NAudio.Wave.WaveFormatConversionStream.CreatePcmStream()
+            //    //NAudio.Wave.WaveFormatConversionStream.CreatePcmStream()
 
 
 
 
 
-            }
+            //}
             
             
         

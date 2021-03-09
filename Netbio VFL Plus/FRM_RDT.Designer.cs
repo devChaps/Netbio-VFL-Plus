@@ -47,6 +47,7 @@
             this.BTN_LIG = new System.Windows.Forms.ToolStripButton();
             this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
             this.BTN_SGL = new System.Windows.Forms.ToolStripButton();
+            this.BTN_MOMO = new System.Windows.Forms.ToolStripButton();
             this.RDT_ContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.unpackSubFormatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unpackSelectedSubFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@
             this.repackIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewSelectedMemoryRegionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.interpretSelectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.BTN_MOMO = new System.Windows.Forms.ToolStripButton();
             this.RDT_sStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.RDT_ContextMenu.SuspendLayout();
@@ -184,7 +184,7 @@
             this.BTN_UNPACK.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_UNPACK.Name = "BTN_UNPACK";
             this.BTN_UNPACK.Size = new System.Drawing.Size(52, 52);
-            this.BTN_UNPACK.Text = "toolStripButton2";
+            this.BTN_UNPACK.Text = "Unpack";
             this.BTN_UNPACK.Click += new System.EventHandler(this.BTN_UNPACK_Click);
             // 
             // BTN_CAM
@@ -195,7 +195,7 @@
             this.BTN_CAM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_CAM.Name = "BTN_CAM";
             this.BTN_CAM.Size = new System.Drawing.Size(52, 52);
-            this.BTN_CAM.Text = "toolStripButton3";
+            this.BTN_CAM.Text = "Camera Manager";
             this.BTN_CAM.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // BTN_LIG
@@ -206,7 +206,7 @@
             this.BTN_LIG.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_LIG.Name = "BTN_LIG";
             this.BTN_LIG.Size = new System.Drawing.Size(52, 52);
-            this.BTN_LIG.Text = "toolStripButton4";
+            this.BTN_LIG.Text = "Light Manager";
             // 
             // BTN_SOUND
             // 
@@ -216,7 +216,7 @@
             this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_SOUND.Name = "BTN_SOUND";
             this.BTN_SOUND.Size = new System.Drawing.Size(52, 52);
-            this.BTN_SOUND.Text = "toolStripButton5";
+            this.BTN_SOUND.Text = "GRD SOUND ZONE";
             this.BTN_SOUND.Click += new System.EventHandler(this.BTN_SOUND_Click);
             // 
             // BTN_SGL
@@ -227,8 +227,17 @@
             this.BTN_SGL.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_SGL.Name = "BTN_SGL";
             this.BTN_SGL.Size = new System.Drawing.Size(52, 52);
-            this.BTN_SGL.Text = "toolStripButton4";
+            this.BTN_SGL.Text = "Script Handler";
             this.BTN_SGL.Click += new System.EventHandler(this.BTN_SGL_Click);
+            // 
+            // BTN_MOMO
+            // 
+            this.BTN_MOMO.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_MOMO.Image = ((System.Drawing.Image)(resources.GetObject("BTN_MOMO.Image")));
+            this.BTN_MOMO.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_MOMO.Name = "BTN_MOMO";
+            this.BTN_MOMO.Size = new System.Drawing.Size(23, 52);
+            this.BTN_MOMO.Text = "toolStripButton1";
             // 
             // RDT_ContextMenu
             // 
@@ -278,15 +287,6 @@
             this.interpretSelectedToolStripMenuItem.Name = "interpretSelectedToolStripMenuItem";
             this.interpretSelectedToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.interpretSelectedToolStripMenuItem.Text = "Interpret Selected";
-            // 
-            // BTN_MOMO
-            // 
-            this.BTN_MOMO.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_MOMO.Image = ((System.Drawing.Image)(resources.GetObject("BTN_MOMO.Image")));
-            this.BTN_MOMO.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_MOMO.Name = "BTN_MOMO";
-            this.BTN_MOMO.Size = new System.Drawing.Size(23, 52);
-            this.BTN_MOMO.Text = "toolStripButton1";
             // 
             // FRM_RDT
             // 

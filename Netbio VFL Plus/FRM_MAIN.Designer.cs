@@ -43,7 +43,10 @@
             this.BTN_DEBUGLOG = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_PL_NAME = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.BTN_CALC = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Groups_List = new System.Windows.Forms.ToolStripComboBox();
             this.LBL_AFS = new System.Windows.Forms.ToolStripLabel();
@@ -113,9 +116,6 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
-            this.BTN_SOUND = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -260,6 +260,11 @@
             this.BTN_PL_NAME.ToolTipText = "NPC NAME TOOL";
             this.BTN_PL_NAME.Click += new System.EventHandler(this.BTN_PL_NAME_Click);
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 46);
+            // 
             // BTN_CALC
             // 
             this.BTN_CALC.BackColor = System.Drawing.Color.Gold;
@@ -271,6 +276,23 @@
             this.BTN_CALC.Text = "toolStripButton1";
             this.BTN_CALC.ToolTipText = "Converter";
             this.BTN_CALC.Click += new System.EventHandler(this.BTN_CALC_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 46);
+            // 
+            // BTN_SOUND
+            // 
+            this.BTN_SOUND.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BTN_SOUND.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_SOUND.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SOUND.Image")));
+            this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_SOUND.Name = "BTN_SOUND";
+            this.BTN_SOUND.Size = new System.Drawing.Size(52, 43);
+            this.BTN_SOUND.Text = "toolStripButton1";
+            this.BTN_SOUND.ToolTipText = "Converter";
+            this.BTN_SOUND.Click += new System.EventHandler(this.BTN_SOUND_Click);
             // 
             // toolStripSeparator2
             // 
@@ -798,6 +820,7 @@
             this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(1107, 24);
             this.MAINSTATUS_STRIP.TabIndex = 11;
             this.MAINSTATUS_STRIP.Text = "statusStrip1";
+            this.MAINSTATUS_STRIP.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MAINSTATUS_STRIP_ItemClicked);
             // 
             // LBL_RID
             // 
@@ -894,28 +917,6 @@
             // 
             this.TMR_EXE.Interval = 50;
             this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
-            // 
-            // BTN_SOUND
-            // 
-            this.BTN_SOUND.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.BTN_SOUND.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.BTN_SOUND.Image = ((System.Drawing.Image)(resources.GetObject("BTN_SOUND.Image")));
-            this.BTN_SOUND.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.BTN_SOUND.Name = "BTN_SOUND";
-            this.BTN_SOUND.Size = new System.Drawing.Size(52, 43);
-            this.BTN_SOUND.Text = "toolStripButton1";
-            this.BTN_SOUND.ToolTipText = "Converter";
-            this.BTN_SOUND.Click += new System.EventHandler(this.BTN_SOUND_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 46);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 46);
             // 
             // FRM_MAIN
             // 

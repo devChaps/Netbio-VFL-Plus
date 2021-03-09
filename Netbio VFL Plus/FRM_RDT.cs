@@ -19,7 +19,9 @@ namespace Netbio_VFL_Plus
         public EVB_PARSER EVBIO = new EVB_PARSER();
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public static RDT_IO RDT_HANDLER = new RDT_IO();
-        
+
+        public FRM_RDT_MEM RDT_MEMORY_FORM = new FRM_RDT_MEM();
+
 
         public FRM_RDT()
         {
@@ -28,12 +30,14 @@ namespace Netbio_VFL_Plus
 
         private void LB_RDT_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            RDT_MEMORY_FORM.ShowDialog();
         }
 
+
+        // BUTTON RDT CAM
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-
+            RDT_MEMORY_FORM.ShowDialog();
         }
 
         private void BTN_SGL_Click(object sender, EventArgs e)

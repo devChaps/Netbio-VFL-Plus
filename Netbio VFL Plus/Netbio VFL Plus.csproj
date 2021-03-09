@@ -180,6 +180,12 @@
     <Compile Include="FRM_RDT.Designer.cs">
       <DependentUpon>FRM_RDT.cs</DependentUpon>
     </Compile>
+    <Compile Include="FRM_RDT_MEM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_RDT_MEM.Designer.cs">
+      <DependentUpon>FRM_RDT_MEM.cs</DependentUpon>
+    </Compile>
     <Compile Include="FRM_SP_ITEM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,7 @@
     <Compile Include="Items.cs" />
     <Compile Include="LIB_AUDIO.cs" />
     <Compile Include="LIB_DNAS.cs" />
+    <Compile Include="LIB_MEMORY.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="NBD_IO.cs" />
     <Compile Include="NPC_IO.cs" />
@@ -243,6 +250,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_RDT.resx">
       <DependentUpon>FRM_RDT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_RDT_MEM.resx">
+      <DependentUpon>FRM_RDT_MEM.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FRM_SP_ITEM.resx">
       <DependentUpon>FRM_SP_ITEM.cs</DependentUpon>
