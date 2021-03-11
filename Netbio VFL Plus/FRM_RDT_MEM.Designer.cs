@@ -43,10 +43,10 @@
             this.LBL_POS_Y = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_POS_Z = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_MEMOFF = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LBL_VERSION = new System.Windows.Forms.ToolStripStatusLabel();
             this.BTN_STAT_HOOK = new System.Windows.Forms.ToolStripSplitButton();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.Interval_Timer = new System.Windows.Forms.Timer(this.components);
-            this.LBL_VERSION = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             this.MAINSTATUS_STRIP.SuspendLayout();
             this.SuspendLayout();
@@ -91,8 +91,8 @@
             this.Memory_Grid.Name = "Memory_Grid";
             this.Memory_Grid.PropertySort = System.Windows.Forms.PropertySort.NoSort;
             this.Memory_Grid.SelectedItemWithFocusBackColor = System.Drawing.SystemColors.HighlightText;
-            this.Memory_Grid.SelectedItemWithFocusForeColor = System.Drawing.Color.Black;
-            this.Memory_Grid.Size = new System.Drawing.Size(314, 452);
+            this.Memory_Grid.SelectedItemWithFocusForeColor = System.Drawing.SystemColors.ControlText;
+            this.Memory_Grid.Size = new System.Drawing.Size(399, 452);
             this.Memory_Grid.TabIndex = 10;
             this.Memory_Grid.ToolbarVisible = false;
             this.Memory_Grid.ViewBackColor = System.Drawing.SystemColors.ControlLight;
@@ -105,7 +105,7 @@
             this.BTN_UPDATE.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BTN_UPDATE.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_UPDATE.ForeColor = System.Drawing.Color.Black;
-            this.BTN_UPDATE.Location = new System.Drawing.Point(186, 504);
+            this.BTN_UPDATE.Location = new System.Drawing.Point(247, 504);
             this.BTN_UPDATE.Margin = new System.Windows.Forms.Padding(2);
             this.BTN_UPDATE.Name = "BTN_UPDATE";
             this.BTN_UPDATE.Size = new System.Drawing.Size(173, 70);
@@ -118,7 +118,7 @@
             this.BTN_IDX.BackColor = System.Drawing.Color.White;
             this.BTN_IDX.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_IDX.ForeColor = System.Drawing.Color.Black;
-            this.BTN_IDX.Location = new System.Drawing.Point(1, 504);
+            this.BTN_IDX.Location = new System.Drawing.Point(49, 504);
             this.BTN_IDX.Margin = new System.Windows.Forms.Padding(2);
             this.BTN_IDX.Name = "BTN_IDX";
             this.BTN_IDX.Size = new System.Drawing.Size(181, 70);
@@ -135,7 +135,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(1, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(362, 487);
+            this.groupBox1.Size = new System.Drawing.Size(453, 487);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editor";
@@ -152,9 +152,9 @@
             this.LBL_VERSION,
             this.BTN_STAT_HOOK,
             this.PRG_LOAD});
-            this.MAINSTATUS_STRIP.Location = new System.Drawing.Point(0, 672);
+            this.MAINSTATUS_STRIP.Location = new System.Drawing.Point(0, 580);
             this.MAINSTATUS_STRIP.Name = "MAINSTATUS_STRIP";
-            this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(371, 24);
+            this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(454, 24);
             this.MAINSTATUS_STRIP.TabIndex = 22;
             this.MAINSTATUS_STRIP.Text = "statusStrip1";
             // 
@@ -224,6 +224,17 @@
             this.LBL_MEMOFF.Size = new System.Drawing.Size(19, 19);
             this.LBL_MEMOFF.Text = "{}";
             // 
+            // LBL_VERSION
+            // 
+            this.LBL_VERSION.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.LBL_VERSION.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.LBL_VERSION.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_VERSION.Name = "LBL_VERSION";
+            this.LBL_VERSION.Size = new System.Drawing.Size(19, 19);
+            this.LBL_VERSION.Text = "{}";
+            // 
             // BTN_STAT_HOOK
             // 
             this.BTN_STAT_HOOK.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -244,23 +255,12 @@
             // 
             this.Interval_Timer.Tick += new System.EventHandler(this.Interval_Timer_Tick);
             // 
-            // LBL_VERSION
-            // 
-            this.LBL_VERSION.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.LBL_VERSION.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.LBL_VERSION.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.LBL_VERSION.Name = "LBL_VERSION";
-            this.LBL_VERSION.Size = new System.Drawing.Size(19, 19);
-            this.LBL_VERSION.Text = "{}";
-            // 
             // FRM_RDT_MEM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(371, 696);
+            this.ClientSize = new System.Drawing.Size(454, 604);
             this.Controls.Add(this.MAINSTATUS_STRIP);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.BTN_UPDATE);

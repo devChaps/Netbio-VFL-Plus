@@ -57,12 +57,10 @@ namespace Netbio_VFL_Plus
         public FRM_RDT_MEM()
         {
             InitializeComponent();
+            LB_TCAM.Items.Clear();
         
 
         }
-
-
-
 
 
 
@@ -96,7 +94,7 @@ namespace Netbio_VFL_Plus
 
         public void cam_scan()
         {
-            fmt = "_CAM";
+          
 
                 var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
                 if (proc.Length == 0 || proc == null)
@@ -342,21 +340,41 @@ namespace Netbio_VFL_Plus
         }
 
 
-        public void Light_Scan(int total_cams)
+        public void Light_Scan()
         {
-            try
-            {
-                fmt = "_FOG";
 
-                var proc = Process.GetProcessesByName(g_PROCESS_NAME); // pass process pcsx2.exe
+            MessageBox.Show(LIB_MEMORY.g_GAME_ID.ToString());
+
+            var proc = Process.GetProcessesByName(g_PROCESS_NAME); // pass process pcsx2.exe
 
                 if (proc.Length == 0 || proc == null)
                     return;
 
                 var pcsx2 = proc[0];
 
-                Int32 off = 0x203B11B0; // light data alawys starts here in memory
+                Int32 s_off = 0; // light data alawys starts here in memory
+                byte total_cams = 0;
                 int cur_idx = LB_TCAM.SelectedIndex;
+
+
+            MessageBox.Show(LIB_MEMORY.g_GAME_ID.ToString());
+
+            if (LIB_MEMORY.g_GAME_ID == 1)
+                {
+                    total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203AEF51));
+                  //  s_off = 0x203AEF84;
+
+                }
+
+                if (LIB_MEMORY.g_GAME_ID == 2)
+                {
+            
+
+                total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203B31D1));
+                    s_off = 0x203B11B0; // starting offset to main memory struct
+
+                }
+
                 Int32[] light_offsets = new Int32[total_cams]; // craete an array of integers to hold all possible light offsets re size to t cams
 
                 for (int j = 0; j < total_cams; j++)
@@ -372,7 +390,7 @@ namespace Netbio_VFL_Plus
                     for (int i = 0; i < total_cams; i++) // change to actual cam count , pass from RDT somehow
                     {
 
-                        light_offsets[i] = off + 96 * i; // seek to the start of each 96 byte chunk
+                        light_offsets[i] = s_off + 96 * i; // seek to the start of each 96 byte chunk
 
                         //MessageBox.Show(light_offsets[i].ToString("X"));
 
@@ -401,13 +419,8 @@ namespace Netbio_VFL_Plus
                 }
                 Memory_Grid.SelectedObject = LGSP;
 
-                LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
-            }
-
-            catch (System.IndexOutOfRangeException)
-            {
-                MessageBox.Show("PCSX2 not found", "Open it 1st", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+              //  LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
+         
 
         } // scan light data pass class obj to memory module
 
@@ -527,6 +540,7 @@ namespace Netbio_VFL_Plus
             if (LIB_MEMORY.g_GAME_ID == 2)
             {
                 cam_off = 0x203B3200; // this is only the start of the positions, not the start of the actual object
+                light_off = 0x203B11B0;
             }
 
 
@@ -540,7 +554,7 @@ namespace Netbio_VFL_Plus
             Int32[] cam_offsets = new Int32[cam_num];
 
 
-            switch (fmt) // need to switch between selected format so the other object isnt overwritten
+            switch (LIB_MEMORY.SEL_FMT) // need to switch between selected format so the other object isnt overwritten
             {
                 case "_CAM":
 
@@ -609,7 +623,20 @@ namespace Netbio_VFL_Plus
         {
             LIB_MEMORY.GET_PCSX2_PROC();
             LIB_MEMORY.VERIFY_GAME_REGION();
-            cam_scan();
+
+
+            if (LIB_MEMORY.SEL_FMT == "_CAM") 
+            {
+                cam_scan();
+            }
+
+            if (LIB_MEMORY.SEL_FMT == "_FOG") 
+            {
+
+                Light_Scan();
+            }
+
+
         }
 
         private void Memory_Grid_Click(object sender, EventArgs e)
@@ -649,6 +676,7 @@ namespace Netbio_VFL_Plus
             if (LIB_MEMORY.g_GAME_ID == 2)
             {
                 cam_off = 0x203B3200; // this is only the start of the positions, not the start of the actual object
+                light_off = 0x203B11B0;
             }
 
 
@@ -663,7 +691,7 @@ namespace Netbio_VFL_Plus
 
 
 
-            switch (fmt)
+            switch (LIB_MEMORY.SEL_FMT)
             {
                 case "_CAM":
 

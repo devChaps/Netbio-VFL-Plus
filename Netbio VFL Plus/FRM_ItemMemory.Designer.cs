@@ -68,8 +68,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.LBL_PCSX2_STATUS = new System.Windows.Forms.ToolStripStatusLabel();
             this.BTN_MEMHOOK = new System.Windows.Forms.ToolStripSplitButton();
-            this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
             this.memoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
             this.imem_toolstrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_itemval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud_soundval)).BeginInit();
@@ -261,7 +261,7 @@
             // 
             this.nud_itemval.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nud_itemval.ForeColor = System.Drawing.Color.PaleGoldenrod;
-            this.nud_itemval.Location = new System.Drawing.Point(186, 412);
+            this.nud_itemval.Location = new System.Drawing.Point(252, 336);
             this.nud_itemval.Maximum = new decimal(new int[] {
             -727379969,
             232,
@@ -433,7 +433,7 @@
             // 
             this.numericUpDown1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.numericUpDown1.ForeColor = System.Drawing.Color.PaleGoldenrod;
-            this.numericUpDown1.Location = new System.Drawing.Point(186, 379);
+            this.numericUpDown1.Location = new System.Drawing.Point(252, 303);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             -727379969,
             232,
@@ -529,6 +529,13 @@
             this.BTN_MEMHOOK.Name = "BTN_MEMHOOK";
             this.BTN_MEMHOOK.Size = new System.Drawing.Size(32, 30);
             this.BTN_MEMHOOK.Text = "toolStripSplitButton1";
+            // 
+            // memoryDumpToolStripMenuItem
+            // 
+            this.memoryDumpToolStripMenuItem.Name = "memoryDumpToolStripMenuItem";
+            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
+            this.memoryDumpToolStripMenuItem.Text = "Memory Dump";
+            this.memoryDumpToolStripMenuItem.Click += new System.EventHandler(this.memoryDumpToolStripMenuItem_Click);
             // 
             // ItemIco_List
             // 
@@ -677,13 +684,6 @@
             this.ItemIco_List.Images.SetKeyName(140, "WZbOR9U.png");
             this.ItemIco_List.Images.SetKeyName(141, "xOQcGuk.png");
             this.ItemIco_List.Images.SetKeyName(142, "yzHNlUW.png");
-            // 
-            // memoryDumpToolStripMenuItem
-            // 
-            this.memoryDumpToolStripMenuItem.Name = "memoryDumpToolStripMenuItem";
-            this.memoryDumpToolStripMenuItem.Size = new System.Drawing.Size(223, 28);
-            this.memoryDumpToolStripMenuItem.Text = "Memory Dump";
-            this.memoryDumpToolStripMenuItem.Click += new System.EventHandler(this.memoryDumpToolStripMenuItem_Click);
             // 
             // FRM_ItemMemory
             // 

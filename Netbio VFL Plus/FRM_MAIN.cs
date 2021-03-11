@@ -406,8 +406,6 @@ namespace Netbio_VFL_Plus
                         //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
 
 
-
-
                         AFSIO.cur_archive_offset = sel_siz;
 
 

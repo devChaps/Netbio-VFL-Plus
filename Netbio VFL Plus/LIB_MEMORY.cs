@@ -73,7 +73,9 @@ namespace Netbio_VFL_Plus
         
         public static int g_GAME_ID; // FILE 1 OR FILE 2
         public static int g_GAME_REGION; // NTSCU/NTSCJ/PAL...
-        
+
+
+        public static string SEL_FMT; // for RDT BASED FORMAT SELECTION CAM/LIGHT
 
 
 
@@ -135,7 +137,7 @@ namespace Netbio_VFL_Plus
                 g_GAME_ID = 1;
                 g_GAME_REGION = 1;
 
-//                G_ROOM_DATA.CAM_ID_OFFSET = "TO BE DETERMINED";
+                G_ROOM_DATA.CAM_ID_OFFSET = 0x203AEF53;
                 G_ROOM_DATA.ROOM_ID_OFFSET = 0x203065AC;
 
                 g_VERSION = "Biohazard Outbreak (NTSC-J)";
@@ -203,7 +205,7 @@ namespace Netbio_VFL_Plus
 
 
             // FILE 1
-            if (g_ID == 1 && g_REGION == 1) { offset_base = 0; }
+            if (g_ID == 1 && g_REGION == 1) { offset_base = 0x2047BD30; }
             if (g_ID == 1 && g_REGION == 2) { offset_base = 0x204A5BB4; }  // US >> PAL (SUB) 0x40FB0
             if (g_ID == 1 && g_REGION == 3) { offset_base = 0x20464C04; }
 

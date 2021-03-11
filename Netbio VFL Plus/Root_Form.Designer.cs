@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Root_Form));
             this.LBL_VM_SPC = new System.Windows.Forms.Label();
             this.LBL_SEC_SZ = new System.Windows.Forms.Label();
             this.LBL_VNAME = new System.Windows.Forms.Label();
@@ -151,6 +152,7 @@
             this.Controls.Add(this.TextBox_Vname);
             this.Controls.Add(this.TV_Root);
             this.ForeColor = System.Drawing.Color.DeepSkyBlue;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Root_Form";
             this.Text = "Root_Form";
             this.Load += new System.EventHandler(this.Root_Form_Load);

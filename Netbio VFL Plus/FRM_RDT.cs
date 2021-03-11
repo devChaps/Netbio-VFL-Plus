@@ -22,6 +22,7 @@ namespace Netbio_VFL_Plus
 
         public FRM_RDT_MEM RDT_MEMORY_FORM = new FRM_RDT_MEM();
 
+        
 
         public FRM_RDT()
         {
@@ -37,6 +38,7 @@ namespace Netbio_VFL_Plus
         // BUTTON RDT CAM
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
+            LIB_MEMORY.SEL_FMT = "_CAM";
             RDT_MEMORY_FORM.ShowDialog();
         }
 
@@ -116,6 +118,14 @@ namespace Netbio_VFL_Plus
 
         private void BTN_SOUND_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void BTN_LIG_Click(object sender, EventArgs e)
+        {
+            LIB_MEMORY.SEL_FMT = "_FOG";
+            RDT_MEMORY_FORM.ShowDialog();
+
 
         }
     }

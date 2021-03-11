@@ -116,6 +116,11 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
+            this.nPCNAMEEDITORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dNASPATCHERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hEX2DECCALCULATORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sNDMANAGERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dEBUGLOGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -457,7 +462,12 @@
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.refreshVolumesToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.eVBActionsToolStripMenuItem});
+            this.eVBActionsToolStripMenuItem,
+            this.nPCNAMEEDITORToolStripMenuItem,
+            this.dNASPATCHERToolStripMenuItem,
+            this.hEX2DECCALCULATORToolStripMenuItem,
+            this.sNDMANAGERToolStripMenuItem,
+            this.dEBUGLOGToolStripMenuItem});
             this.advancedToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
@@ -469,7 +479,7 @@
             this.refreshVolumesToolStripMenuItem1,
             this.refreshSelectedVolumeToolStripMenuItem1});
             this.refreshVolumesToolStripMenuItem.Name = "refreshVolumesToolStripMenuItem";
-            this.refreshVolumesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.refreshVolumesToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.refreshVolumesToolStripMenuItem.Text = "AFS Actions";
             // 
             // refreshVolumesToolStripMenuItem1
@@ -489,14 +499,14 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(235, 6);
             // 
             // eVBActionsToolStripMenuItem
             // 
             this.eVBActionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toggleDisplayToolStripMenuItem});
             this.eVBActionsToolStripMenuItem.Name = "eVBActionsToolStripMenuItem";
-            this.eVBActionsToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.eVBActionsToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.eVBActionsToolStripMenuItem.Text = "EVB Actions";
             // 
             // toggleDisplayToolStripMenuItem
@@ -918,6 +928,36 @@
             this.TMR_EXE.Interval = 50;
             this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
             // 
+            // nPCNAMEEDITORToolStripMenuItem
+            // 
+            this.nPCNAMEEDITORToolStripMenuItem.Name = "nPCNAMEEDITORToolStripMenuItem";
+            this.nPCNAMEEDITORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.nPCNAMEEDITORToolStripMenuItem.Text = "NPC NAME EDITOR";
+            // 
+            // dNASPATCHERToolStripMenuItem
+            // 
+            this.dNASPATCHERToolStripMenuItem.Name = "dNASPATCHERToolStripMenuItem";
+            this.dNASPATCHERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.dNASPATCHERToolStripMenuItem.Text = "DNAS PATCHER";
+            // 
+            // hEX2DECCALCULATORToolStripMenuItem
+            // 
+            this.hEX2DECCALCULATORToolStripMenuItem.Name = "hEX2DECCALCULATORToolStripMenuItem";
+            this.hEX2DECCALCULATORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.hEX2DECCALCULATORToolStripMenuItem.Text = "HEX 2 DEC CALCULATOR";
+            // 
+            // sNDMANAGERToolStripMenuItem
+            // 
+            this.sNDMANAGERToolStripMenuItem.Name = "sNDMANAGERToolStripMenuItem";
+            this.sNDMANAGERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.sNDMANAGERToolStripMenuItem.Text = ".SND MANAGER";
+            // 
+            // dEBUGLOGToolStripMenuItem
+            // 
+            this.dEBUGLOGToolStripMenuItem.Name = "dEBUGLOGToolStripMenuItem";
+            this.dEBUGLOGToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.dEBUGLOGToolStripMenuItem.Text = "DEBUG LOG";
+            // 
             // FRM_MAIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1034,6 +1074,11 @@
         private System.Windows.Forms.ToolStripButton BTN_SOUND;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem nPCNAMEEDITORToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dNASPATCHERToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hEX2DECCALCULATORToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sNDMANAGERToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dEBUGLOGToolStripMenuItem;
     }
 }
 

@@ -117,7 +117,7 @@
             this.RDT_sStrip.Location = new System.Drawing.Point(0, 586);
             this.RDT_sStrip.Name = "RDT_sStrip";
             this.RDT_sStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.RDT_sStrip.Size = new System.Drawing.Size(547, 38);
+            this.RDT_sStrip.Size = new System.Drawing.Size(487, 38);
             this.RDT_sStrip.SizingGrip = false;
             this.RDT_sStrip.TabIndex = 5;
             this.RDT_sStrip.Text = "statusStrip2";
@@ -133,7 +133,10 @@
             // LBL_RDTSIZE
             // 
             this.LBL_RDTSIZE.AutoSize = false;
-            this.LBL_RDTSIZE.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.LBL_RDTSIZE.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.LBL_RDTSIZE.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_RDTSIZE.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.LBL_RDTSIZE.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LBL_RDTSIZE.Name = "LBL_RDTSIZE";
@@ -143,6 +146,10 @@
             // LBL_RDT_OFF
             // 
             this.LBL_RDT_OFF.AutoSize = false;
+            this.LBL_RDT_OFF.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.LBL_RDT_OFF.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_RDT_OFF.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.LBL_RDT_OFF.ForeColor = System.Drawing.Color.Black;
             this.LBL_RDT_OFF.Name = "LBL_RDT_OFF";
@@ -153,7 +160,10 @@
             // 
             this.LBL_RDTSELECT.ActiveLinkColor = System.Drawing.Color.Black;
             this.LBL_RDTSELECT.AutoSize = false;
-            this.LBL_RDTSELECT.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
+            this.LBL_RDTSELECT.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.LBL_RDTSELECT.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_RDTSELECT.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_RDTSELECT.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.LBL_RDTSELECT.Name = "LBL_RDTSELECT";
@@ -172,7 +182,7 @@
             this.BTN_MOMO});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(547, 55);
+            this.toolStrip1.Size = new System.Drawing.Size(487, 55);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -207,6 +217,7 @@
             this.BTN_LIG.Name = "BTN_LIG";
             this.BTN_LIG.Size = new System.Drawing.Size(52, 52);
             this.BTN_LIG.Text = "Light Manager";
+            this.BTN_LIG.Click += new System.EventHandler(this.BTN_LIG_Click);
             // 
             // BTN_SOUND
             // 
@@ -293,7 +304,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(547, 624);
+            this.ClientSize = new System.Drawing.Size(487, 624);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.RDT_sStrip);
             this.Controls.Add(this.LV_RDT);
