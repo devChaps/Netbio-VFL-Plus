@@ -415,14 +415,11 @@ namespace Netbio_VFL_Plus
                         if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
                         {
 
-                            LBL_SelArchive.Text = EVBIO.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
+                            LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
 
                             AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
                         }
-                        else
-                        {
-                            MessageBox.Show("Format not supported atm");
-                        }
+                       
 
                         //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
 
@@ -1006,8 +1003,6 @@ namespace Netbio_VFL_Plus
         }
 
 
-
-
         public static bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
@@ -1057,9 +1052,6 @@ namespace Netbio_VFL_Plus
 
         private void BTN_RAM_ButtonClick(object sender, EventArgs e)
         {
-
-
-
             FIND_PROCESS();
         }
 

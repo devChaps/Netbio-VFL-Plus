@@ -57,7 +57,7 @@ namespace Netbio_VFL_Plus
         public FRM_RDT_MEM()
         {
             InitializeComponent();
-            LB_TCAM.Items.Clear();
+       
         
 
         }
@@ -92,15 +92,19 @@ namespace Netbio_VFL_Plus
         }
 
 
-        public void cam_scan()
+        public void Cam_Scan(Process pcsx2_proc)
         {
-          
 
-                var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
-                if (proc.Length == 0 || proc == null)
-                    return;
 
-                var pcsx2_proc = proc[0];
+            // CLEAR LB ITEMS TO PREVENT DUPES N SHIT...
+            LB_TCAM.Items.Clear();
+
+
+                //var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
+                //if (proc.Length == 0 || proc == null)
+                //    return;
+
+                //var pcsx2_proc = proc[0];
 
 
                 byte total_cams = 0;
@@ -172,6 +176,64 @@ namespace Netbio_VFL_Plus
                 }
         
         }  // scan camera block pass class obj to memory module
+
+        public void FOG_COPY(Process proc) 
+        {
+
+
+            Int32 light_off = 0; // store main light data object offset
+            Int32[] light_offsets = new Int32[cam_num];
+            int cur_idx = LB_TCAM.SelectedIndex;
+
+          
+
+
+
+
+            if (LIB_MEMORY.g_GAME_ID == 1)
+            {
+
+                light_off = 0x203ACD80;
+            }
+
+            if (LIB_MEMORY.g_GAME_ID == 2)
+            {
+
+                light_off = 0x203B11B0;
+            }
+
+
+
+            for (int i = 0; i < cam_num; i++)
+            {
+
+                light_offsets[i] = light_off + 96 * i;
+
+
+
+                Memory.Write<Int32>(proc, new IntPtr(light_offsets[i]), LGSP.tag);
+                Memory.Write<Single>(proc, new IntPtr(light_offsets[i]) + 4, LGSP.Fade00);
+                Memory.Write<Single>(proc, new IntPtr(light_offsets[i]) + 8, LGSP.Ulong01);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i]) + 12, LGSP.fogB);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i]) + 13, LGSP.fogG);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i]) + 14, LGSP.fogR);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i]) + 15, LGSP.fogA);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i]) + 16, LGSP.CAM_B);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i] + 17), LGSP.CAM_G);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i] + 18), LGSP.CAM_R);
+                Memory.Write<byte>(proc, new IntPtr(light_offsets[i] + 19), LGSP.CAM_ALPHA);
+                Memory.Write<Int32>(proc, new IntPtr(light_offsets[i] + 20), LGSP.Ulong04);
+                Memory.Write<Int32>(proc, new IntPtr(light_offsets[i] + 24), LGSP.SDW00);
+                Memory.Write<Int32>(proc, new IntPtr(light_offsets[i] + 28), LGSP.SDW01);
+                Memory.Write<Int32>(proc, new IntPtr(light_offsets[i] + 32), LGSP.SDW02);
+                Memory.Write<float>(proc, new IntPtr(light_offsets[i] + 36), LGSP.R);
+                Memory.Write<float>(proc, new IntPtr(light_offsets[i] + 40), LGSP.G);
+                Memory.Write<float>(proc, new IntPtr(light_offsets[i] + 44), LGSP.B);
+            }
+
+
+
+        }
 
 
         /// <summary>
@@ -340,29 +402,33 @@ namespace Netbio_VFL_Plus
         }
 
 
-        public void Light_Scan()
+        public void Light_Scan(Process pcsx2)
         {
 
-            MessageBox.Show(LIB_MEMORY.g_GAME_ID.ToString());
+            // PREVENT DUPES N SHIT...
 
-            var proc = Process.GetProcessesByName(g_PROCESS_NAME); // pass process pcsx2.exe
 
-                if (proc.Length == 0 || proc == null)
-                    return;
+            //var proc = Process.GetProcessesByName(g_PROCESS_NAME); // pass process pcsx2.exe
+            //if (proc.Length == 0 || proc == null)
+            //   return;
 
-                var pcsx2 = proc[0];
 
-                Int32 s_off = 0; // light data alawys starts here in memory
+            //    var pcsx2 = proc[0];
+
+            LB_TCAM.Items.Clear();
+
+            Int32 s_off = 0; // light data alawys starts here in memory
                 byte total_cams = 0;
                 int cur_idx = LB_TCAM.SelectedIndex;
 
-
+         
             MessageBox.Show(LIB_MEMORY.g_GAME_ID.ToString());
 
             if (LIB_MEMORY.g_GAME_ID == 1)
                 {
                     total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203AEF51));
-                  //  s_off = 0x203AEF84;
+
+                    s_off = 0x203ACD80;
 
                 }
 
@@ -370,7 +436,7 @@ namespace Netbio_VFL_Plus
                 {
             
 
-                total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203B31D1));
+                    total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203B31D1));
                     s_off = 0x203B11B0; // starting offset to main memory struct
 
                 }
@@ -535,6 +601,7 @@ namespace Netbio_VFL_Plus
             if(LIB_MEMORY.g_GAME_ID == 1) 
             {
                 cam_off = 0x203AEF84;
+                light_off = 0x203ACD80;
             }
 
             if (LIB_MEMORY.g_GAME_ID == 2)
@@ -625,15 +692,25 @@ namespace Netbio_VFL_Plus
             LIB_MEMORY.VERIFY_GAME_REGION();
 
 
+            var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
+            if (proc.Length == 0 || proc == null)
+                return;
+
+            var pcsx2_proc = proc[0];
+
+
             if (LIB_MEMORY.SEL_FMT == "_CAM") 
             {
-                cam_scan();
+                BTN_IDX.Hide();
+                Cam_Scan(pcsx2_proc);
+               
             }
 
             if (LIB_MEMORY.SEL_FMT == "_FOG") 
             {
-
-                Light_Scan();
+                BTN_IDX.Show();
+                Light_Scan(pcsx2_proc);
+                
             }
 
 
@@ -651,6 +728,17 @@ namespace Netbio_VFL_Plus
 
         private void BTN_IDX_Click(object sender, EventArgs e)
         {
+            var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
+            if (proc.Length == 0 || proc == null)
+                return;
+
+            var pcsx2_proc = proc[0];
+
+            FOG_COPY(pcsx2_proc);
+
+         
+          
+
 
         }
 
@@ -670,6 +758,7 @@ namespace Netbio_VFL_Plus
 
             if (LIB_MEMORY.g_GAME_ID == 1)
             {
+                light_off = 0x203ACD80;
                 cam_off = 0x203AEF84;
             }
 

@@ -31,10 +31,11 @@ namespace Netbio_VFL_Plus
                 case "21": return "Showdown 1"; break;
                 case "22": return "Showdown 2"; break;
                 case "23": return "Showdown 3"; break;
-                case "27": return "Elimination 1"; break;
-                case "29": return "Elimination 2"; break;
-                case "30":
-                    return "Elimination 3"; break;
+                case "29": return "Elimination 1"; break;
+                case "27": return "Elimination 3"; break;
+                case "30": return "Elimination 2"; break;
+
+
             }
 
 
