@@ -561,7 +561,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Btn_Confirm);
             this.Name = "PB_CURROOM";
-            this.Text = "FRM_NPC";
+            this.Text = "NPC MANAGER";
             this.Load += new System.EventHandler(this.PB_CURROOM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NPC_Imagebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Num_bounds)).EndInit();

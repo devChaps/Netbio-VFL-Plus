@@ -42,6 +42,7 @@ namespace Netbio_VFL_Plus
             /// add node heirarchy..
             foreach (var node in FRM_MAIN.Img.Root_Nodes)
             {
+                if (node.Text.Substring(0, 3).ToUpper() == "NET") { node.ForeColor = Color.Green; }
                 TV_Root.Nodes.Add(node);
 
             }
@@ -74,7 +75,7 @@ namespace Netbio_VFL_Plus
 
 
                             FRM_MAIN.Img.Selected_Volume = FRM_MAIN.Img.Root_FSys_Info[index].FullName;
-                            MessageBox.Show(FRM_MAIN.Img.Selected_Volume.ToString());
+                           // MessageBox.Show(FRM_MAIN.Img.Selected_Volume.ToString());
                             // open selected File for further parsing..
                             Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Root_FSys_Info[index].FullName, FileMode.Open);
                             BinaryReader br = new BinaryReader(memStream);
@@ -92,7 +93,7 @@ namespace Netbio_VFL_Plus
                             }
                             else if (br.ReadInt32() != afs_sig)
                             {
-                                MessageBox.Show("FOUND JACK SHIT SON");
+                                MessageBox.Show("N/A");
                             }
 
 
@@ -190,7 +191,8 @@ namespace Netbio_VFL_Plus
                                 //  MessageBox.Show(fs.Position.ToString());
 
                                 FRM_MAIN.NETBIO00_OFFSET = int.Parse(fs.Position.ToString()) - 4;
-                                
+
+                               
 
                                 afs_count = br.ReadInt32() + 1;
                                
@@ -201,7 +203,7 @@ namespace Netbio_VFL_Plus
                             }
                             else if (br.ReadInt32() != afs_sig)
                             {
-                                MessageBox.Show("FOUND JACK SHIT SON");
+                                MessageBox.Show("Not Supported");
                             }
 
                             //     MainForm.Img.lbl_mainForm.Text = "Selected Volume: " + MainForm.Img.Selected_Volume;

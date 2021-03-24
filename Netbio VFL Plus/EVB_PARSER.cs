@@ -559,8 +559,6 @@ namespace Netbio_VFL_Plus
             fs.Seek(Selected_EVB.File_Offset, SeekOrigin.Begin);
 
             EVB_HEADER.offset00 = br.ReadInt32();
-
-
             EVB_HEADER.offset01 = br.ReadInt32();
             EVB_HEADER.offset02 = br.ReadInt32();
 

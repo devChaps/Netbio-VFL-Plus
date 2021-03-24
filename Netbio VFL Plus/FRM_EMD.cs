@@ -246,7 +246,7 @@ namespace Netbio_VFL_Plus
                     // seek to ISO relative offset for selected EMD ENTRY
                     fs1.Seek(total, SeekOrigin.Begin);
 
-                    MessageBox.Show(fs1.Position.ToString());
+                  //  MessageBox.Show(fs1.Position.ToString());
 
 
                     bw.Write((byte)EMD_TAG.Value);

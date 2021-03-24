@@ -118,82 +118,90 @@ namespace Netbio_VFL_Plus
         /// </summary>
         public static string VERIFY_GAME_REGION() 
         {
-
-            // get current pcsx2 proc
-            var procs = Process.GetProcessesByName(g_PROCESS_NAME);
-
-            var proc = procs[0];
-
-                  
-
-            g_GAME_ID = 0;
-            g_GAME_REGION = 0;
-
-            string g_VERSION = string.Empty;
-
-            // BIOHAZARD OUTBREAK (NTSC-j)
-            if (Memory.Read<int>(proc, new IntPtr(0x202321B3)) == 0x4D504C53) 
+            try
             {
-                g_GAME_ID = 1;
-                g_GAME_REGION = 1;
+                // get current pcsx2 proc
+                var procs = Process.GetProcessesByName(g_PROCESS_NAME);
 
-                G_ROOM_DATA.CAM_ID_OFFSET = 0x203AEF53;
-                G_ROOM_DATA.ROOM_ID_OFFSET = 0x203065AC;
+                var proc = procs[0];
 
-                g_VERSION = "Biohazard Outbreak (NTSC-J)";
+
+
+                g_GAME_ID = 0;
+                g_GAME_REGION = 0;
+
+                string g_VERSION = string.Empty;
+
+                // BIOHAZARD OUTBREAK (NTSC-j)
+                if (Memory.Read<int>(proc, new IntPtr(0x202321B3)) == 0x4D504C53)
+                {
+                    g_GAME_ID = 1;
+                    g_GAME_REGION = 1;
+
+                    G_ROOM_DATA.CAM_ID_OFFSET = 0x203AEF53;
+                    G_ROOM_DATA.ROOM_ID_OFFSET = 0x203065AC;
+
+                    g_VERSION = "Biohazard Outbreak (NTSC-J)";
+                }
+
+                // RESIDENT EVIL OUTBREAK (NTSC-U)
+                if (Memory.Read<int>(proc, new IntPtr(0x2024FB23)) == 0x53554C53)
+                {
+                    g_GAME_ID = 1;
+                    g_GAME_REGION = 2;
+
+                    g_VERSION = "Resident Evil Outbreak (NTSC-U)";
+                }
+
+
+                // RESIDENT EVIL OUTBREAK (PAL)
+                if (Memory.Read<int>(proc, new IntPtr(0x2024E5A2)) == 0x53454C53)
+                {
+                    g_GAME_ID = 1;
+                    g_GAME_REGION = 3;
+
+                    g_VERSION = "Biohazard Outbreak (PAL)";
+                }
+
+                // BIOHAZARD OUTBREAK FILE 2 (NTSC-J)
+                if (Memory.Read<int>(proc, new IntPtr(0x2023DFD3)) == 0x4D504C53)
+                {
+                    g_GAME_ID = 2;
+                    g_GAME_REGION = 1;
+                    G_ROOM_DATA.ROOM_ID_OFFSET = 0x203137BC;
+                    G_ROOM_DATA.CAM_ID_OFFSET = 0x203B31D3;
+
+                    g_VERSION = "Biohazard Outbreak File 2 (NTSC-J)";
+
+                }
+
+                // RESIDENT EVIL OUTBREAK FILE 2 (NTSC-U)
+                if (Memory.Read<int>(proc, new IntPtr(0x20255083)) == 0x53554C53)
+                {
+                    g_GAME_ID = 2;
+                    g_GAME_REGION = 2;
+
+                    return "Biohazard Outbreak File 2 (NTSC-U)";
+                }
+
+                // RESIDENT EVIL OUTBREAK FILE 2(PAL)
+                if (Memory.Read<int>(proc, new IntPtr(0x2024E5A2)) == 0x53454C53)
+                {
+                    g_GAME_ID = 2;
+                    g_GAME_REGION = 3;
+
+                    g_VERSION = "Biohazard Outbreak File 2 (PAL)";
+                }
+
+
+                return g_VERSION;
+
             }
-
-            // RESIDENT EVIL OUTBREAK (NTSC-U)
-            if (Memory.Read<int>(proc, new IntPtr(0x2024FB23)) == 0x53554C53)
+            catch (System.IndexOutOfRangeException IOR) 
             {
-                g_GAME_ID = 1;
-                g_GAME_REGION = 2;
-
-                g_VERSION = "Resident Evil Outbreak (NTSC-U)";
+                return "Null";
+                MessageBox.Show("PCSX2 NOT DETECTED?");
             }
-
-
-            // RESIDENT EVIL OUTBREAK (PAL)
-            if (Memory.Read<int>(proc, new IntPtr(0x2024E5A2)) == 0x53454C53)
-            {
-                g_GAME_ID = 1;
-                g_GAME_REGION = 3;
-
-                g_VERSION = "Biohazard Outbreak (PAL)";
-            }
-
-            // BIOHAZARD OUTBREAK FILE 2 (NTSC-J)
-            if (Memory.Read<int>(proc, new IntPtr(0x2023DFD3)) == 0x4D504C53)
-            {
-                g_GAME_ID = 2;
-                g_GAME_REGION = 1;
-                G_ROOM_DATA.ROOM_ID_OFFSET = 0x203137BC;
-                G_ROOM_DATA.CAM_ID_OFFSET = 0x203B31D3;
-
-                g_VERSION = "Biohazard Outbreak File 2 (NTSC-J)";
-
-            }
-
-            // RESIDENT EVIL OUTBREAK FILE 2 (NTSC-U)
-            if (Memory.Read<int>(proc, new IntPtr(0x20255083)) == 0x53554C53)
-            {
-                g_GAME_ID = 2;
-                g_GAME_REGION = 2;
-
-                return "Biohazard Outbreak File 2 (NTSC-U)";
-            }
-
-            // RESIDENT EVIL OUTBREAK FILE 2(PAL)
-            if (Memory.Read<int>(proc, new IntPtr(0x2024E5A2)) == 0x53454C53)
-            {
-                g_GAME_ID = 2;
-                g_GAME_REGION = 3;
-
-                g_VERSION = "Biohazard Outbreak File 2 (PAL)";
-            }
-
-
-            return g_VERSION;
 
         }
 

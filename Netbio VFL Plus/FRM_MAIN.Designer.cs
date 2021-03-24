@@ -72,6 +72,11 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.eVBActionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nPCNAMEEDITORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dNASPATCHERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hEX2DECCALCULATORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sNDMANAGERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dEBUGLOGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AFS_MENU = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,11 +121,6 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PRG_LOAD = new System.Windows.Forms.ToolStripProgressBar();
             this.TMR_EXE = new System.Windows.Forms.Timer(this.components);
-            this.nPCNAMEEDITORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dNASPATCHERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hEX2DECCALCULATORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sNDMANAGERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dEBUGLOGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip.SuspendLayout();
             this.MainMenuStrip.SuspendLayout();
             this.AFS_MENU.SuspendLayout();
@@ -516,6 +516,36 @@
             this.toggleDisplayToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.toggleDisplayToolStripMenuItem.Text = "Toggle Display";
             this.toggleDisplayToolStripMenuItem.Click += new System.EventHandler(this.toggleDisplayToolStripMenuItem_Click);
+            // 
+            // nPCNAMEEDITORToolStripMenuItem
+            // 
+            this.nPCNAMEEDITORToolStripMenuItem.Name = "nPCNAMEEDITORToolStripMenuItem";
+            this.nPCNAMEEDITORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.nPCNAMEEDITORToolStripMenuItem.Text = "NPC NAME EDITOR";
+            // 
+            // dNASPATCHERToolStripMenuItem
+            // 
+            this.dNASPATCHERToolStripMenuItem.Name = "dNASPATCHERToolStripMenuItem";
+            this.dNASPATCHERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.dNASPATCHERToolStripMenuItem.Text = "DNAS PATCHER";
+            // 
+            // hEX2DECCALCULATORToolStripMenuItem
+            // 
+            this.hEX2DECCALCULATORToolStripMenuItem.Name = "hEX2DECCALCULATORToolStripMenuItem";
+            this.hEX2DECCALCULATORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.hEX2DECCALCULATORToolStripMenuItem.Text = "HEX 2 DEC CALCULATOR";
+            // 
+            // sNDMANAGERToolStripMenuItem
+            // 
+            this.sNDMANAGERToolStripMenuItem.Name = "sNDMANAGERToolStripMenuItem";
+            this.sNDMANAGERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.sNDMANAGERToolStripMenuItem.Text = ".SND MANAGER";
+            // 
+            // dEBUGLOGToolStripMenuItem
+            // 
+            this.dEBUGLOGToolStripMenuItem.Name = "dEBUGLOGToolStripMenuItem";
+            this.dEBUGLOGToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
+            this.dEBUGLOGToolStripMenuItem.Text = "DEBUG LOG";
             // 
             // aboutToolStripMenuItem
             // 
@@ -913,7 +943,7 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.testToolStripMenuItem.Text = "Item Properties";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
@@ -927,36 +957,6 @@
             // 
             this.TMR_EXE.Interval = 50;
             this.TMR_EXE.Tick += new System.EventHandler(this.TMR_EXE_Tick);
-            // 
-            // nPCNAMEEDITORToolStripMenuItem
-            // 
-            this.nPCNAMEEDITORToolStripMenuItem.Name = "nPCNAMEEDITORToolStripMenuItem";
-            this.nPCNAMEEDITORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.nPCNAMEEDITORToolStripMenuItem.Text = "NPC NAME EDITOR";
-            // 
-            // dNASPATCHERToolStripMenuItem
-            // 
-            this.dNASPATCHERToolStripMenuItem.Name = "dNASPATCHERToolStripMenuItem";
-            this.dNASPATCHERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.dNASPATCHERToolStripMenuItem.Text = "DNAS PATCHER";
-            // 
-            // hEX2DECCALCULATORToolStripMenuItem
-            // 
-            this.hEX2DECCALCULATORToolStripMenuItem.Name = "hEX2DECCALCULATORToolStripMenuItem";
-            this.hEX2DECCALCULATORToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.hEX2DECCALCULATORToolStripMenuItem.Text = "HEX 2 DEC CALCULATOR";
-            // 
-            // sNDMANAGERToolStripMenuItem
-            // 
-            this.sNDMANAGERToolStripMenuItem.Name = "sNDMANAGERToolStripMenuItem";
-            this.sNDMANAGERToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.sNDMANAGERToolStripMenuItem.Text = ".SND MANAGER";
-            // 
-            // dEBUGLOGToolStripMenuItem
-            // 
-            this.dEBUGLOGToolStripMenuItem.Name = "dEBUGLOGToolStripMenuItem";
-            this.dEBUGLOGToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.dEBUGLOGToolStripMenuItem.Text = "DEBUG LOG";
             // 
             // FRM_MAIN
             // 

@@ -39,6 +39,12 @@ namespace Netbio_VFL_Plus
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             LIB_MEMORY.SEL_FMT = "_CAM";
+            RDT_IO.CAM_OFFSET = int.Parse(LV_RDT.Items[0].SubItems[1].Text);
+
+          
+
+
+
             RDT_MEMORY_FORM.ShowDialog();
         }
 
@@ -124,6 +130,8 @@ namespace Netbio_VFL_Plus
         private void BTN_LIG_Click(object sender, EventArgs e)
         {
             LIB_MEMORY.SEL_FMT = "_FOG";
+            RDT_IO.FOG_OFFSET = int.Parse(LV_RDT.Items[13].SubItems[1].Text);
+           
             RDT_MEMORY_FORM.ShowDialog();
 
 

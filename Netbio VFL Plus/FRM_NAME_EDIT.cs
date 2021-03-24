@@ -21,17 +21,27 @@ namespace Netbio_VFL_Plus
 
         private void FRM_NAME_EDIT_Load(object sender, EventArgs e)
         {
-           for(int i = 0; i < FRM_MAIN.NAME_OBJ.name.Length; i++) 
+
+            try
             {
-                // add shit to listview
 
-                if(FRM_MAIN.NAME_OBJ.name[i] == null) { i++; }
+                for (int i = 0; i < FRM_MAIN.NAME_OBJ.name.Length; i++)
+                {
+                    // add shit to listview
 
-                LV_NAMES.Items.Add(i.ToString());
-                LV_NAMES.Items[i].SubItems.Add(FRM_MAIN.NAME_OBJ.offsets[i].ToString());
-                LV_NAMES.Items[i].SubItems.Add(FRM_MAIN.NAME_OBJ.name[i]);          
+                    if (FRM_MAIN.NAME_OBJ.name[i] == null) { i++; }
+
+                    LV_NAMES.Items.Add(i.ToString());
+                    LV_NAMES.Items[i].SubItems.Add(FRM_MAIN.NAME_OBJ.offsets[i].ToString());
+                    LV_NAMES.Items[i].SubItems.Add(FRM_MAIN.NAME_OBJ.name[i]);
+                }
+
             }
 
+            catch (System.NullReferenceException NRF) 
+            {
+                MessageBox.Show("No Data found, Load Disc First", "N\\A");
+            }
 
 
         }

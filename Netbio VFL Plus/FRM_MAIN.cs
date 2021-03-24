@@ -806,9 +806,11 @@ namespace Netbio_VFL_Plus
 
                         int i = LV_AFS.FocusedItem.Index;
                         int afs_offset = int.Parse(LV_AFS.Items[i].SubItems[1].Text);
-                       
 
-                        RDT_IO.Read_RDT(memStream, AFSIO.cur_archive_offset, index, LV_AFS, afs_offset, RDT_FORM.LV_RDT, DEBUG_FORM.DEBUG_LOG, RDT_FORM.LBL_RDTSELECT, RDT_FORM.LBL_RDTSIZE, RDT_FORM.LBL_RDT_OFF);
+                        // transfer archive offset to RDT class
+                        RDT_IO.ARCHIVE_OFFSET = AFSIO.cur_archive_offset;
+
+                        RDT_IO.Read_RDT(memStream, AFSIO.cur_archive_offset, index, LV_AFS, RDT_FORM.LV_RDT, DEBUG_FORM.DEBUG_LOG, RDT_FORM.LBL_RDTSELECT, RDT_FORM.LBL_RDTSIZE, RDT_FORM.LBL_RDT_OFF);
 
 
                         fs.Close();
@@ -1052,7 +1054,15 @@ namespace Netbio_VFL_Plus
 
         private void BTN_RAM_ButtonClick(object sender, EventArgs e)
         {
-            FIND_PROCESS();
+            // FIND_PROCESS();
+
+            TMR_EXE.Enabled = true; 
+            
+      
+
+
+            
+
         }
 
 
@@ -1138,7 +1148,7 @@ namespace Netbio_VFL_Plus
                     g_Game_ID = 1;
                     g_Region = 1;
               //   CAMID_ADDR = 0x203B31D3; TO BE DETERMINED
-                ROOMID_ADDR = 0x203065AC;
+                    ROOMID_ADDR = 0x203065AC;
                 LBL_VERSION.Text = "Biohazard Outbreak (NTSC-J)";
                 }
                 //Resident Evil Outbreak (NTSC-U)
@@ -1379,7 +1389,26 @@ namespace Netbio_VFL_Plus
 
         private void TMR_EXE_Tick(object sender, EventArgs e)
         {
-            GET_PLAYER();
+             int g_region = LIB_MEMORY.g_GAME_REGION;
+            int g_id = LIB_MEMORY.g_GAME_ID;
+
+
+            LIB_MEMORY.GET_PCSX2_PROC();
+            LBL_VERSION.Text = LIB_MEMORY.VERIFY_GAME_REGION();
+
+            LIB_MEMORY.GET_MEM_STATS(LIB_MEMORY.GET_OFFSET_BASE(g_region, g_id));
+
+            LBL_POS_X.Text = LIB_MEMORY.G_PLAYER.X.ToString();
+
+
+            LBL_POS_Y.Text = LIB_MEMORY.G_PLAYER.Y.ToString();
+            LBL_POS_Z.Text = LIB_MEMORY.G_PLAYER.Z.ToString();
+
+            LBL_RID.Text = "ROOM ID: " + LIB_MEMORY.G_ROOM_DATA.ROOM_ID.ToString();
+            LBL_CID.Text = "CAM ID: " + LIB_MEMORY.G_ROOM_DATA.CAM_ID.ToString();
+
+
+            //  GET_PLAYER();
         }
 
         private void BTN_DNAS_Click(object sender, EventArgs e)
@@ -1445,27 +1474,97 @@ namespace Netbio_VFL_Plus
         private void BTN_PL_NAME_Click(object sender, EventArgs e)
         {
 
+            byte GAME_VERSION = 0;
+            Int32 data_check = 0;
+
             try
             {
+
+
+            
+
+
+
+
+
+                // 2065640 FILE 1 OFFSET
+
+
+
 
                 using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
                     using (BinaryReader br = new BinaryReader(fs, new ASCIIEncoding()))
                     {
-                        // seek to name data
-                        fs.Seek(2107032, SeekOrigin.Begin);
 
-                        // resize string to num of entries + offsets
-                        Array.Resize(ref NAME_OBJ.name, 784 / 8);
-                        Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
 
-                        // loop through entries and convert b array to ascii / store in structure for later use
-                        for (int i = 0; i < NAME_OBJ.name.Length; i++)
+                        fs.Seek(33592, SeekOrigin.Begin);
+                        data_check = br.ReadInt32();
+
+                        if (data_check == 808924466)
                         {
-                            NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
-                            byte[] buffer = br.ReadBytes(8);
-                            NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                            //   MessageBox.Show(NAME_OBJ.name[i]);
+                            GAME_VERSION = 1;
+
+
+
+                        } // FILE 1 
+                        if (data_check == 809055544)
+                        {
+
+
+                            GAME_VERSION = 2;
+
+
+
+                        } // FILE 2
+
+
+
+
+
+                        if (GAME_VERSION == 1)
+                        {
+
+                            // seek to name data
+                            fs.Seek(2065640, SeekOrigin.Begin);
+
+                            // resize string to num of entries + offsets
+                            Array.Resize(ref NAME_OBJ.name, 784 / 8);
+                            Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
+
+                            // loop through entries and convert b array to ascii / store in structure for later use
+                            for (int i = 0; i < NAME_OBJ.name.Length; i++)
+                            {
+                                NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
+                                byte[] buffer = br.ReadBytes(8);
+                                NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                                //   MessageBox.Show(NAME_OBJ.name[i]);
+
+                            }
+
+
+                        }
+
+
+                            if (GAME_VERSION == 2)
+                        {
+
+                            // seek to name data
+                            fs.Seek(2107032, SeekOrigin.Begin);
+
+                            // resize string to num of entries + offsets
+                            Array.Resize(ref NAME_OBJ.name, 784 / 8);
+                            Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
+
+                            // loop through entries and convert b array to ascii / store in structure for later use
+                            for (int i = 0; i < NAME_OBJ.name.Length; i++)
+                            {
+                                NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
+                                byte[] buffer = br.ReadBytes(8);
+                                NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                                //   MessageBox.Show(NAME_OBJ.name[i]);
+
+                            }
 
                         }
                     }

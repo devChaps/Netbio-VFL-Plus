@@ -110,8 +110,10 @@ using System.Threading;
  
   {
      public RDT_HEADER_OBJ[] RDT_HEADER = new RDT_HEADER_OBJ[0];
+
+
      public CAMERA_HEADER_OBJ[] CAM_HEADER = new CAMERA_HEADER_OBJ[0];
-        public RDT_SELECTED_OBJ RDT_SELECTED = new RDT_SELECTED_OBJ();
+     public static RDT_SELECTED_OBJ RDT_SELECTED = new RDT_SELECTED_OBJ();
     
          CAMERA_SUB_OBJ[] CAM_DATA = new CAMERA_SUB_OBJ[0];
 	     LGS_HEADER_OBJ LGS_HEADER = new LGS_HEADER_OBJ();
@@ -122,6 +124,9 @@ using System.Threading;
 	  
 	  #region class wide globals
      public Int32 total_cams;
+     public static Int32 CAM_OFFSET;
+     public static Int32 FOG_OFFSET;
+     public static Int32 ARCHIVE_OFFSET;
      public string G_RDT = "";
         #endregion
 
@@ -136,13 +141,13 @@ using System.Threading;
        /// <param name="LV_AFS">AFS LIB REF</param>
        /// <param name="LV_RDT">RDT TARGET LISTVIEW</param>
        /// <param name="RT">Target Debug</param>
-        public void Read_RDT(Stream fs, int start_off, int sel_idx, ListView LV_AFS, int afs_rdt_off, ListView LV_RDT, RichTextBox RT, ToolStripStatusLabel Selected_RDT, ToolStripStatusLabel Selected_RDTSIZE, ToolStripStatusLabel Selected_RDTOFF) 
+        public void Read_RDT(Stream fs, int start_off, int sel_idx, ListView LV_AFS, ListView LV_RDT, RichTextBox RT, ToolStripStatusLabel Selected_RDT, ToolStripStatusLabel Selected_RDTSIZE, ToolStripStatusLabel Selected_RDTOFF) 
         {
 
 
             LV_RDT.Items.Clear();
 
-            int total = start_off + afs_rdt_off;
+          //  int total = start_off + afs_rdt_off;
 
            
 
@@ -191,6 +196,7 @@ using System.Threading;
 
 
             fs.Seek(RDT_SELECTED.File_Offset, SeekOrigin.Begin);
+            MessageBox.Show(fs.Position.ToString());
 
             Int32 offset = 0;          
                                        // read 1st offset, divide by 8 to get total numer of items(includinbut cg offset and size as 1 item)
@@ -426,6 +432,8 @@ using System.Threading;
 
                 int offset = int.Parse(LBL_RDT_OFF.Text); 
                 string output_file = string.Empty;
+
+            MessageBox.Show(offset.ToString());
 
 
             RDT_HEADER_OBJ[] RDT_DATA = new RDT_HEADER_OBJ[0];

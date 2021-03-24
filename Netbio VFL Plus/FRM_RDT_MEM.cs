@@ -35,7 +35,7 @@ namespace Netbio_VFL_Plus
                     g_PROCESS_NAME = tmp_list[i];
 
 
-                           
+
 
                 }
             }
@@ -57,8 +57,8 @@ namespace Netbio_VFL_Plus
         public FRM_RDT_MEM()
         {
             InitializeComponent();
-       
-        
+
+
 
         }
 
@@ -82,9 +82,9 @@ namespace Netbio_VFL_Plus
         public string g_PROCESS_NAME = "";
         public string Current_RDT;
 
-   
 
-     
+
+
 
         public void MI_TIMER_Tick(object sender, EventArgs e) // ms based refresh for basic info
         {
@@ -100,84 +100,89 @@ namespace Netbio_VFL_Plus
             LB_TCAM.Items.Clear();
 
 
-                //var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
-                //if (proc.Length == 0 || proc == null)
-                //    return;
+            //var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
+            //if (proc.Length == 0 || proc == null)
+            //    return;
 
-                //var pcsx2_proc = proc[0];
-
-
-                byte total_cams = 0;
-                Int32 s_off = 0;
+            //var pcsx2_proc = proc[0];
 
 
-            if (LIB_MEMORY.g_GAME_ID == 1) 
+            byte total_cams = 0;
+            Int32 s_off = 0;
+
+
+            if (LIB_MEMORY.g_GAME_ID == 1)
+            {
+                total_cams = Memory.Read<byte>(pcsx2_proc, new IntPtr(0x203AEF51));
+                s_off = 0x203AEF84;
+
+            }
+
+            if (LIB_MEMORY.g_GAME_ID == 2)
+            {
+                total_cams = Memory.Read<byte>(pcsx2_proc, new IntPtr(0x203B31D1));
+                s_off = 0x203B3200; // starting offset to main memory struct
+
+            }
+
+
+
+
+            int cur_idx = LB_TCAM.SelectedIndex;
+            Int32[] cam_off = new Int32[total_cams];
+
+
+
+
+            // add camera indexs to listbox..
+            for (int i = 0; i < total_cams; i++)
+            {
+                LB_TCAM.Items.Add(i.ToString());
+            }
+
+
+            if (LB_TCAM.SelectedIndex != null)
+            {
+                cam_num = total_cams;
+
+                for (int j = 0; j < total_cams; j++)  // only position atm...
                 {
-                     total_cams = Memory.Read<byte>(pcsx2_proc, new IntPtr(0x203AEF51));
-                     s_off = 0x203AEF84;
+                    cam_off[j] = s_off + 0x198 * j;
 
+
+
+
+                    cam_props.cam_type = Memory.Read<byte>(pcsx2_proc, new IntPtr(cam_off[j] + 1));
+                    cam_props.rotation_clock = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 12));
+                    cam_props.rotation_counterclock = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 16));
+                    cam_props.FOV00 = Memory.Read<Single>(pcsx2_proc, new IntPtr(cam_off[j] + 22));
+                    cam_props.FOV01 = Memory.Read<Single>(pcsx2_proc, new IntPtr(cam_off[j] + 26));
+                    cam_props.cam_posx00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 160);
+                    cam_props.cam_height00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 164));
+                    cam_props.cam_posy00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 168);
+                    cam_props.cam_posx01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 172);
+                    cam_props.cam_height01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 176);
+                    cam_props.cam_posy01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 180);
+                    cam_props.cam_targetx = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 184);
+                    cam_props.cam_targetz = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 188);
+                    cam_props.cam_targety = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 192);
+
+
+                    //  MessageBox.Show(cam_off[j].ToString("X"), "title", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                if(LIB_MEMORY.g_GAME_ID == 2) 
-                {
-                    total_cams = Memory.Read<byte>(pcsx2_proc, new IntPtr(0x203B31D1));
-                    s_off = 0x203B3200; // starting offset to main memory struct
+                Memory_Grid.SelectedObject = cam_props;
+                //  LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
+            }
 
-                }
-
-
-
-
-                int cur_idx = LB_TCAM.SelectedIndex;
-                Int32[] cam_off = new Int32[total_cams];
-
-
-               
-
-                // add camera indexs to listbox..
-                for (int i = 0; i < total_cams; i++)
-                {
-                    LB_TCAM.Items.Add(i.ToString());
-                }
-
-
-                if (LB_TCAM.SelectedIndex != null)
-                {
-                    cam_num = total_cams;
-
-                    for (int j = 0; j < total_cams; j++)  // only position atm...
-                    {
-                        cam_off[j] = s_off + 0x198 * j;
-
-
-                  
-
-                        cam_props.cam_type = Memory.Read<byte>(pcsx2_proc, new IntPtr(cam_off[j] + 1));
-                        cam_props.rotation_clock = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 12));
-                        cam_props.rotation_counterclock = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 16));
-                        cam_props.FOV00 = Memory.Read<Single>(pcsx2_proc, new IntPtr(cam_off[j] + 22));
-                        cam_props.FOV01 = Memory.Read<Single>(pcsx2_proc, new IntPtr(cam_off[j] + 26));
-                        cam_props.cam_posx00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 160);
-                        cam_props.cam_height00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j] + 164));
-                        cam_props.cam_posy00 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 168);
-                        cam_props.cam_posx01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 172);
-                        cam_props.cam_height01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 176);
-                        cam_props.cam_posy01 = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 180);
-                        cam_props.cam_targetx = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 184);
-                        cam_props.cam_targetz = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 188);
-                        cam_props.cam_targety = Memory.Read<Int32>(pcsx2_proc, new IntPtr(cam_off[j]) + 192);
-
-
-                        //  MessageBox.Show(cam_off[j].ToString("X"), "title", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-
-                    Memory_Grid.SelectedObject = cam_props;
-                  //  LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
-                }
-        
         }  // scan camera block pass class obj to memory module
 
-        public void FOG_COPY(Process proc) 
+
+        /// <summary>
+        /// COPY FOG/LIG DATA ACROSS ALL INDEX
+        /// </summary>
+        /// <param name="proc"></param>
+        public void FOG_COPY(Process proc)
         {
 
 
@@ -185,7 +190,7 @@ namespace Netbio_VFL_Plus
             Int32[] light_offsets = new Int32[cam_num];
             int cur_idx = LB_TCAM.SelectedIndex;
 
-          
+
 
 
 
@@ -402,6 +407,8 @@ namespace Netbio_VFL_Plus
         }
 
 
+
+
         public void Light_Scan(Process pcsx2)
         {
 
@@ -418,81 +425,81 @@ namespace Netbio_VFL_Plus
             LB_TCAM.Items.Clear();
 
             Int32 s_off = 0; // light data alawys starts here in memory
-                byte total_cams = 0;
-                int cur_idx = LB_TCAM.SelectedIndex;
+            byte total_cams = 0;
+            int cur_idx = LB_TCAM.SelectedIndex;
 
-         
+
             MessageBox.Show(LIB_MEMORY.g_GAME_ID.ToString());
 
             if (LIB_MEMORY.g_GAME_ID == 1)
+            {
+                total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203AEF51));
+
+                s_off = 0x203ACD80;
+
+            }
+
+            if (LIB_MEMORY.g_GAME_ID == 2)
+            {
+
+
+                total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203B31D1));
+                s_off = 0x203B11B0; // starting offset to main memory struct
+
+            }
+
+            Int32[] light_offsets = new Int32[total_cams]; // craete an array of integers to hold all possible light offsets re size to t cams
+
+            for (int j = 0; j < total_cams; j++)
+            {
+                LB_TCAM.Items.Add(j.ToString());
+            }
+
+
+            if (LB_TCAM.SelectedIndex != null)
+            {
+                cam_num = total_cams;
+
+                for (int i = 0; i < total_cams; i++) // change to actual cam count , pass from RDT somehow
                 {
-                    total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203AEF51));
 
-                    s_off = 0x203ACD80;
+                    light_offsets[i] = s_off + 96 * i; // seek to the start of each 96 byte chunk
 
+                    //MessageBox.Show(light_offsets[i].ToString("X"));
+
+                    // offset adjustment is needed to read the right spots in each chunk
+                    LGSP.tag = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]));
+                    LGSP.Fade00 = Memory.Read<Single>(pcsx2, new IntPtr(light_offsets[i]) + 4);
+                    LGSP.Ulong01 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 8);
+                    LGSP.fogB = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 12);
+                    LGSP.fogG = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 13);
+                    LGSP.fogR = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 14);
+                    LGSP.fogA = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 15);
+                    LGSP.CAM_B = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 16);
+                    LGSP.CAM_G = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 17);
+                    LGSP.CAM_R = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 18);
+                    LGSP.CAM_ALPHA = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 19);
+                    LGSP.Ulong04 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 20);
+                    LGSP.SDW00 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 24);
+                    LGSP.SDW01 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 28);
+                    LGSP.SDW02 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 32);
+                    LGSP.R = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i]) + 36);
+                    LGSP.G = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i]) + 40);
+                    LGSP.B = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i] + 44));
                 }
 
-                if (LIB_MEMORY.g_GAME_ID == 2)
-                {
-            
 
-                    total_cams = Memory.Read<byte>(pcsx2, new IntPtr(0x203B31D1));
-                    s_off = 0x203B11B0; // starting offset to main memory struct
+            }
+            Memory_Grid.SelectedObject = LGSP;
 
-                }
+            //  LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
 
-                Int32[] light_offsets = new Int32[total_cams]; // craete an array of integers to hold all possible light offsets re size to t cams
-
-                for (int j = 0; j < total_cams; j++)
-                {
-                    LB_TCAM.Items.Add(j.ToString());
-                }
-
-
-                if (LB_TCAM.SelectedIndex != null)
-                {
-                    cam_num = total_cams;
-
-                    for (int i = 0; i < total_cams; i++) // change to actual cam count , pass from RDT somehow
-                    {
-
-                        light_offsets[i] = s_off + 96 * i; // seek to the start of each 96 byte chunk
-
-                        //MessageBox.Show(light_offsets[i].ToString("X"));
-
-                        // offset adjustment is needed to read the right spots in each chunk
-                        LGSP.tag = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]));
-                        LGSP.Fade00 = Memory.Read<Single>(pcsx2, new IntPtr(light_offsets[i]) + 4);
-                        LGSP.Ulong01 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 8);
-                        LGSP.fogB = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 12);
-                        LGSP.fogG = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 13);
-                        LGSP.fogR = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 14);
-                        LGSP.fogA = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 15);
-                        LGSP.CAM_B = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 16);
-                        LGSP.CAM_G = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 17);
-                        LGSP.CAM_R = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 18);
-                        LGSP.CAM_ALPHA = Memory.Read<byte>(pcsx2, new IntPtr(light_offsets[i]) + 19);
-                        LGSP.Ulong04 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 20);
-                        LGSP.SDW00 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 24);
-                        LGSP.SDW01 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 28);
-                        LGSP.SDW02 = Memory.Read<Int32>(pcsx2, new IntPtr(light_offsets[i]) + 32);
-                        LGSP.R = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i]) + 36);
-                        LGSP.G = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i]) + 40);
-                        LGSP.B = Memory.Read<float>(pcsx2, new IntPtr(light_offsets[i] + 44));
-                    }
-
-
-                }
-                Memory_Grid.SelectedObject = LGSP;
-
-              //  LB_TCAM.SetSelected(0, true); // force listbox index to avoid exception
-         
 
         } // scan light data pass class obj to memory module
 
 
 
-     
+
         private void button1_Click(object sender, EventArgs e) // write all index   //needs to be changed to differentiate between cam/light data why would you use it for cam? dumb ass
         {
 
@@ -580,7 +587,7 @@ namespace Netbio_VFL_Plus
 
         }
 
-    
+
 
         private void LB_TCAM_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -598,7 +605,7 @@ namespace Netbio_VFL_Plus
             Int32 light_off = 0;
 
 
-            if(LIB_MEMORY.g_GAME_ID == 1) 
+            if (LIB_MEMORY.g_GAME_ID == 1)
             {
                 cam_off = 0x203AEF84;
                 light_off = 0x203ACD80;
@@ -612,7 +619,7 @@ namespace Netbio_VFL_Plus
 
 
 
-         
+
 
 
 
@@ -699,18 +706,18 @@ namespace Netbio_VFL_Plus
             var pcsx2_proc = proc[0];
 
 
-            if (LIB_MEMORY.SEL_FMT == "_CAM") 
+            if (LIB_MEMORY.SEL_FMT == "_CAM")
             {
                 BTN_IDX.Hide();
                 Cam_Scan(pcsx2_proc);
-               
+
             }
 
-            if (LIB_MEMORY.SEL_FMT == "_FOG") 
+            if (LIB_MEMORY.SEL_FMT == "_FOG")
             {
                 BTN_IDX.Show();
                 Light_Scan(pcsx2_proc);
-                
+
             }
 
 
@@ -726,6 +733,12 @@ namespace Netbio_VFL_Plus
 
         }
 
+
+        /// <summary>
+        /// Write all index
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BTN_IDX_Click(object sender, EventArgs e)
         {
             var proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
@@ -736,12 +749,10 @@ namespace Netbio_VFL_Plus
 
             FOG_COPY(pcsx2_proc);
 
-         
-          
-
-
         }
 
+
+        // write to memory on field update
         private void Memory_Grid_PropertyValueChanged_1(object s, PropertyValueChangedEventArgs e)
         {
             var old_val = e.OldValue; // store old val
@@ -830,11 +841,13 @@ namespace Netbio_VFL_Plus
             }
         }
 
+        // ENABLE TIMER
         private void BTN_STAT_HOOK_ButtonClick(object sender, EventArgs e)
-        {         
+        {
             Interval_Timer.Enabled = true;
         }
 
+        // ON INTERVAL READ/UPDATE STATS
         private void Interval_Timer_Tick(object sender, EventArgs e)
         {
 
@@ -850,29 +863,157 @@ namespace Netbio_VFL_Plus
             // SET LABLELS USING LOADED MEMORY DATA
             LBL_POS_X.Text = LIB_MEMORY.G_PLAYER.X.ToString();
 
- 
+
             LBL_POS_Y.Text = LIB_MEMORY.G_PLAYER.Y.ToString();
             LBL_POS_Z.Text = LIB_MEMORY.G_PLAYER.Z.ToString();
 
-            LBL_ROOM.Text =  "ROOM ID: " + LIB_MEMORY.G_ROOM_DATA.ROOM_ID.ToString();
+            LBL_ROOM.Text = "ROOM ID: " + LIB_MEMORY.G_ROOM_DATA.ROOM_ID.ToString();
             LBL_CID.Text = "CAM ID: " + LIB_MEMORY.G_ROOM_DATA.CAM_ID.ToString();
 
-            
+
 
         }
 
-        //private void Memory_Interface_SizeChanged(object sender, EventArgs e)
-        //{
-        //    if (Memory_Interface.ActiveForm.WindowState == FormWindowState.Minimized)
-        //    {
-        //        Memory_Interface.ActiveForm.WindowState = FormWindowState.Normal;
-        //    }
-        //}
+        /// <summary>
+        /// SAVE DATA TO DISK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BTN_UPDATE_Click_1(object sender, EventArgs e)
+        {
+            // Used as a multiplier to reach the right offset
+            int sel_cam_idx = LB_TCAM.SelectedIndex;
+            int fog_hdr_skip = 0;
+
+            using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                using (BinaryReader br = new BinaryReader(fs)) 
+                {
+
+                    if (LIB_MEMORY.SEL_FMT == "_FOG") 
+                    {
+
+                        int offset = RDT_IO.FOG_OFFSET + RDT_IO.RDT_SELECTED.File_Offset + FRM_MAIN.NETBIO00_OFFSET + 8;
+                        fs.Seek(offset, SeekOrigin.Begin);
+                        fog_hdr_skip = br.ReadInt32();
+
+
+                    }
+
+                }
+
+            }
+
+
+                using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                using (BinaryWriter bw = new BinaryWriter(fs))
+                {
+                    
+
+                    // CAM
+                    if (LIB_MEMORY.SEL_FMT == "_CAM") 
+                    {
+                        
+                        int offset = RDT_IO.CAM_OFFSET + RDT_IO.RDT_SELECTED.File_Offset + FRM_MAIN.NETBIO00_OFFSET + 8;
+                        int entry_offset = offset + LB_TCAM.Items.Count * 4 + 320 * sel_cam_idx;
+                        fs.Seek(entry_offset + LB_TCAM.Items.Count * 4 + 320 * sel_cam_idx, SeekOrigin.Begin);
+
+
+
+
+                        bw.Write(cam_props.cam_type);
+
+                        fs.Seek(+20, SeekOrigin.Current);
+
+                    //    fs.Seek(CAM_HEADER_OBJZ[LB.SelectedIndex].new_off + 20, SeekOrigin.Begin); // skip to rotation and FOV, because i dont have the unknown longs stored in this form.......
+
+                        bw.Write(cam_props.rotation_clock);
+                        bw.Write(cam_props.rotation_counterclock);
+                        bw.Write(cam_props.FOV00);
+                        bw.Write(cam_props.FOV01);
+
+                        fs.Seek(+156, SeekOrigin.Current);
+
+
+                        // keep things in x y z order...
+                        bw.Write(cam_props.cam_posx00);
+                        bw.Write(cam_props.cam_height00);
+                        bw.Write(cam_props.cam_posy00);
+
+                        bw.Write(cam_props.cam_posx01);
+                        bw.Write(cam_props.cam_height01);
+                        bw.Write(cam_props.cam_posy01);
+
+                        bw.Write(cam_props.cam_targetx);
+                        bw.Write(cam_props.cam_targetz);
+                        bw.Write(cam_props.cam_targety);
+
+
+                        MessageBox.Show("Sucessful Camera Entry Written to : " + entry_offset, "Success!");
+
+                    }
+
+
+                    // FOG
+                    if (LIB_MEMORY.SEL_FMT == "_FOG")
+                    {
+
+                        int offset = RDT_IO.FOG_OFFSET + RDT_IO.RDT_SELECTED.File_Offset + FRM_MAIN.NETBIO00_OFFSET + fog_hdr_skip;
+
+                        int entry_offset = offset + 96 * sel_cam_idx;
+
+                        fs.Seek(entry_offset + 96 * sel_cam_idx, SeekOrigin.Begin);
+
+
+
+                        bw.Write(LGSP.tag);
+                        bw.Write(LGSP.Fade00);
+                        bw.Write(LGSP.Ulong01);
+                        bw.Write(LGSP.fogB);
+                        bw.Write(LGSP.fogG);
+                        bw.Write(LGSP.fogR);
+                        bw.Write(LGSP.fogA);
+
+                        bw.Write(LGSP.CAM_B);
+                        bw.Write(LGSP.CAM_G);
+                        bw.Write(LGSP.CAM_R);
+                        bw.Write(LGSP.CAM_ALPHA);
+                        bw.Write(LGSP.Ulong04);
+                        bw.Write(LGSP.SDW00);
+                        bw.Write(LGSP.SDW01);
+                        bw.Write(LGSP.SDW02);
+                        bw.Write(LGSP.R);
+                        bw.Write(LGSP.G);
+                        bw.Write(LGSP.B);
+
+
+
+
+                        MessageBox.Show("Sucessfull FOG Entry Written to: " + entry_offset.ToString());
+
+                    }
+
+                        }
+                    
+
+
+                }
+
+                //private void Memory_Interface_SizeChanged(object sender, EventArgs e)
+                //{
+                //    if (Memory_Interface.ActiveForm.WindowState == FormWindowState.Minimized)
+                //    {
+                //        Memory_Interface.ActiveForm.WindowState = FormWindowState.Normal;
+                //    }
+                //}
+            }
+
+
+
+        }
     }
 
 
 
-
-
-}
 

@@ -105,13 +105,16 @@
             this.BTN_UPDATE.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.BTN_UPDATE.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTN_UPDATE.ForeColor = System.Drawing.Color.Black;
+            this.BTN_UPDATE.Image = ((System.Drawing.Image)(resources.GetObject("BTN_UPDATE.Image")));
             this.BTN_UPDATE.Location = new System.Drawing.Point(247, 504);
             this.BTN_UPDATE.Margin = new System.Windows.Forms.Padding(2);
             this.BTN_UPDATE.Name = "BTN_UPDATE";
             this.BTN_UPDATE.Size = new System.Drawing.Size(173, 70);
             this.BTN_UPDATE.TabIndex = 19;
-            this.BTN_UPDATE.Text = "Update RDT";
+            this.BTN_UPDATE.Text = "SAVE TO DISK";
+            this.BTN_UPDATE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BTN_UPDATE.UseVisualStyleBackColor = false;
+            this.BTN_UPDATE.Click += new System.EventHandler(this.BTN_UPDATE_Click_1);
             // 
             // BTN_IDX
             // 

@@ -139,8 +139,8 @@ namespace Netbio_VFL_Plus
             {"SNP", Color.MistyRose},
             {"HTM", Color.LightGreen },
             {"SFD", Color.AliceBlue},
-            {"DAT", Color.Crimson}
-
+            {"DAT", Color.Crimson},
+            {"AFS", Color.White}
 
         };
 
@@ -555,64 +555,71 @@ namespace Netbio_VFL_Plus
 
 
 
-            // OPEN SELECTED FILE , RESIZE DATA BUFFER AND STORE DATA 
-            using (FileStream InputStream = new FileStream(import_file_path, FileMode.Open))
+
+            try
             {
-
-                input_buffer = new byte[InputStream.Length];
-
-
-             //   MessageBox.Show(input_buffer.Length.ToString());
-                using (BinaryReader br = new BinaryReader(InputStream))
+                // OPEN SELECTED FILE , RESIZE DATA BUFFER AND STORE DATA 
+                using (FileStream InputStream = new FileStream(import_file_path, FileMode.Open))
                 {
 
-                    br.Read(input_buffer, 0, input_buffer.Length);
+                    input_buffer = new byte[InputStream.Length];
 
-                    br.Close();
+
+                    //   MessageBox.Show(input_buffer.Length.ToString());
+                    using (BinaryReader br = new BinaryReader(InputStream))
+                    {
+
+                        br.Read(input_buffer, 0, input_buffer.Length);
+
+                        br.Close();
+                    }
+
+
+                    // collect offset of selected file 
+
+
+
                 }
 
 
-                // collect offset of selected file 
-                  
+
+                FRM_MAIN.Img.Read_Image.Dispose();
+
+                //string fpath = FRM_MAIN.Img.Image_Path;
+
+                //  FRM_MAIN.Img.Read_Image.Dispose();
+
+                string fpath = FRM_MAIN.Img.Image_Path;
 
 
-             }
+                file_off = int.Parse(LV.Items[index].SubItems[1].Text);
+
+                file_off = file_off + afs_offset + nb_offset;
 
 
 
-            FRM_MAIN.Img.Read_Image.Dispose();
 
-            //string fpath = FRM_MAIN.Img.Image_Path;
-
-            //  FRM_MAIN.Img.Read_Image.Dispose();
-
-            string fpath = FRM_MAIN.Img.Image_Path;
-            
-            
-            file_off = int.Parse(LV.Items[index].SubItems[1].Text);
-
-            file_off = file_off + afs_offset + nb_offset;
-
-
-           
-
-            using (FileStream fs2 = new FileStream(fpath, FileMode.Open))
-            {
-                using (BinaryWriter bw = new BinaryWriter(fs2))
+                using (FileStream fs2 = new FileStream(fpath, FileMode.Open))
                 {
-                    bw.Seek(file_off, SeekOrigin.Begin);
-                    bw.Write(input_buffer, 0, input_buffer.Length);
+                    using (BinaryWriter bw = new BinaryWriter(fs2))
+                    {
+                        bw.Seek(file_off, SeekOrigin.Begin);
+                        bw.Write(input_buffer, 0, input_buffer.Length);
 
-                    MessageBox.Show(import_file_path + " Written Succesfully to 0x" + file_off.ToString("X"));
+                        MessageBox.Show(import_file_path + " Written Succesfully to 0x" + file_off.ToString("X"));
+                    }
+
                 }
+
+                //  MessageBox.Show(FRM_MAIN.Img.Image_Path);
+
+                // write buffer to imported disc offset...
 
             }
-
-            //  MessageBox.Show(FRM_MAIN.Img.Image_Path);
-
-            // write buffer to imported disc offset...
-
-
+            catch (System.ArgumentException AE) 
+            {
+            
+            }
 
         }
 
@@ -734,6 +741,8 @@ namespace Netbio_VFL_Plus
 
                 
                 string ext = System.Text.Encoding.ASCII.GetString(buffer, 0, string_pos);
+            //    MessageBox.Show(ext);
+
                 ext = ext.Substring(ext.Length - 3, 3);
                 ext = ext.ToUpper();
                 
@@ -756,7 +765,6 @@ namespace Netbio_VFL_Plus
                 
                 if (LUT_FORMATS.ContainsKey(ext))
                 {
-                    
                     LV.Items[x].ForeColor = LUT_EXTCOLOR[ext];
                     LV.Items[x].SubItems.Add(LUT_FORMATS[ext]);
                    

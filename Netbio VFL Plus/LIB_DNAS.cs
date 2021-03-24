@@ -14,6 +14,7 @@ namespace Netbio_VFL_Plus
         public static byte[]  f1array = new byte[]{1,0,2,36,8,0,224,3,0,0,0,0,48,0,179,127};
        public static byte[] f2array = new byte[]{1,0,2,36,8,0,224,3};
 
+        public static byte GAME_VER = 0;
 
 
 
@@ -135,7 +136,7 @@ namespace Netbio_VFL_Plus
 
 
 
-        public static void GAME_CHECK()
+        public static byte GAME_CHECK()
         {
 
 
@@ -182,16 +183,19 @@ namespace Netbio_VFL_Plus
 
 
 
-
+                       
 
                     }
 
                 }
 
+                return GAME_VERSION;
+
             }
             catch (ArgumentException AE) 
             {
-               
+                return GAME_VERSION;
+
             }
 
             // RUN PATCH ROUTINES

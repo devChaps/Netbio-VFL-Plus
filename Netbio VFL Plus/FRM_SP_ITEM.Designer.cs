@@ -39,18 +39,18 @@
             this.CB_SP_ITEM_SEL.BackColor = System.Drawing.SystemColors.InfoText;
             this.CB_SP_ITEM_SEL.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.CB_SP_ITEM_SEL.FormattingEnabled = true;
-            this.CB_SP_ITEM_SEL.Location = new System.Drawing.Point(6, 22);
+            this.CB_SP_ITEM_SEL.Location = new System.Drawing.Point(12, 22);
             this.CB_SP_ITEM_SEL.Name = "CB_SP_ITEM_SEL";
-            this.CB_SP_ITEM_SEL.Size = new System.Drawing.Size(486, 24);
+            this.CB_SP_ITEM_SEL.Size = new System.Drawing.Size(463, 24);
             this.CB_SP_ITEM_SEL.TabIndex = 1;
             // 
             // LB_SP_ITEM
             // 
             this.LB_SP_ITEM.FormattingEnabled = true;
             this.LB_SP_ITEM.ItemHeight = 16;
-            this.LB_SP_ITEM.Location = new System.Drawing.Point(6, 57);
+            this.LB_SP_ITEM.Location = new System.Drawing.Point(12, 60);
             this.LB_SP_ITEM.Name = "LB_SP_ITEM";
-            this.LB_SP_ITEM.Size = new System.Drawing.Size(37, 260);
+            this.LB_SP_ITEM.Size = new System.Drawing.Size(31, 260);
             this.LB_SP_ITEM.TabIndex = 2;
             // 
             // GB_DATA
@@ -69,7 +69,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 358);
+            this.ClientSize = new System.Drawing.Size(522, 377);
             this.Controls.Add(this.GB_DATA);
             this.Name = "FRM_SP_ITEM";
             this.Text = "FRM_SP_ITEM";
