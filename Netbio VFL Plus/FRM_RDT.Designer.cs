@@ -176,10 +176,10 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BTN_UNPACK,
             this.BTN_CAM,
-            this.BTN_LIG,
-            this.BTN_SOUND,
             this.BTN_SGL,
-            this.BTN_MOMO});
+            this.BTN_MOMO,
+            this.BTN_LIG,
+            this.BTN_SOUND});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(487, 55);
@@ -245,10 +245,12 @@
             // 
             this.BTN_MOMO.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.BTN_MOMO.Image = ((System.Drawing.Image)(resources.GetObject("BTN_MOMO.Image")));
+            this.BTN_MOMO.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.BTN_MOMO.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_MOMO.Name = "BTN_MOMO";
-            this.BTN_MOMO.Size = new System.Drawing.Size(23, 52);
+            this.BTN_MOMO.Size = new System.Drawing.Size(52, 52);
             this.BTN_MOMO.Text = "toolStripButton1";
+            this.BTN_MOMO.Click += new System.EventHandler(this.BTN_MOMO_Click);
             // 
             // RDT_ContextMenu
             // 

@@ -15,7 +15,7 @@ namespace Netbio_VFL_Plus
     /// </summary>
    public static class Image_Data
     {
-
+        public static string IMG_FP;
         /// <summary>
         /// structure for general image data extending mostly Disc/Utils/CDReader
         /// </summary>

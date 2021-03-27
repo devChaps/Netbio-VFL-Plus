@@ -71,6 +71,7 @@ namespace Netbio_VFL_Plus
        public static NPC_NAMES NAME_OBJ = new NPC_NAMES();
 
         public static Image_Data.Image_Data_Obj Img;
+        
         public static Image_Data.PrimaryVolume_Obj PrimaryVolObj;
 
         public Image_Data.File_Obj[] Root_Files = new Image_Data.File_Obj[0];
@@ -210,6 +211,9 @@ namespace Netbio_VFL_Plus
                             BinaryReader br = new BinaryReader(fs);
                             Img.VolumeManager = new DiscUtils.VolumeManager();
                             Img.Image_Path = OFD.FileName;
+                            RDT_IO.FP_DISC = OFD.FileName;
+                            
+                            
 
                             int Dir_Count = 0;
                             int File_Count = 0;
@@ -1595,6 +1599,8 @@ namespace Netbio_VFL_Plus
 
         private void BTN_SOUND_Click(object sender, EventArgs e)
         {
+
+            
             FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
 
             AUDIO_FORM.Show();

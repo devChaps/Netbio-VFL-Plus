@@ -81,8 +81,6 @@ namespace Netbio_VFL_Plus
 
 
 
-
-
         private void FIND_PROCESS()
         {
             Process[] processlist = Process.GetProcesses();
@@ -133,7 +131,6 @@ namespace Netbio_VFL_Plus
             Array.Resize(ref entry_off, count);
 
 
-            
 
             for (int i = 0; i < count; i++)
             {
@@ -170,14 +167,10 @@ namespace Netbio_VFL_Plus
                 if (Items.m_ItemLookup.ContainsKey(Item_Props[i].Item_ID))
                 {
                     LV_IMEM.Items[i].SubItems.Add(Items.m_ItemLookup[Item_Props[i].Item_ID]);
-                    LV_IMEM.Items[i].ImageIndex = Item_Props[i].Item_ID;
+                    LV_IMEM.Items[i].ImageKey = Item_Props[i].Item_ID + ".png";
 
 
                 }
-
-
-
-    
 
 
             }
@@ -229,23 +222,14 @@ namespace Netbio_VFL_Plus
             using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "MEMDUMP_COMBO_TABLE.txt"))
             {
 
-
-
-
                 for (int i = 0; i < combo_data.Length; i++)
                 {
-
-
-               
-
 
                     
                     sw.WriteLine("Input Item: " + Items.m_ItemLookup[combo_data[i].ival_base]);
                     sw.WriteLine("Output Item: " + Items.m_ItemLookup[combo_data[i].ival_target]);
                     sw.WriteLine("Byte00 : " + Helper.Pad(combo_data[i].flag00) + " DEC(" + combo_data[i].flag00 + ")");
                     sw.WriteLine("Byte01 : " + Helper.Pad(combo_data[i].flag01) + " DEC(" + combo_data[i].flag01 + ")");
-
-
 
 
                     //   imem_dbglog.ForeColor = Color.PaleGoldenrod;
@@ -339,8 +323,6 @@ namespace Netbio_VFL_Plus
 
                     
 
-
-
                     // set item properties class to currently selected item entry
                     IDATA._type = Item_Props[idx].type;
                     IDATA._category = Item_Props[idx].category;
@@ -357,6 +339,9 @@ namespace Netbio_VFL_Plus
                     IDATA._Type = Item_Props[idx].Animation_ID;
                     IDATA._Menu_type = Item_Props[idx].Menu_type;
                     IDATA._Item_ID = Item_Props[idx].Item_ID;
+
+
+                    PB_ITEMID.Image = ItemIco_List.Images[Item_Props[idx].Item_ID + ".png"];
 
                    
 
@@ -455,10 +440,7 @@ namespace Netbio_VFL_Plus
                     sw.WriteLine(Items.m_ItemLookup[Item_Props[i].Item_ID]);
                     sw.WriteLine("Category: " + Helper.Pad(Item_Props[i].category) + " DEC(" + Item_Props[i].category + ")");
                     sw.WriteLine("Type: " + Helper.Pad(Item_Props[i].type) + " DEC(" + Item_Props[i].type + ")");
-                  
           
-
-
                 }
 
 

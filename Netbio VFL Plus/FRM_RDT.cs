@@ -18,7 +18,11 @@ namespace Netbio_VFL_Plus
 
         public EVB_PARSER EVBIO = new EVB_PARSER();
         public FRM_EVB EVB_FORM = new FRM_EVB();
+        public FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
+        public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public static RDT_IO RDT_HANDLER = new RDT_IO();
+
+
 
         public FRM_RDT_MEM RDT_MEMORY_FORM = new FRM_RDT_MEM();
 
@@ -133,6 +137,34 @@ namespace Netbio_VFL_Plus
             RDT_IO.FOG_OFFSET = int.Parse(LV_RDT.Items[13].SubItems[1].Text);
            
             RDT_MEMORY_FORM.ShowDialog();
+
+
+        }
+
+        private void BTN_MOMO_Click(object sender, EventArgs e)
+        {
+            RDT_IO.SNP_FLAG = 1;
+            RDT_IO.SNP_OFFSET00 = int.Parse(LV_RDT.Items[2].SubItems[1].Text);
+            MessageBox.Show(RDT_IO.SNP_OFFSET00.ToString());
+
+            if (File.Exists(FRM_MAIN.Img.Image_Path))
+            {
+                using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+                {
+                    if (FRM_MAIN.Valid_Iso(fs))
+                    {
+                        FRM_MAIN.Img.Read_Image = new CDReader(fs, true, true);
+                        FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
+
+                        Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
+
+
+                        LIB_AUDIO.SND_STREAM(memStream, AUDIO_FORM, int.Parse(LBL_RDT_OFF.Text), AUDIO_FORM.LV_AUDIO, AUDIO_FORM.LBL_TCOUNT, DEBUG_FORM.DEBUG_LOG);
+                         
+                        // RDT_HANDLER.Unpack_RDT_AFS(memStream, LBL_RDTSELECT, LBL_RDT_OFF);
+                    }
+                }
+            }
 
 
         }

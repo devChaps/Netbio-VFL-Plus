@@ -602,6 +602,11 @@ namespace Netbio_VFL_Plus
                     LV_ITABLE.Items[i].SubItems.Add(m_ItemLookup[TBL_ITEM[i].Item_val]); // add matching item
                     LV_ITABLE.Items[i].SubItems.Add(TBL_ITEM[i].Quantity.ToString());
                     LV_ITABLE.Items[i].SubItems.Add(TBL_ITEM[i].occurence.ToString());
+
+
+
+                    
+                    LV_ITABLE.Items[i].ImageKey = TBL_ITEM[i].Item_val + ".png";
                     //	CMB.Items.Add(m_ItemLookup[TBL_ITEM[i].Item_val].ToString()); // this only adds currently read items to the combo box, not entire dictionary
 
                     // color herbs lol
@@ -611,11 +616,11 @@ namespace Netbio_VFL_Plus
 
 
                     // if itemIcon table contains lv item name
-                    if (ItemIcon_Table.ContainsKey(LV_ITABLE.Items[i].SubItems[2].Text))
-                    {
-                        // set item index to correct icon list index..
-                            LV_ITABLE.Items[i].ImageIndex = ItemIcon_Table[LV_ITABLE.Items[i].SubItems[2].Text];
-                    }
+                    //if (ItemIcon_Table.ContainsKey(LV_ITABLE.Items[i].SubItems[2].Text))
+                    //{
+                    //    // set item index to correct icon list index..
+                    //        LV_ITABLE.Items[i].ImageKey = ItemIcon_Table[LV_ITABLE.Items[i].SubItems[2].Text].ToString();
+                    //}
 
 					
 				}

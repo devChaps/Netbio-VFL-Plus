@@ -127,7 +127,13 @@ using System.Threading;
      public static Int32 CAM_OFFSET;
      public static Int32 FOG_OFFSET;
      public static Int32 ARCHIVE_OFFSET;
+     public static Int32 SNP_OFFSET00;
+     public static Int32 SNP_OFFSET01;
+     public static byte SNP_FLAG;
      public string G_RDT = "";
+     public static string FP_DISC;
+    
+
         #endregion
 
 
