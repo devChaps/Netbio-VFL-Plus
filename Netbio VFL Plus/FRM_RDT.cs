@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
 using DiscUtils.Iso9660;
+using Microsoft.VisualBasic;
+
+
 
 namespace Netbio_VFL_Plus
 {
@@ -20,6 +22,7 @@ namespace Netbio_VFL_Plus
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
+        public FRM_GEN_SWITCH SNP_SWITCH = new FRM_GEN_SWITCH();
         public static RDT_IO RDT_HANDLER = new RDT_IO();
 
 
@@ -143,9 +146,19 @@ namespace Netbio_VFL_Plus
 
         private void BTN_MOMO_Click(object sender, EventArgs e)
         {
-            RDT_IO.SNP_FLAG = 1;
+            SNP_SWITCH.ShowDialog();
+
+            // COLLECT RELATIVE OFFSETS
             RDT_IO.SNP_OFFSET00 = int.Parse(LV_RDT.Items[2].SubItems[1].Text);
-            MessageBox.Show(RDT_IO.SNP_OFFSET00.ToString());
+            RDT_IO.SNP_OFFSET01 = int.Parse(LV_RDT.Items[3].SubItems[1].Text);
+
+            int sel_snp = 0;
+
+            MessageBox.Show(RDT_IO.SNP_FLAG.ToString());
+
+            if (RDT_IO.SNP_FLAG == 1) { sel_snp = RDT_IO.SNP_OFFSET00; }
+            if (RDT_IO.SNP_FLAG == 2) { sel_snp = RDT_IO.SNP_OFFSET01; }
+
 
             if (File.Exists(FRM_MAIN.Img.Image_Path))
             {
@@ -157,9 +170,12 @@ namespace Netbio_VFL_Plus
                         FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
 
                         Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
-
-
-                        LIB_AUDIO.SND_STREAM(memStream, AUDIO_FORM, int.Parse(LBL_RDT_OFF.Text), AUDIO_FORM.LV_AUDIO, AUDIO_FORM.LBL_TCOUNT, DEBUG_FORM.DEBUG_LOG);
+                        LIB_AUDIO.SND_RDT_STREAM(memStream, 
+                            AUDIO_FORM, 
+                            int.Parse(LBL_RDT_OFF.Text),sel_snp, 
+                            AUDIO_FORM.LV_AUDIO, 
+                            AUDIO_FORM.LBL_TCOUNT, 
+                            DEBUG_FORM.DEBUG_LOG);
                          
                         // RDT_HANDLER.Unpack_RDT_AFS(memStream, LBL_RDTSELECT, LBL_RDT_OFF);
                     }

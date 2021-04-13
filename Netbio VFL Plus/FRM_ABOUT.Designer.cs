@@ -54,9 +54,9 @@
             // 
             this.BTN_ABT_CLOSE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BTN_ABT_CLOSE.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold);
-            this.BTN_ABT_CLOSE.Location = new System.Drawing.Point(2, 632);
+            this.BTN_ABT_CLOSE.Location = new System.Drawing.Point(2, 648);
             this.BTN_ABT_CLOSE.Name = "BTN_ABT_CLOSE";
-            this.BTN_ABT_CLOSE.Size = new System.Drawing.Size(394, 48);
+            this.BTN_ABT_CLOSE.Size = new System.Drawing.Size(394, 32);
             this.BTN_ABT_CLOSE.TabIndex = 8;
             this.BTN_ABT_CLOSE.Text = "CLOSE";
             this.BTN_ABT_CLOSE.UseVisualStyleBackColor = true;
@@ -64,10 +64,10 @@
             // 
             // lbl_sig
             // 
-            this.lbl_sig.BackColor = System.Drawing.SystemColors.Control;
+            this.lbl_sig.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lbl_sig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_sig.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_sig.ForeColor = System.Drawing.Color.Black;
+            this.lbl_sig.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbl_sig.Location = new System.Drawing.Point(2, 207);
             this.lbl_sig.Name = "lbl_sig";
             this.lbl_sig.Size = new System.Drawing.Size(392, 304);
@@ -78,7 +78,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
@@ -91,16 +91,16 @@
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(2, 520);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(392, 109);
+            this.label2.Size = new System.Drawing.Size(392, 125);
             this.label2.TabIndex = 9;
             this.label2.Text = "Thanks/Accreditations to the following people\r\n the_mortician \r\nMr.Creamy \r\nHill7" +
-    "3n \r\n0Verlord \r\nIgusaTaro\r\n";
+    "3n \r\n0Verlord \r\nIgusaTaro\r\nAlphaSky";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FRM_ABOUT

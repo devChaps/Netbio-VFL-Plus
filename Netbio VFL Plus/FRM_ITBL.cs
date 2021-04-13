@@ -37,5 +37,15 @@ namespace Netbio_VFL_Plus
             }
 
         }
+
+        private void Btn_TBL_UPDATE_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Write Feature not yet implemented.. wait for future update");
+        }
+
+        private void NUD_TBL_QUANTITY_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

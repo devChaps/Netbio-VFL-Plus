@@ -250,6 +250,7 @@
             this.pg_imem.ViewBackColor = System.Drawing.Color.Black;
             this.pg_imem.ViewForeColor = System.Drawing.Color.NavajoWhite;
             this.pg_imem.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.pg_imem_PropertyValueChanged);
+            this.pg_imem.Click += new System.EventHandler(this.pg_imem_Click);
             // 
             // IMEM_TIMER
             // 
@@ -261,7 +262,7 @@
             // 
             this.nud_itemval.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nud_itemval.ForeColor = System.Drawing.Color.PaleGoldenrod;
-            this.nud_itemval.Location = new System.Drawing.Point(252, 336);
+            this.nud_itemval.Location = new System.Drawing.Point(6, 316);
             this.nud_itemval.Maximum = new decimal(new int[] {
             -727379969,
             232,
@@ -273,8 +274,9 @@
             0,
             -2147483648});
             this.nud_itemval.Name = "nud_itemval";
-            this.nud_itemval.Size = new System.Drawing.Size(133, 27);
+            this.nud_itemval.Size = new System.Drawing.Size(142, 27);
             this.nud_itemval.TabIndex = 14;
+            this.nud_itemval.ValueChanged += new System.EventHandler(this.nud_itemval_ValueChanged);
             // 
             // nud_soundval
             // 
@@ -311,7 +313,7 @@
             0,
             -2147483648});
             this.nud_mtype.Name = "nud_mtype";
-            this.nud_mtype.Size = new System.Drawing.Size(114, 27);
+            this.nud_mtype.Size = new System.Drawing.Size(142, 27);
             this.nud_mtype.TabIndex = 22;
             // 
             // nud_durabillity
@@ -435,7 +437,7 @@
             // 
             this.numericUpDown1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.numericUpDown1.ForeColor = System.Drawing.Color.PaleGoldenrod;
-            this.numericUpDown1.Location = new System.Drawing.Point(252, 303);
+            this.numericUpDown1.Location = new System.Drawing.Point(6, 283);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             -727379969,
             232,

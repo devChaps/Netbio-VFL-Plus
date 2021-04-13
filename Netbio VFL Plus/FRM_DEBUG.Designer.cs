@@ -41,7 +41,7 @@
             this.DEBUG_LOG.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DEBUG_LOG.Location = new System.Drawing.Point(3, 31);
             this.DEBUG_LOG.Name = "DEBUG_LOG";
-            this.DEBUG_LOG.Size = new System.Drawing.Size(722, 446);
+            this.DEBUG_LOG.Size = new System.Drawing.Size(722, 484);
             this.DEBUG_LOG.TabIndex = 0;
             this.DEBUG_LOG.Text = "";
             // 
@@ -52,7 +52,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(725, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(734, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 475);
+            this.ClientSize = new System.Drawing.Size(734, 522);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.DEBUG_LOG);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

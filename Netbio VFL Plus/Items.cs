@@ -339,6 +339,58 @@ namespace Netbio_VFL_Plus
 
 
 
+
+
+        // RETURN DIFFICULTY STRING FROM SELECTED TBL FILE
+        public static string DFC_CHECK(string tbl_val) 
+        {
+
+            string val = string.Empty;
+
+            switch (tbl_val) 
+            {
+                case "00":
+                case "01":
+                case "02":
+                case "03":
+                    val = "EASY"; break;
+
+                case "04":
+                case "05":
+                case "06":
+                case "07":
+                    val = "NORMAL"; break;
+
+
+                case "08":
+                case "09":
+                case "10":
+                case "11":
+                    val = "HARD"; break;
+
+
+
+                case "12":
+                case "13":
+                case "14":
+                case "15":
+                    val = "VERY HARD"; break;
+
+                case "16": val = "EASY"; break;
+                case "17": val = "NORMAL"; break;
+                case "18": val = "HARD"; break;
+                case "19": val = "VERY HARD"; break;
+                  
+
+
+
+            }
+
+            return val;
+
+        }
+
+
         /// <summary>
         /// Parse itemdat from memory stream..
         /// </summary>
@@ -542,7 +594,7 @@ namespace Netbio_VFL_Plus
        /// <param name="CMB"></param>
        /// <param name="f_type"></param>
        /// <param name="Debug_Log"></param>
-		public void READ_TABLE_STREAM(Stream fs, int start_off, ListView LV_AFS, ListView LV_ITABLE, ComboBox CMB, bool f_type, RichTextBox Debug_Log, ImageList IcoList)
+		public void READ_TABLE_STREAM(Stream fs, int start_off, ListView LV_AFS, ListView LV_ITABLE, ComboBox CMB, bool f_type, RichTextBox Debug_Log, ImageList IcoList, ToolStripStatusLabel LBL_ONLINE, ToolStripStatusLabel LBL_DFC)
 		{
 
             int tbl_offset = int.Parse(LV_AFS.FocusedItem.SubItems[1].Text);
@@ -565,12 +617,27 @@ namespace Netbio_VFL_Plus
 
 			Debug_Log.AppendText("\n Defined Item Count: " + TBL_HEADER.Item_count.ToString());
 
-			if (f_type) // if online file multiply to get the extra entries
-			{
-				TBL_HEADER.Item_count *= 3;
-			}
+            if (f_type) // if online file multiply to get the extra entries
+            {
+                TBL_HEADER.Item_count *= 3;
+                LBL_ONLINE.BackColor = Color.Green;
+                LBL_ONLINE.ForeColor = Color.Black;
+                LBL_ONLINE.Text = "ONLINE";
 
-			Array.Resize(ref TBL_ITEM, TBL_HEADER.Item_count);    // resize arrays
+            }
+            else 
+            {
+                LBL_ONLINE.BackColor = Color.Blue;
+                LBL_ONLINE.ForeColor = Color.White;
+                LBL_ONLINE.Text = "OFFLINE";
+
+            }
+
+
+
+
+
+            Array.Resize(ref TBL_ITEM, TBL_HEADER.Item_count);    // resize arrays
 			Array.Resize(ref item_names, TBL_HEADER.Item_count);  
 
 			for (int i = 0; i < TBL_HEADER.Item_count; i++) // loop through item count read/store item objects 

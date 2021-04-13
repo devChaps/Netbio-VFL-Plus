@@ -129,7 +129,7 @@ using System.Threading;
      public static Int32 ARCHIVE_OFFSET;
      public static Int32 SNP_OFFSET00;
      public static Int32 SNP_OFFSET01;
-     public static byte SNP_FLAG;
+     public static byte SNP_FLAG; // Determines which offset to use
      public string G_RDT = "";
      public static string FP_DISC;
     
@@ -202,7 +202,7 @@ using System.Threading;
 
 
             fs.Seek(RDT_SELECTED.File_Offset, SeekOrigin.Begin);
-            MessageBox.Show(fs.Position.ToString());
+ 
 
             Int32 offset = 0;          
                                        // read 1st offset, divide by 8 to get total numer of items(includinbut cg offset and size as 1 item)

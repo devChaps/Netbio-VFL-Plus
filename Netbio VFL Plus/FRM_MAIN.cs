@@ -92,6 +92,7 @@ namespace Netbio_VFL_Plus
         public FRM_RDT RDT_FORM = new FRM_RDT();
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public FRM_EMD EMD_FORM = new FRM_EMD();
+        public FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
         public PB_CURROOM NPC_FORM = new PB_CURROOM();
         public FRM_HEX2DEC CALC_FORM = new FRM_HEX2DEC();
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
@@ -135,7 +136,8 @@ namespace Netbio_VFL_Plus
             LV_AFS.Groups.Add(new ListViewGroup("WEAPON MODEL DATA (RELOADING)")); //9
             LV_AFS.Groups.Add(new ListViewGroup("Playstation 2 Texture/Icons")); //10
             LV_AFS.Groups.Add(new ListViewGroup("UNDEFINED")); // 11
-            LV_AFS.Groups.Add(new ListViewGroup("Collision Data"));
+            LV_AFS.Groups.Add(new ListViewGroup("COLLISIONS")); // 12
+            LV_AFS.Groups.Add(new ListViewGroup("SOUND CONTAINERS")); // 13
 
 
          // LV_ItemTable.Groups.Add(new ListViewGroup("NULL"));
@@ -197,7 +199,7 @@ namespace Netbio_VFL_Plus
 
             OFD.ShowDialog();
 
-
+            Image_Data.IMG_FP = OFD.FileName;
             try
             {
                 if (File.Exists(OFD.FileName))
@@ -390,53 +392,61 @@ namespace Netbio_VFL_Plus
 
         private void LV_AFS_ItemActivate(object sender, EventArgs e)
         {
-            int index = LV_AFS.SelectedIndices[0];
-            int vol_index = Img.Volume_Index; // u need to pass this
-
-            if (File.Exists(Img.Image_Path))
+            try
             {
-                using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
+
+                int index = LV_AFS.SelectedIndices[0];
+                int vol_index = Img.Volume_Index; // u need to pass this
+
+                if (File.Exists(Img.Image_Path))
                 {
-                    if (Valid_Iso(fs))
+                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
                     {
-
-                        Img.Read_Image = new CDReader(fs, true, true);
-                        Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
-                        Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open); // IMG.selected volume wont update correctly, using the quicker volume browsing..
-                        BinaryReader br = new BinaryReader(memStream);
-
-                        int sel_siz = int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text);
-
-                        //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
-
-
-                        AFSIO.cur_archive_offset = sel_siz;
-
-
-                        DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
-
-
-                        if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
+                        if (Valid_Iso(fs))
                         {
 
-                            LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
+                            Img.Read_Image = new CDReader(fs, true, true);
+                            Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+                            Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open); // IMG.selected volume wont update correctly, using the quicker volume browsing..
+                            BinaryReader br = new BinaryReader(memStream);
 
-                            AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
+                            int sel_siz = int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text);
+
+                            //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
+
+
+                            AFSIO.cur_archive_offset = sel_siz;
+
+
+                            DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
+
+
+                            if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
+                            {
+
+                                LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
+
+                                AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
+                            }
+
+
+                            //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
+
+                            br.Close();
+                            fs.Close();
+                            memStream.Close();
+
+                            // Img.Read_Image.Dispose();
+
                         }
-                       
-
-                        //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
-
-                        br.Close();
-                        fs.Close();
-                        memStream.Close();
-
-                       // Img.Read_Image.Dispose();
 
                     }
 
                 }
-
+            }
+            catch (System.ArgumentOutOfRangeException AOR) 
+            {
+                  
             }
         }
 
@@ -747,7 +757,7 @@ namespace Netbio_VFL_Plus
             string table_name = LV_AFS.FocusedItem.SubItems[3].Text;
             int f_len = table_name.Length;
             string end_val = table_name.Substring(table_name.Length - 6, 2); // this is just for checking online/offline
-            bool tbl_check; // 
+            bool tbl_check; // online check
 
             
             
@@ -764,6 +774,11 @@ namespace Netbio_VFL_Plus
                         Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
 
 
+                        // SET DFC LBL TO STRING CONVERSION
+                       TBL_FORM.LBL_DFC.Text = Items.DFC_CHECK(end_val);
+                        
+
+
                         if (f_len > 0)
                         {
                             // ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, LV_ItemTable, CMB_ITEMNAME, )
@@ -772,12 +787,12 @@ namespace Netbio_VFL_Plus
                         if (int.Parse(end_val) <= 15)
                         {
                             tbl_check = true;
-                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List);
+                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List, TBL_FORM.LBL_ONLINE, TBL_FORM.LBL_DFC);
                         }
                         else
                         {
                             tbl_check = false;
-                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List);
+                            ITEMIO.READ_TABLE_STREAM(memStream, AFSIO.cur_archive_offset, LV_AFS, TBL_FORM.LV_ItemTable, TBL_FORM.CMB_ITEMNAME, tbl_check, DEBUG_FORM.DEBUG_LOG, ItemIco_List, TBL_FORM.LBL_ONLINE, TBL_FORM.LBL_DFC);
                         }
 
                         TBL_FORM.ShowDialog();
@@ -1366,6 +1381,13 @@ namespace Netbio_VFL_Plus
                         case "NPC":
                             nPCINTToolStripMenuItem_Click(sender, e);
                             break;
+                        case "SND":
+                            sNDSNPSOUNDBANKSToolStripMenuItem_Click(sender, e);
+                            break;
+                        case "SNP":
+                            sNDSNPSOUNDBANKSToolStripMenuItem_Click(sender, e);
+                            break;
+                            
 
 
 
@@ -1484,18 +1506,7 @@ namespace Netbio_VFL_Plus
             try
             {
 
-
-            
-
-
-
-
-
                 // 2065640 FILE 1 OFFSET
-
-
-
-
                 using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
                     using (BinaryReader br = new BinaryReader(fs, new ASCIIEncoding()))
@@ -1525,6 +1536,8 @@ namespace Netbio_VFL_Plus
 
 
 
+                      
+
 
                         if (GAME_VERSION == 1)
                         {
@@ -1541,8 +1554,10 @@ namespace Netbio_VFL_Plus
                             {
                                 NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
                                 byte[] buffer = br.ReadBytes(8);
+                                
                                 NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                                //   MessageBox.Show(NAME_OBJ.name[i]);
+                         
+                                    //   MessageBox.Show(NAME_OBJ.name[i]);
 
                             }
 
@@ -1551,27 +1566,30 @@ namespace Netbio_VFL_Plus
 
 
                             if (GAME_VERSION == 2)
-                        {
-
-                            // seek to name data
-                            fs.Seek(2107032, SeekOrigin.Begin);
-
-                            // resize string to num of entries + offsets
-                            Array.Resize(ref NAME_OBJ.name, 784 / 8);
-                            Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
-
-                            // loop through entries and convert b array to ascii / store in structure for later use
-                            for (int i = 0; i < NAME_OBJ.name.Length; i++)
                             {
-                                NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
-                                byte[] buffer = br.ReadBytes(8);
-                                NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
-                                //   MessageBox.Show(NAME_OBJ.name[i]);
+
+                                // seek to name data
+                                fs.Seek(2107032, SeekOrigin.Begin);
+
+                                // resize string to num of entries + offsets
+                                Array.Resize(ref NAME_OBJ.name, 784 / 8);
+                                Array.Resize(ref NAME_OBJ.offsets, NAME_OBJ.name.Length);
+
+                                // loop through entries and convert b array to ascii / store in structure for later use
+                                for (int i = 0; i < NAME_OBJ.name.Length; i++)
+                                {
+                                    NAME_OBJ.offsets[i] = fs.Position; // store offsets to each entry
+                                    byte[] buffer = br.ReadBytes(8);
+                                    NAME_OBJ.name[i] = System.Text.Encoding.ASCII.GetString(buffer, 0, buffer.Length);
+                                  
+                                   //    MessageBox.Show(NAME_OBJ.name[i]);
+
+                                }
 
                             }
 
                         }
-                    }
+                    
 
                 }
             }
@@ -1599,17 +1617,50 @@ namespace Netbio_VFL_Plus
 
         private void BTN_SOUND_Click(object sender, EventArgs e)
         {
-
+            
             
             FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
 
             AUDIO_FORM.Show();
 
+            RDT_IO.SNP_FLAG = 0;
 
         }
 
         private void MAINSTATUS_STRIP_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+
+        }
+
+        private void sNDSNPSOUNDBANKSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            // DOESENT MATTER AS LONG AS NOT 0
+            RDT_IO.SNP_FLAG = 1;
+
+            if (File.Exists(FRM_MAIN.Img.Image_Path))
+            {
+                using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+                {
+                    if (FRM_MAIN.Valid_Iso(fs))
+                    {
+                        FRM_MAIN.Img.Read_Image = new CDReader(fs, true, true);
+                        FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
+
+                        Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
+
+
+                        int i = LV_AFS.FocusedItem.Index;
+                        int afs_offset = int.Parse(LV_AFS.Items[i].SubItems[1].Text);
+
+
+                        LIB_AUDIO.SND_AFS_STREAM(memStream, AUDIO_FORM, afs_offset, AFSIO.cur_archive_offset, AUDIO_FORM.LV_AUDIO, AUDIO_FORM.LBL_TCOUNT, DEBUG_FORM.DEBUG_LOG);
+
+                        // RDT_HANDLER.Unpack_RDT_AFS(memStream, LBL_RDTSELECT, LBL_RDT_OFF);
+                    }
+                }
+            }
+
 
         }
     }

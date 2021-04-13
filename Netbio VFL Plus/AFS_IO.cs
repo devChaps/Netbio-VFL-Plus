@@ -68,7 +68,6 @@ namespace Netbio_VFL_Plus
             {"FOG", 5},
             {"LIG", 5},
             {"SFD", 6},
-            {"ADX", 7},
             {"EVB", 8},
             {"EMD", 8},
             {"SGL", 8},
@@ -76,7 +75,11 @@ namespace Netbio_VFL_Plus
             {"ITT", 0},
             {"WMD", 9},
             {"IMG", 10},
-            {"TM2", 10}
+            {"TM2", 10},
+            {"SND", 13},
+            {"ADX", 13},
+            {"SNP", 13}
+
 
 
         };

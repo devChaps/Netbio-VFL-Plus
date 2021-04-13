@@ -452,7 +452,14 @@ namespace Netbio_VFL_Plus
 
         }
 
+        private void nud_itemval_ValueChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void pg_imem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

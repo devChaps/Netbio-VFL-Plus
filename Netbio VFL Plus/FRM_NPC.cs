@@ -95,7 +95,7 @@ namespace Netbio_VFL_Plus
 
         private void Btn_Confirm_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Write Functionality not yet implemented... coming soon");
         }
 
         private void label2_Click(object sender, EventArgs e)

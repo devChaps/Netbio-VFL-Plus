@@ -36,6 +36,7 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
             this.Btn_TBL_UPDATE = new System.Windows.Forms.Button();
             this.NUD_TBL_OCCURENCE = new System.Windows.Forms.NumericUpDown();
             this.NUD_TBL_QUANTITY = new System.Windows.Forms.NumericUpDown();
@@ -43,12 +44,15 @@
             this.CMB_ITEMNAME = new System.Windows.Forms.ComboBox();
             this.Nud_TBL_Index = new System.Windows.Forms.NumericUpDown();
             this.ItemSelectionGroupBox = new System.Windows.Forms.GroupBox();
-            this.ItemIco_List = new System.Windows.Forms.ImageList(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.LBL_DFC = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LBL_ONLINE = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_OCCURENCE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_QUANTITY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_ItemID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_TBL_Index)).BeginInit();
             this.ItemSelectionGroupBox.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LV_ItemTable
@@ -97,88 +101,6 @@
             // 
             this.columnHeader20.Text = "Occurence?";
             this.columnHeader20.Width = 78;
-            // 
-            // Btn_TBL_UPDATE
-            // 
-            this.Btn_TBL_UPDATE.Location = new System.Drawing.Point(103, 62);
-            this.Btn_TBL_UPDATE.Name = "Btn_TBL_UPDATE";
-            this.Btn_TBL_UPDATE.Size = new System.Drawing.Size(288, 60);
-            this.Btn_TBL_UPDATE.TabIndex = 6;
-            this.Btn_TBL_UPDATE.Text = "Update Entry";
-            this.Btn_TBL_UPDATE.UseVisualStyleBackColor = true;
-            // 
-            // NUD_TBL_OCCURENCE
-            // 
-            this.NUD_TBL_OCCURENCE.Location = new System.Drawing.Point(12, 62);
-            this.NUD_TBL_OCCURENCE.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.NUD_TBL_OCCURENCE.Name = "NUD_TBL_OCCURENCE";
-            this.NUD_TBL_OCCURENCE.Size = new System.Drawing.Size(85, 27);
-            this.NUD_TBL_OCCURENCE.TabIndex = 5;
-            // 
-            // NUD_TBL_QUANTITY
-            // 
-            this.NUD_TBL_QUANTITY.Location = new System.Drawing.Point(12, 95);
-            this.NUD_TBL_QUANTITY.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.NUD_TBL_QUANTITY.Name = "NUD_TBL_QUANTITY";
-            this.NUD_TBL_QUANTITY.Size = new System.Drawing.Size(85, 27);
-            this.NUD_TBL_QUANTITY.TabIndex = 4;
-            // 
-            // NUD_TBL_ItemID
-            // 
-            this.NUD_TBL_ItemID.Location = new System.Drawing.Point(81, 29);
-            this.NUD_TBL_ItemID.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.NUD_TBL_ItemID.Name = "NUD_TBL_ItemID";
-            this.NUD_TBL_ItemID.Size = new System.Drawing.Size(85, 27);
-            this.NUD_TBL_ItemID.TabIndex = 3;
-            // 
-            // CMB_ITEMNAME
-            // 
-            this.CMB_ITEMNAME.FormattingEnabled = true;
-            this.CMB_ITEMNAME.Location = new System.Drawing.Point(172, 29);
-            this.CMB_ITEMNAME.Name = "CMB_ITEMNAME";
-            this.CMB_ITEMNAME.Size = new System.Drawing.Size(221, 27);
-            this.CMB_ITEMNAME.TabIndex = 1;
-            // 
-            // Nud_TBL_Index
-            // 
-            this.Nud_TBL_Index.Location = new System.Drawing.Point(12, 29);
-            this.Nud_TBL_Index.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.Nud_TBL_Index.Name = "Nud_TBL_Index";
-            this.Nud_TBL_Index.Size = new System.Drawing.Size(63, 27);
-            this.Nud_TBL_Index.TabIndex = 2;
-            // 
-            // ItemSelectionGroupBox
-            // 
-            this.ItemSelectionGroupBox.BackColor = System.Drawing.Color.Transparent;
-            this.ItemSelectionGroupBox.Controls.Add(this.Btn_TBL_UPDATE);
-            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_OCCURENCE);
-            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_QUANTITY);
-            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_ItemID);
-            this.ItemSelectionGroupBox.Controls.Add(this.CMB_ITEMNAME);
-            this.ItemSelectionGroupBox.Controls.Add(this.Nud_TBL_Index);
-            this.ItemSelectionGroupBox.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ItemSelectionGroupBox.Location = new System.Drawing.Point(0, 564);
-            this.ItemSelectionGroupBox.Name = "ItemSelectionGroupBox";
-            this.ItemSelectionGroupBox.Size = new System.Drawing.Size(397, 141);
-            this.ItemSelectionGroupBox.TabIndex = 4;
-            this.ItemSelectionGroupBox.TabStop = false;
-            this.ItemSelectionGroupBox.Text = "Edit Selection";
             // 
             // ItemIco_List
             // 
@@ -400,11 +322,124 @@
             this.ItemIco_List.Images.SetKeyName(213, "14110.png");
             this.ItemIco_List.Images.SetKeyName(214, "14111.png");
             // 
+            // Btn_TBL_UPDATE
+            // 
+            this.Btn_TBL_UPDATE.Location = new System.Drawing.Point(103, 53);
+            this.Btn_TBL_UPDATE.Name = "Btn_TBL_UPDATE";
+            this.Btn_TBL_UPDATE.Size = new System.Drawing.Size(288, 60);
+            this.Btn_TBL_UPDATE.TabIndex = 6;
+            this.Btn_TBL_UPDATE.Text = "Update Entry";
+            this.Btn_TBL_UPDATE.UseVisualStyleBackColor = true;
+            this.Btn_TBL_UPDATE.Click += new System.EventHandler(this.Btn_TBL_UPDATE_Click);
+            // 
+            // NUD_TBL_OCCURENCE
+            // 
+            this.NUD_TBL_OCCURENCE.Location = new System.Drawing.Point(12, 53);
+            this.NUD_TBL_OCCURENCE.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.NUD_TBL_OCCURENCE.Name = "NUD_TBL_OCCURENCE";
+            this.NUD_TBL_OCCURENCE.Size = new System.Drawing.Size(85, 27);
+            this.NUD_TBL_OCCURENCE.TabIndex = 5;
+            // 
+            // NUD_TBL_QUANTITY
+            // 
+            this.NUD_TBL_QUANTITY.Location = new System.Drawing.Point(12, 86);
+            this.NUD_TBL_QUANTITY.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.NUD_TBL_QUANTITY.Name = "NUD_TBL_QUANTITY";
+            this.NUD_TBL_QUANTITY.Size = new System.Drawing.Size(85, 27);
+            this.NUD_TBL_QUANTITY.TabIndex = 4;
+            this.NUD_TBL_QUANTITY.ValueChanged += new System.EventHandler(this.NUD_TBL_QUANTITY_ValueChanged);
+            // 
+            // NUD_TBL_ItemID
+            // 
+            this.NUD_TBL_ItemID.Location = new System.Drawing.Point(81, 20);
+            this.NUD_TBL_ItemID.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.NUD_TBL_ItemID.Name = "NUD_TBL_ItemID";
+            this.NUD_TBL_ItemID.Size = new System.Drawing.Size(85, 27);
+            this.NUD_TBL_ItemID.TabIndex = 3;
+            // 
+            // CMB_ITEMNAME
+            // 
+            this.CMB_ITEMNAME.FormattingEnabled = true;
+            this.CMB_ITEMNAME.Location = new System.Drawing.Point(170, 20);
+            this.CMB_ITEMNAME.Name = "CMB_ITEMNAME";
+            this.CMB_ITEMNAME.Size = new System.Drawing.Size(221, 27);
+            this.CMB_ITEMNAME.TabIndex = 1;
+            // 
+            // Nud_TBL_Index
+            // 
+            this.Nud_TBL_Index.Location = new System.Drawing.Point(12, 20);
+            this.Nud_TBL_Index.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.Nud_TBL_Index.Name = "Nud_TBL_Index";
+            this.Nud_TBL_Index.Size = new System.Drawing.Size(63, 27);
+            this.Nud_TBL_Index.TabIndex = 2;
+            // 
+            // ItemSelectionGroupBox
+            // 
+            this.ItemSelectionGroupBox.BackColor = System.Drawing.Color.Transparent;
+            this.ItemSelectionGroupBox.Controls.Add(this.statusStrip1);
+            this.ItemSelectionGroupBox.Controls.Add(this.Btn_TBL_UPDATE);
+            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_OCCURENCE);
+            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_QUANTITY);
+            this.ItemSelectionGroupBox.Controls.Add(this.NUD_TBL_ItemID);
+            this.ItemSelectionGroupBox.Controls.Add(this.CMB_ITEMNAME);
+            this.ItemSelectionGroupBox.Controls.Add(this.Nud_TBL_Index);
+            this.ItemSelectionGroupBox.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ItemSelectionGroupBox.Location = new System.Drawing.Point(0, 564);
+            this.ItemSelectionGroupBox.Name = "ItemSelectionGroupBox";
+            this.ItemSelectionGroupBox.Size = new System.Drawing.Size(397, 141);
+            this.ItemSelectionGroupBox.TabIndex = 4;
+            this.ItemSelectionGroupBox.TabStop = false;
+            this.ItemSelectionGroupBox.Text = "Edit Selection";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AutoSize = false;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LBL_DFC,
+            this.LBL_ONLINE});
+            this.statusStrip1.Location = new System.Drawing.Point(3, 116);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(391, 22);
+            this.statusStrip1.TabIndex = 7;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // LBL_DFC
+            // 
+            this.LBL_DFC.BackColor = System.Drawing.Color.Violet;
+            this.LBL_DFC.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBL_DFC.Name = "LBL_DFC";
+            this.LBL_DFC.Size = new System.Drawing.Size(100, 17);
+            this.LBL_DFC.Text = "DIFFICULTY :";
+            // 
+            // LBL_ONLINE
+            // 
+            this.LBL_ONLINE.BackColor = System.Drawing.Color.Violet;
+            this.LBL_ONLINE.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LBL_ONLINE.Name = "LBL_ONLINE";
+            this.LBL_ONLINE.Size = new System.Drawing.Size(56, 17);
+            this.LBL_ONLINE.Text = "MODE:";
+            // 
             // FRM_ITBL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(405, 708);
+            this.ClientSize = new System.Drawing.Size(405, 707);
             this.Controls.Add(this.ItemSelectionGroupBox);
             this.Controls.Add(this.LV_ItemTable);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -415,6 +450,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUD_TBL_ItemID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_TBL_Index)).EndInit();
             this.ItemSelectionGroupBox.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -434,5 +471,8 @@
         public System.Windows.Forms.ListView LV_ItemTable;
         public System.Windows.Forms.ComboBox CMB_ITEMNAME;
         public System.Windows.Forms.ImageList ItemIco_List;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        public System.Windows.Forms.ToolStripStatusLabel LBL_DFC;
+        public System.Windows.Forms.ToolStripStatusLabel LBL_ONLINE;
     }
 }

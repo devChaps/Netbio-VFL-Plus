@@ -25,6 +25,12 @@ namespace Netbio_VFL_Plus
         private void scanSNDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog OFD = new OpenFileDialog();
+
+            OFD.Filter = ".SND|*.snd|.SNP|*.snp|All Files (*.*)|*.*"; ;
+            OFD.FilterIndex = 1;
+
+
+
             OFD.ShowDialog();
 
             LIB_AUDIO.SND_PARSE(OFD.FileName, LV_AUDIO, LBL_TCOUNT, SND_DEBUG.DEBUG_LOG);
@@ -39,10 +45,10 @@ namespace Netbio_VFL_Plus
             try
             {
                 int i = LV_AUDIO.SelectedIndices[0];
-                int sel_offset = int.Parse(LV_AUDIO.Items[i].SubItems[2].Text);
-                int next_offset = int.Parse(LV_AUDIO.Items[i + 1].SubItems[2].Text);
-                int freq = int.Parse(LV_AUDIO.Items[i].SubItems[4].Text);
-                int loop = int.Parse(LV_AUDIO.Items[i].SubItems[5].Text);
+                int sel_offset = int.Parse(LV_AUDIO.Items[i].SubItems[1].Text);
+                int next_offset = int.Parse(LV_AUDIO.Items[i + 1].SubItems[1].Text);
+                int freq = int.Parse(LV_AUDIO.Items[i].SubItems[2].Text);
+                int loop = int.Parse(LV_AUDIO.Items[i].SubItems[3].Text);
 
                 //  int t_sz = int.Parse(LV_AUDIO.Items[i].SubItems[5].Text);
 
@@ -55,12 +61,16 @@ namespace Netbio_VFL_Plus
 
                 if (RDT_IO.SNP_FLAG == 0)
                 {
-                    LIB_AUDIO.PLAY_LV_CLIP(LBL_FILE.Text, sel_offset, t_sz, freq, Chmod, loop, LBL_AD_STATUS, PG_SOUND);
+                    LIB_AUDIO.PLAY_LV_CLIP(LBL_FILE.Text, sel_offset, t_sz, freq, Chmod, TB_VOL.Value, loop, LBL_AD_STATUS, PG_SOUND);
+                    Thread.Sleep(700);
+                    LV_AUDIO.SelectedItems.Clear();
                 }
 
                 if (RDT_IO.SNP_FLAG == 1)
                 {
-                    LIB_AUDIO.PLAY_LV_CLIP(RDT_IO.FP_DISC, sel_offset, t_sz, freq, Chmod, loop, LBL_AD_STATUS, PG_SOUND);
+                    LIB_AUDIO.PLAY_LV_CLIP(RDT_IO.FP_DISC, sel_offset, t_sz, freq, Chmod, TB_VOL.Value, loop, LBL_AD_STATUS, PG_SOUND);
+                    Thread.Sleep(700);
+                    LV_AUDIO.SelectedItems.Clear();
                 }
             }
             catch (ArgumentException AOR) 
@@ -98,6 +108,34 @@ namespace Netbio_VFL_Plus
           
             SND_DEBUG.ShowDialog();
 
+        }
+
+        private void TB_VOL_Scroll(object sender, EventArgs e)
+        {
+            LBL_VOL.Text = "Volume: " + TB_VOL.Value.ToString();
+        }
+
+        private void BTN_PLAY_ALL_Click(object sender, EventArgs e)
+        {
+            // ATTEMPT TO PLAY ALL CLIPS IN SUCCESSION
+            string path = string.Empty;
+
+
+
+            // CHECK FORM RELATIVITY
+            if (RDT_IO.SNP_FLAG > 0)
+            {
+                path = RDT_IO.FP_DISC;
+            }
+            if (RDT_IO.SNP_FLAG == 0)
+            {
+                path = LBL_FILE.Text;
+            }
+
+        //    MessageBox.Show(LIB_AUDIO.CLIP_COUNT.ToString());
+
+
+            LIB_AUDIO.PLAY_ALL_CLIPS(path, LV_AUDIO, LIB_AUDIO.CLIP_COUNT, Chmod, TB_VOL.Value, LBL_AD_STATUS, PG_SOUND);
         }
     }
 }

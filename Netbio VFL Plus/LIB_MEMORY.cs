@@ -200,7 +200,7 @@ namespace Netbio_VFL_Plus
             catch (System.IndexOutOfRangeException IOR) 
             {
                 return "Null";
-                MessageBox.Show("PCSX2 NOT DETECTED?");
+              //  MessageBox.Show("PCSX2 NOT DETECTED?");
             }
 
         }
@@ -235,18 +235,25 @@ namespace Netbio_VFL_Plus
         public static void GET_MEM_STATS(int offset_base) 
         {
 
-            Process[] exe_proc = Process.GetProcessesByName(g_PROCESS_NAME);
-            var proc = exe_proc[0];
+            try
+            {
 
-            G_PLAYER.X = Memory.Read<float>(proc, new IntPtr(offset_base + 0x38)); // READ PLAYER_X_POSTION
-            G_PLAYER.Y = Memory.Read<float>(proc, new IntPtr(offset_base + 0x3C)); // READ PLAYER_Y_POSTION
-            G_PLAYER.Z = Memory.Read<float>(proc, new IntPtr(offset_base + 0x40)); // READ PLAYER_Z_POSTION
+                Process[] exe_proc = Process.GetProcessesByName(g_PROCESS_NAME);
+                var proc = exe_proc[0];
 
-         
-            // SET ROOM ID
-            G_ROOM_DATA.ROOM_ID = Memory.Read<byte>(proc, new IntPtr(G_ROOM_DATA.ROOM_ID_OFFSET));
-            G_ROOM_DATA.CAM_ID = Memory.Read<byte>(proc, new IntPtr(G_ROOM_DATA.CAM_ID_OFFSET));
+                G_PLAYER.X = Memory.Read<float>(proc, new IntPtr(offset_base + 0x38)); // READ PLAYER_X_POSTION
+                G_PLAYER.Y = Memory.Read<float>(proc, new IntPtr(offset_base + 0x3C)); // READ PLAYER_Y_POSTION
+                G_PLAYER.Z = Memory.Read<float>(proc, new IntPtr(offset_base + 0x40)); // READ PLAYER_Z_POSTION
 
+
+                // SET ROOM ID
+                G_ROOM_DATA.ROOM_ID = Memory.Read<byte>(proc, new IntPtr(G_ROOM_DATA.ROOM_ID_OFFSET));
+                G_ROOM_DATA.CAM_ID = Memory.Read<byte>(proc, new IntPtr(G_ROOM_DATA.CAM_ID_OFFSET));
+            }
+            catch (System.IndexOutOfRangeException) 
+            {
+               // MessageBox.Show("PCSX2 NOT DETECTED", "NOT FOUND!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 

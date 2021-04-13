@@ -92,7 +92,7 @@
             this.NPC_Imagebox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.NPC_Imagebox.Location = new System.Drawing.Point(6, 26);
             this.NPC_Imagebox.Name = "NPC_Imagebox";
-            this.NPC_Imagebox.Size = new System.Drawing.Size(224, 203);
+            this.NPC_Imagebox.Size = new System.Drawing.Size(224, 197);
             this.NPC_Imagebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.NPC_Imagebox.TabIndex = 12;
             this.NPC_Imagebox.TabStop = false;
@@ -400,7 +400,7 @@
             this.Btn_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_Confirm.Font = new System.Drawing.Font("Bahnschrift SemiBold Condensed", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Confirm.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Confirm.Image")));
-            this.Btn_Confirm.Location = new System.Drawing.Point(12, 441);
+            this.Btn_Confirm.Location = new System.Drawing.Point(3, 444);
             this.Btn_Confirm.Name = "Btn_Confirm";
             this.Btn_Confirm.Size = new System.Drawing.Size(701, 67);
             this.Btn_Confirm.TabIndex = 50;
@@ -523,7 +523,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(474, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(239, 229);
+            this.groupBox3.Size = new System.Drawing.Size(237, 229);
             this.groupBox3.TabIndex = 53;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "NPC PREVIEW";

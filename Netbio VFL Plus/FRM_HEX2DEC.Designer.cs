@@ -40,7 +40,7 @@
             // 
             // TB_DEC
             // 
-            this.TB_DEC.Location = new System.Drawing.Point(126, 39);
+            this.TB_DEC.Location = new System.Drawing.Point(126, 42);
             this.TB_DEC.Multiline = true;
             this.TB_DEC.Name = "TB_DEC";
             this.TB_DEC.Size = new System.Drawing.Size(401, 36);
@@ -67,9 +67,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(222, 143);
+            this.button1.Location = new System.Drawing.Point(126, 125);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 35);
+            this.button1.Size = new System.Drawing.Size(401, 35);
             this.button1.TabIndex = 4;
             this.button1.Text = "CLEAR ALL";
             this.button1.UseVisualStyleBackColor = true;
@@ -97,7 +97,7 @@
             // 
             // TB_HEX
             // 
-            this.TB_HEX.Location = new System.Drawing.Point(126, 84);
+            this.TB_HEX.Location = new System.Drawing.Point(126, 82);
             this.TB_HEX.Multiline = true;
             this.TB_HEX.Name = "TB_HEX";
             this.TB_HEX.Size = new System.Drawing.Size(401, 37);
