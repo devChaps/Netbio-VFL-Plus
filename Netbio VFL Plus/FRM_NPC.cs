@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Netbio_VFL_Plus
 {
-    public partial class PB_CURROOM : Form
+    public partial class NPC_FORM : Form
     {
-        public PB_CURROOM()
+        public NPC_FORM()
         {
             InitializeComponent();
         }
@@ -69,22 +69,34 @@ namespace Netbio_VFL_Plus
 
         private void Lst_Header_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Lst_Header.Items.Count > 0)
+
+            try
             {
-                int curIDX = Lst_Header.FocusedItem.Index;
-              //  Lst_Header.Items[curIDX].Selected = true;
-
-                Lst_Entries.Items.Clear();
-
-                for (int i = 0; i < NPC_IO.SUB_HEADER[curIDX].Entries; i++)
+                if (Lst_Header.Items.Count > 0)
                 {
-                    Lst_Entries.Items.Add(i.ToString());
+                    int curIDX = Lst_Header.FocusedItem.Index;
+                    //  Lst_Header.Items[curIDX].Selected = true;
+
+                    Lst_Entries.Items.Clear();
+
+                    for (int i = 0; i < NPC_IO.SUB_HEADER[curIDX].Entries; i++)
+                    {
+                        Lst_Entries.Items.Add(i.ToString());
+                    }
+
+                    Lst_Entries.SetSelected(0, true);
+
+                    NPC_IO.Set_ROOM(NPC_IO.SCE_VALUE, int.Parse(Lst_Header.Items[curIDX].SubItems[3].Text), PB_CURRENT_ROOM);
+
+                   
+                  
+                   
+
                 }
-
-                Lst_Entries.SetSelected(0, true);
-
-                NPC_IO.Set_ROOM(NPC_IO.SCE_VALUE, int.Parse(Lst_Header.Items[curIDX].SubItems[3].Text), PB_CURRENT_ROOM);
-
+            }
+            catch 
+            {
+            
             }
         }
 
@@ -105,7 +117,13 @@ namespace Netbio_VFL_Plus
 
         private void PB_CURROOM_Load(object sender, EventArgs e)
         {
+            if (Lst_Header.Items.Count != 0)
+            {
 
+                //Lst_Header.Items[0].Selected = true;
+                //Lst_Header.Items[0].Focused = true;
+          
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)

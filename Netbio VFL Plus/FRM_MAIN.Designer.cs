@@ -356,6 +356,7 @@
             this.LV_AFS.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LV_AFS_KeyPress);
             this.LV_AFS.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LV_AFS_KeyUp);
             this.LV_AFS.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LV_AFS_MouseClick);
+            this.LV_AFS.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LV_AFS_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -603,7 +604,7 @@
             // 
             this.sLDUNPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDUNPACKToolStripMenuItem.Name = "sLDUNPACKToolStripMenuItem";
-            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sLDUNPACKToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sLDUNPACKToolStripMenuItem.Text = "SLD_UNPACK";
             this.sLDUNPACKToolStripMenuItem.Click += new System.EventHandler(this.sLDUNPACKToolStripMenuItem_Click);
             // 
@@ -612,7 +613,7 @@
             this.sLDREPACKToolStripMenuItem.BackColor = System.Drawing.Color.Cornsilk;
             this.sLDREPACKToolStripMenuItem.Enabled = false;
             this.sLDREPACKToolStripMenuItem.Name = "sLDREPACKToolStripMenuItem";
-            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sLDREPACKToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.sLDREPACKToolStripMenuItem.Text = "SLD_REPACK";
             // 
             // interpretingToolStripMenuItem
@@ -1138,7 +1139,7 @@
             // 
             this.testToolStripMenuItem.Enabled = false;
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.testToolStripMenuItem.Text = "Item Properties";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
@@ -1166,7 +1167,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_MAIN";
-            this.Text = "NETBIO VIRTUAL FILE LIBRARY v0.70 (Dchaps 2019-2021)";
+            this.Text = "NETBIO VIRTUAL FILE LIBRARY v0.72 (Dchaps 2019-2021)";
             this.Load += new System.EventHandler(this.FRM_MAIN_Load);
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();

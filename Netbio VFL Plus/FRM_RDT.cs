@@ -60,6 +60,7 @@ namespace Netbio_VFL_Plus
 
             EVB_FORM.LV_BYTECODE.Items.Clear();
             EVB_FORM.LV_INTCODE.Items.Clear();
+            EVB_FORM.LBL_EVB_FNAME.Text = LBL_RDTSELECT.Text.Substring(0, LBL_RDTSELECT.Text.Length - 3) + "SGL".ToUpper();
 
             int sgl_len = int.Parse(LV_RDT.FocusedItem.SubItems[2].Text);
 

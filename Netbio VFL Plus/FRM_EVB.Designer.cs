@@ -56,6 +56,7 @@
             this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PB_ROOM = new System.Windows.Forms.PictureBox();
+            this.LBL_EVB_FNAME = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_ROOM)).BeginInit();
@@ -150,7 +151,8 @@
             this.Progressbar00,
             this.BTN_TOGGLE,
             this.LBL_OFFSET,
-            this.LBL_OP_SZ});
+            this.LBL_OP_SZ,
+            this.LBL_EVB_FNAME});
             this.statusStrip1.Location = new System.Drawing.Point(0, 860);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1227, 22);
@@ -362,6 +364,12 @@
             this.PB_ROOM.TabIndex = 9;
             this.PB_ROOM.TabStop = false;
             // 
+            // LBL_EVB_FNAME
+            // 
+            this.LBL_EVB_FNAME.Name = "LBL_EVB_FNAME";
+            this.LBL_EVB_FNAME.Size = new System.Drawing.Size(118, 17);
+            this.LBL_EVB_FNAME.Text = "toolStripStatusLabel1";
+            // 
             // FRM_EVB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,5 +426,6 @@
         private System.Windows.Forms.PictureBox PB_ROOM;
         private System.Windows.Forms.ToolStripStatusLabel LBL_OFFSET;
         private System.Windows.Forms.ToolStripStatusLabel LBL_OP_SZ;
+        public System.Windows.Forms.ToolStripStatusLabel LBL_EVB_FNAME;
     }
 }

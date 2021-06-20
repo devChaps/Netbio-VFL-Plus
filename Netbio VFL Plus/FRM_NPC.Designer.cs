@@ -1,6 +1,6 @@
 ﻿namespace Netbio_VFL_Plus
 {
-    partial class PB_CURROOM
+    partial class NPC_FORM
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PB_CURROOM));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NPC_FORM));
             this.NPC_Imagebox = new System.Windows.Forms.PictureBox();
             this.Lst_Entries = new System.Windows.Forms.ListBox();
             this.Lst_Header = new System.Windows.Forms.ListView();
@@ -549,7 +549,7 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "ROOM ID";
             // 
-            // PB_CURROOM
+            // NPC_FORM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -560,7 +560,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Btn_Confirm);
-            this.Name = "PB_CURROOM";
+            this.Name = "NPC_FORM";
             this.Text = "NPC MANAGER";
             this.Load += new System.EventHandler(this.PB_CURROOM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NPC_Imagebox)).EndInit();

@@ -527,7 +527,7 @@ namespace Netbio_VFL_Plus
         /// <param name="Debug_Log"></param>
         /// <param name="ByteLST"></param>
         /// <param name="CodeLST"></param>
-        public void PARSE_EVB_STREAM(Stream fs, int start_off, int evb_length, RichTextBox Debug_Log, ListView AFS_LIST, ListView ByteLST, ListView CodeLST, FRM_EVB EVB_FORM, ToolStripProgressBar ProgressBar)
+        public void PARSE_EVB_STREAM(Stream fs, int start_off, int evb_length, RichTextBox Debug_Log, ListView AFS_LIST, ListView ByteLST, ListView CodeLST, FRM_EVB EVB_FORM, ToolStripProgressBar ProgressBar, ToolStripLabel FNAME)
         {
 
             EVB_SELECTED_OBJ Selected_EVB = new EVB_SELECTED_OBJ();
@@ -536,6 +536,9 @@ namespace Netbio_VFL_Plus
             Selected_EVB.File_Offset = int.Parse(AFS_LIST.FocusedItem.SubItems[1].Text) + start_off;
             Selected_EVB.File_Size = int.Parse(AFS_LIST.FocusedItem.SubItems[2].Text);
 
+
+            FNAME.Text = Selected_EVB.File_Name;
+           
            
             BinaryReader br = new BinaryReader(fs);
 
@@ -801,10 +804,18 @@ namespace Netbio_VFL_Plus
                     Array.Resize(ref bytearray, cmd_len);
                     bytearray = br.ReadBytes(bytearray.Length);
 
+                    try
+                    {
 
-                    
-                    if (bytearray[0] == 0xFF && bytearray[1] == 0xFF) {
-                        break;
+                        if (bytearray[0] == 0xFF && bytearray[1] == 0xFF)
+                        {
+                            break;
+                        }
+
+                    }
+                    catch (System.IndexOutOfRangeException IOR) 
+                    {
+                        MessageBox.Show("Error on specific file.. try operation again or choose different file..");
                     }
                     //if (bytearray.GetLowerBound(0) == 0xFF && bytearray.GetUpperBound(0) == 0xFF) { 
 
@@ -992,53 +1003,64 @@ namespace Netbio_VFL_Plus
         /// <param name="LST"></param>
         public Color COLOR_CMD(string opcode)
         {
-
-            ////  NEED TO 
-            //Color x4byte = Color.MediumVioletRed;
-            //Color x8byte = Color.MintCream;
-            //Color x16byte = Color.LimeGreen;
-            //Color x32byte = Color.LightSteelBlue;
-
-            Color cmd_player = Color.Crimson;
-            Color cmd_enemy = Color.IndianRed;
-            Color cmd_event = Color.Goldenrod;
-            Color cmd_spItem = Color.Cyan;
-            Color cmd_item = Color.LimeGreen;
-            Color cmd_npc = Color.Orange;
-            Color cmd_snd = Color.Yellow;
-            Color cmd_door = Color.DarkKhaki;
-            Color cmd_logic = Color.CornflowerBlue;
-            Color cmd_sfd = Color.BlanchedAlmond;
-
-            if (opcode.Substring(0, 8) == "35010003") { return cmd_spItem; }
-            if (opcode.Substring(0, 8) == "3A000003") { return cmd_npc; }
-            if (opcode.Substring(0, 8) == "3D000002") { return cmd_npc; }
-            if (opcode.Substring(0, 8) == "70000001") { return cmd_snd; }
-            if (opcode.Substring(0, 8) == "71000000") { return cmd_snd; }
-            if (opcode.Substring(0, 8) == "F2000002") { return cmd_door; }
-            if (opcode.Substring(0, 8) == "F4000002") { return cmd_door; }
-            if (opcode.Substring(0, 8) == "F5000002") { return cmd_door; }
-            if (opcode.Substring(0, 8) == "40000002") { return cmd_door; }
-            if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
-            if (opcode.Substring(0, 8) == "64010001") { return cmd_enemy; }
-            if (opcode.Substring(0, 8) == "65010001") { return cmd_enemy; }
-            if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
-            if (opcode.Substring(0, 8) == "62000003") { return cmd_sfd; }
-            if (opcode.Substring(0, 8) == "0C000002") { return cmd_event; }
-            if (opcode.Substring(0, 8) == "45000003") { return cmd_event; }
-            if (opcode.Substring(0, 8) == "39000002") { return cmd_item; }
-            if (opcode.Substring(0, 8) == "73010002") { return cmd_item; }
-            if (opcode.Substring(0, 8) == "69000002") { return cmd_player; }
-            if (opcode.Substring(0, 8) == "EE000002") { return cmd_logic; }
-            if (opcode.Substring(0, 8) == "E4000000") { return cmd_logic; }
-            if (opcode.Substring(0, 8) == "E5000000") { return cmd_logic; }
+            try
+            {
 
 
 
 
-            return Color.White;
-           
+                ////  NEED TO 
+                //Color x4byte = Color.MediumVioletRed;
+                //Color x8byte = Color.MintCream;
+                //Color x16byte = Color.LimeGreen;
+                //Color x32byte = Color.LightSteelBlue;
 
+                Color cmd_player = Color.Crimson;
+                Color cmd_enemy = Color.IndianRed;
+                Color cmd_event = Color.Goldenrod;
+                Color cmd_spItem = Color.Cyan;
+                Color cmd_item = Color.LimeGreen;
+                Color cmd_npc = Color.Orange;
+                Color cmd_snd = Color.Yellow;
+                Color cmd_door = Color.DarkKhaki;
+                Color cmd_logic = Color.CornflowerBlue;
+                Color cmd_sfd = Color.BlanchedAlmond;
+
+                if (opcode.Substring(0, 8) == "35010003") { return cmd_spItem; }
+                if (opcode.Substring(0, 8) == "3A000003") { return cmd_npc; }
+                if (opcode.Substring(0, 8) == "3D000002") { return cmd_npc; }
+                if (opcode.Substring(0, 8) == "70000001") { return cmd_snd; }
+                if (opcode.Substring(0, 8) == "71000000") { return cmd_snd; }
+                if (opcode.Substring(0, 8) == "F2000002") { return cmd_door; }
+                if (opcode.Substring(0, 8) == "F4000002") { return cmd_door; }
+                if (opcode.Substring(0, 8) == "F5000002") { return cmd_door; }
+                if (opcode.Substring(0, 8) == "40000002") { return cmd_door; }
+                if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
+                if (opcode.Substring(0, 8) == "64010001") { return cmd_enemy; }
+                if (opcode.Substring(0, 8) == "65010001") { return cmd_enemy; }
+                if (opcode.Substring(0, 8) == "60010003") { return cmd_enemy; }
+                if (opcode.Substring(0, 8) == "62000003") { return cmd_sfd; }
+                if (opcode.Substring(0, 8) == "0C000002") { return cmd_event; }
+                if (opcode.Substring(0, 8) == "45000003") { return cmd_event; }
+                if (opcode.Substring(0, 8) == "39000002") { return cmd_item; }
+                if (opcode.Substring(0, 8) == "73010002") { return cmd_item; }
+                if (opcode.Substring(0, 8) == "69000002") { return cmd_player; }
+                if (opcode.Substring(0, 8) == "EE000002") { return cmd_logic; }
+                if (opcode.Substring(0, 8) == "E4000000") { return cmd_logic; }
+                if (opcode.Substring(0, 8) == "E5000000") { return cmd_logic; }
+
+
+
+
+                return Color.White;
+
+
+
+            }
+            catch(System.ArgumentOutOfRangeException aor)
+            {
+                return Color.White;
+            }
         } // only colored based on cmd length atm..
 
 
@@ -1289,14 +1311,9 @@ namespace Netbio_VFL_Plus
             string opcode = string.Empty;
             string bytestr = string.Empty;
 
-
-
             try
             {
 
-
-                
-                
 
                 int idx = LSTC.SelectedIndices[0];
 

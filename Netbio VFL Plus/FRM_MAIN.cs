@@ -80,7 +80,7 @@ namespace Netbio_VFL_Plus
         public RDT_IO RDT_IO = new RDT_IO();
         public EVB_PARSER EVBIO = new EVB_PARSER();
         public Items ITEMIO = new Items();
-        public EMD_IO EMDIO = new EMD_IO();
+        public static EMD_IO EMDIO = new EMD_IO();
         public NPC_IO NPCIO = new NPC_IO();
         public NBD_IO NBDIO = new NBD_IO();
 
@@ -93,7 +93,7 @@ namespace Netbio_VFL_Plus
         public FRM_EVB EVB_FORM = new FRM_EVB();
         public FRM_EMD EMD_FORM = new FRM_EMD();
         public FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
-        public PB_CURROOM NPC_FORM = new PB_CURROOM();
+        public NPC_FORM NPC_FORM = new NPC_FORM();
         public FRM_HEX2DEC CALC_FORM = new FRM_HEX2DEC();
         public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public FRM_ABOUT ABOUT_FORM = new FRM_ABOUT();
@@ -122,6 +122,9 @@ namespace Netbio_VFL_Plus
 
             MAINSTATUS_STRIP.SizingGrip = false;
 
+
+        
+            
 
 
             LV_AFS.Groups.Add(new ListViewGroup("COMPRESSED TEXTURES")); // 0
@@ -392,62 +395,62 @@ namespace Netbio_VFL_Plus
 
         private void LV_AFS_ItemActivate(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
-                int index = LV_AFS.SelectedIndices[0];
-                int vol_index = Img.Volume_Index; // u need to pass this
+            //    int index = LV_AFS.SelectedIndices[0];
+            //    int vol_index = Img.Volume_Index; // u need to pass this
 
-                if (File.Exists(Img.Image_Path))
-                {
-                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
-                    {
-                        if (Valid_Iso(fs))
-                        {
+            //    if (File.Exists(Img.Image_Path))
+            //    {
+            //        using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
+            //        {
+            //            if (Valid_Iso(fs))
+            //            {
 
-                            Img.Read_Image = new CDReader(fs, true, true);
-                            Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
-                            Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open); // IMG.selected volume wont update correctly, using the quicker volume browsing..
-                            BinaryReader br = new BinaryReader(memStream);
+            //                Img.Read_Image = new CDReader(fs, true, true);
+            //                Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+            //                Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open); // IMG.selected volume wont update correctly, using the quicker volume browsing..
+            //                BinaryReader br = new BinaryReader(memStream);
 
-                            int sel_siz = int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text);
+            //                int sel_siz = int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text);
 
-                            //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
-
-
-                            AFSIO.cur_archive_offset = sel_siz;
+            //                //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
 
 
-                            DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
+            //                AFSIO.cur_archive_offset = sel_siz;
 
 
-                            if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
-                            {
-
-                                LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
-
-                                AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
-                            }
+            //                DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
 
 
-                            //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
+            //                if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
+            //                {
 
-                            br.Close();
-                            fs.Close();
-                            memStream.Close();
+            //                    LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
 
-                            // Img.Read_Image.Dispose();
+            //                    AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
+            //                }
 
-                        }
 
-                    }
+            //                //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
 
-                }
-            }
-            catch (System.ArgumentOutOfRangeException AOR) 
-            {
+            //                br.Close();
+            //                fs.Close();
+            //                memStream.Close();
+
+            //                // Img.Read_Image.Dispose();
+
+            //            }
+
+            //        }
+
+            //    }
+            //}
+            //catch (System.ArgumentOutOfRangeException AOR) 
+            //{
                   
-            }
+            //}
         }
 
         private void LV_AFS_MouseClick(object sender, MouseEventArgs e)
@@ -776,8 +779,21 @@ namespace Netbio_VFL_Plus
 
                         // SET DFC LBL TO STRING CONVERSION
                        TBL_FORM.LBL_DFC.Text = Items.DFC_CHECK(end_val);
-                        
 
+
+                        string map_conv = "\"" +  table_name + "\"";
+
+
+
+
+                        //Process mapViewer = new Process();                    
+                        //mapViewer.StartInfo.FileName = AppDomain.CurrentDomain.BaseDirectory + "\\OutbreakItemMapViewer.exe";
+                        //mapViewer.StartInfo.Arguments =  table_name;           
+                        //mapViewer.Start();
+
+
+                        Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\OutbreakItemMapViewer.exe", table_name);
+                        
 
                         if (f_len > 0)
                         {
@@ -796,6 +812,10 @@ namespace Netbio_VFL_Plus
                         }
 
                         TBL_FORM.ShowDialog();
+
+
+                
+
                     }
 
                 }
@@ -890,7 +910,7 @@ namespace Netbio_VFL_Plus
 
                         Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
 
-                        EVBIO.PARSE_EVB_STREAM(memStream, AFSIO.cur_archive_offset, EVB_SIZE, DEBUG_FORM.DEBUG_LOG, LV_AFS, EVB_FORM.LV_BYTECODE, EVB_FORM.LV_INTCODE, EVB_FORM, PRG_LOAD);
+                        EVBIO.PARSE_EVB_STREAM(memStream, AFSIO.cur_archive_offset, EVB_SIZE, DEBUG_FORM.DEBUG_LOG, LV_AFS, EVB_FORM.LV_BYTECODE, EVB_FORM.LV_INTCODE, EVB_FORM, PRG_LOAD, EVB_FORM.LBL_EVB_FNAME);
                        
                         EVB_FORM.ShowDialog();
                     }
@@ -932,12 +952,15 @@ namespace Netbio_VFL_Plus
 
         }
 
-        private void eMDINTToolStripMenuItem_Click(object sender, EventArgs e)
+        public void eMDINTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
 
                 int index = LV_AFS.SelectedIndices[0];
+                EMD_FORM.afs_index = LV_AFS.SelectedIndices[0];
+
+
                 bool Online; // Online Flag
 
 
@@ -965,15 +988,13 @@ namespace Netbio_VFL_Plus
                             Img.Read_Image = new CDReader(fs, true, true);
                             Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
                             Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
-                            
-
 
                                 EMDIO.Parse_EMDStream(memStream, AFSIO.cur_archive_offset, 
-                                    ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
+                                ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
                                     ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
                                     LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET, EMD_FORM.LBL_FTYPE);
 
-                            SetWindowTheme(EMD_FORM.Handle, "", "");
+                            SetWindowTheme(EMD_FORM.Handle, "", ""); // enable classic view
                                 EMD_FORM.ShowDialog();
 
 
@@ -1076,10 +1097,6 @@ namespace Netbio_VFL_Plus
             // FIND_PROCESS();
 
             TMR_EXE.Enabled = true; 
-            
-      
-
-
             
 
         }
@@ -1468,18 +1485,19 @@ namespace Netbio_VFL_Plus
                         // ENSURE IT HAS VALID AFS SIG + EMD EXTENSION
                         if (Valid_Iso(fs) && LV_AFS.FocusedItem.SubItems[3].Text.Substring(LV_AFS.FocusedItem.SubItems[3].Text.Length - 3, 3).ToUpper() == "NPC")
                         {
-                            
-                            Img.Read_Image = new CDReader(fs, true, true);
-                            Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
-                            Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
 
-                            
-                                   NPCIO.READ_NPC_STREAM(memStream, AFSIO.cur_archive_offset, ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), LV_AFS, NPC_FORM.Lst_Header, NPC_FORM.Lst_Entries);
-                                   NPC_FORM.ShowDialog();
-                              //  EMD_FORM.ShowDialog();
-                            
+                        Img.Read_Image = new CDReader(fs, true, true);
+                        Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+                        Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open);
 
-                        }
+
+                        NPCIO.READ_NPC_STREAM(memStream, AFSIO.cur_archive_offset, ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text), LV_AFS, NPC_FORM.Lst_Header, NPC_FORM.Lst_Entries);
+                        NPC_FORM.ShowDialog();
+                    
+                        //  EMD_FORM.ShowDialog();
+
+
+                    }
 
                     }
 
@@ -1532,12 +1550,6 @@ namespace Netbio_VFL_Plus
 
 
                         } // FILE 2
-
-
-
-
-                      
-
 
                         if (GAME_VERSION == 1)
                         {
@@ -1617,14 +1629,16 @@ namespace Netbio_VFL_Plus
 
         private void BTN_SOUND_Click(object sender, EventArgs e)
         {
-            
-            
-            FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
 
-            AUDIO_FORM.Show();
 
-            RDT_IO.SNP_FLAG = 0;
+            //FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
 
+            //AUDIO_FORM.Show();
+
+            //RDT_IO.SNP_FLAG = 0;
+
+            // USE IGUSAS EDITOR INSTEAD..
+            Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\OutbreakSoundEditor.exe");
         }
 
         private void MAINSTATUS_STRIP_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -1637,6 +1651,8 @@ namespace Netbio_VFL_Plus
 
             // DOESENT MATTER AS LONG AS NOT 0
             RDT_IO.SNP_FLAG = 1;
+
+           
 
             if (File.Exists(FRM_MAIN.Img.Image_Path))
             {
@@ -1662,6 +1678,70 @@ namespace Netbio_VFL_Plus
             }
 
 
+        }
+
+        private void LV_AFS_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+
+                int index = LV_AFS.SelectedIndices[0];
+                int vol_index = Img.Volume_Index; // u need to pass this
+
+                if (File.Exists(Img.Image_Path))
+                {
+                    using (FileStream fs = new FileStream(Img.Image_Path, FileMode.Open))
+                    {
+                        if (Valid_Iso(fs))
+                        {
+
+                            if (LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Contains("afs"))
+                            {
+
+                                Img.Read_Image = new CDReader(fs, true, true);
+                                Img.Root_FSys_Info = Img.Read_Image.Root.GetFileSystemInfos();
+                                Stream memStream = Img.Read_Image.OpenFile(Img.Selected_Volume, FileMode.Open); // IMG.selected volume wont update correctly, using the quicker volume browsing..
+                                BinaryReader br = new BinaryReader(memStream);
+
+                                int sel_siz = int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text);
+
+                                //    MessageBox.Show("Img.Selected Vol " + Img.Root_FSys_Info[vol_index].FullName);
+
+
+                                AFSIO.cur_archive_offset = sel_siz;
+
+
+                                DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
+
+
+                                LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
+
+                                AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
+
+
+                                br.Close();
+                                fs.Close();
+                                memStream.Close();
+
+                            }
+
+
+                            //FormLabel.Text = "Current Volume: " + Img.Selected_Volume.ToString();
+
+                      
+
+                            // Img.Read_Image.Dispose();
+
+                        }
+
+                    }
+
+                }
+            }
+            catch (System.ArgumentOutOfRangeException AOR)
+            {
+
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace Netbio_VFL_Plus
 	public class EMD_IO
 	{
 
+
+
 		public static byte GAME_VALUE = 0;  // 0 for FILE 1, 1 for FILE 2 
 		public static string SCE_VALUE = string.Empty; // holds scenario archive string
 		public static int ARCHIVE_OFFSET;

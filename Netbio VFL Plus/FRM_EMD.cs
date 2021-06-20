@@ -8,16 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-
-
+using DiscUtils;
+using DiscUtils.Iso9660;
 
 namespace Netbio_VFL_Plus
 {
     public partial class FRM_EMD : Form
     {
 
+
+       public FRM_MAIN MainForm;
+        public int afs_index; // hold the emd selected index for reload..
+       
+
+       
+
         public string ARC2_SCE(string archive_string)
         {
+
+            
             string SCE_NAME = archive_string.Substring(2, 2);
 
             switch (SCE_NAME.ToLower())
@@ -231,10 +240,7 @@ namespace Netbio_VFL_Plus
             int total = EMD_IO.ARCHIVE_OFFSET + FRM_MAIN.NETBIO00_OFFSET + sel_off + EMD_IO.EMD_OFFSET;
 
             total += x * 96;
-
-            
-         
-           
+  
 
             // OPEN FILE STREAM
             using (FileStream fs1 = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
@@ -246,7 +252,7 @@ namespace Netbio_VFL_Plus
                     // seek to ISO relative offset for selected EMD ENTRY
                     fs1.Seek(total, SeekOrigin.Begin);
 
-                  //  MessageBox.Show(fs1.Position.ToString());
+                    //  MessageBox.Show(fs1.Position.ToString());
 
 
                     bw.Write((byte)EMD_TAG.Value);
@@ -327,30 +333,102 @@ namespace Netbio_VFL_Plus
 
             }
 
-
-
-
+          
+         
             MessageBox.Show("Emd Entry updated", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             // need a way to reload 
 
-            // BEGIN WRITE OPERATIONS
+            // FRM_MAIN.emd
+
+
+
+            //   MainForm.eMDINTToolStripMenuItem_Click(sender, e);
+
+            this.Close();
+
+
+        }
+
+
+        public void EMD_RELOAD() 
+        {
+
+            
+
+            try
+            {
+
+                int index = afs_index;
+                bool Online; // Online Flag
+
+
+                // CHECK VALID FILE PATH
+                if (File.Exists(FRM_MAIN.Img.Image_Path))
+                {
+
+                    // OPEN FILE STREAM
+                    using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+                    {
+
+                        // ENSURE IT HAS VALID AFS SIG + EMD EXTENSION
+                        if (FRM_MAIN.Valid_Iso(fs) && MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Substring(MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Length - 3, 3).ToUpper() == "EMD")
+                        {
+                            // DIFFERENTIATE BETWEEN ONLINE/OFFLINE EMD DATA
+                            if (MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Substring(0, 3).ToUpper() == "SGL")
+                            {
+                                Online = false;
+                            }
+                            else
+                            {
+                                Online = true;
+                            }
+
+                            // 
+                            FRM_MAIN.Img.Read_Image = new CDReader(fs, true, true);
+                            FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
+                            Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
+
+                            FRM_MAIN.EMDIO.Parse_EMDStream(memStream, MainForm.AFSIO.cur_archive_offset,
+                            ScenarioHandler.ARC2_VAL(MainForm.LV_AFS.Items[MainForm.LV_AFS.SelectedIndices[0]].SubItems[3].Text),
+                                ScenarioHandler.GAME_CHECK(MainForm.LV_AFS.Items[MainForm.LV_AFS.SelectedIndices[0]].SubItems[3].Text),
+                                MainForm.LV_AFS, MainForm.EMD_FORM.LB_EMD_OFFSETS, MainForm.EMD_FORM.PB_EMD_ROOM, MainForm.EMD_FORM.PB_EMD, MainForm.EMD_FORM.LBL_OFFSET, MainForm.EMD_FORM.LBL_FTYPE);
+
+                            //   SetWindowTheme(MainForm.EMD_FORM.Handle, "", ""); // enable classic view
+                            MainForm.EMD_FORM.ShowDialog();
+
+
+                            memStream.Close();
+                            memStream.Dispose();
+                            FRM_MAIN.Img.Read_Image.Dispose();
 
 
 
 
-            //    MessageBox.Show(sel_off.ToString());
+                        }
+
+                    }
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
 
 
+            }
 
         }
 
         private void FRM_EMD_Load(object sender, EventArgs e)
         {
 
-            foreach (string em in EMD_IO.ENEMY_NAME_LUT.Values) 
+            foreach (string em in EMD_IO.ENEMY_NAME_LUT.Values)
             {
-                CB_EMD_SEL.Items.Add(em);   
+                CB_EMD_SEL.Items.Add(em);
             }
 
 
@@ -428,14 +506,14 @@ namespace Netbio_VFL_Plus
         private void CB_EMD_SEL_SelectedValueChanged(object sender, EventArgs e)
         {
 
-          
-                string sel_val = CB_EMD_SEL.Text;
+
+            string sel_val = CB_EMD_SEL.Text;
 
 
-                string GetKey = EMD_IO.ENEMY_NAME_LUT.FirstOrDefault(x => x.Value == sel_val).Key;
+            string GetKey = EMD_IO.ENEMY_NAME_LUT.FirstOrDefault(x => x.Value == sel_val).Key;
 
 
-            
+
             byte[] nbdArray = Helper.ConvertHexStringToByteArray(GetKey);
 
 
@@ -443,7 +521,7 @@ namespace Netbio_VFL_Plus
             EMD_NBDID01.Value = nbdArray[1];
 
 
-          
+
 
             EMD_IO.Set_pic(nbdArray[0], nbdArray[1], PB_EMD, LBL_NBD_FILE);
 

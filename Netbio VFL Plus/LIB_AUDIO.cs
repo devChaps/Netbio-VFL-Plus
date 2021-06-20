@@ -410,7 +410,7 @@ namespace Netbio_VFL_Plus
 
                 int SNP_OFF = afs_offset + archive_offset;
 
-                MessageBox.Show(SNP_OFF.ToString());
+             //   MessageBox.Show(SNP_OFF.ToString());
 
                 fs.Seek(SNP_OFF, SeekOrigin.Begin);
 
@@ -497,8 +497,6 @@ namespace Netbio_VFL_Plus
 
                         //}
 
-
-                       
 
                         for (int i = 0; i < Relative_Offsets.Count; i++)
                         {

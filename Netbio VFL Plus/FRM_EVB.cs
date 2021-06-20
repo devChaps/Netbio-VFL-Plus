@@ -93,14 +93,8 @@ namespace Netbio_VFL_Plus
 
         private void LV_INTCODE_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // LV_BYTECODE.SelectedItems.Clear();
-
-
             try
             {
-
-
-
                   int idx = LV_INTCODE.SelectedIndices[0];
 
                     LV_BYTECODE.Items[idx].Selected = true;
@@ -120,9 +114,6 @@ namespace Netbio_VFL_Plus
             
             }
           
-     
-
-            
 
         }
 
@@ -133,29 +124,57 @@ namespace Netbio_VFL_Plus
 
         private void TSB_SCRIPT_DUMP_Click(object sender, EventArgs e)
         {
-            int total = LV_INTCODE.Items.Count;
+            int int_total = LV_INTCODE.Items.Count;
+            int byte_total = LV_BYTECODE.Items.Count;
 
-          //  EVB_DEBUG.Clear();
 
             try
             {
-                for (int i = 0; i < total; i++)
+                using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\" + LBL_EVB_FNAME.Text + "_" + "event_INT.txt"))
                 {
-                 //   using(StreamWriter sw = new StreamWriter(ScenarioHandler.ARC2_SCE(EVB_PARSER. )))
+                    for (int i = 0; i < int_total - 1; i++)
+                    {
 
 
+                        if (LV_INTCODE.Items[i].SubItems[1].Text != string.Empty)
+                        {
+                            // MessageBox.Show(LV_INTCODE.Items[i].SubItems[1].Text);
+                            sw.WriteLine(LV_INTCODE.Items[i].SubItems[1].Text);
+                        }
+                    }
 
-                //    EVB_DEBUG.AppendText(LV_INTCODE.Items[i].SubItems[1].Text + "\n");
                 }
+
+                using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\" + LBL_EVB_FNAME.Text + "_" + "event_BYTE.txt"))
+                {
+                    for (int i = 0; i < byte_total - 1; i++)
+                    {
+
+                        if (LV_BYTECODE.Items[i].SubItems[1].Text != string.Empty)
+                        {
+                            // MessageBox.Show(LV_INTCODE.Items[i].SubItems[1].Text);
+                            sw.WriteLine(LV_BYTECODE.Items[i].SubItems[1].Text);
+                        }
+
+
+                    }
+                }
+
+                MessageBox.Show("Event Script succesfully Written to app directory", "Success!");
             }
-
-            catch (System.ArgumentOutOfRangeException OOR) {
-
-                MessageBox.Show("DONE");
+            catch 
+            {
+                MessageBox.Show("Something Went Wrong..", "Oops");
+            
             }
 
 
         }
+
+
+
+
+
 
         private void propertyGrid1_Click(object sender, EventArgs e)
         {

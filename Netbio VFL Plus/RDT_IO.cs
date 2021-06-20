@@ -155,17 +155,11 @@ using System.Threading;
 
           //  int total = start_off + afs_rdt_off;
 
-           
-
-
             BinaryReader br = new BinaryReader(fs);
             byte[] RDT_BUFFER = new byte[0];
 
 
           //  MessageBox.Show("total: " + total.ToString());
-
-
-
 
             //  int LvIndex = LV.SelectedIndices[0]; // wrong 
 
@@ -192,12 +186,6 @@ using System.Threading;
 
             }
 
-
-
-
-
-
-            
 
 
 

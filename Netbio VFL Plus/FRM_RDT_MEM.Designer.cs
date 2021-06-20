@@ -270,7 +270,7 @@
             this.Controls.Add(this.BTN_IDX);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_RDT_MEM";
-            this.Text = "Dynamic Camera Manager";
+            this.Text = "Dynamic Camera/Light Manager";
             this.Load += new System.EventHandler(this.FRM_RDT_MEM_Load);
             this.groupBox1.ResumeLayout(false);
             this.MAINSTATUS_STRIP.ResumeLayout(false);

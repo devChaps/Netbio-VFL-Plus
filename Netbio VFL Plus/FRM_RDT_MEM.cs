@@ -755,89 +755,98 @@ namespace Netbio_VFL_Plus
         // write to memory on field update
         private void Memory_Grid_PropertyValueChanged_1(object s, PropertyValueChangedEventArgs e)
         {
-            var old_val = e.OldValue; // store old val
-            var new_val = Memory_Grid.SelectedGridItem.Value; // store new val
-            string prop_name = Memory_Grid.SelectedGridItem.Label; // store name of changed property
-            int cur_idx = LB_TCAM.SelectedIndex;
 
-
-            Int32 light_off = 0; // store main light data object offset
-            Int32 cam_off = 0; // start of each camera enttry
-            Int32[] light_offsets = new Int32[cam_num];
-            Int32[] cam_offsets = new Int32[cam_num];
-
-
-            if (LIB_MEMORY.g_GAME_ID == 1)
+            if (LB_TCAM.SelectedItems.Count > 0)
             {
-                light_off = 0x203ACD80;
-                cam_off = 0x203AEF84;
+
+                var old_val = e.OldValue; // store old val
+                var new_val = Memory_Grid.SelectedGridItem.Value; // store new val
+                string prop_name = Memory_Grid.SelectedGridItem.Label; // store name of changed property
+                int cur_idx = LB_TCAM.SelectedIndex;
+
+
+                Int32 light_off = 0; // store main light data object offset
+                Int32 cam_off = 0; // start of each camera enttry
+                Int32[] light_offsets = new Int32[cam_num];
+                Int32[] cam_offsets = new Int32[cam_num];
+
+
+                if (LIB_MEMORY.g_GAME_ID == 1)
+                {
+                    light_off = 0x203ACD80;
+                    cam_off = 0x203AEF84;
+                }
+
+                if (LIB_MEMORY.g_GAME_ID == 2)
+                {
+                    cam_off = 0x203B3200; // this is only the start of the positions, not the start of the actual object
+                    light_off = 0x203B11B0;
+                }
+
+
+
+
+                var pcsx2_proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
+
+                if (pcsx2_proc == null || pcsx2_proc.Length == 0)
+                    return;
+
+                var proc = pcsx2_proc[0];
+
+
+
+                switch (LIB_MEMORY.SEL_FMT)
+                {
+                    case "_CAM":
+
+
+                        cam_offsets[cur_idx] = cam_off + 0x198 * cur_idx;
+
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 1), cam_props.cam_type);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 12), cam_props.rotation_clock);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 16), cam_props.rotation_counterclock);
+                        Memory.Write<Single>(proc, new IntPtr(cam_offsets[cur_idx] + 20), cam_props.FOV00);
+                        Memory.Write<Single>(proc, new IntPtr(cam_offsets[cur_idx] + 24), cam_props.FOV01);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 160), cam_props.cam_posx00);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 164), cam_props.cam_height00);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 168), cam_props.cam_posy00);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 172, cam_props.cam_posx01);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 176, cam_props.cam_height01);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 180, cam_props.cam_posy01);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 184, cam_props.cam_targetx);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 188, cam_props.cam_targetz);
+                        Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 192, cam_props.cam_targety);
+
+                        break;
+                    case "_FOG":
+
+                        light_offsets[cur_idx] = light_off + 96 * cur_idx;
+
+                        Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx]), LGSP.tag);
+                        Memory.Write<Single>(proc, new IntPtr(light_offsets[cur_idx]) + 4, LGSP.Fade00);
+                        Memory.Write<Single>(proc, new IntPtr(light_offsets[cur_idx]) + 8, LGSP.Ulong01);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 12, LGSP.fogB);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 13, LGSP.fogG);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 14, LGSP.fogR);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 15, LGSP.fogA);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 16, LGSP.CAM_B);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 17), LGSP.CAM_G);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 18), LGSP.CAM_R);
+                        Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 19), LGSP.CAM_ALPHA);
+                        Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 20), LGSP.Ulong04);
+                        Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 24), LGSP.SDW00);
+                        Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 28), LGSP.SDW01);
+                        Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 32), LGSP.SDW02);
+                        Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 36), LGSP.R);
+                        Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 40), LGSP.G);
+                        Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 44), LGSP.B);
+                        break;
+
+                }
             }
-
-            if (LIB_MEMORY.g_GAME_ID == 2)
+            else 
             {
-                cam_off = 0x203B3200; // this is only the start of the positions, not the start of the actual object
-                light_off = 0x203B11B0;
-            }
-
-
-
-
-            var pcsx2_proc = Process.GetProcessesByName(LIB_MEMORY.g_PROCESS_NAME);
-
-            if (pcsx2_proc == null || pcsx2_proc.Length == 0)
-                return;
-
-            var proc = pcsx2_proc[0];
-
-
-
-            switch (LIB_MEMORY.SEL_FMT)
-            {
-                case "_CAM":
-
-
-                    cam_offsets[cur_idx] = cam_off + 0x198 * cur_idx;
-
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 1), cam_props.cam_type);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 12), cam_props.rotation_clock);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 16), cam_props.rotation_counterclock);
-                    Memory.Write<Single>(proc, new IntPtr(cam_offsets[cur_idx] + 20), cam_props.FOV00);
-                    Memory.Write<Single>(proc, new IntPtr(cam_offsets[cur_idx] + 24), cam_props.FOV01);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 160), cam_props.cam_posx00);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 164), cam_props.cam_height00);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx] + 168), cam_props.cam_posy00);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 172, cam_props.cam_posx01);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 176, cam_props.cam_height01);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 180, cam_props.cam_posy01);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 184, cam_props.cam_targetx);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 188, cam_props.cam_targetz);
-                    Memory.Write<Int32>(proc, new IntPtr(cam_offsets[cur_idx]) + 192, cam_props.cam_targety);
-
-                    break;
-                case "_FOG":
-
-                    light_offsets[cur_idx] = light_off + 96 * cur_idx;
-
-                    Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx]), LGSP.tag);
-                    Memory.Write<Single>(proc, new IntPtr(light_offsets[cur_idx]) + 4, LGSP.Fade00);
-                    Memory.Write<Single>(proc, new IntPtr(light_offsets[cur_idx]) + 8, LGSP.Ulong01);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 12, LGSP.fogB);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 13, LGSP.fogG);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 14, LGSP.fogR);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 15, LGSP.fogA);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx]) + 16, LGSP.CAM_B);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 17), LGSP.CAM_G);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 18), LGSP.CAM_R);
-                    Memory.Write<byte>(proc, new IntPtr(light_offsets[cur_idx] + 19), LGSP.CAM_ALPHA);
-                    Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 20), LGSP.Ulong04);
-                    Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 24), LGSP.SDW00);
-                    Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 28), LGSP.SDW01);
-                    Memory.Write<Int32>(proc, new IntPtr(light_offsets[cur_idx] + 32), LGSP.SDW02);
-                    Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 36), LGSP.R);
-                    Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 40), LGSP.G);
-                    Memory.Write<float>(proc, new IntPtr(light_offsets[cur_idx] + 44), LGSP.B);
-                    break;
-
+                MessageBox.Show("Please Select Current Camera", "Select current Camera ");
             }
         }
 
