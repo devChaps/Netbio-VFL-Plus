@@ -18,7 +18,8 @@ namespace Netbio_VFL_Plus
 
 
        public FRM_MAIN MainForm;
-        public int afs_index; // hold the emd selected index for reload..
+       public int afs_index; // hold the emd selected index for reload..
+        public FRM_DEBUG EMD_DEBUG = new FRM_DEBUG();
        
 
        
@@ -108,7 +109,7 @@ namespace Netbio_VFL_Plus
             }
 
             // load picture using first enemy block, all room ids should the same for each room relative enemy list..
-            EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[i].Enemy[0].Room_ID, PB_EMD_ROOM);
+            EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[i].Enemy[0].MAP, PB_EMD_ROOM);
 
             // LB_EMD_TOTAL.SetSelected(0, true);
 
@@ -121,6 +122,8 @@ namespace Netbio_VFL_Plus
 
             int idx = LB_EMD_TOTAL.SelectedIndex;
             string nbdstring = string.Empty;
+
+           // MessageBox.Show(x.ToString() + "  : idx: " + idx.ToString());
 
             string nbdval0 = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0.ToString("X2");
             string nbdval1 = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1.ToString("X2");
@@ -143,16 +146,20 @@ namespace Netbio_VFL_Plus
             if (nbdval0 == "01")
             {
                 CB_ZANIM.Show();
+
             }
             else {
                 CB_ZANIM.Hide();
+                EMD_ANIM.Value = 0;
             }
+
+
            
 
             // CHECK IF KEY EXISTS
-            if (EMD_IO.ZOMBIE_ANIMATION_LUT.ContainsKey(EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE))
+            if (EMD_IO.ZOMBIE_ANIMATION_LUT.ContainsKey(EMD_IO.EMD_DATA[x].Enemy[i].Movement_Pattern))
             {
-                CB_ZANIM.SelectedItem = EMD_IO.ZOMBIE_ANIMATION_LUT[EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE];
+                CB_ZANIM.SelectedItem = EMD_IO.ZOMBIE_ANIMATION_LUT[EMD_IO.EMD_DATA[x].Enemy[i].Movement_Pattern];
             }
             else
             {
@@ -162,49 +169,75 @@ namespace Netbio_VFL_Plus
             //   MessageBox.Show(idx.ToString());
 
 
-            EMD_POS_DEC_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].X;
-            EMD_POS_DEC_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Y;
-            EMD_POS_DEC_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Z;
-            EMD_POS_DEC_R.Value = EMD_IO.EMD_DATA[x].Enemy[idx].R;
+            // Set disable enemy box
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].Disable_Enemy == 0) { CB_ATK_SUPRESS.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].Disable_Enemy == 1) { CB_ATK_SUPRESS.Checked = true; }
+
+            // SET REVIVE FLAG
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].Respawn == 0) { CB_RESPAWN.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].Respawn == 1) { CB_RESPAWN.Checked = true; }
+
+            EMD_RESPAWN_TIME.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Respawn_Time;
+
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].FOLLOW == 0) { CB_EMD_FOLLOW.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[idx].FOLLOW == 1) { CB_EMD_FOLLOW.Checked = true; }
+
+           
+
+            EMD_POS_DEC_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_X;
+            EMD_POS_DEC_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_Y;
+            EMD_POS_DEC_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_Z;
+            EMD_POS_DEC_RX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].RotationX;
+            EMD_POS_DEC_RY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].RotationY;
 
 
-            EMD_POS_HEX_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].X;
-            EMD_POS_HEX_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Y;
-            EMD_POS_HEX_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Z;
-            EMD_POS_HEX_R.Value = EMD_IO.EMD_DATA[x].Enemy[idx].R;
-            EMD_ROOMID.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Room_ID;
+            EMD_POS_HEX_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_X;
+            EMD_POS_HEX_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_Y;
+            EMD_POS_HEX_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Position_Z;
+            EMD_POS_HEX_RX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].RotationX;
+            EMD_POS_HEX_RY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].RotationY;
+            EMD_ROOMID.Value = EMD_IO.EMD_DATA[x].Enemy[idx].MAP; 
 
             EMD_NBDID00.Value = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0;
             EMD_NBDID01.Value = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1;
 
+            EMD_ATTACK_DELAY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Attack_Delay;
+
             EMD_TAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Tag;
             EMD_INDEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].No;
 
-            EMD_SCALEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEX;
-            EMD_SCALEY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEY;
-            EMD_SCALEZ.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALEZ;
+            EMD_SCALEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Scale_X;
+            EMD_SCALEY.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Scale_Y;
+            EMD_SCALEZ.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Scale_Z;
 
-            EMD_ANIM.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STATE;
-            EMD_SPAWNIDX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
-            EMD_KNOCKBACK.Value = EMD_IO.EMD_DATA[x].Enemy[idx].SpawnIDX;
+            EMD_ANIM.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Movement_Pattern; // fix this
+            EMD_SPAWNIDX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Spawn_Index;
+            EMD_FOLLOW_TIME.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Follow_Time;
+            EMD_TRACKING.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Tracking_Distance;
+            EMD_KDR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Knockdown_Rate;
+            EMD_KDT.Value = EMD_IO.EMD_DATA[x].Enemy[idx].KnockDown_Time;
 
-            EMD_SPEED.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SPEED;
-            EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_HP;
-            EMD_FOLLOW_FLAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_FOLLOW;
-            EMD_STR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STR;
-            EMD_ZREZ.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Zombie_ressurect;
+
+
+
+            EMD_SPEED.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Enemy_Speed;
+            EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Enemy_HP;
+           
+            EMD_STR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Enemy_Str;
+         
            // STILL NEEDS TO BE FIXED
 
-            if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 01) { CB_EASY.Checked = true; CB_NORMAL.Checked = false; CB_HARD.Checked = false; CB_VH.Checked = false; }
-            if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 03) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = false; CB_VH.Checked = false; }
-            if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 12) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = true; CB_VH.Checked = false; }
-            if (EMD_IO.EMD_DATA[x].Enemy[i].EMD_DFC == 15) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = true; CB_VH.Checked = true; }
+            if (EMD_IO.EMD_DATA[x].Enemy[i].Difficulty == 01) { CB_EASY.Checked = true; CB_NORMAL.Checked = false; CB_HARD.Checked = false; CB_VH.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[i].Difficulty == 03) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = false; CB_VH.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[i].Difficulty == 12) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = true; CB_VH.Checked = false; }
+            if (EMD_IO.EMD_DATA[x].Enemy[i].Difficulty == 15) { CB_EASY.Checked = true; CB_NORMAL.Checked = true; CB_HARD.Checked = true; CB_VH.Checked = true; }
+
+         //   EMD_IO.EMD_DATA[x].Enemy[idx].MAP = (byte)x;
 
 
-  
+          //  MessageBox.Show(EMD_IO.EMD_DATA[x].Enemy[idx].MAP);
 
-
-            EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[x].Enemy[idx].Room_ID, PB_EMD_ROOM);
+            EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[x].Enemy[idx].MAP, PB_EMD_ROOM);
             EMD_IO.Set_pic(EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0, EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1, PB_EMD, LBL_NBD_FILE);
 
             EMD_BYTECODE.Clear();
@@ -231,9 +264,7 @@ namespace Netbio_VFL_Plus
 
             int i = LB_EMD_OFFSETS.SelectedIndex;
             int sel_off = (int)LB_EMD_OFFSETS.Items[i];
-
             int x = LB_EMD_TOTAL.SelectedIndex;
-
 
 
             // CUR ARCHIVE OFFSET + NETBIO OFFSET + EMD OFFSET * SELECTED ENTRY + 96
@@ -247,81 +278,77 @@ namespace Netbio_VFL_Plus
             {
                 using (BinaryWriter bw = new BinaryWriter(fs1))
                 {
-
-
                     // seek to ISO relative offset for selected EMD ENTRY
                     fs1.Seek(total, SeekOrigin.Begin);
 
-                    //  MessageBox.Show(fs1.Position.ToString());
+                    bw.Write((byte)EMD_TAG.Value); // 0
+                    bw.Write((byte)EMD_INDEX.Value); // 1
+                    bw.Write((byte)EMD_NBDID00.Value); // 2
+                    bw.Write((byte)EMD_NBDID01.Value); // 3
+                    bw.Write((byte)EMD_EVENT00.Value); // 4
 
+                    if (CB_ATK_SUPRESS.Checked) { bw.Write((byte)0x01); }  // 5
+                    if (!CB_ATK_SUPRESS.Checked) { bw.Write((byte)0x00); }
 
-                    bw.Write((byte)EMD_TAG.Value);
-                    bw.Write((byte)EMD_INDEX.Value);
-                    bw.Write((byte)EMD_NBDID00.Value);
-                    bw.Write((byte)EMD_NBDID01.Value);
+                    fs1.Seek(total + 12, SeekOrigin.Begin); // skip to Rotation 12
 
+                    bw.Write((byte)EMD_POS_DEC_RX.Value); // 12
+                    bw.Write((byte)EMD_POS_DEC_RY.Value); // 13
 
-                    fs1.Seek(+8, SeekOrigin.Current); // skip writing Ulongs
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong00);
+                    fs1.Seek(+2, SeekOrigin.Current); // skip unused02
 
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong01);kk
+                    bw.Write((int)EMD_POS_DEC_X.Value); // 16
+                    bw.Write((int)EMD_POS_DEC_X.Value); // 20
+                    bw.Write((int)EMD_POS_DEC_X.Value); // 24
+                    bw.Write((byte)EMD_ROOMID.Value); // 28
 
+                    if (CB_EMD_FOLLOW.Checked) { bw.Write((byte)0x01); } // 29
+                    if (!CB_EMD_FOLLOW.Checked) { bw.Write((byte)0x00); } // 29
+                        
 
-                    bw.Write((Int16)EMD_POS_DEC_X.Value);
+                    // skip unused or not using..
+                    fs1.Seek(total + 32, SeekOrigin.Begin);
 
-                    fs1.Seek(+2, SeekOrigin.Current);
+                    bw.Write((byte)EMD_ANIM.Value); // 32
 
-                    bw.Write((Int16)EMD_POS_DEC_Z.Value);
-                    fs1.Seek(+2, SeekOrigin.Current);
-                    bw.Write((Int16)EMD_POS_DEC_Y.Value);
-                    fs1.Seek(+2, SeekOrigin.Current);
-                    bw.Write((Int16)EMD_POS_DEC_R.Value);
-                    fs1.Seek(+2, SeekOrigin.Current);
+                    fs1.Seek(total + 38, SeekOrigin.Begin);
 
-                    bw.Write((byte)EMD_ROOMID.Value);
-                    bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].SpawnIDX);
+                    if (CB_RESPAWN.Checked) { bw.Write((byte)0x01); } // 38
+                    if (!CB_EMD_FOLLOW.Checked) { bw.Write((byte)0x00); } // 38
 
-                    //// need convert radio buttons to difficulty bitmask
+                    fs1.Seek(total + 40, SeekOrigin.Begin);
 
-                    bw.Write((byte)EMD_DFC_CONVERT(CB_EASY, CB_NORMAL, CB_HARD, CB_VH));
+                    bw.Write((byte)EMD_ATTACK_DELAY.Value); // 40
 
-                    fs1.Seek(+19, SeekOrigin.Current);
+                    fs1.Seek(total + 48, SeekOrigin.Begin);
 
+                    bw.Write((byte)EMD_SPAWNIDX.Value);
 
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UnkB01);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort02);
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte00);
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte01);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort03);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort04);
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong01);
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong02);
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong03);
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].Ubyte02);
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].EMD_STATE); // need to switch this to NUD val
-                    bw.Write((byte)EMD_STR.Value);
-                    bw.Write((byte)EMD_HP.Value);
+                    fs1.Seek(total + 50, SeekOrigin.Begin);
+                    bw.Write((byte)EMD_HP.Value); // 50
+                    bw.Write((byte)EMD_STR.Value); // 51
 
-                    fs1.Seek(+7, SeekOrigin.Current);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort07);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort08);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort09);
-                    //bw.Write((short)EMD_IO.EMD_DATA[x].Enemy[i].UShort10);
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong04);
+                    fs1.Seek(total + 53, SeekOrigin.Begin);
+                    bw.Write((byte)EMD_TRACKING.Value); // 53
+
+                    fs1.Seek(total + 59, SeekOrigin.Begin);
+                    bw.Write((byte)EMD_KDT.Value); // 59
+                    bw.Write((byte)EMD_RESPAWN_TIME.Value); // 60
+
+                    fs1.Seek(total + 64, SeekOrigin.Begin);
                     bw.Write((byte)EMD_SPEED.Value);
-                    //bw.Write((byte)EMD_IO.EMD_DATA[x].Enemy[i].UByte03);
-                    //bw.Write((int)EMD_IO.EMD_DATA[x].Enemy[i].ULong05);
-                    //bw.Write((short)EMD_SCALE.Value); // could be wrong data type..
 
+                    fs1.Seek(total + 67, SeekOrigin.Begin);
+                    bw.Write((byte)EMD_KDR.Value); // 67
+                    bw.Write((byte)EMD_FOLLOW_TIME.Value); // 68
+                    bw.Write((byte)EMD_SCALEX.Value); // 69
+                    bw.Write((byte)EMD_SCALEY.Value); // 70
+                    bw.Write((byte)EMD_SCALEZ.Value); // 71
+                  //  bw.Write((byte)EMD_FOLLOW_TIME.Value); // 71
 
+                    fs1.Seek(total + 73, SeekOrigin.Begin);  
+                    bw.Write((byte)EMD_DFC_CONVERT(CB_EASY, CB_NORMAL, CB_HARD, CB_VH)); // 73 DFC conversion
 
-                    //EMD_DATA[x].Enemy[j].UByte04 = br.ReadByte();
-                    //EMD_DATA[x].Enemy[j].EMD_FOLLOW = br.ReadByte(); // prob wrong
-                    //EMD_DATA[x].Enemy[j].UShort14 = br.ReadInt16();
-                    //EMD_DATA[x].Enemy[j].ULong06 = br.ReadInt32();
-                    //EMD_DATA[x].Enemy[j].ULong07 = br.ReadInt32();
-                    //EMD_DATA[x].Enemy[j].ULong08 = br.ReadInt32();
-                    //EMD_DATA[x].Enemy[j].ULong09 = br.ReadInt32();
 
 
 
@@ -333,8 +360,6 @@ namespace Netbio_VFL_Plus
 
             }
 
-          
-         
             MessageBox.Show("Emd Entry updated", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             // need a way to reload 
@@ -351,77 +376,7 @@ namespace Netbio_VFL_Plus
         }
 
 
-        public void EMD_RELOAD() 
-        {
-
-            
-
-            try
-            {
-
-                int index = afs_index;
-                bool Online; // Online Flag
-
-
-                // CHECK VALID FILE PATH
-                if (File.Exists(FRM_MAIN.Img.Image_Path))
-                {
-
-                    // OPEN FILE STREAM
-                    using (FileStream fs = new FileStream(FRM_MAIN.Img.Image_Path, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
-                    {
-
-                        // ENSURE IT HAS VALID AFS SIG + EMD EXTENSION
-                        if (FRM_MAIN.Valid_Iso(fs) && MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Substring(MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Length - 3, 3).ToUpper() == "EMD")
-                        {
-                            // DIFFERENTIATE BETWEEN ONLINE/OFFLINE EMD DATA
-                            if (MainForm.LV_AFS.FocusedItem.SubItems[3].Text.Substring(0, 3).ToUpper() == "SGL")
-                            {
-                                Online = false;
-                            }
-                            else
-                            {
-                                Online = true;
-                            }
-
-                            // 
-                            FRM_MAIN.Img.Read_Image = new CDReader(fs, true, true);
-                            FRM_MAIN.Img.Root_FSys_Info = FRM_MAIN.Img.Read_Image.Root.GetFileSystemInfos();
-                            Stream memStream = FRM_MAIN.Img.Read_Image.OpenFile(FRM_MAIN.Img.Selected_Volume, FileMode.Open);
-
-                            FRM_MAIN.EMDIO.Parse_EMDStream(memStream, MainForm.AFSIO.cur_archive_offset,
-                            ScenarioHandler.ARC2_VAL(MainForm.LV_AFS.Items[MainForm.LV_AFS.SelectedIndices[0]].SubItems[3].Text),
-                                ScenarioHandler.GAME_CHECK(MainForm.LV_AFS.Items[MainForm.LV_AFS.SelectedIndices[0]].SubItems[3].Text),
-                                MainForm.LV_AFS, MainForm.EMD_FORM.LB_EMD_OFFSETS, MainForm.EMD_FORM.PB_EMD_ROOM, MainForm.EMD_FORM.PB_EMD, MainForm.EMD_FORM.LBL_OFFSET, MainForm.EMD_FORM.LBL_FTYPE);
-
-                            //   SetWindowTheme(MainForm.EMD_FORM.Handle, "", ""); // enable classic view
-                            MainForm.EMD_FORM.ShowDialog();
-
-
-                            memStream.Close();
-                            memStream.Dispose();
-                            FRM_MAIN.Img.Read_Image.Dispose();
-
-
-
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-
-
-            }
-
-        }
+       
 
         private void FRM_EMD_Load(object sender, EventArgs e)
         {
@@ -446,54 +401,6 @@ namespace Netbio_VFL_Plus
 
         private void LB_EMD_TOTAL_Click(object sender, EventArgs e)
         {
-
-
-            //int i = LB_EMD_TOTAL.SelectedIndices[0];
-            //int x = LB_EMD_OFFSETS.SelectedIndices[0];
-
-
-            //int idx = LB_EMD_TOTAL.SelectedIndex;
-
-
-            ////   MessageBox.Show(idx.ToString());
-
-
-
-            //EMD_POS_DEC_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].X;
-            //EMD_POS_DEC_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Y;
-            //EMD_POS_DEC_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Z;
-            //EMD_POS_DEC_R.Value = EMD_IO.EMD_DATA[x].Enemy[idx].R;
-
-
-            //EMD_POS_HEX_X.Value = EMD_IO.EMD_DATA[x].Enemy[idx].X;
-            //EMD_POS_HEX_Y.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Y;
-            //EMD_POS_HEX_Z.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Z;
-            //EMD_POS_HEX_R.Value = EMD_IO.EMD_DATA[x].Enemy[idx].R;
-
-
-            //EMD_NBDID00.Value = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0;
-            //EMD_NBDID01.Value = EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1;
-
-            //EMD_TAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].Tag;
-            //EMD_INDEX.Value = EMD_IO.EMD_DATA[x].Enemy[idx].No;
-            //EMD_DFC.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_DFC;
-            //EMD_SCALE.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SCALE;
-
-            //EMD_SPEED.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_SPEED;
-            //EMD_HP.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_HP;
-            //EMD_FOLLOW_FLAG.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_FOLLOW;
-            //EMD_STR.Value = EMD_IO.EMD_DATA[x].Enemy[idx].EMD_STR;
-            //// EMD_DFC.Value = EMD_IO.EMD_DATA[x].Enemy[i].EMD
-
-
-
-
-
-            //EMD_IO.Set_ROOM(EMD_IO.SCE_VALUE, EMD_IO.EMD_DATA[x].Enemy[idx].Room_ID, PB_EMD_ROOM);
-            //EMD_IO.Set_pic(EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID0, EMD_IO.EMD_DATA[x].Enemy[idx].NBD_ID1, PB_EMD);
-
-            //EMD_BYTECODE.Clear();
-            //EMD_BYTECODE.Text = ByteArrayToString(EMD_IO.EMD_DATA[x].Enemy[idx].Emd_block);
 
 
         }
@@ -521,6 +428,12 @@ namespace Netbio_VFL_Plus
             EMD_NBDID01.Value = nbdArray[1];
 
 
+            if (EMD_NBDID00.Value != 1) 
+            {
+                 EMD_ANIM.Value = 0;              
+            }
+
+
 
 
             EMD_IO.Set_pic(nbdArray[0], nbdArray[1], PB_EMD, LBL_NBD_FILE);
@@ -538,11 +451,6 @@ namespace Netbio_VFL_Plus
 
         }
 
-        private void LBL_ZREZ_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BTN_PASTE_EMD_BC_Click(object sender, EventArgs e)
         {
 
@@ -556,6 +464,33 @@ namespace Netbio_VFL_Plus
         private void BTN_EMD_ADD_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Not Supported Currently", "N/A", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void BTN_COPY_EMD_BC_Click(object sender, EventArgs e)
+        {
+            EMD_BYTECODE.SelectAll();
+            EMD_BYTECODE.Copy();
+        }
+
+        private void CB_ATK_SUPRESS_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BTN_EMD_DEBUG_Click(object sender, EventArgs e)
+        {
+           
+           FRM_MAIN.DEBUG_FORM.ShowDialog();
+        }
+
+        private void CB_ZANIM_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EMD_NBDID00_ValueChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

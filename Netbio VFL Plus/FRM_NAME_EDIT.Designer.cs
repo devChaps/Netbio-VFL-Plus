@@ -34,9 +34,9 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TB_TEXT = new System.Windows.Forms.TextBox();
             this.BTN_UPDATE = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +84,11 @@
             this.columnHeader3.Text = "C. Name";
             this.columnHeader3.Width = 101;
             // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "O. Name";
+            this.columnHeader4.Width = 99;
+            // 
             // TB_TEXT
             // 
             this.TB_TEXT.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,11 +111,6 @@
             this.BTN_UPDATE.Text = "UPDATE";
             this.BTN_UPDATE.UseVisualStyleBackColor = true;
             this.BTN_UPDATE.Click += new System.EventHandler(this.BTN_UPDATE_Click);
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "O. Name";
-            this.columnHeader4.Width = 99;
             // 
             // FRM_NAME_EDIT
             // 

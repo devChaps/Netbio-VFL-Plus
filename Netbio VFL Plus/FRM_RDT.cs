@@ -62,6 +62,15 @@ namespace Netbio_VFL_Plus
             EVB_FORM.LV_INTCODE.Items.Clear();
             EVB_FORM.LBL_EVB_FNAME.Text = LBL_RDTSELECT.Text.Substring(0, LBL_RDTSELECT.Text.Length - 3) + "SGL".ToUpper();
 
+
+            string sceID = LBL_RDTSELECT.Text.Substring(2, 2);
+            byte roomID = byte.Parse(LBL_RDTSELECT.Text.Substring(4, 2));
+
+
+            // SET GLOBAL GAME VALUE BASED OFF SELECTED RDT.. LOAD CORRESPONDING ROOM IMAGE INTO SCRIPT WINDOW
+            EMD_IO.GAME_VALUE = ScenarioHandler.GAME_CHECK(LBL_RDTSELECT.Text);
+            EMD_IO.Set_ROOM(sceID, roomID, EVB_FORM.PB_ROOM);
+
             int sgl_len = int.Parse(LV_RDT.FocusedItem.SubItems[2].Text);
 
             // get afs mounted RDT offset to pass to subsequence functions

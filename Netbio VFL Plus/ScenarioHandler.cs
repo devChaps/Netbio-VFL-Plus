@@ -44,8 +44,21 @@ namespace Netbio_VFL_Plus
         }
 
         public static string ARC2_VAL(string archive_string)
-        {          
-            return archive_string.Substring(2, 2); 
+        {
+
+          
+
+            if (archive_string.Substring(0, 3).ToLower() == "sgl")
+            {
+
+                return archive_string.Substring(6, 2);
+
+            }
+            else {
+                return archive_string.Substring(2, 2);
+            }
+
+         
         }
 
 
@@ -53,33 +66,77 @@ namespace Netbio_VFL_Plus
         {
             byte game = 0;
 
-            switch (archive_string.Substring(2, 2))
-            {
-                case "01":
-                case "02":
-                case "28":
-                case "35":
-                case "41":
-                    game = 0;
-                    break;
-                case "06": 
-                case "15": 
-                case "10":
-                case "26": 
-                case "20":
-                case "21":
-                case "22":
-                case "23":
-                case "27":
-                case "29":
-                case "30":
-                case "40":
-                    game = 1;
-                    break;
 
+            if (archive_string.Substring(0, 3).ToLower() == "sgl")
+            {
+
+                switch (archive_string.Substring(6, 2))
+                {
+                    case "01":
+                    case "02":
+                    case "28":
+                    case "35":
+                    case "41":
+                        game = 0;
+                        break;
+                    case "06":
+                    case "15":
+                    case "10":
+                    case "26":
+                    case "20":
+                    case "21":
+                    case "22":
+                    case "23":
+                    case "27":
+                    case "29":
+                    case "30":
+                    case "40":
+                        game = 1;
+                        break;
+
+
+
+                }
+
+            }
+            else
+            {
+
+
+
+                switch (archive_string.Substring(2, 2))
+                {
+                    case "01":
+                    case "02":
+                    case "28":
+                    case "35":
+                    case "41":
+                        game = 0;
+                        break;
+                    case "06":
+                    case "15":
+                    case "10":
+                    case "26":
+                    case "20":
+                    case "21":
+                    case "22":
+                    case "23":
+                    case "27":
+                    case "29":
+                    case "30":
+                    case "40":
+                        game = 1;
+                        break;
+
+
+
+                }
 
 
             }
+            
+
+
 
             return game;
         }

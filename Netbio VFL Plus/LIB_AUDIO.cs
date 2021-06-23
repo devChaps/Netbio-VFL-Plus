@@ -162,97 +162,102 @@ namespace Netbio_VFL_Plus
         public static void SND_PARSE(string fpath, ListView AudioList, ToolStripLabel LBL_COUNT, RichTextBox Debug_Log)
         {
 
-           
-
-            using (FileStream fs = new FileStream(fpath, FileMode.Open))
+            try
             {
-                using (BinaryReader br = new BinaryReader(fs))
+
+                using (FileStream fs = new FileStream(fpath, FileMode.Open))
                 {
-                    AudioList.Items.Clear(); // dupes
-
-                    fs.Seek(0, SeekOrigin.Begin);
-
-                    Int32 _magic = br.ReadInt32();
-
-                    // CHECK MOMO SIG..
-                    if (MOMO_CHECK(_magic))
+                    using (BinaryReader br = new BinaryReader(fs))
                     {
+                        AudioList.Items.Clear(); // dupes
 
-                        fs.Seek(0x08, SeekOrigin.Begin);
-                        MOMO_HEADER.SCEI_OFFSET = br.ReadInt32();
-                        MOMO_HEADER.SCEI_OFFSET = br.ReadInt32();
-                        MOMO_HEADER.ADPCM_OFFSET = br.ReadInt32();
-                        MOMO_HEADER.ADPCM_SIZE = br.ReadInt32();
+                        fs.Seek(0, SeekOrigin.Begin);
 
-                        // SEEK TO SCEI_HEADER INFO
-                        fs.Seek(0x5C, SeekOrigin.Begin);
-                        SCE_HEADER.HEADER_SZ = br.ReadInt32();
-                        SCE_HEADER.T_ADPCM_SZ = br.ReadInt32();
+                        Int32 _magic = br.ReadInt32();
 
-                        fs.Seek(0x70, SeekOrigin.Begin);
-                        SCE_HEADER.T_SCEI_VAGI_OFFSET = br.ReadInt32(); // offset from SCEI_HEAD
-
-
-                        fs.Seek(0x90, SeekOrigin.Begin);
-
-                        Int64 _VagiMagic = br.ReadInt64();
-
-                        if (VAGI_CHECK(_VagiMagic))
+                        // CHECK MOMO SIG..
+                        if (MOMO_CHECK(_magic))
                         {
 
-                            VAGI_HEADER.VAGI_TBL_SZ = br.ReadInt32();
-                            VAGI_HEADER.T_SOUND = br.ReadInt32();
+                            fs.Seek(0x08, SeekOrigin.Begin);
+                            MOMO_HEADER.SCEI_OFFSET = br.ReadInt32();
+                            MOMO_HEADER.SCEI_OFFSET = br.ReadInt32();
+                            MOMO_HEADER.ADPCM_OFFSET = br.ReadInt32();
+                            MOMO_HEADER.ADPCM_SIZE = br.ReadInt32();
 
-                            CLIP_COUNT = VAGI_HEADER.T_SOUND;
-                            LBL_COUNT.Text = VAGI_HEADER.T_SOUND.ToString();
+                            // SEEK TO SCEI_HEADER INFO
+                            fs.Seek(0x5C, SeekOrigin.Begin);
+                            SCE_HEADER.HEADER_SZ = br.ReadInt32();
+                            SCE_HEADER.T_ADPCM_SZ = br.ReadInt32();
 
-                            // RESIZE ADPCM INFO ARRAY TO # of sounds..
-                            Array.Resize(ref ADPCM_INFO, VAGI_HEADER.T_SOUND);
+                            fs.Seek(0x70, SeekOrigin.Begin);
+                            SCE_HEADER.T_SCEI_VAGI_OFFSET = br.ReadInt32(); // offset from SCEI_HEAD
 
-                            for (int i = 0; i < VAGI_HEADER.T_SOUND; i++)
+
+                            fs.Seek(0x90, SeekOrigin.Begin);
+
+                            Int64 _VagiMagic = br.ReadInt64();
+
+                            if (VAGI_CHECK(_VagiMagic))
                             {
-                                // read VAGI_relative sound info offsets
-                                Int32 r_offset = br.ReadInt32();
-                                Int32 n_offset = br.ReadInt32();
-                                fs.Seek(-4, SeekOrigin.Current);
-                                int sz = n_offset - r_offset;
 
-                                Relative_Offsets.Add(r_offset);
+                                VAGI_HEADER.VAGI_TBL_SZ = br.ReadInt32();
+                                VAGI_HEADER.T_SOUND = br.ReadInt32();
+
+                                CLIP_COUNT = VAGI_HEADER.T_SOUND;
+                                LBL_COUNT.Text = VAGI_HEADER.T_SOUND.ToString();
+
+                                // RESIZE ADPCM INFO ARRAY TO # of sounds..
+                                Array.Resize(ref ADPCM_INFO, VAGI_HEADER.T_SOUND);
+
+                                for (int i = 0; i < VAGI_HEADER.T_SOUND; i++)
+                                {
+                                    // read VAGI_relative sound info offsets
+                                    Int32 r_offset = br.ReadInt32();
+                                    Int32 n_offset = br.ReadInt32();
+                                    fs.Seek(-4, SeekOrigin.Current);
+                                    int sz = n_offset - r_offset;
+
+                                    Relative_Offsets.Add(r_offset);
+
+                                }
+
+
+
+                                for (int i = 0; i < Relative_Offsets.Count; i++)
+                                {
+                                    // SEEK TO ADPCM DATA INFO
+                                    fs.Seek(Relative_Offsets[i] + 144, SeekOrigin.Begin);
+
+                                    // STORE STRUCTURE INSTANCE
+                                    ADPCM_INFO[i].ADPCM_OFFSET = br.ReadInt32();
+
+
+                                    ADPCM_INFO[i].ADPCM_OFFSET += MOMO_HEADER.ADPCM_OFFSET;
+
+                                    Debug_Log.AppendText(ADPCM_INFO[i].ADPCM_OFFSET.ToString() + "\n");
+                                    ADPCM_INFO[i].ADPCM_SZ = ADPCM_INFO[i].ADPCM_OFFSET + MOMO_HEADER.ADPCM_SIZE;
+
+
+                                    ADPCM_INFO[i].FREQ_HZ = br.ReadInt16();
+                                    ADPCM_INFO[i].LOOP_FLAG = br.ReadByte();
+                                    ADPCM_INFO[i].xFF = br.ReadByte();
+
+                                    AudioList.Items.Add(i.ToString());
+                                    AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].ADPCM_OFFSET.ToString());
+                                    AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].FREQ_HZ.ToString());
+                                    AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].LOOP_FLAG.ToString());
+                                }
+
+
+                                // clear after use
+                                Array.Clear(ADPCM_INFO, 0, ADPCM_INFO.Length);
+                                Relative_Offsets.Clear();
+
+
 
                             }
 
-
-
-                            for (int i = 0; i < Relative_Offsets.Count; i++)
-                            {
-                                // SEEK TO ADPCM DATA INFO
-                                fs.Seek(Relative_Offsets[i] + 144, SeekOrigin.Begin);
-
-                                // STORE STRUCTURE INSTANCE
-                                ADPCM_INFO[i].ADPCM_OFFSET = br.ReadInt32();
-                    
-
-                                ADPCM_INFO[i].ADPCM_OFFSET += MOMO_HEADER.ADPCM_OFFSET;
-
-                                Debug_Log.AppendText(ADPCM_INFO[i].ADPCM_OFFSET.ToString() + "\n");
-                                ADPCM_INFO[i].ADPCM_SZ = ADPCM_INFO[i].ADPCM_OFFSET + MOMO_HEADER.ADPCM_SIZE;
-
-
-                                ADPCM_INFO[i].FREQ_HZ = br.ReadInt16();
-                                ADPCM_INFO[i].LOOP_FLAG = br.ReadByte();
-                                ADPCM_INFO[i].xFF = br.ReadByte();
-
-                                AudioList.Items.Add(i.ToString());        
-                                AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].ADPCM_OFFSET.ToString());
-                                AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].FREQ_HZ.ToString());
-                                AudioList.Items[i].SubItems.Add(ADPCM_INFO[i].LOOP_FLAG.ToString());
-                            }
-
-
-                            // clear after use
-                            Array.Clear(ADPCM_INFO, 0, ADPCM_INFO.Length);
-                            Relative_Offsets.Clear();
-                         
 
 
                         }
@@ -264,9 +269,10 @@ namespace Netbio_VFL_Plus
 
 
                 }
-
-
-
+            }
+            catch 
+            {
+            
             }
 
         }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace Netbio_VFL_Plus
 {
@@ -28,6 +30,15 @@ namespace Netbio_VFL_Plus
             this.Hide();
             this.Parent = null;
             e.Cancel = true; //hides the form, cancels closing event
+        }
+
+        private void BTN_EXPORT_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "\\DEBUG_LOG.txt"))
+            {
+                //write debug log to file..
+                sw.Write(DEBUG_LOG.Text);
+            }
         }
     }
 }

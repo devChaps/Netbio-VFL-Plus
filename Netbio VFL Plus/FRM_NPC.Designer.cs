@@ -154,7 +154,7 @@
             // LBL_BOUNDS
             // 
             this.LBL_BOUNDS.ForeColor = System.Drawing.Color.Black;
-            this.LBL_BOUNDS.Location = new System.Drawing.Point(185, 82);
+            this.LBL_BOUNDS.Location = new System.Drawing.Point(269, 97);
             this.LBL_BOUNDS.Name = "LBL_BOUNDS";
             this.LBL_BOUNDS.Size = new System.Drawing.Size(80, 22);
             this.LBL_BOUNDS.TabIndex = 49;
@@ -163,7 +163,7 @@
             // LBL_Alive
             // 
             this.LBL_Alive.ForeColor = System.Drawing.Color.Black;
-            this.LBL_Alive.Location = new System.Drawing.Point(134, 83);
+            this.LBL_Alive.Location = new System.Drawing.Point(218, 98);
             this.LBL_Alive.Name = "LBL_Alive";
             this.LBL_Alive.Size = new System.Drawing.Size(54, 22);
             this.LBL_Alive.TabIndex = 48;
@@ -174,7 +174,7 @@
             this.Num_bounds.BackColor = System.Drawing.Color.White;
             this.Num_bounds.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_bounds.ForeColor = System.Drawing.Color.Black;
-            this.Num_bounds.Location = new System.Drawing.Point(189, 108);
+            this.Num_bounds.Location = new System.Drawing.Point(273, 123);
             this.Num_bounds.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -189,7 +189,7 @@
             this.Num_alive.BackColor = System.Drawing.Color.White;
             this.Num_alive.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_alive.ForeColor = System.Drawing.Color.Black;
-            this.Num_alive.Location = new System.Drawing.Point(129, 108);
+            this.Num_alive.Location = new System.Drawing.Point(213, 123);
             this.Num_alive.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -202,7 +202,7 @@
             // LBL_Animflg2
             // 
             this.LBL_Animflg2.ForeColor = System.Drawing.Color.Black;
-            this.LBL_Animflg2.Location = new System.Drawing.Point(185, 33);
+            this.LBL_Animflg2.Location = new System.Drawing.Point(269, 48);
             this.LBL_Animflg2.Name = "LBL_Animflg2";
             this.LBL_Animflg2.Size = new System.Drawing.Size(51, 22);
             this.LBL_Animflg2.TabIndex = 45;
@@ -211,7 +211,7 @@
             // LBL_AnimID2
             // 
             this.LBL_AnimID2.ForeColor = System.Drawing.Color.Black;
-            this.LBL_AnimID2.Location = new System.Drawing.Point(125, 33);
+            this.LBL_AnimID2.Location = new System.Drawing.Point(209, 48);
             this.LBL_AnimID2.Name = "LBL_AnimID2";
             this.LBL_AnimID2.Size = new System.Drawing.Size(51, 22);
             this.LBL_AnimID2.TabIndex = 44;
@@ -222,7 +222,7 @@
             this.Num_Animflg2.BackColor = System.Drawing.Color.White;
             this.Num_Animflg2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_Animflg2.ForeColor = System.Drawing.Color.Black;
-            this.Num_Animflg2.Location = new System.Drawing.Point(180, 58);
+            this.Num_Animflg2.Location = new System.Drawing.Point(264, 73);
             this.Num_Animflg2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -237,7 +237,7 @@
             this.Num_AnimID2.BackColor = System.Drawing.Color.White;
             this.Num_AnimID2.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_AnimID2.ForeColor = System.Drawing.Color.Black;
-            this.Num_AnimID2.Location = new System.Drawing.Point(123, 58);
+            this.Num_AnimID2.Location = new System.Drawing.Point(207, 73);
             this.Num_AnimID2.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -270,7 +270,7 @@
             // LBL_animflg1
             // 
             this.LBL_animflg1.ForeColor = System.Drawing.Color.Black;
-            this.LBL_animflg1.Location = new System.Drawing.Point(70, 83);
+            this.LBL_animflg1.Location = new System.Drawing.Point(154, 98);
             this.LBL_animflg1.Name = "LBL_animflg1";
             this.LBL_animflg1.Size = new System.Drawing.Size(48, 22);
             this.LBL_animflg1.TabIndex = 40;
@@ -279,7 +279,7 @@
             // LBL_AnimID1
             // 
             this.LBL_AnimID1.ForeColor = System.Drawing.Color.Black;
-            this.LBL_AnimID1.Location = new System.Drawing.Point(11, 83);
+            this.LBL_AnimID1.Location = new System.Drawing.Point(95, 98);
             this.LBL_AnimID1.Name = "LBL_AnimID1";
             this.LBL_AnimID1.Size = new System.Drawing.Size(51, 22);
             this.LBL_AnimID1.TabIndex = 39;
@@ -290,7 +290,7 @@
             this.Num_Animflg.BackColor = System.Drawing.Color.White;
             this.Num_Animflg.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_Animflg.ForeColor = System.Drawing.Color.Black;
-            this.Num_Animflg.Location = new System.Drawing.Point(67, 108);
+            this.Num_Animflg.Location = new System.Drawing.Point(151, 123);
             this.Num_Animflg.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -305,7 +305,7 @@
             this.Num_AnimID.BackColor = System.Drawing.Color.White;
             this.Num_AnimID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_AnimID.ForeColor = System.Drawing.Color.Black;
-            this.Num_AnimID.Location = new System.Drawing.Point(11, 108);
+            this.Num_AnimID.Location = new System.Drawing.Point(95, 123);
             this.Num_AnimID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -318,7 +318,7 @@
             // LBL_NID
             // 
             this.LBL_NID.ForeColor = System.Drawing.Color.Black;
-            this.LBL_NID.Location = new System.Drawing.Point(63, 35);
+            this.LBL_NID.Location = new System.Drawing.Point(147, 50);
             this.LBL_NID.Name = "LBL_NID";
             this.LBL_NID.Size = new System.Drawing.Size(51, 22);
             this.LBL_NID.TabIndex = 36;
@@ -327,7 +327,7 @@
             // LBL_RID
             // 
             this.LBL_RID.ForeColor = System.Drawing.Color.Black;
-            this.LBL_RID.Location = new System.Drawing.Point(6, 35);
+            this.LBL_RID.Location = new System.Drawing.Point(90, 50);
             this.LBL_RID.Name = "LBL_RID";
             this.LBL_RID.Size = new System.Drawing.Size(51, 22);
             this.LBL_RID.TabIndex = 35;
@@ -370,7 +370,7 @@
             this.Num_NID.BackColor = System.Drawing.Color.White;
             this.Num_NID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_NID.ForeColor = System.Drawing.Color.Black;
-            this.Num_NID.Location = new System.Drawing.Point(67, 60);
+            this.Num_NID.Location = new System.Drawing.Point(151, 75);
             this.Num_NID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -385,7 +385,7 @@
             this.Num_RID.BackColor = System.Drawing.Color.White;
             this.Num_RID.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Num_RID.ForeColor = System.Drawing.Color.Black;
-            this.Num_RID.Location = new System.Drawing.Point(11, 60);
+            this.Num_RID.Location = new System.Drawing.Point(95, 75);
             this.Num_RID.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -478,9 +478,9 @@
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.Num_CoordY);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(451, 26);
+            this.groupBox4.Location = new System.Drawing.Point(417, 26);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(241, 154);
+            this.groupBox4.Size = new System.Drawing.Size(275, 154);
             this.groupBox4.TabIndex = 53;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Position Data";

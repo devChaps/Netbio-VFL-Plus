@@ -32,13 +32,15 @@
             this.DEBUG_LOG = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.BTN_CLEAR = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.BTN_EXPORT = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DEBUG_LOG
             // 
+            this.DEBUG_LOG.BackColor = System.Drawing.SystemColors.InfoText;
             this.DEBUG_LOG.Font = new System.Drawing.Font("Bahnschrift", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DEBUG_LOG.ForeColor = System.Drawing.Color.Turquoise;
             this.DEBUG_LOG.Location = new System.Drawing.Point(3, 31);
             this.DEBUG_LOG.Name = "DEBUG_LOG";
             this.DEBUG_LOG.Size = new System.Drawing.Size(722, 484);
@@ -49,7 +51,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BTN_CLEAR,
-            this.toolStripButton2});
+            this.BTN_EXPORT});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(734, 25);
@@ -66,14 +68,15 @@
             this.BTN_CLEAR.Text = "toolStripButton1";
             this.BTN_CLEAR.Click += new System.EventHandler(this.BTN_CLEAR_Click);
             // 
-            // toolStripButton2
+            // BTN_EXPORT
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.BTN_EXPORT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BTN_EXPORT.Image = ((System.Drawing.Image)(resources.GetObject("BTN_EXPORT.Image")));
+            this.BTN_EXPORT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BTN_EXPORT.Name = "BTN_EXPORT";
+            this.BTN_EXPORT.Size = new System.Drawing.Size(23, 22);
+            this.BTN_EXPORT.Text = "toolStripButton2";
+            this.BTN_EXPORT.Click += new System.EventHandler(this.BTN_EXPORT_Click);
             // 
             // FRM_DEBUG
             // 
@@ -96,7 +99,7 @@
         #endregion
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton BTN_CLEAR;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton BTN_EXPORT;
         public System.Windows.Forms.RichTextBox DEBUG_LOG;
     }
 }

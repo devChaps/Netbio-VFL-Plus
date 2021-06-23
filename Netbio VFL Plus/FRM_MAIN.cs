@@ -95,7 +95,7 @@ namespace Netbio_VFL_Plus
         public FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
         public NPC_FORM NPC_FORM = new NPC_FORM();
         public FRM_HEX2DEC CALC_FORM = new FRM_HEX2DEC();
-        public FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
+        public static FRM_DEBUG DEBUG_FORM = new FRM_DEBUG();
         public FRM_ABOUT ABOUT_FORM = new FRM_ABOUT();
         public FRM_NAME_EDIT FRM_NAMETOOL = new FRM_NAME_EDIT();
         public FRM_ItemMemory FRM_IMEM = new FRM_ItemMemory();
@@ -637,7 +637,7 @@ namespace Netbio_VFL_Plus
             int index = Img.Volume_Index;
             int Combo_Index = Volume_List.SelectedIndex; // bad idea?
 
-            LBL_SelArchive.Text = "";
+            //LBL_SelArchive.Text = "";
 
             Groups_List.Items.Clear();
 
@@ -992,7 +992,7 @@ namespace Netbio_VFL_Plus
                                 EMDIO.Parse_EMDStream(memStream, AFSIO.cur_archive_offset, 
                                 ScenarioHandler.ARC2_VAL(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
                                     ScenarioHandler.GAME_CHECK(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text),
-                                    LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD_ROOM, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET, EMD_FORM.LBL_FTYPE);
+                                    LV_AFS, EMD_FORM.LB_EMD_OFFSETS, EMD_FORM.PB_EMD, EMD_FORM.LBL_OFFSET, EMD_FORM.LBL_FTYPE);
 
                             SetWindowTheme(EMD_FORM.Handle, "", ""); // enable classic view
                                 EMD_FORM.ShowDialog();
@@ -1629,16 +1629,14 @@ namespace Netbio_VFL_Plus
 
         private void BTN_SOUND_Click(object sender, EventArgs e)
         {
+            FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
 
+            AUDIO_FORM.Show();
 
-            //FRM_AUDIO AUDIO_FORM = new FRM_AUDIO();
-
-            //AUDIO_FORM.Show();
-
-            //RDT_IO.SNP_FLAG = 0;
+            RDT_IO.SNP_FLAG = 0;
 
             // USE IGUSAS EDITOR INSTEAD..
-            Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\OutbreakSoundEditor.exe");
+            //   Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\OutbreakSoundEditor.exe");
         }
 
         private void MAINSTATUS_STRIP_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -1714,8 +1712,13 @@ namespace Netbio_VFL_Plus
                                 DEBUG_FORM.DEBUG_LOG.AppendText("\n Current Archive Offset: " + AFSIO.cur_archive_offset.ToString());
 
 
-                                LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
+                                // LBL_SelArchive.Text = ScenarioHandler.ARC2_SCE(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text);
 
+                                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\SCE_IMG\\" + LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Substring(0, LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Length - 3) + "jpg"))
+                                {
+
+                                    IMG_ARCHIVE.Image = Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + "\\SCE_IMG\\" + LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Substring(0, LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[3].Text.Length - 3) + "jpg");
+                                }
                                 AFSIO.AFS_PARSE(memStream, br, int.Parse(LV_AFS.Items[LV_AFS.SelectedIndices[0]].SubItems[1].Text), LV_AFS, sel_siz, Groups_List, PRG_LOAD);
 
 
@@ -1742,6 +1745,11 @@ namespace Netbio_VFL_Plus
             {
 
             }
+        }
+
+        private void interpretingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

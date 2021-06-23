@@ -93,6 +93,14 @@ namespace Netbio_VFL_Plus
 
         private void LV_INTCODE_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string attr = string.Empty; // return this
+            string opcode = string.Empty; // to hold the main opcode
+            string bytestr = string.Empty; // to hold the interpreted byte string
+            string duration_fmt = string.Empty; // to set min/sec format clearly
+            string char_str = string.Empty; // to wrap player names over IDs;
+            string dfclt_str = string.Empty;// wrap difficulty over ids;
+
+
             try
             {
                   int idx = LV_INTCODE.SelectedIndices[0];
@@ -102,8 +110,16 @@ namespace Netbio_VFL_Plus
                     LV_BYTECODE.EnsureVisible(idx);
 
 
-
+                // set contextual comment
                 TB_DETAILS.Text = EVB_PARSER.SET_COMMENT(LV_INTCODE, LV_BYTECODE, TB_DETAILS);
+
+                // set property grid with selected opcode fields..
+                EVB_PARSER.SET_OP_GRID(LV_BYTECODE, LV_INTCODE, PG_OPCODE);
+
+
+
+
+
 
 
             }

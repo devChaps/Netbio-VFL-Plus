@@ -88,13 +88,48 @@ namespace Netbio_VFL_Plus
             public Int32 uFlag00 = 0;
         }
 
+
+        /// <summary>
+        /// LOAD_ITEM_SET?
+        /// </summary>
+        public class x30000001
+        {
+            public Int32 _opcode = 0;
+            public Int32 _TBL_SLOT = 0;
+
+
+            [Category("x30000001, BLOCK TBL INDEX")]
+            [DisplayName("TBL INDEX")]
+            [Description("Blocks Itemxx.tbl index")]
+            public Int32 TBL_SLOT
+            {
+                get { return _TBL_SLOT; }
+                set { _TBL_SLOT = value; }
+
+            }
+
+        }
+
         /// <summary>
         /// LOAD_ITEM_SET?
         /// </summary>
         public class x31000001
         {
-            public Int32 opcode = 0;
-            public Int32 TBL_SLOT = 0;
+            public Int32 _opcode = 0;
+            public Int32 _TBL_SLOT = 0;
+
+
+            [Category("x30000001, LOAD TBL INDEX")]
+            [DisplayName("TBL INDEX")]
+            [Description("Loads Itemxx.tbl index")]
+            public Int32 TBL_SLOT
+            {
+                get { return _TBL_SLOT; }
+                set { _TBL_SLOT = value; }
+
+            }
+
+
         }
 
 
@@ -128,10 +163,49 @@ namespace Netbio_VFL_Plus
         /// </summary>
         public class x39000002 // item set on spawn
         {
-            public Int32 opcode = 0;
-            public Int32 char_id = 0;
-            public Int32 item_id = 0;
-            public Int32 quantity = 0;
+            public Int32 _opcode = 0;
+            public Int32 _char_id = 0;
+            public Int32 _item_id = 0;
+            public Int32 _quantity = 0;
+
+
+
+
+
+            [Category("0x3900002, Set Player Starting Item")]
+            [DisplayName("Character ID")]
+            [Description("Character ID Type 0-7")]
+            public Int32 char_id
+            {
+                get { return _char_id; }
+                set { _char_id = value; }
+
+            }
+
+            [Category("0x3900002, Set Player Starting Item")]
+            [DisplayName("Item ID")]
+            [Description("Item ID (Decimal)")]
+            public Int32 item_id
+            {
+                get { return _item_id; }
+                set { _item_id = value; }
+
+            }
+
+            [Category("0x3900002, Set Player Starting Item")]
+            [DisplayName("Quantity")]
+            [Description("Item Quantity")]
+            public Int32 quantity
+            {
+                get { return _quantity; }
+                set { _quantity = value; }
+
+            }
+
+
+
+
+
         }
 
 
@@ -316,9 +390,33 @@ namespace Netbio_VFL_Plus
         /// </summary>
         public class x73010002 // cindy herb set
         {
-            public Int32 opcode = 0;
-            public Int32 herb_id = 0;
-            public Int32 quantity = 0;
+            public Int32 _opcode = 0;
+            public Int32 _herb_id = 0;
+            public Int32 _quantity = 0;
+
+            [Category("0x73010002, HERB CASE SET")]
+            [DisplayName("Item ID")]
+            [Description("Item ID (Decimal)")]
+            public Int32 herb_id
+            {
+                get { return _herb_id; }
+                set { _herb_id = value; }
+
+            }
+
+            [Category("0x73010002, HERB CASE SET")]
+            [DisplayName("Quantity")]
+            [Description("Item Quantity")]
+            public Int32 quantity
+            {
+                get { return _quantity; }
+                set { _quantity = value; }
+
+            }
+
+
+
+
         }
 
         /// <summary>
@@ -476,10 +574,22 @@ namespace Netbio_VFL_Plus
 
         public class xEE000002
         {
-            public Int32 opcode = 0;
-            public Int32 uFlag00 = 0;
-            public Int32 UFlag01 = 0;
-            public Int32 UFlag02 = 0;
+            public Int32 _opcode = 0;
+            public Int32 _Difficulty = 0;
+            public Int32 _UFlag01 = 0;
+            public Int32 _UFlag02 = 0;
+
+
+            [Category("0xEE000002, Difficulty Check")]
+            [DisplayName("DFC_CHECK")]
+            [Description("Difficulty Value")]
+            public Int32 Difficulty
+            {
+                get { return _Difficulty; }
+                set { _Difficulty = value; }
+
+            }
+
 
         }
 
@@ -497,10 +607,46 @@ namespace Netbio_VFL_Plus
         /// </summary>
         public class xF2000002 // set door resistance
         {
-            Int32 opcode = 0;
-            Int32 Room_ID = 0;
-            Int32 Door_ID = 0;
-            Int32 Door_Res = 0;
+            Int32 _opcode = 0;
+            Int32 _Room_ID = 0;
+            Int32 _Door_ID = 0;
+            Int32 _Door_Res = 0;
+
+
+
+            [Category("0xF2000002, Set Door Resistance")]
+            [DisplayName("ROOM ID")]
+            [Description("ROOM ID")]
+            public Int32 Room_ID
+            {
+                get { return _Room_ID; }
+                set { _Room_ID = value; }
+
+            }
+
+
+
+            [Category("0xF2000002, Set Door Resistance")]
+            [DisplayName("Door ID")]
+            [Description("Index of Door")]
+            public Int32 Door_ID
+            {
+                get { return _Door_ID; }
+                set { _Door_ID = value; }
+
+            }
+
+
+            [Category("0xF2000002, Set Door Resistance")]
+            [DisplayName("Door_Res")]
+            [Description("Resistance Value, 0-100??")]
+            public Int32 Door_Res
+            {
+                get { return _Door_Res; }
+                set { _Door_Res = value; }
+
+            }
+
 
         }
 
@@ -654,7 +800,7 @@ namespace Netbio_VFL_Plus
                 //  CodeLST.ForeColor = COLOR_OPCODE(bytestr);
 
                
-                CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len));
+                CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len, EVB_FORM.PG_OPCODE));
                 CodeLST.Items[i].SubItems[1].ForeColor = COLOR_CMD(bytestr);
 
 
@@ -835,7 +981,7 @@ namespace Netbio_VFL_Plus
                     }
 
                     ByteLST.Items[i].SubItems.Add(bytestr);
-                    CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len));
+                    CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST, cmd_len, EVB_FORM.PG_OPCODE));
                     CodeLST.Items[i].SubItems[1].ForeColor = COLOR_CMD(bytestr);
 
                     // filter out null stuff?
@@ -948,7 +1094,7 @@ namespace Netbio_VFL_Plus
                 }
 
                 ByteLST.Items[i].SubItems.Add(bytestr);
-                CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST ,cmd_len));
+                CodeLST.Items[i].SubItems.Add(SET_CMD(i, ByteLST, CodeLST,cmd_len, EVB_FORM.PG_OPCODE));
 
                 if (cmd_len > 1) {
                     ByteLST.Items[i].SubItems.Add(cmd_len.ToString() + " byte opcode");
@@ -1066,7 +1212,7 @@ namespace Netbio_VFL_Plus
 
 
 
-        private string SET_CMD(int idx,ListView LSTB, ListView LSTC, int cmd_len)
+        private string SET_CMD(int idx,ListView LSTB, ListView LSTC, int cmd_len, PropertyGrid Opcode_Grid)
         {
             string attr = string.Empty; // return this
             string opcode = string.Empty; // to hold the main opcode
@@ -1081,13 +1227,8 @@ namespace Netbio_VFL_Plus
                 opcode = LSTB.Items[idx].SubItems[1].Text.Substring(0, 8);
                 bytestr = LSTB.Items[idx].SubItems[1].Text;
             }
-
-
            
         //    COLOR_OPCODE(opcode, LSTC, idx);
-
-        
-
 
             if (opcode == "0C000002") 
             {
@@ -1105,6 +1246,11 @@ namespace Netbio_VFL_Plus
                 attr = "LIG_SET();";               
             }
 
+            if (opcode == "30000001")
+            {
+                attr = "ITEM_BLK " + "( TBL ID: " + HEX2INT(bytestr, 8, 2) + ")"; // maybe include padding?             
+            }
+
             if (opcode == "31000001")
             {
                 attr = "ITEM_INIT " + "( TBL ID: " + HEX2INT(bytestr, 8, 2) + ")"; // maybe include padding?             
@@ -1120,8 +1266,6 @@ namespace Netbio_VFL_Plus
 
             if (opcode == "38000002")
             {
-                
-                
                 attr = "PL_ITEM_SET" + "( Player ID: " + ReverseBytes(HEX2INT(bytestr, 8, 8)) + ", Item ID: " + Itemz.GET_ITEM_NAME(ReverseShort(HEX2SHORT(bytestr, 16, 4))) + ", Quantity: " + ReverseBytes(HEX2INT(bytestr, 24, 8)) + " )";
             }
 
@@ -1136,7 +1280,8 @@ namespace Netbio_VFL_Plus
 
             if (opcode == "39000002")
             {
-                attr = "CH_ITEM_SET" + "( Char ID: " + Set_Char(ReverseBytes(HEX2INT(bytestr, 8, 8))) + ", Item ID: " + Itemz.GET_ITEM_NAME(ReverseShort(HEX2SHORT(bytestr, 16, 4))) + ", Quantity: " + ReverseBytes(HEX2INT(bytestr, 24, 8)) + " )"; 
+                attr = "CH_ITEM_SET" + "( Char ID: " + Set_Char(ReverseBytes(HEX2INT(bytestr, 8, 8))) + ", Item ID: " + Itemz.GET_ITEM_NAME(ReverseShort(HEX2SHORT(bytestr, 16, 4))) + ", Quantity: " + ReverseBytes(HEX2INT(bytestr, 24, 8)) + " )";
+                       
             }
 
             if (opcode == "40000002")
@@ -1305,8 +1450,111 @@ namespace Netbio_VFL_Plus
         }
 
 
+
+        // SETS PROPERTY GRID FROM LV SELECTION
+        public static void SET_OP_GRID(ListView LSTB, ListView LSTC, PropertyGrid opgrid) 
+        {
+
+            string opcode = string.Empty;
+            string bytestr = string.Empty;
+
+            int idx = LSTC.SelectedIndices[0];
+
+            opcode = LSTB.Items[idx].SubItems[1].Text.Substring(0, 8);
+            bytestr = LSTB.Items[idx].SubItems[1].Text;
+
+
+            // TBL INIT
+            if (opcode == "31000001")
+            {
+                x31000001 op31000001 = new x31000001();
+                op31000001.TBL_SLOT = HEX2INT(bytestr, 8, 2);
+                opgrid.SelectedObject = op31000001;
+
+            }
+
+
+            // TBL BLOCK
+            if (opcode == "30000001")
+            {
+                x30000001 op30000001 = new x30000001();
+                op30000001.TBL_SLOT = HEX2INT(bytestr, 8, 2);
+                opgrid.SelectedObject = op30000001;
+
+            }
+
+
+            // SET PL_ITEM_SET
+            if (opcode == "39000002")
+            {
+                x39000002 op39000002 = new x39000002();
+                op39000002.char_id = HEX2INT(bytestr, 8, 2);
+                op39000002.item_id = HEX2INT(bytestr, 14, 6);
+                op39000002.quantity = HEX2INT(bytestr, 22, 4);
+                opgrid.SelectedObject = op39000002;
+
+            }
+
+            // SET DFC_CHECK
+            if (opcode == "EE000002")
+            {
+                xEE000002 opEE000002 = new xEE000002();
+                opEE000002.Difficulty = HEX2INT(bytestr, 8, 2);
+                opgrid.SelectedObject = opEE000002;
+
+                //attr = "IF_DFC" + "( Difficulty : " + SET_DFC(ReverseBytes(HEX2INT(bytestr, 8, 8))) + ", Range: " + HEX2INT(bytestr, 16, 2) + " )" + " {";
+            }
+
+
+            // Set DOOR resistance?
+            if (opcode == "F2000002")
+            {
+                xF2000002 opF2000002 = new xF2000002();
+                opF2000002.Room_ID = HEX2INT(bytestr, 8, 2);
+                opF2000002.Door_ID = HEX2INT(bytestr, 16, 2);
+                opF2000002.Door_Res = HEX2INT(bytestr, 24, 2);
+                opgrid.SelectedObject = opF2000002;
+
+               
+            }
+
+            //if (opcode == "F4000002")
+            //{
+            //    attr = "DOOR_UNBREAKABLE" + "( Room ID: " + HEX2INT(bytestr, 8, 2) + ", Door Id: " + HEX2INT(bytestr, 16, 2) + " )";
+            //}
+
+            //if (opcode == "F5000002")
+            //{
+            //    attr = "DOOR_BREAKABLE" + "( Room ID: " + HEX2INT(bytestr, 8, 2) + ", Door Id: " + HEX2INT(bytestr, 16, 2) + " )";
+            //}
+
+
+            //if (opcode == "68000002")
+            //{
+            //    attr = "PL_TYPE_SPAWN_SET" + "( Player #: " + HEX2INT(bytestr, 8, 2) + ", Room Id: " + HEX2INT(bytestr, 16, 2) + ", Spawn ID: " + HEX2INT(bytestr, 24, 2) + " )";
+            //}
+
+            //if (opcode == "69000002")
+            //{
+            //    attr = "PL_SPAWN_SET" + "( Player #: " + HEX2INT(bytestr, 8, 2) + ", Room Id: " + HEX2INT(bytestr, 16, 2) + ", Spawn ID: " + HEX2INT(bytestr, 24, 2) + " )";
+            //}
+
+
+            // CINDY HERB SET?
+            if (opcode == "73010002")
+            {
+                x73010002 op73010002 = new x73010002();
+                op73010002.herb_id = HEX2INT(bytestr, 8, 2);
+                op73010002.quantity = HEX2INT(bytestr, 16, 2);
+                opgrid.SelectedObject = op73010002;
+            }
+
+
+            }
+
         public static string SET_COMMENT(ListView LSTC, ListView LSTB, RichTextBox Details)
         {
+
             string comment = string.Empty;
             string opcode = string.Empty;
             string bytestr = string.Empty;
@@ -1336,13 +1584,14 @@ namespace Netbio_VFL_Plus
                 comment = "No Description Found for selected opcode";
             }
 
-            catch (NullReferenceException ex) 
+            catch (NullReferenceException ex)
             {
-            
+
             }
 
 
             return comment;
+
 
 
         } // needs fixing, maybe use a rtbox instead
@@ -1351,7 +1600,7 @@ namespace Netbio_VFL_Plus
         // 2 - bytes
         // 4 - 2 bytes
         // 8 = 4 bytes  
-        private int HEX2INT(string srcval, int cmdlen, int dtype) // converts an input string to an int32..
+        public static int HEX2INT(string srcval, int cmdlen, int dtype) // converts an input string to an int32..
         {
             int outval = 0;
             outval = Convert.ToInt32(srcval.Substring(cmdlen, dtype), 16);
@@ -1359,13 +1608,13 @@ namespace Netbio_VFL_Plus
         }
 
 
-        private short HEX2SHORT(string srcval, int cmdlen, int dtype)
+        public static short HEX2SHORT(string srcval, int cmdlen, int dtype)
         {
             short outval = 0;
             outval = Convert.ToInt16(srcval.Substring(cmdlen, dtype), 16);
             return outval;
         }
-        static int ReverseBytes(int val)  // good reverse example
+        public static int ReverseBytes(int val)  // good reverse example
         {
             byte[] intAsBytes = BitConverter.GetBytes(val);
             Array.Reverse(intAsBytes);

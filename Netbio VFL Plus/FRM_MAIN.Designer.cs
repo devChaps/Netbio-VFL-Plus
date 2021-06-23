@@ -50,7 +50,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.Groups_List = new System.Windows.Forms.ToolStripComboBox();
             this.LBL_AFS = new System.Windows.Forms.ToolStripLabel();
-            this.LBL_SelArchive = new System.Windows.Forms.ToolStripLabel();
+            this.IMG_ARCHIVE = new System.Windows.Forms.ToolStripLabel();
             this.LV_AFS = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -158,7 +158,7 @@
             this.toolStripSeparator2,
             this.Groups_List,
             this.LBL_AFS,
-            this.LBL_SelArchive});
+            this.IMG_ARCHIVE});
             this.MainToolStrip.Location = new System.Drawing.Point(5, 30);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.Size = new System.Drawing.Size(1090, 46);
@@ -323,12 +323,14 @@
             this.LBL_AFS.Size = new System.Drawing.Size(22, 43);
             this.LBL_AFS.Text = "-";
             // 
-            // LBL_SelArchive
+            // IMG_ARCHIVE
             // 
-            this.LBL_SelArchive.Font = new System.Drawing.Font("Bahnschrift", 15.75F);
-            this.LBL_SelArchive.Name = "LBL_SelArchive";
-            this.LBL_SelArchive.Size = new System.Drawing.Size(28, 43);
-            this.LBL_SelArchive.Text = "{}";
+            this.IMG_ARCHIVE.AutoSize = false;
+            this.IMG_ARCHIVE.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.IMG_ARCHIVE.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.IMG_ARCHIVE.Name = "IMG_ARCHIVE";
+            this.IMG_ARCHIVE.Size = new System.Drawing.Size(200, 50);
+            this.IMG_ARCHIVE.Text = "toolStripLabel1";
             // 
             // LV_AFS
             // 
@@ -570,7 +572,7 @@
             this.checkLockToolStripMenuItem});
             this.AFS_MENU.Name = "AFS_MENU";
             this.AFS_MENU.ShowImageMargin = false;
-            this.AFS_MENU.Size = new System.Drawing.Size(157, 136);
+            this.AFS_MENU.Size = new System.Drawing.Size(157, 158);
             // 
             // importToolStripMenuItem
             // 
@@ -632,6 +634,7 @@
             this.interpretingToolStripMenuItem.Name = "interpretingToolStripMenuItem";
             this.interpretingToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.interpretingToolStripMenuItem.Text = "Interpreting";
+            this.interpretingToolStripMenuItem.Click += new System.EventHandler(this.interpretingToolStripMenuItem_Click);
             // 
             // rDTINTToolStripMenuItem
             // 
@@ -1050,9 +1053,9 @@
             this.LBL_VERSION,
             this.BTN_RAM,
             this.PRG_LOAD});
-            this.MAINSTATUS_STRIP.Location = new System.Drawing.Point(0, 725);
+            this.MAINSTATUS_STRIP.Location = new System.Drawing.Point(0, 721);
             this.MAINSTATUS_STRIP.Name = "MAINSTATUS_STRIP";
-            this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(1107, 24);
+            this.MAINSTATUS_STRIP.Size = new System.Drawing.Size(1107, 28);
             this.MAINSTATUS_STRIP.TabIndex = 11;
             this.MAINSTATUS_STRIP.Text = "statusStrip1";
             this.MAINSTATUS_STRIP.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MAINSTATUS_STRIP_ItemClicked);
@@ -1064,8 +1067,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_RID.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_RID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_RID.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_RID.Name = "LBL_RID";
-            this.LBL_RID.Size = new System.Drawing.Size(61, 19);
+            this.LBL_RID.Size = new System.Drawing.Size(56, 23);
             this.LBL_RID.Text = "ROOM ID";
             // 
             // LBL_CID
@@ -1075,8 +1079,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_CID.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_CID.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_CID.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_CID.Name = "LBL_CID";
-            this.LBL_CID.Size = new System.Drawing.Size(52, 19);
+            this.LBL_CID.Size = new System.Drawing.Size(49, 23);
             this.LBL_CID.Text = "CAM ID";
             // 
             // LBL_POS_X
@@ -1086,8 +1091,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_POS_X.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_POS_X.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_POS_X.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_POS_X.Name = "LBL_POS_X";
-            this.LBL_POS_X.Size = new System.Drawing.Size(21, 19);
+            this.LBL_POS_X.Size = new System.Drawing.Size(23, 23);
             this.LBL_POS_X.Text = "X:";
             // 
             // LBL_POS_Y
@@ -1097,8 +1103,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_POS_Y.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_POS_Y.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_POS_Y.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_POS_Y.Name = "LBL_POS_Y";
-            this.LBL_POS_Y.Size = new System.Drawing.Size(21, 19);
+            this.LBL_POS_Y.Size = new System.Drawing.Size(21, 23);
             this.LBL_POS_Y.Text = "Y:";
             // 
             // LBL_POS_Z
@@ -1108,8 +1115,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_POS_Z.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_POS_Z.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_POS_Z.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_POS_Z.Name = "LBL_POS_Z";
-            this.LBL_POS_Z.Size = new System.Drawing.Size(21, 19);
+            this.LBL_POS_Z.Size = new System.Drawing.Size(22, 23);
             this.LBL_POS_Z.Text = "Z:";
             // 
             // LBL_VERSION
@@ -1119,8 +1127,9 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.LBL_VERSION.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
             this.LBL_VERSION.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.LBL_VERSION.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LBL_VERSION.Name = "LBL_VERSION";
-            this.LBL_VERSION.Size = new System.Drawing.Size(19, 19);
+            this.LBL_VERSION.Size = new System.Drawing.Size(21, 23);
             this.LBL_VERSION.Text = "{}";
             // 
             // BTN_RAM
@@ -1131,7 +1140,7 @@
             this.BTN_RAM.Image = ((System.Drawing.Image)(resources.GetObject("BTN_RAM.Image")));
             this.BTN_RAM.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BTN_RAM.Name = "BTN_RAM";
-            this.BTN_RAM.Size = new System.Drawing.Size(32, 22);
+            this.BTN_RAM.Size = new System.Drawing.Size(32, 26);
             this.BTN_RAM.Text = "toolStripSplitButton1";
             this.BTN_RAM.ButtonClick += new System.EventHandler(this.BTN_RAM_ButtonClick);
             // 
@@ -1146,7 +1155,7 @@
             // PRG_LOAD
             // 
             this.PRG_LOAD.Name = "PRG_LOAD";
-            this.PRG_LOAD.Size = new System.Drawing.Size(500, 18);
+            this.PRG_LOAD.Size = new System.Drawing.Size(500, 22);
             this.PRG_LOAD.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // TMR_EXE
@@ -1167,7 +1176,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FRM_MAIN";
-            this.Text = "NETBIO VIRTUAL FILE LIBRARY v0.72 (Dchaps 2019-2021)";
+            this.Text = "NETBIO VIRTUAL FILE LIBRARY v0.73 (Dchaps 2019-2021)";
             this.Load += new System.EventHandler(this.FRM_MAIN_Load);
             this.MainToolStrip.ResumeLayout(false);
             this.MainToolStrip.PerformLayout();
@@ -1189,7 +1198,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripComboBox Volume_List;
         private System.Windows.Forms.ToolStripButton BTN_VBACK;
-        private System.Windows.Forms.ToolStripLabel LBL_SelArchive;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel LBL_AFS;
         private System.Windows.Forms.ToolStripComboBox Groups_List;
@@ -1277,6 +1285,7 @@
         private System.Windows.Forms.ToolStripMenuItem sNDMANAGERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dEBUGLOGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sNDSNPSOUNDBANKSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripLabel IMG_ARCHIVE;
     }
 }
 

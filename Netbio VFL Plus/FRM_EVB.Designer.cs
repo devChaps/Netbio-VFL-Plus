@@ -43,6 +43,7 @@
             this.BTN_TOGGLE = new System.Windows.Forms.ToolStripSplitButton();
             this.LBL_OFFSET = new System.Windows.Forms.ToolStripStatusLabel();
             this.LBL_OP_SZ = new System.Windows.Forms.ToolStripStatusLabel();
+            this.LBL_EVB_FNAME = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TSB_CONFIG = new System.Windows.Forms.ToolStripButton();
             this.TSB_TOGGLE = new System.Windows.Forms.ToolStripButton();
@@ -56,7 +57,6 @@
             this.TB_DETAILS = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PB_ROOM = new System.Windows.Forms.PictureBox();
-            this.LBL_EVB_FNAME = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_ROOM)).BeginInit();
@@ -136,10 +136,11 @@
             // 
             this.PG_OPCODE.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.PG_OPCODE.CommandsBackColor = System.Drawing.SystemColors.Control;
+            this.PG_OPCODE.Font = new System.Drawing.Font("Bahnschrift Condensed", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PG_OPCODE.HelpBackColor = System.Drawing.SystemColors.ControlDark;
             this.PG_OPCODE.Location = new System.Drawing.Point(1009, 54);
             this.PG_OPCODE.Name = "PG_OPCODE";
-            this.PG_OPCODE.Size = new System.Drawing.Size(218, 635);
+            this.PG_OPCODE.Size = new System.Drawing.Size(242, 635);
             this.PG_OPCODE.TabIndex = 3;
             this.PG_OPCODE.ToolbarVisible = false;
             this.PG_OPCODE.ViewBackColor = System.Drawing.SystemColors.WindowFrame;
@@ -155,7 +156,7 @@
             this.LBL_EVB_FNAME});
             this.statusStrip1.Location = new System.Drawing.Point(0, 860);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1227, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1263, 22);
             this.statusStrip1.TabIndex = 4;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -186,6 +187,12 @@
             this.LBL_OP_SZ.Size = new System.Drawing.Size(15, 17);
             this.LBL_OP_SZ.Text = "{}";
             // 
+            // LBL_EVB_FNAME
+            // 
+            this.LBL_EVB_FNAME.Name = "LBL_EVB_FNAME";
+            this.LBL_EVB_FNAME.Size = new System.Drawing.Size(118, 17);
+            this.LBL_EVB_FNAME.Text = "toolStripStatusLabel1";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -200,7 +207,7 @@
             this.BTN_ITEM_SET});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1227, 51);
+            this.toolStrip1.Size = new System.Drawing.Size(1263, 51);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -360,21 +367,15 @@
             this.PB_ROOM.BackColor = System.Drawing.SystemColors.ControlDark;
             this.PB_ROOM.Location = new System.Drawing.Point(1005, 695);
             this.PB_ROOM.Name = "PB_ROOM";
-            this.PB_ROOM.Size = new System.Drawing.Size(222, 159);
+            this.PB_ROOM.Size = new System.Drawing.Size(246, 159);
             this.PB_ROOM.TabIndex = 9;
             this.PB_ROOM.TabStop = false;
-            // 
-            // LBL_EVB_FNAME
-            // 
-            this.LBL_EVB_FNAME.Name = "LBL_EVB_FNAME";
-            this.LBL_EVB_FNAME.Size = new System.Drawing.Size(118, 17);
-            this.LBL_EVB_FNAME.Text = "toolStripStatusLabel1";
             // 
             // FRM_EVB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1227, 882);
+            this.ClientSize = new System.Drawing.Size(1263, 882);
             this.Controls.Add(this.PB_ROOM);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TB_DETAILS);
@@ -423,9 +424,9 @@
         private System.Windows.Forms.ToolStripButton BTN_ITEM_SET;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton TSB_DEBUG;
-        private System.Windows.Forms.PictureBox PB_ROOM;
         private System.Windows.Forms.ToolStripStatusLabel LBL_OFFSET;
         private System.Windows.Forms.ToolStripStatusLabel LBL_OP_SZ;
         public System.Windows.Forms.ToolStripStatusLabel LBL_EVB_FNAME;
+        public System.Windows.Forms.PictureBox PB_ROOM;
     }
 }

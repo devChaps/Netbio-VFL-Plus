@@ -1215,9 +1215,3 @@ namespace Netbio_VFL_Plus
 
 	}
 
-public class ExtraMath
-{
-    
-
-
-}
